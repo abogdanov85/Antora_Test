@@ -105,7 +105,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Fully implemented by:
 
 * link:collections.adoc#Base.AbstractRange[`AbstractRange`]
-* link:collections.adoc#Base.UnitRange[`UnitRange`]
+* link:#Base.UnitRange[`UnitRange`]
 * `Tuple`
 * `Number`
 * link:arrays.md#Core.AbstractArray[`AbstractArray`]
