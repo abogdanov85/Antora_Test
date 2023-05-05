@@ -1,5 +1,5 @@
-name: component-a
-title: Component A
+name: test-name
+title: Test Title
 version: 1.5.6
 start_page: index.adoc
 asciidoc:
