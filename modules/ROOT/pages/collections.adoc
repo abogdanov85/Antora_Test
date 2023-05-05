@@ -12,7 +12,7 @@
 
 == Iteration
 
-Sequential iteration is implemented by the link:collections.md#Base.iterate[`iterate`] function. The general `for` loop:
+Sequential iteration is implemented by the link:collections.adoc#Base.iterate[`iterate`] function. The general `for` loop:
 
 [,julia]
 ----
