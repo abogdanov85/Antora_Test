@@ -36,7 +36,8 @@ end
 The `state` object may be anything, and should be chosen appropriately for each iterable type. See the link:../manual/interfaces.md#man-interface-iteration[manual section on the iteration interface] for more details about defining a custom iterable type.
 
 <<Base.iterate,#>>
-*`Base.iterate`* &mdash; _Function_.
+
+# *`Base.iterate`* &mdash; _Function_.
 
 [,julia]
 ----
