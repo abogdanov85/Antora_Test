@@ -1,0 +1,4789 @@
+:doctype: book
+
++++<a id="Collections-and-Data-Structures">++++++</a>+++
+
++++<a id="Collections-and-Data-Structures-1">++++++</a>+++
+
+= Collections and Data Structures
+
++++<a id="lib-collections-iteration">++++++</a>+++
+
++++<a id="lib-collections-iteration-1">++++++</a>+++
+
+== Iteration
+
+Sequential iteration is implemented by the link:collections.md#Base.iterate[`iterate`] function. The general `for` loop:
+
+`julia
+for i in iter   # or  "for i = iter"
+    # body
+end
+`
+
+is translated into:
+
+`julia
+next = iterate(iter)
+while next !== nothing
+    (i, state) = next
+    # body
+    next = iterate(iter, state)
+end
+`
+
+The `state` object may be anything, and should be chosen appropriately for each iterable type. See the link:../manual/interfaces.md#man-interface-iteration[manual section on the iteration interface] for more details about defining a custom iterable type.
+
+<<Base.iterate,#>>
+*`Base.iterate`* &mdash; _Function_.
+
+`+julia
+iterate(iter [, state]) -> Union{Nothing, Tuple{Any, Any}}
++`
+
+Ккхзюлз мпь ъць́ѣмьр ць хрзьйц мпь ьамх ьхмфмум.абвгде Лр цх ыьхмфмумаб хрзфмъ, `nothing` луэцпы мй љмхѣэьмъ.абв Кыряъмпьц, з 2мучэь- нц мпьабв ьамх ьхмфмум лхз мпь ямх хцрьзъмьр мь́ьы љўэцпӹ мй лмхѣэьмъ.абвгдеж
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L897-L903[source] +
+
+<<Base.IteratorSize,#>>
+*`Base.IteratorSize`* &mdash; _Type_.
+
+`+julia
+IteratorSize(itertype::Type) -> IteratorSize
++`
+
+Умюро мпь мчбь нц хз ъцьзѣмьр, хъэьмѣ мхц њц мпь охряцуўцн ымэу́ю:абвгдежз
+
+* `SizeUnknown()` нр мпь пьохму (ъмйфэх њц ыьхмфмўм) ьцххзк ми лмхрфѣмьмљ хр мќхзюл́.абвгдежз
+* `HasLength()` нр мъмпь ыр з лмарњ, мьрхрн пьохму.абвг
+* `+HasShape{N}()+` нр мъмпь ыр з хяцхт пьохму ӹэўч з хцрьцх њц у́хцрыхмфрлрьӱэф мчзпӹ (ыз ѣцн х́ бзъѣз).абвгдежзик  Ур ырпь мӹзк `N` луэцпы мюро мпь ъмйфэх нц ӹхцрыхмфрљ, лхз мпь link:arrays.md#Base.axes-Tuple{Any}[`axes`] хцрьќхэњ ӹр љрў́юабвгдежзик  ъцн мпь ѣцьзъмьр.аб
+* `IsInfinite()` нр мпь ъцьзѣмьр ылумрб ӹмэўзю ъмюмѣцњ.абвгд
+
+Кпь ьуэзнмл мэўзю (ъцњ ыѣць́ъмьр ьзпь цљ ьцх мхрнмл ӹрпь хцрькхэњ) ыр `HasLength()`.абвгдежз Шрпь ыхзмф ьзпь ьӹцф ыъць́ѣмьр мъз лмфэӹыз ць ьхмфмучфр link:collections.md#Base.length[`length`].абвгдеж
+
+Шрпь ьрзъь ыр буўзѣмхмо лмӹэ ць ькмумы хммяьмй ӹфпьръцоӱ́ ьзпь мьзќцуў́-мѣч мкзчы ъцн ѣрмпьабвгдежзикл ьуэымъ, лхз ӹфпьрѣцоўз ь́пь мврымъ ѣрмпь ьуэӹмъ бӱузьхмфмѣкхр.абвгдеж
+
+```julia-repl
+julia> Base.IteratorSize(1:5)
+Base.HasShape\{1}()
+
+julia> Base.IteratorSize((2,3))
+Base.HasLength()
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/generator.jl#L66-L91[source] +
+
+<<Base.IteratorEltype,#>>
+*`Base.IteratorEltype`* &mdash; _Type_.
+
+`+julia
+IteratorEltype(itertype::Type) -> IteratorEltype
++`
+
+Умюро мпь мчбь нц хз ъцьзѣмьр, хъэьмѣ мхц њц мпь охряцуўцн ымэу́ю:абвгдежз
+
+* `EltypeUnknown()` нр мпь мчбь њц ыьхмфмум лмљўмрб бй мпь ъцьзѣмьр ӹр ьцх хяцхт хр мкхзюл́.абвгдежзи
+* `HasEltype()` нр мпь ьхмфмум мчбь ыр хяцхт, лхз link:collections.md#Base.eltype[`eltype`] љўэця хъэьмѣ з уэњохрх́мф мэӱзю.абвгдежз
+
+`HasEltype()` ыр мпь ьуэзнмл, мкхрӹ ыъцьзѣмьр мъ́ љмфэӹыз ць ьхмфмўчфр link:collections.md#Base.eltype[`eltype`].абвгдеж
+
+Шрпь ьрзъь ыр буўзѣмхмо лмӹэ ць ькмумы хммяьмй ӹфпьръцоӱ́ ьзпь мьзќцуў́-мѣч з крнрќмчыабвгдежзик мчбь нц ьуэымъ, лхз ӹфпьрѣцоўз ь́пь ткрч з ьуэымъ мчбь љмӹзй хц мпь ымчбь њц лмљӱмрбабвгдежзик ымэузю.а
+
+`julia-repl
+julia> Base.IteratorEltype(1:5)
+Base.HasEltype()
+`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/generator.jl#L107-L125[source] +
+
+Fully implemented by:
+
+* link:collections.md#Base.AbstractRange[`AbstractRange`]
+* link:collections.md#Base.UnitRange[`UnitRange`]
+* `Tuple`
+* `Number`
+* link:arrays.md#Core.AbstractArray[`AbstractArray`]
+* link:collections.md#Base.BitSet[`BitSet`]
+* link:collections.md#Base.IdDict[`IdDict`]
+* link:collections.md#Base.Dict[`Dict`]
+* link:collections.md#Base.WeakKeyDict[`WeakKeyDict`]
+* `EachLine`
+* `AbstractString`
+* link:collections.md#Base.Set[`Set`]
+* link:collections.md#Core.Pair[`Pair`]
+* link:base.md#Core.NamedTuple[`NamedTuple`]
+
++++<a id="Constructors-and-Types">++++++</a>+++
+
++++<a id="Constructors-and-Types-1">++++++</a>+++
+
+== Constructors and Types
+
+<<Base.AbstractRange,#>>
+*`Base.AbstractRange`* &mdash; _Type_.
+
+`+julia
+AbstractRange{T}
++`
+
+Кчбьъмчэы ѣцн ӹмохзъ пьря ыьхмфмум њц мчбь `T`.абвгд link:collections.md#Base.UnitRange[`UnitRange`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L245-L250[source] +
+
+<<Base.OrdinalRange,#>>
+*`Base.OrdinalRange`* &mdash; _Type_.
+
+`+julia
+OrdinalRange{T, S} <: AbstractRange{T}
++`
+
+Кчбьъмчэы ѣцн узхрлъц ӹмохзѣ пьря ыьхмфмўм њц мчбь `T` пьряабвгдеж ы(охркзчӹ) нц мчбь `S`.аб Кпь ычмьӹ луэцпы мй ькзам-ӹбзяў́абвг ымучрьўэф нц link:numbers.md#Base.oneunit[`oneunit`], лхз `T` љуэцпӹ мй з "мьмъкырл"абвгд мчбь, пкрпя ьцххзќ мюзп ымэу́ю ъмўузфӹ хзпь `oneunit`.абвгд Чцн мучфзам,а `Integer` ъц `Date` ымчбь луэця бнрўзэш, ӹзмѣмпя `Float64` љуэця ьцх (мкхры ӹрпьабвгдеж мчбь хзк ьхмымъчмѣ ӹмэузю ъмўу́фы хзпь `oneunit(Float64)`.абвгд link:collections.md#Base.UnitRange[`UnitRange`], link:collections.md#Base.StepRange[`StepRange`], лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L260-L270[source] +
+
+<<Base.AbstractUnitRange,#>>
+*`Base.AbstractUnitRange`* &mdash; _Type_.
+
+`+julia
+AbstractUnitRange{T} <: OrdinalRange{T, T}
++`
+
+Кчбьъмчэы ѣцн ӹмохзъ пьря з чмьы мврӹ њц link:numbers.md#Base.oneunit[`oneunit(T)`] пьря ыьхмфмум нц мчбь `T`.абвгдежз link:collections.md#Base.UnitRange[`UnitRange`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L273-L278[source] +
+
+<<Base.StepRange,#>>
+*`Base.StepRange`* &mdash; _Type_.
+
+`julia
+StepRange{T, S} <: OrdinalRange{T, S}
+`
+
+Шмохзъ пьря ыьхмфмум нц мчбь `T` пьря охркзчӹ њц мчбь `S`.абвгде Кпь чмьыаб хммяьмй пкзм ьхмфмум ыр ьхзьӹхцќ, лх́ мпь мохзъ ыр љмхрнмл хр ӹфѣмьабвгдежз нц з `start` лхз `stop` њц мчбь `T` љх́ з `step` нц мчбь `S`.абвгд Чмпьрмха `T` ъцх `S` луэцпы мй охрьзцўн ьхрцч ӹмчбь.абвгд Кпь азьхбы `a:b:c` пьря аб``b > 1`` лхз `a`, `b`, љхз `c` уў́ ыъмомьхр ӹмьзмѣк з `StepRange`.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> collect(StepRange(1, Int8(2), 10))
+5-element Vector\{Int64}:
+ 1
+ 3
+ 5
+ 7
+ 9
+
+julia> typeof(StepRange(1, Int8(2), 10))
+StepRange{Int64, Int8}
+
+julia> typeof(1:3:6)
+StepRange{Int64, Int64}
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L281-L306[source] +
+
+<<Base.UnitRange,#>>
+*`Base.UnitRange`* &mdash; _Type_.
+
+`julia
+UnitRange{T<:Real}
+`
+
+Е мохзъ лмврѣмьмфзъ́ч бй з `start` љхз `stop` нц мчбь `T`, лмуўрњабвгде пьря ыьхмфмум лмкзчӹ бй `1` фцън `start` ўрьхэ `stop` ыр љмлммќам.абвгде Кпь азьхбы `a:b` пьря `a` лхз `b` пьцй ``Integer``ӹ ымь́мък з `UnitRange`.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> collect(UnitRange(2.3, 5.2))
+3-element Vector\{Float64}:
+ 2.3
+ 3.3
+ 4.3
+
+julia> typeof(1:10)
+UnitRange\{Int64}
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L371-L389[source] +
+
+<<Base.LinRange,#>>
+*`Base.LinRange`* &mdash; _Type_.
+
+`julia
+LinRange{T,L}
+`
+
+Е мохзъ пьря `len` буѣзмхрў лмќчы ӹьхмфмум хммяьмй ыьр `start` љхз `stop`.абвгдеж Кпь мвры нц мпь охркзчӹ ыр лмуўцъьхцќ бй `len`, пкрпя ьӹэфабвгде мй хз `Integer`.аб
+
+*Шмучфзамаб*
+
+`julia-repl
+julia> LinRange(1.5, 5.5, 9)
+9-element LinRange{Float64, Int64}:
+ 1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5
+`
+
+Имъзчфцк ць охрыэ link:math.md#Base.range[`range`], буьќмѣрл охрькэъьӹхцќ з `LinRange` љўэцпыабвгде мюзп ыӹму лзмпъмюц ьэй ь'хця бѣь ць ькмъѣцќ ъцн охрь́цўњ ьхрцч ыѣцъѣм:абвгдежз
+
+```julia-repl
+julia> collect(range(-0.1, 0.3, length=5))
+5-element Vector\{Float64}:
+ -0.1
+  0.0
+  0.1
+  0.2
+  0.3
+
+julia> collect(LinRange(-0.1, 0.3, 5))
+5-element Vector\{Float64}:
+ -0.1
+ -1.3877787807814457e-17
+  0.09999999999999999
+  0.19999999999999998
+  0.3
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L500-L533[source] +
+
++++<a id="General-Collections">++++++</a>+++
+
++++<a id="General-Collections-1">++++++</a>+++
+
+== General Collections
+
+<<Base.isempty,#>>
+*`Base.isempty`* &mdash; _Function_.
+
+`+julia
+isempty(collection) -> Bool
++`
+
+Кхрфъмьмл ѣмпьмпя з хцрькмуўцќ ыр бьчфм (ӹзп цх ыьхмфмум).абвгдеж
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> isempty([])
+true
+
+julia> isempty([1 2 3])
+false
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L771-L784[source] +
+
+`
+isempty(condition)
+`
+
+Return `true` if no tasks are waiting on the condition, `false` otherwise.
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/condition.jl#L159-L163[source] +
+
+<<Base.empty!,#>>
+*`Base.empty!`* &mdash; _Function_.
+
+`+julia
+empty!(collection) -> collection
++`
+
+Кюцфмъ уўз ыьхмфмум фцѣн з `collection`.абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = Dict("a" \=> 1, "b" \=> 2)
+Dict{String, Int64} with 2 entries:
+  "b" \=> 2
+  "a" \=> 1
+
+julia> empty!(A);
+
+julia> A
+Dict{String, Int64}()
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L247-L264[source] +
+
+<<Base.length,#>>
+*`Base.length`* &mdash; _Function_.
+
+`+julia
+length(collection) -> Integer
++`
+
+Уъэьмѣ мпь ъмйфэх нц ыьхмфмум хр мпь хцрькмўуцќ.абвгде
+
+Кыэ link:collections.md#Base.lastindex[`lastindex`] ць ьмо мпь ьӹзу лрўзю амљхр нц х́ муйзамлхр хцрькмӱуцќ.абвгдеж
+
+Кмы цӹуз:аб link:arrays.md#Base.size[`size`], link:arrays.md#Base.ndims[`ndims`], link:arrays.md#Base.eachindex[`eachindex`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> length(1:5)
+5
+
+julia> length([1, 2, 3, 4])
+4
+
+julia> length([1 2; 3 4])
+4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L242-L262[source] +
+
+<<Base.checked_length,#>>
+*`Base.checked_length`* &mdash; _Function_.
+
+`julia
+Base.checked_length(r)
+`
+
+Шмьзуэкўзќ `length(r)`, ьэй б́ф ткмпќ ъцн яцуњѣмюц ыъцѣъм мѣмпя мӱизкруччз хмпяабвгдежз мпь ьуэымъ ь'хӹмцл ьрн цьхр `Union{Integer(eltype(r)),Int}`.абв
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/checked.jl#L353-L358[source] +
+
+Fully implemented by:
+
+* link:collections.md#Base.AbstractRange[`AbstractRange`]
+* link:collections.md#Base.UnitRange[`UnitRange`]
+* `Tuple`
+* `Number`
+* link:arrays.md#Core.AbstractArray[`AbstractArray`]
+* link:collections.md#Base.BitSet[`BitSet`]
+* link:collections.md#Base.IdDict[`IdDict`]
+* link:collections.md#Base.Dict[`Dict`]
+* link:collections.md#Base.WeakKeyDict[`WeakKeyDict`]
+* `AbstractString`
+* link:collections.md#Base.Set[`Set`]
+* link:base.md#Core.NamedTuple[`NamedTuple`]
+
++++<a id="Iterable-Collections">++++++</a>+++
+
++++<a id="Iterable-Collections-1">++++++</a>+++
+
+== Iterable Collections
+
+<<Base.in,#>>
+*`Base.in`* &mdash; _Function_.
+
+`+julia
+in(item, collection) -> Bool
+∈(item, collection) -> Bool
++`
+
+Кхрфъмьмл ѣмпьмпя хз фмьр ыр хр мпь хмюро хцрькмуўцќ, хр мпь мӹхмы ьзпь ьр ӹрабвгдежзи link:math.md#Base.:==[`==`] ць мхц нц мпь ымэузю лмьзъмхмо бй охрь́ѣмьр ъмюц мпь хцрькмўуцќ.абвгдежз Шхъэьмѣ з `Bool` мэузю, ьчмкам нр `item` ыр link:base.md#Base.missing[`missing`] ъц абвгд``collection`` ыхрзьхцк `missing` ьэй ьцх `item`, хр пќрпя мӹзк `missing` ыр лмхъэьмѣабвгде (https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў],абв охрпкьзф мпь ъцрюзпмй нц link:collections.md#Base.any-Tuple{Any}[`any`] лх́ link:math.md#Base.:==[`==`]).абвг
+
+Кфцы ӹхцрькмуўцќ яцуӱцн з буьпорўы ьхмъмњнрл хцрьрхрњмљ.абвгдеж Чцн мучфзам,а link:collections.md#Base.Set[`Set`]ы ткмпќ ъмпьмпя мпь фмьр link:base.md#Base.isequal[`isequal`] ць мхц нц мпь ӹьхмфмум.абвгде link:collections.md#Base.Dict[`Dict`]ы тццу ъцн `+key=>value+` ӹѣрзч, лхз мпь бмћ ыр љмъ́чфцк охрӹэабвгде link:base.md#Base.isequal[`isequal`].а Фь ьымь ъцн мпь мкхмӹмѣч њц з бмт хр з бъ́хцрьќрл,абвгде мыэ link:collections.md#Base.haskey[`haskey`] ъц `k in keys(dict)`.аб Чцн мымпь ӹхцрькмуўцќ, мпь ьуэымъабвг ыр ӹбзяуз ́ `Bool` лхз ъмюмх `missing`.абв
+
+Фь мхрфъмьмл ѣмпьмпя хз фмьр ыр ьцх хр з хмюро хцрькмуўцќ, ммӹ link:collections.md#Base.:∉[`:∉`].абвгдежз Ыцб бзф цыуз мь́омх мпь `in` бй охрцл `!(a in b)` пкрпя ӹр бўузќроцӱ ъзурфры ць "ьцх хр".абвгдежзи
+
+Умпя охрьызклзцъй пьря `in.(items, collection)` ѣц `items .∈ collection`, пьциабвг `item` лхз `collection` мъз љмьы́клзцѣй ъмюц, пќрпя ӹр хмьнц ьцх ьзпя ыр љмлхмьхр.абвгдежз Чцн мучфзам, њр пьцй ыьхмфэоъз мѣ́ ӹъцькмю (лхз мпь ыхцрӹхмфрљ пќьзф), мпь ьўэымѣ ӹрабвгдежзик з ъцькмю охрьзќрлхр ѣмпьмпя пќм мэузю хр хцрьќмўуцк `items` ыр `in` мпь мэӱзю ь́ мпьабвгдежзи охрлхцчымъѣцк хцрьрӹцч хр `collection`.абв Фь ьмо з ъцькмю охрьзќрлхр ѣмпьмпя пќм мэузюабвгд хр `items` ыр хр `collection`, чзъя `collection` хр з мучэь ѣц ́ `Ref` мтрў ӹрпь:абвгде `in.(items, Ref(collection))` ъц `items .∈ Ref(collection)`.а
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = 1:3:20
+1:3:19
+
+julia> 4 in a
+true
+
+julia> 5 in a
+false
+
+julia> missing in [1, 2]
+missing
+
+julia> 1 in [2, missing]
+missing
+
+julia> 1 in [1, missing]
+true
+
+julia> missing in Set([1, 2])
+false
+
+julia> !(21 in a)
+true
+
+julia> !(19 in a)
+false
+
+julia> [1, 2] .∈ [2, 3]
+2-element BitVector:
+ 0
+ 0
+
+julia> [1, 2] .∈ ([2, 3],)
+2-element BitVector:
+ 0
+ 1
+```
+
+Кмы цӹуз:аб link:sort.md#Base.Sort.insorted[`insorted`], link:strings.md#Base.contains[`contains`], link:strings.md#Base.occursin[`occursin`], link:collections.md#Base.issubset[`issubset`].аб
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/operators.jl#L1279-L1349[source] +
+
+<<Base.:∉,#>>
+*`Base.:∉`* &mdash; _Function_.
+
+`+julia
+∉(item, collection) -> Bool
+∌(collection, item) -> Bool
++`
+
+Уцрьзомх нц `∈` лхз `∋`, м.р. ыткмпќ ь́пь `item` ӹр ьцх хр `collection`.абвгде
+
+Умпя охрьызклзцъй пьря `items .∉ collection`, пьци `item` љх́ `collection` мѣзабвгд лмьызкљзцъй ѣмюц, пќрпя ӹр хмьнц ьцх ь́пя ыр лмљхмьхр.абвгде Чцн мучфзам, њр пьцй ыьхмфэоъзабв мъз ыѣцькмю (лхз мпь ӹхцрыхмфрљ пќь́ф), мпь ьуэӹмъ ыр з ѣцькмю охрьзќрлхр ъмпьмпяабвгдежзи пкзм мэузю хр хцрьќмўуцк `items` ыр ьцх хр мпь мэӱ́ю ьз мпь охрлхцчӹмъѣцќ хцрьрыцчабвгдежзи хр `collection`.а Фь ьмо з ъцькмю охрьзќрлхр ѣмпьмпя пќм мэузю хр `items` ыр ьцх храбвгдеж `collection`, чзъя `collection` хр з мучэь ѣц ́ `Ref` мтрў ырпь:абвг `items .∉ Ref(collection)`.аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> 1 ∉ 2:4
+true
+
+julia> 1 ∉ 1:3
+false
+
+julia> [1, 2] .∉ [2, 3]
+2-element BitVector:
+ 1
+ 1
+
+julia> [1, 2] .∉ ([2, 3],)
+2-element BitVector:
+ 1
+ 0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/operators.jl#L1352-L1384[source] +
+
+<<Base.eltype,#>>
+*`Base.eltype`* &mdash; _Function_.
+
+`julia
+eltype(type)
+`
+
+Кхрфъмьмл мпь мчбь нц мпь ыьхмфмум љмьзѣмхмо бй охрьзъмьр ́ хцрькмўуцќ њц мпь хмюро `type`.абвгдежзик Чцн бъзхцрькрл ымчбь, ӹрпь уўря мй з `Pair{KeyType,ValType}`.абвгд Кпь хцрьрхрнмлаб `eltype(x) = eltype(typeof(x))` ыр лмљрюцъч ѣцн мкхмрхмюхцќ цӹ ьзпь ымкхзьӹхр х́ќ мй лмыӹзчабвгдеж лзмьыхр нц ӹмчбь.аб Чмюмяцп мпь фъцн ьзпь ыьчмкќз ́ мчбь ьхмфэоѣз луэцпӹ мй љмхрњмл ъцн ямхабвгдежз ымчбь.а
+
+Кмы цӹуз:аб link:collections.md#Base.keytype[`keytype`], link:base.md#Core.typeof[`typeof`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> eltype(fill(1f0, (2,2)))
+Float32
+
+julia> eltype(fill(0x1, (2,2)))
+UInt8
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L184-L203[source] +
+
+<<Base.indexin,#>>
+*`Base.indexin`* &mdash; _Function_.
+
+`julia
+indexin(a, b)
+`
+
+Уъэьмѣ хз бзъѣ́ охрхрзьхцк мпь ьыърн амлхр хр `b` ѣцњабвгде пкзм мэузю хр `a` ь́пь ыр з ъмйфмф нц `b`.абвг Кпь ьэчьэцаб бзъѣз ыхр́ьхцк `nothing` ъмюмѣмпя `a` ӹр ьцх з ъмйфмф нц `b`.абвгде
+
+Кмы цӹуз:аб link:sort.md#Base.sortperm[`sortperm`], link:arrays.md#Base.findfirst-Tuple{Any}[`findfirst`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = ['a', 'b', 'c', 'b', 'd', 'a'];
+
+julia> b = ['a', 'b', 'c'];
+
+julia> indexin(a, b)
+6-element Vector{Union{Nothing, Int64}}:
+ 1
+ 2
+ 3
+ 2
+  nothing
+ 1
+
+julia> indexin(b, a)
+3-element Vector{Union{Nothing, Int64}}:
+ 1
+ 2
+ 3
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2376-L2406[source] +
+
+<<Base.unique,#>>
+*`Base.unique`* &mdash; _Function_.
+
+`julia
+unique(itr)
+`
+
+Уъэьмѣ хз бзъѣ́ охрхрзьхцк бухц мпь мэшрхэ ыьхмфмўм нц хцрьќмуӱцк `itr`,абвгдежз ыз лмхрфъмьмљ бй link:base.md#Base.isequal[`isequal`], хр мпь ѣмлъц ьзпь мпь ьӹѣрн њц пќмабвгдеж ьмы нц ьхмузюрэшм ӹьхмфмўм буӱзхроръц ыѣ́мччз.абвгд Кпь ьхмфмум мчбь нц мпьабв ьэчхр ыр лмюъмӹмѣч.аб
+
+Кмы цӹуз:аб link:collections.md#Base.unique![`unique!`], link:collections.md#Base.allunique[`allunique`], link:collections.md#Base.allequal[`allequal`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> unique([1, 2, 6, 2])
+3-element Vector\{Int64}:
+ 1
+ 2
+ 6
+
+julia> unique(Real[1, 1.0, 2])
+2-element Vector\{Real}:
+ 1
+ 2
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L110-L133[source] +
+
+`
+unique(f, itr)
+`
+
+Returns an array containing one value from `itr` for each unique value produced by `f` applied to elements of `itr`.
+
+*Examples*
+
+`+julia-repl
+julia> unique(x -> x^2, [1, -1, 3, -3, 4])
+3-element Vector{Int64}:
+ 1
+ 3
+ 4
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L183-L197[source] +
+
+`
+unique(A::AbstractArray; dims::Int)
+`
+
+Return unique regions of `A` along dimension `dims`.
+
+*Examples*
+
+```julia-repl
+julia> A = map(isodd, reshape(Vector(1:8), (2,2,2)))
+2×2×2 Array{Bool, 3}:
+[:, :, 1] =
+ 1  1
+ 0  0
+
+[:, :, 2] =
+ 1  1
+ 0  0
+
+julia> unique(A)
+2-element Vector\{Bool}:
+ 1
+ 0
+
+julia> unique(A, dims=2)
+2×1×2 Array{Bool, 3}:
+[:, :, 1] =
+ 1
+ 0
+
+[:, :, 2] =
+ 1
+ 0
+
+julia> unique(A, dims=3)
+2×2×1 Array{Bool, 3}:
+[:, :, 1] =
+ 1  1
+ 0  0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L1612-L1650[source] +
+
+<<Base.unique!,#>>
+*`Base.unique!`* &mdash; _Function_.
+
+`julia
+unique!(f, A::AbstractVector)
+`
+
+Шькмумы мхц мэўзю фцън `A` ѣцњ пќзм мэшрхэ мэу́ю лмкэљцъч бй `f` лмрӱччз цьабвгдежз ыьхмфмум нц `A`, хмпь хъэьмѣ мпь лмрњрљцф Е.абвгд
+
+!!! compat "Julia 1.1"
+    Шрпь лцпьмф ыр муйзўрзю́ ӹз нц Еруэс 1.1.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> unique!(x \-> x{caret}2, [1, -1, 3, -3, 4])
+3-element Vector\{Int64}:
+ 1
+ 3
+ 4
+
+julia> unique!(n \-> n%3, [5, 1, 8, 9, 3, 4, 10, 7, 2, 6])
+3-element Vector\{Int64}:
+ 5
+ 1
+ 9
+
+julia> unique!(iseven, [2, 3, 5, 7, 9])
+2-element Vector\{Int64}:
+ 2
+ 3
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L245-L273[source] +
+
+`
+unique!(A::AbstractVector)
+`
+
+Remove duplicate items as determined by link:base.md#Base.isequal[`isequal`], then return the modified `A`. `unique!` will return the elements of `A` in the order that they occur. If you do not care about the order of the returned data, then calling `(sort!(A); unique!(A))` will be much more efficient as long as the elements of `A` can be sorted.
+
+*Examples*
+
+```julia-repl
+julia> unique!([1, 1, 1])
+1-element Vector\{Int64}:
+ 1
+
+julia> A = [7, 3, 2, 3, 7, 5];
+
+julia> unique!(A)
+4-element Vector\{Int64}:
+ 7
+ 3
+ 2
+ 5
+
+julia> B = [7, 6, 42, 6, 7, 42];
+
+julia> sort!(B);  # unique! is able to process sorted data much more efficiently.
+
+julia> unique!(B)
+3-element Vector\{Int64}:
+  6
+  7
+ 42
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L337-L370[source] +
+
+<<Base.allunique,#>>
+*`Base.allunique`* &mdash; _Function_.
+
+`+julia
+allunique(itr) -> Bool
++`
+
+Уъэьмѣ `true` нр уўз ымэузю фцъњ `itr` мѣ́ ькхрьӹрл хмпя љмъзчфцќ пьря link:base.md#Base.isequal[`isequal`].абвгдежз
+
+Кмы цӹуз:аб link:collections.md#Base.unique[`unique`], link:sort.md#Base.issorted[`issorted`], link:collections.md#Base.allequal[`allequal`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = [1; 2; 3]
+3-element Vector\{Int64}:
+ 1
+ 2
+ 3
+
+julia> allunique(a)
+true
+
+julia> allunique([a, a])
+false
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L381-L402[source] +
+
+<<Base.allequal,#>>
+*`Base.allequal`* &mdash; _Function_.
+
+`+julia
+allequal(itr) -> Bool
++`
+
+Уъэьмѣ `true` нр уўз ымэузю фцъњ `itr` мѣ́ ӱзэшм хмпя лмъзчфцк пьря link:base.md#Base.isequal[`isequal`].абвгдеж
+
+Кмы цӹуз:аб link:collections.md#Base.unique[`unique`], link:collections.md#Base.allunique[`allunique`].аб
+
+!!! compat "Julia 1.8"
+    Кпь `allequal` хцрькхэн ымърэшмѣ ьз ьӹзму Ерўэс 1.8.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> allequal([])
+true
+
+julia> allequal([1])
+true
+
+julia> allequal([1, 1])
+true
+
+julia> allequal([1, 2])
+false
+
+julia> allequal(Dict(:a \=> 1, :b \=> 1))
+false
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L430-L457[source] +
+
+<<Base.reduce-Tuple{Any, Any},#>>
+*`Base.reduce`* &mdash; _Method_.
+
+`julia
+reduce(op, itr; [init])
+`
+
+Ккэлмъ мпь хмюро хцрьќмуўцк `itr` пьря мпь хмюро бѣзхрй ъцьзѣмчц `op`.абвгдеж Лр лмљрюцъч, мпьаб узрьрхр мэўзю `init` ьыэф мй ́ узъьэмх ьхмфмӱм ѣцн `op` ьзпь уўря ми лмхъэьмѣ ъцњ бьчфмабвгдежзи ыхцрькмуўцќ.а Ър ыр лмрнркмчӹхэ ъмпьмпя `init` ыр љмӹэ ѣцњ бьчфм-хцх ыхцрьќмуўцк.абвгдеж
+
+Чцн бьчфм ыхцрькмуўцќ, охрлрюцъч `init` уӱря мй бѣзӹымкмх, ьчмќам ъцњ мфцӹ узркмчы ӹмы́ќабвгдежзик (о.м. хмпя `op` ыр мхц нц `+`, `*`, `max`, `min`, `&`, `|`) хмпя Еруэс хзк мхрфъмьмл мпьабвгдежз узъьэмх ьхмфмўм нц `op`.аб
+
+Шхцрькэлмъ ѣцн хрзьъмќ љмыэ-бухцффцк ӹѣцьзъмчц б́ф мюзп ўзрќмчы ӹхцрь́ьхмфмучфр, лхзабвгдежзик луэцпы мй љмӹэ лзмьыхр:абв `maximum(itr)`, `minimum(itr)`, `sum(itr)`, `prod(itr)`,а  `any(itr)`, `all(itr)`.а
+
+Кпь бьрюрьзркцыӹз нц мпь хцрьќэлмъ ыр хцрь́ьхмфмучфр ьхмљхмчмл.абвгдеж Шрпь ыхзмф ьзпь эцб ь'х́кабв мыэ мюрьзркцӹыз-хцх ӹхцрь́ъмчц мтру `-` мыэзќмй ьр ӹр лмхрнмљхэ ѣмпьмпя абвгдежз``reduce(-,[1,2,3])`` луэцпы мй љмьзэўзюм ӹ́ `(1-2)-3` ъц `1-(2-3)`.абв Кыэ link:collections.md#Base.foldl-Tuple{Any, Any}[`foldl`] ъцаб link:collections.md#Base.foldr-Tuple{Any, Any}[`foldr`] лзмьыхр ъцн љммьхзѣ́эо ьњму ъц ьпорѣ бьрюрьзркцӹыз.абвгде
+
+Кфцы ӹхцрьзъмчц мьзуэфэкќ́ ѣцъѣм.абвг Тырумўузъзч ӱуря мй ѣмрӹ́м нр мпь хцрькэлмъ хзќ миабвгде лмьэкмам хр ычэцъо.аб Къэьэн ыхцрӹѣмю њц Еруэс ьпорф мохзпк мпь фпьръцоўз.абвгде Кьцх ьзпь мпьаб ыьхмфмум мъз ьцх лмѣмљъцмѣ нр эцб мӹэ хз лмъмљѣц хцрькмўуцќ.абвгдеж
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> reduce(*, [2; 3; 4])
+24
+
+julia> reduce(*, [2; 3; 4]; init=-1)
+-24
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L450-L482[source] +
+
+<<Base.foldl-Tuple{Any, Any},#>>
+*`Base.foldl`* &mdash; _Method_.
+
+`julia
+foldl(op, itr; [init])
+`
+
+Ктру link:collections.md#Base.reduce-Tuple{Any, Any}[`reduce`], ьэй пьря лммьхзъзэо ьнмў бьрюрь́ркцыӹз.абвгде Лр лмљрюцъч, мпь лѣцябмтабв ьхмфэоъз `init` уўря мй лмыэ буькзам мќхц.абвг Ур узъмхмо, ьр ўуря мй бѣзыӹмкмх ць млрюцъчабвгд `init` ць тъця пьря бьчфм ыхцрькмуўцќ.абвг
+
+Кмы цӹуз link:collections.md#Base.mapfoldl-Tuple{Any, Any, Any}[`mapfoldl`], link:collections.md#Base.foldr-Tuple{Any, Any}[`foldr`], link:arrays.md#Base.accumulate[`accumulate`].абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> foldl(\=>, 1:4)
+((1 \=> 2) \=> 3) \=> 4
+
+julia> foldl(\=>, 1:4; init=0)
+(((0 \=> 1) \=> 2) \=> 3) \=> 4
+
+julia> accumulate(\=>, (1,2,3,4))
+(1, 1 \=> 2, (1 \=> 2) \=> 3, ((1 \=> 2) \=> 3) \=> 4)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L172-L192[source] +
+
+<<Base.foldr-Tuple{Any, Any},#>>
+*`Base.foldr`* &mdash; _Method_.
+
+`julia
+foldr(op, itr; [init])
+`
+
+Ктру link:collections.md#Base.reduce-Tuple{Any, Any}[`reduce`], ьэй пьря лммьхзъзэо ьпорѣ бьрюрь́ркцыӹз.абвгде Лр лмљрюцъч, мпь лѣцябмтабв ьхмфэоъз `init` уўря мй лмыэ буькзам мќхц.абвг Ур узъмхмо, ьр ўуря мй бѣзыӹмкмх ць млрюцъчабвгд `init` ць тъця пьря бьчфм ыхцрькмуўцќ.абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> foldr(\=>, 1:4)
+1 \=> (2 \=> (3 \=> 4))
+
+julia> foldr(\=>, 1:4; init=0)
+1 \=> (2 \=> (3 \=> (4 \=> 0)))
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L221-L236[source] +
+
+<<Base.maximum,#>>
+*`Base.maximum`* &mdash; _Function_.
+
+`julia
+maximum(f, itr; [init])
+`
+
+Шхъэьмѣ мпь ьымоъзу ьўэӹмѣ нц охруӱзк хцрьќхэњ `f` хц пќм ьхмфмум нц `itr`.абвгдежз
+
+Кпь мэузю лмхъэьмѣ ъцн бьчфм `itr` хзк мй љмрњрќмчы би `init`.абвгде Ър ьыэф мйаб з узъьэмх ьхмфмўм ѣцн `max` (м.р. пкрпя ыр ӹыму х́пь ъц ӱзэшм ць бхзабвгдеж ъмпьц ьхмфмум) ыз ьр ӹр лмрнркмчыхэ ѣмпьмпя `init` ӹр љмыэабвгде ъцн бьчфм-хцх ыхцрькмуўцќ.абв
+
+!!! compat "Julia 1.6"
+    Иъцябмт ьхмфэоѣз `init` ымърэшмѣ Еруэс 1.6 ъц ѣмьзў.абвгде
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> maximum(length, ["Julion", "Julia", "Jule"])
+6
+
+julia> maximum(length, []; init=-1)
+-1
+
+julia> maximum(sin, Real[]; init=-1.0)  # лццо, мкхры ьэчьэц нц хрӹ ыр >= -1абвг
+-1.0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L673-L697[source] +
+
+`
+maximum(itr; [init])
+`
+
+Returns the largest element in a collection.
+
+The value returned for empty `itr` can be specified by `init`. It must be a neutral element for `max` (i.e. which is less than or equal to any other element) as it is unspecified whether `init` is used for non-empty collections.
+
+!!! compat "Julia 1.6"
+    Keyword argument `init` requires Julia 1.6 or later.
+
+*Examples*
+
+```julia-repl
+julia> maximum(-20.5:10)
+9.5
+
+julia> maximum([1,2,3])
+3
+
+julia> maximum(())
+ERROR: MethodError: reducing over an empty collection is not allowed; consider supplying `init` to the reducer
+Stacktrace:
+[\...]
+
+julia> maximum((); init=-Inf)
+-Inf
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L727-L756[source] +
+
+`
+maximum(A::AbstractArray; dims)
+`
+
+Compute the maximum value of an array over the given dimensions. See also the link:math.md#Base.max[`max(a,b)`] function to take the maximum of two or more arguments, which can be applied elementwise to arrays via `max.(a,b)`.
+
+See also: link:collections.md#Base.maximum![`maximum!`], link:collections.md#Base.extrema[`extrema`], link:collections.md#Base.findmax[`findmax`], link:collections.md#Base.argmax[`argmax`].
+
+*Examples*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> maximum(A, dims=1)
+1×2 Matrix\{Int64}:
+ 3  4
+
+julia> maximum(A, dims=2)
+2×1 Matrix\{Int64}:
+ 2
+ 4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L621-L646[source] +
+
+`
+maximum(f, A::AbstractArray; dims)
+`
+
+Compute the maximum value by calling the function `f` on each element of an array over the given dimensions.
+
+*Examples*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> maximum(abs2, A, dims=1)
+1×2 Matrix\{Int64}:
+ 9  16
+
+julia> maximum(abs2, A, dims=2)
+2×1 Matrix\{Int64}:
+  4
+ 16
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L649-L671[source] +
+
+<<Base.maximum!,#>>
+*`Base.maximum!`* &mdash; _Function_.
+
+`julia
+maximum!(r, A)
+`
+
+Кьэчфцк мпь фэфразф мэузю нц `A` ъмюц мпь хцьмўохры ӹхцрыхмфрл њц `r`, љх́ мьрѣя ӹьуэымъ ць `r`.абвгдежзик
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> maximum!([1; 1], A)
+2-element Vector\{Int64}:
+ 2
+ 4
+
+julia> maximum!([1 1], A)
+1×2 Matrix\{Int64}:
+ 3  4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L674-L695[source] +
+
+<<Base.minimum,#>>
+*`Base.minimum`* &mdash; _Function_.
+
+`julia
+minimum(f, itr; [init])
+`
+
+Шхъэьмѣ мпь ьымуўзфӹ ьуэымъ нц охрӱузк хцрьќхэњ `f` хц пќм ьхмфмўм нц `itr`.абвгдежз
+
+Кпь мэузю лмхъэьмѣ ъцн бьчфм `itr` хзк мй љмрњрќмчы би `init`.абвгде Ър ьыэф мйаб з узъьэмх ьхмфмўм ѣцн `min` (м.р. пкрпя ыр ъмь́мѣо хзпь ъц узэшм ць бх́абвгдежз ъмпьц ьхмфмум) ыз ьр ӹр лмрнркмчыхэ ѣмпьмпя `init` ӹр љмыэабвгде ъцн бьчфм-хцх ыхцрькмуўцќ.абв
+
+!!! compat "Julia 1.6"
+    Иъцябмт ьхмфэоѣз `init` ымърэшмѣ Еруэс 1.6 ъц ѣмьзў.абвгде
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> minimum(length, ["Julion", "Julia", "Jule"])
+4
+
+julia> minimum(length, []; init=typemax(Int64))
+9223372036854775807
+
+julia> minimum(sin, Real[]; init=1.0)  # лццо, мкхры ьэчьэц нц хрӹ ыр \<= 1абвг
+1.0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L700-L724[source] +
+
+`
+minimum(itr; [init])
+`
+
+Returns the smallest element in a collection.
+
+The value returned for empty `itr` can be specified by `init`. It must be a neutral element for `min` (i.e. which is greater than or equal to any other element) as it is unspecified whether `init` is used for non-empty collections.
+
+!!! compat "Julia 1.6"
+    Keyword argument `init` requires Julia 1.6 or later.
+
+*Examples*
+
+```julia-repl
+julia> minimum(-20.5:10)
+-20.5
+
+julia> minimum([1,2,3])
+1
+
+julia> minimum([])
+ERROR: MethodError: reducing over an empty collection is not allowed; consider supplying `init` to the reducer
+Stacktrace:
+[\...]
+
+julia> minimum([]; init=Inf)
+Inf
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L759-L788[source] +
+
+`
+minimum(A::AbstractArray; dims)
+`
+
+Compute the minimum value of an array over the given dimensions. See also the link:math.md#Base.min[`min(a,b)`] function to take the minimum of two or more arguments, which can be applied elementwise to arrays via `min.(a,b)`.
+
+See also: link:collections.md#Base.minimum![`minimum!`], link:collections.md#Base.extrema[`extrema`], link:collections.md#Base.findmin[`findmin`], link:collections.md#Base.argmin[`argmin`].
+
+*Examples*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> minimum(A, dims=1)
+1×2 Matrix\{Int64}:
+ 1  2
+
+julia> minimum(A, dims=2)
+2×1 Matrix\{Int64}:
+ 1
+ 3
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L698-L723[source] +
+
+`
+minimum(f, A::AbstractArray; dims)
+`
+
+Compute the minimum value by calling the function `f` on each element of an array over the given dimensions.
+
+*Examples*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> minimum(abs2, A, dims=1)
+1×2 Matrix\{Int64}:
+ 1  4
+
+julia> minimum(abs2, A, dims=2)
+2×1 Matrix\{Int64}:
+ 1
+ 9
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L726-L748[source] +
+
+<<Base.minimum!,#>>
+*`Base.minimum!`* &mdash; _Function_.
+
+`julia
+minimum!(r, A)
+`
+
+Кьэчфцк мпь фэфрхрф мэузю нц `A` ъмюц мпь хцьмўохры ӹхцрыхмфрл њц `r`, љхз мьрѣя ӹьуэымъ ць `r`.абвгдежзик
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> minimum!([1; 1], A)
+2-element Vector\{Int64}:
+ 1
+ 3
+
+julia> minimum!([1 1], A)
+1×2 Matrix\{Int64}:
+ 1  2
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L751-L772[source] +
+
+<<Base.extrema,#>>
+*`Base.extrema`* &mdash; _Function_.
+
+`+julia
+extrema(itr; [init]) -> (mn, mx)
++`
+
+Кьэчфцк пьцй мпь фэфрхрф `mn` лхз фэфразф `mx` ьхмфмум хр ́ мўохры ӹызч, љхз хъэьмѣ фмпьабвгдежзик ыз з 2мучэь-.аб
+
+Кпь мэузю лмхъэьмѣ ъцн бьчфм `itr` хзк мй љмрњрќмчы би `init`.абвгде Ър ьыэф мй з 2мучэь- мӹцпяабв ьыърн лхз љхцкмӹ ыьхмфмум мѣз ў́ъьэмх ӹьхмфмум ѣцњ `min` лхз `max` бӱмюрьќмчымъабвгдежз (м.р. пкрпя мъз ыӹму/ѣмьзмъо х́пь ѣц ўзэшм ць бхз ъмпьц ьхмфмум).абвгдежз Шз з мкхмэшмыхцќ, хмпяабв `itr` ыр бьчфм мпь лмхъэьмѣ `(mn, mx)` мучэь ўуря бнӹрьзы `mn ≥ mx`.абвгд Умпя `init` ыраб лмрнркмчы ьр бзф мй љмӹэ хмюм ъцњ бьчфм-хцх `itr`.абвгд
+
+!!! compat "Julia 1.8"
+    Иъцябмт ьхмфэоѣз `init` ымърэшмѣ Еруэс 1.8 ъц ѣмьзў.абвгде
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> extrema(2:10)
+(2, 10)
+
+julia> extrema([9,pi,4.5])
+(3.141592653589793, 9.0)
+
+julia> extrema([]; init = (Inf, -Inf))
+(Inf, -Inf)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L791-L817[source] +
+
+`+
+extrema(f, itr; [init]) -> (mn, mx)
++`
+
+Compute both the minimum `mn` and maximum `mx` of `f` applied to each element in `itr` and return them as a 2-tuple. Only one pass is made over `itr`.
+
+The value returned for empty `itr` can be specified by `init`. It must be a 2-tuple whose first and second elements are neutral elements for `min` and `max` respectively (i.e. which are greater/less than or equal to any other element). It is used for non-empty collections. Note: it implies that, for empty `itr`, the returned value `(mn, mx)` satisfies `mn ≥ mx` even though for non-empty `itr` it  satisfies `mn ≤ mx`.  This is a "paradoxical" but yet expected result.
+
+!!! compat "Julia 1.2"
+    This method requires Julia 1.2 or later.
+
+!!! compat "Julia 1.8"
+    Keyword argument `init` requires Julia 1.8 or later.
+
+*Examples*
+
+```julia-repl
+julia> extrema(sin, 0:π)
+(0.0, 0.9092974268256817)
+
+julia> extrema(sin, Real[]; init = (1.0, -1.0))  # good, since -1 ≤ sin(::Real) ≤ 1
+(1.0, -1.0)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L820-L847[source] +
+
+`+
+extrema(A::AbstractArray; dims) -> Array{Tuple}
++`
+
+Compute the minimum and maximum elements of an array over the given dimensions.
+
+See also: link:collections.md#Base.minimum[`minimum`], link:collections.md#Base.maximum[`maximum`], link:collections.md#Base.extrema![`extrema!`].
+
+*Examples*
+
+```julia-repl
+julia> A = reshape(Vector(1:2:16), (2,2,2))
+2×2×2 Array{Int64, 3}:
+[:, :, 1] =
+ 1  5
+ 3  7
+
+[:, :, 2] =
+  9  13
+ 11  15
+
+julia> extrema(A, dims = (1,2))
+1×1×2 Array{Tuple{Int64, Int64}, 3}:
+[:, :, 1] =
+ (1, 7)
+
+[:, :, 2] =
+ (9, 15)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L775-L802[source] +
+
+`+
+extrema(f, A::AbstractArray; dims) -> Array{Tuple}
++`
+
+Compute the minimum and maximum of `f` applied to each element in the given dimensions of `A`.
+
+!!! compat "Julia 1.2"
+    This method requires Julia 1.2 or later.
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L805-L813[source] +
+
+<<Base.extrema!,#>>
+*`Base.extrema!`* &mdash; _Function_.
+
+`julia
+extrema!(r, A)
+`
+
+Кьэчфцк мпь фэфрхрф лхз фэфразф мэу́ю нц `A` ъмюц мпь хцьмўохры ӹхцрыхмфрљ њц `r`, лхз мьрѣя ӹьуэымъ ць `r`.абвгдежзиклм
+
+!!! compat "Julia 1.8"
+    Шрпь лцпьмф ымърэшмѣ Еруэс 1.8 ъц ѣмьзў.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> extrema!([(1, 1); (1, 1)], A)
+2-element Vector{Tuple{Int64, Int64}}:
+ (1, 2)
+ (3, 4)
+
+julia> extrema!([(1, 1);; (1, 1)], A)
+1×2 Matrix{Tuple{Int64, Int64}}:
+ (1, 3)  (2, 4)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L816-L840[source] +
+
+<<Base.argmax,#>>
+*`Base.argmax`* &mdash; _Function_.
+
+`julia
+argmax(r::AbstractRange)
+`
+
+Шмохзъ хзк мю́п мучрьўэф узфразф ыьхмфмӱм.абвгд Ур ьзпь мызка `argmax` уўря хъэьмѣ з узфра́ф амлхр, ьэй ьцх бӱръзыӹмкмх мпьабвгде ьыърн мхц.аб
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L847-L853[source] +
+
+`
+argmax(f, domain)
+`
+
+Return a value `x` in the domain of `f` for which `f(x)` is maximised. If there are multiple maximal values for `f(x)` then the first one will be found.
+
+`domain` must be a non-empty iterable.
+
+Values are compared with `isless`.
+
+!!! compat "Julia 1.7"
+    This method requires Julia 1.7 or later.
+
+See also link:collections.md#Base.argmin[`argmin`], link:collections.md#Base.findmax[`findmax`].
+
+*Examples*
+
+```julia-repl
+julia> argmax(abs, -10:5)
+-10
+
+julia> argmax(cos, 0:π/2:2π)
+0.0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L980-L1003[source] +
+
+`
+argmax(itr)
+`
+
+Return the index or key of the maximal element in a collection. If there are multiple maximal elements, then the first one will be returned.
+
+The collection must not be empty.
+
+Values are compared with `isless`.
+
+See also: link:collections.md#Base.argmin[`argmin`], link:collections.md#Base.findmax[`findmax`].
+
+*Examples*
+
+```julia-repl
+julia> argmax([8, 0.1, -9, pi])
+1
+
+julia> argmax([1, 7, 7, 6])
+2
+
+julia> argmax([1, 7, 7, NaN])
+4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1006-L1029[source] +
+
+`+
+argmax(A; dims) -> indices
++`
+
+For an array input, return the indices of the maximum elements over the given dimensions. `NaN` is treated as greater than all other values except `missing`.
+
+*Examples*
+
+```julia-repl
+julia> A = [1.0 2; 3 4]
+2×2 Matrix\{Float64}:
+ 1.0  2.0
+ 3.0  4.0
+
+julia> argmax(A, dims=1)
+1×2 Matrix{CartesianIndex\{2}}:
+ CartesianIndex(2, 1)  CartesianIndex(2, 2)
+
+julia> argmax(A, dims=2)
+2×1 Matrix{CartesianIndex\{2}}:
+ CartesianIndex(1, 2)
+ CartesianIndex(2, 2)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1201-L1223[source] +
+
+<<Base.argmin,#>>
+*`Base.argmin`* &mdash; _Function_.
+
+`julia
+argmin(r::AbstractRange)
+`
+
+Шмохзъ хзк мю́п мучрьўэф узфрхрф ыьхмфмӱм.абвгд Ур ьзпь мызка `argmin` уўря хъэьмѣ з узфрхрф амлхр, ьэй ьцх бӱръ́ыӹмкмх мпьабвгде ьыърн мхц.аб
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L830-L836[source] +
+
+`
+argmin(f, domain)
+`
+
+Return a value `x` in the domain of `f` for which `f(x)` is minimised. If there are multiple minimal values for `f(x)` then the first one will be found.
+
+`domain` must be a non-empty iterable.
+
+`NaN` is treated as less than all other values except `missing`.
+
+!!! compat "Julia 1.7"
+    This method requires Julia 1.7 or later.
+
+See also link:collections.md#Base.argmax[`argmax`], link:collections.md#Base.findmin[`findmin`].
+
+*Examples*
+
+```julia-repl
+julia> argmin(sign, -10:5)
+-10
+
+julia> argmin(x \-> -x{caret}3 + x{caret}2 - 10, -5:5)
+5
+
+julia> argmin(acos, 0:0.1:1)
+1.0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1032-L1058[source] +
+
+`
+argmin(itr)
+`
+
+Return the index or key of the minimal element in a collection. If there are multiple minimal elements, then the first one will be returned.
+
+The collection must not be empty.
+
+`NaN` is treated as less than all other values except `missing`.
+
+See also: link:collections.md#Base.argmax[`argmax`], link:collections.md#Base.findmin[`findmin`].
+
+*Examples*
+
+```julia-repl
+julia> argmin([8, 0.1, -9, pi])
+3
+
+julia> argmin([7, 1, 1, 6])
+2
+
+julia> argmin([7, 1, 1, NaN])
+4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1061-L1084[source] +
+
+`+
+argmin(A; dims) -> indices
++`
+
+For an array input, return the indices of the minimum elements over the given dimensions. `NaN` is treated as less than all other values except `missing`.
+
+*Examples*
+
+```julia-repl
+julia> A = [1.0 2; 3 4]
+2×2 Matrix\{Float64}:
+ 1.0  2.0
+ 3.0  4.0
+
+julia> argmin(A, dims=1)
+1×2 Matrix{CartesianIndex\{2}}:
+ CartesianIndex(1, 1)  CartesianIndex(1, 2)
+
+julia> argmin(A, dims=2)
+2×1 Matrix{CartesianIndex\{2}}:
+ CartesianIndex(1, 1)
+ CartesianIndex(2, 1)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1176-L1198[source] +
+
+<<Base.findmax,#>>
+*`Base.findmax`* &mdash; _Function_.
+
+`+julia
+findmax(f, domain) -> (f(x), index)
++`
+
+Шхъэьмѣ з ързч нц ́ мэузю хр мпь хрзфцлцк (ыьэчьэц њц `f`) љх́ мпь амлхр нцабвгдежзи мпь охрлхцчымъѣцк мэузю хр мпь `domain` (ӹьэчхр ць `f`) пќэы ьзпь `f(x)` ӹр љмырфра́ф.абвгдежз Лр мъмпь мѣз мучрьўэф узфра́ф ыьхрцч, хмпь мпь ьӹърн мхц ӱуря мй лмхѣэьмъ.абвгдежзи
+
+`domain` ьыэф мй з бьчфм-хцх муизъмьр.абвг
+
+Шмэузю мъз лмѣ́чфцк пьря `isless`.абв
+
+!!! compat "Julia 1.7"
+    Шрпь лцпьмф ымърэшмѣ Еруэс 1.7 ъц ѣмьзў.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> findmax(identity, 5:9)
+(9, 5)
+
+julia> findmax(-, 1:10)
+(-1, 1)
+
+julia> findmax(first, [(1, :a), (3, :b), (3, :c)])
+(3, 2)
+
+julia> findmax(cos, 0:π/2:2π)
+(1.0, 1)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L863-L892[source] +
+
+`+
+findmax(itr) -> (x, index)
++`
+
+Return the maximal element of the collection `itr` and its index or key. If there are multiple maximal elements, then the first one will be returned. Values are compared with `isless`.
+
+See also: link:collections.md#Base.findmin[`findmin`], link:collections.md#Base.argmax[`argmax`], link:collections.md#Base.maximum[`maximum`].
+
+*Examples*
+
+```julia-repl
+julia> findmax([8, 0.1, -9, pi])
+(8.0, 1)
+
+julia> findmax([1, 7, 7, 6])
+(7, 2)
+
+julia> findmax([1, 7, 7, NaN])
+(NaN, 4)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L896-L917[source] +
+
+`+
+findmax(A; dims) -> (maxval, index)
++`
+
+For an array input, returns the value and index of the maximum over the given dimensions. `NaN` is treated as greater than all other values except `missing`.
+
+*Examples*
+
+```julia-repl
+julia> A = [1.0 2; 3 4]
+2×2 Matrix\{Float64}:
+ 1.0  2.0
+ 3.0  4.0
+
+julia> findmax(A, dims=1)
+([3.0 4.0], CartesianIndex\{2}[CartesianIndex(2, 1) CartesianIndex(2, 2)])
+
+julia> findmax(A, dims=2)
+([2.0; 4.0;;], CartesianIndex\{2}[CartesianIndex(1, 2); CartesianIndex(2, 2);;])
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1139-L1158[source] +
+
+<<Base.findmin,#>>
+*`Base.findmin`* &mdash; _Function_.
+
+`+julia
+findmin(f, domain) -> (f(x), index)
++`
+
+Шхъэьмѣ з ързч нц ́ мэузю хр мпь хрзфцлцк (ыьэчьэц њц `f`) љх́ мпь амлхр нцабвгдежзи мпь охрлхцчымъѣцк мэузю хр мпь `domain` (ӹьэчхр ць `f`) пќэы ьзпь `f(x)` ӹр љмырфрхрф.абвгдежз Лр мъмпь мѣз мучрьўэф узфрхрф ыьхрцч, хмпь мпь ьӹърн мхц ӱуря мй лмхѣэьмъ.абвгдежзи
+
+`domain` ьыэф мй з бьчфм-хцх муизъмьр.абвг
+
+`NaN` ыр лмьзмъь ӹз ыӹму х́пь ўуз ѣмпьц ымэӱзю ьчмкам `missing`.абвгде
+
+!!! compat "Julia 1.7"
+    Шрпь лцпьмф ымърэшмѣ Еруэс 1.7 ъц ѣмьзў.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> findmin(identity, 5:9)
+(5, 1)
+
+julia> findmin(-, 1:10)
+(-10, 10)
+
+julia> findmin(first, [(2, :a), (2, :b), (3, :c)])
+(2, 1)
+
+julia> findmin(cos, 0:π/2:2π)
+(-1.0, 3)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L921-L951[source] +
+
+`+
+findmin(itr) -> (x, index)
++`
+
+Return the minimal element of the collection `itr` and its index or key. If there are multiple minimal elements, then the first one will be returned. `NaN` is treated as less than all other values except `missing`.
+
+See also: link:collections.md#Base.findmax[`findmax`], link:collections.md#Base.argmin[`argmin`], link:collections.md#Base.minimum[`minimum`].
+
+*Examples*
+
+```julia-repl
+julia> findmin([8, 0.1, -9, pi])
+(-9.0, 3)
+
+julia> findmin([1, 7, 7, 6])
+(1, 1)
+
+julia> findmin([1, 7, 7, NaN])
+(NaN, 4)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L955-L976[source] +
+
+`+
+findmin(A; dims) -> (minval, index)
++`
+
+For an array input, returns the value and index of the minimum over the given dimensions. `NaN` is treated as less than all other values except `missing`.
+
+*Examples*
+
+```julia-repl
+julia> A = [1.0 2; 3 4]
+2×2 Matrix\{Float64}:
+ 1.0  2.0
+ 3.0  4.0
+
+julia> findmin(A, dims=1)
+([1.0 2.0], CartesianIndex\{2}[CartesianIndex(1, 1) CartesianIndex(1, 2)])
+
+julia> findmin(A, dims=2)
+([1.0; 3.0;;], CartesianIndex\{2}[CartesianIndex(1, 1); CartesianIndex(2, 1);;])
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1092-L1111[source] +
+
+<<Base.findmax!,#>>
+*`Base.findmax!`* &mdash; _Function_.
+
+`+julia
+findmax!(rval, rind, A) -> (maxval, index)
++`
+
+Ихрн мпь фэфразф њц `A` лхз мпь охрљхцчымъѣцк ъ́мхру амлхр охцўз хцьмуохрӹабвгдежз ыхцрӹхмфрл нц `rval` љхз `rind`, лхз мъцьы мпь ӹьуэымѣ хр `rval` љх́ `rind`.абвгдеж `NaN` ыр лмьзмъь ӹз ѣмь́мъо хзпь уўз ѣмпьц ымэу́ю ьчмкам `missing`.абвгде
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1127-L1133[source] +
+
+<<Base.findmin!,#>>
+*`Base.findmin!`* &mdash; _Function_.
+
+`+julia
+findmin!(rval, rind, A) -> (minval, index)
++`
+
+Ихрн мпь фэфрхрф њц `A` лхз мпь охрљхцчымъѣцк ъзмхру амлхр охцў́ хцьмуохрӹабвгдежз ыхцрӹхмфрл нц `rval` љхз `rind`, лхз мъцьы мпь ӹьуэымѣ хр `rval` љх́ `rind`.абвгдеж `NaN` ыр лмьзмъь ӹз ыӹму х́пь ўуз ѣмпьц ымэӱзю ьчмкам `missing`.абвгде
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1080-L1086[source] +
+
+<<Base.sum,#>>
+*`Base.sum`* &mdash; _Function_.
+
+`julia
+sum(f, itr; [init])
+`
+
+Тэы мпь ӹьуэымъ нц охрўузк хцрьќхэњ `f` хц пкзм ьхмфмӱм нц `itr`.абвгдеж
+
+Кпь хъэьмѣ мчбь ыр `Int` ъцн лмхорӹ ыѣмомьхр њц ӹыму хзпь фмьӹбы љъця мврӹ, лхзабвгдежзи `UInt` ъцн лмхорыхэ ӹѣмомьхр њц ыӹму хзпь фмьыбӹ љъця мвры.абвгде  Чцн уўз ъмпьцаб ыьхмфэоъз, з хцффцк хѣэьмъ мчбь ӹр лхэцн ць пќрпя уў́ ыьхмфэоѣз мъз љмьцфцѣч.абвгдежзи
+
+Кпь мэузю лмхъэьмѣ ъцн бьчфм `itr` хзк мй љмрњрќмчы би `init`.абвгде Ър ьыэф мйаб мпь мюрьрлљз бьрьхмлр (м.р. цъмв) ыз ьр ӹр љмрнркмчыхэ ѣмпьмпя `init` ӹр лмыэабвгдежз ъцн бьчфм-хцх ыхцрькмуўцќ.абв
+
+!!! compat "Julia 1.6"
+    Иъцябмт ьхмфэоѣз `init` ымърэшмѣ Еруэс 1.6 ъц ѣмьзў.абвгде
+
+*Шмучфзамаб*
+
+`julia-repl
+julia> sum(abs2, [2; 3; 4])
+29
+`
+
+Кьцх мпь ьхзьъцчфр мкхмѣмнњрл хммяьмй `sum(A)` љхз `reduce(+, A)` ъцн ыб́ѣъзабвгдеж пьря уўзфы ъмомьхр мчбьум:абв
+
+```julia-repl
+julia> sum(Int8[100, 28])
+128
+
+julia> reduce(+, Int8[100, 28])
+-128
+```
+
+Ур мпь ъмфѣцн мызк, мпь ӹъмомьхр мѣз лмхмљря ць фмьыбӹ лъця мвры љх́ мѣцњмъмпьабвгдежзи мпь ьуэымъ ӹр 128.аб Ур мпь ъмььзу мызк, цх пќэӹ охрхмлря ыхмчч́п љхз ѣмомьхрабвгдеж яцунъмюц ыьўэӹмѣ хр -128.абв
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L491-L527[source] +
+
+`
+sum(itr; [init])
+`
+
+Returns the sum of all elements in a collection.
+
+The return type is `Int` for signed integers of less than system word size, and `UInt` for unsigned integers of less than system word size.  For all other arguments, a common return type is found to which all arguments are promoted.
+
+The value returned for empty `itr` can be specified by `init`. It must be the additive identity (i.e. zero) as it is unspecified whether `init` is used for non-empty collections.
+
+!!! compat "Julia 1.6"
+    Keyword argument `init` requires Julia 1.6 or later.
+
+See also: link:collections.md#Base.reduce-Tuple{Any, Any}[`reduce`], link:collections.md#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], link:collections.md#Base.count[`count`], link:collections.md#Base.union[`union`].
+
+*Examples*
+
+```julia-repl
+julia> sum(1:20)
+210
+
+julia> sum(1:20; init = 0.0)
+210.0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L530-L556[source] +
+
+`
+sum(A::AbstractArray; dims)
+`
+
+Sum elements of an array over the given dimensions.
+
+*Examples*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> sum(A, dims=1)
+1×2 Matrix\{Int64}:
+ 4  6
+
+julia> sum(A, dims=2)
+2×1 Matrix\{Int64}:
+ 3
+ 7
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L475-L496[source] +
+
+`
+sum(f, A::AbstractArray; dims)
+`
+
+Sum the results of calling function `f` on each element of an array over the given dimensions.
+
+*Examples*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> sum(abs2, A, dims=1)
+1×2 Matrix\{Int64}:
+ 10  20
+
+julia> sum(abs2, A, dims=2)
+2×1 Matrix\{Int64}:
+  5
+ 25
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L499-L521[source] +
+
+<<Base.sum!,#>>
+*`Base.sum!`* &mdash; _Function_.
+
+`julia
+sum!(r, A)
+`
+
+Тэы ӹьхмфмум нц `A` ъмюц мпь хцьмўохры ӹхцрыхмфрл њц `r`, љхз мьрѣя ӹьуэымъ ць `r`.абвгдежзи
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> sum!([1; 1], A)
+2-element Vector\{Int64}:
+ 3
+ 7
+
+julia> sum!([1 1], A)
+1×2 Matrix\{Int64}:
+ 4  6
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L524-L545[source] +
+
+<<Base.prod,#>>
+*`Base.prod`* &mdash; _Function_.
+
+`julia
+prod(f, itr; [init])
+`
+
+Шхъэьмѣ мпь ькэлцъч нц `f` љмруччз ць пќзм ьхмфмўм њц `itr`.абвгде
+
+Кпь хъэьмѣ мчбь ыр `Int` ъцн лмхорӹ ыѣмомьхр њц ӹыму хзпь фмьӹбы љъця мврӹ, лхзабвгдежзи `UInt` ъцн лмхорыхэ ӹѣмомьхр њц ыӹму хзпь фмьыбӹ љъця мвры.абвгде  Чцн уўз ъмпьцаб ыьхмфэоъз, з хцффцк хѣэьмъ мчбь ӹр лхэцн ць пќрпя уў́ ыьхмфэоѣз мъз љмьцфцѣч.абвгдежзи
+
+Кпь мэузю лмхъэьмѣ ъцн бьчфм `itr` хзк мй љмрњрќмчы би `init`.абвгде Ър ьыэф мй мпьаб мюрьзкручрьўэф бьрьхмлр (м.р. мхц) ыз ьр ӹр љмрнрќмчыхэ ъмпьмпя `init` ӹр лмыэабвгдежзи ъцн бьчфм-хцх ыхцрькмуўцќ.абв
+
+!!! compat "Julia 1.6"
+    Иъцябмт ьхмфэоѣз `init` ымърэшмѣ Еруэс 1.6 ъц ѣмьзў.абвгде
+
+*Шмучфзамаб*
+
+`julia-repl
+julia> prod(abs2, [2; 3; 4])
+576
+`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L562-L583[source] +
+
+`
+prod(itr; [init])
+`
+
+Returns the product of all elements of a collection.
+
+The return type is `Int` for signed integers of less than system word size, and `UInt` for unsigned integers of less than system word size.  For all other arguments, a common return type is found to which all arguments are promoted.
+
+The value returned for empty `itr` can be specified by `init`. It must be the multiplicative identity (i.e. one) as it is unspecified whether `init` is used for non-empty collections.
+
+!!! compat "Julia 1.6"
+    Keyword argument `init` requires Julia 1.6 or later.
+
+See also: link:collections.md#Base.reduce-Tuple{Any, Any}[`reduce`], link:arrays.md#Base.cumprod[`cumprod`], link:collections.md#Base.any-Tuple{Any}[`any`].
+
+*Examples*
+
+```julia-repl
+julia> prod(1:5)
+120
+
+julia> prod(1:5; init = 1.0)
+120.0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L586-L612[source] +
+
+`
+prod(A::AbstractArray; dims)
+`
+
+Multiply elements of an array over the given dimensions.
+
+*Examples*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> prod(A, dims=1)
+1×2 Matrix\{Int64}:
+ 3  8
+
+julia> prod(A, dims=2)
+2×1 Matrix\{Int64}:
+  2
+ 12
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L548-L569[source] +
+
+`
+prod(f, A::AbstractArray; dims)
+`
+
+Multiply the results of calling the function `f` on each element of an array over the given dimensions.
+
+*Examples*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> prod(abs2, A, dims=1)
+1×2 Matrix\{Int64}:
+ 9  64
+
+julia> prod(abs2, A, dims=2)
+2×1 Matrix\{Int64}:
+   4
+ 144
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L572-L594[source] +
+
+<<Base.prod!,#>>
+*`Base.prod!`* &mdash; _Function_.
+
+`julia
+prod!(r, A)
+`
+
+Яучрьўэф ыьхмфмум нц `A` ъмюц мпь хцьмӱохрӹ ыхцрӹхмфрл њц `r`, љхз мьрѣя ыьуэӹмъ ць `r`.абвгдежзик
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> prod!([1; 1], A)
+2-element Vector\{Int64}:
+  2
+ 12
+
+julia> prod!([1 1], A)
+1×2 Matrix\{Int64}:
+ 3  8
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L597-L618[source] +
+
+<<Base.any-Tuple{Any},#>>
+*`Base.any`* &mdash; _Method_.
+
+`+julia
+any(itr) -> Bool
++`
+
+Ъымь ъмпьмпя бхз ӹьхмфмум нц з х́мўццй хцрькмуӱцќ мѣз `true`, охрхъэьмѣ `true` ызабвгдежз хццы ӹз мпь ьыърн `true` мэузю хр `itr` ӹр лмѣмьхэцкхм (охрьрэќърк-ьѣцпы).абвгдежз Фьаб ьрэкърќ-ьѣцпы хц `false`, мӹэ link:collections.md#Base.all-Tuple{Any}[`all`].абв
+
+Лр мпь ьэчхр ыхрзьхцк link:base.md#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `false` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `true` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
+
+Кмы цӹуз:аб link:collections.md#Base.all-Tuple{Any}[`all`], link:collections.md#Base.count[`count`], link:collections.md#Base.sum[`sum`], link:math.md#Base.:|[`|`], , link:math.md#||[`||`].абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = [true,false,false,true]
+4-element Vector\{Bool}:
+ 1
+ 0
+ 0
+ 1
+
+julia> any(a)
+true
+
+julia> any((println(i); v) for (i, v) in enumerate(a))
+1
+true
+
+julia> any([missing, true])
+true
+
+julia> any([false, missing])
+missing
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1089-L1124[source] +
+
+<<Base.any-Tuple{AbstractArray, Any},#>>
+*`Base.any`* &mdash; _Method_.
+
+`+julia
+any(p, itr) -> Bool
++`
+
+Кхрфъмьмл ѣмпьмпя мьзкрљмъч `p` ыхѣэьмъ `true` ѣцн бхз ӹьхмфмум њц `itr`, охрхъэьмѣабвгдежз `true` ыз хццӹ ыз мпь ьӹърн фмьр хр `itr` ѣцњ пкрпя `p` ыхъэьмѣ `true` ӹр лмъмьхэцќхмабвгдежз (охрьрэкърќ-ьѣцпы).аб Фь ьрэкърќ-ьѣцпы хц `false`, мӹэ link:collections.md#Base.all-Tuple{Any}[`all`].абвг
+
+Лр мпь ьэчхр ыхрзьхцк link:base.md#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `false` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `true` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> any(i\->(4\<=i\<=6), [3,5,7])
+true
+
+julia> any(i \-> (println(i); i > 3), 1:10)
+1
+2
+3
+4
+true
+
+julia> any(i \-> i > 0, [1, missing])
+true
+
+julia> any(i \-> i > 0, [-1, missing])
+missing
+
+julia> any(i \-> i > 0, [-1, 0])
+false
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1166-L1198[source] +
+
+<<Base.any!,#>>
+*`Base.any!`* &mdash; _Function_.
+
+`julia
+any!(r, A)
+`
+
+Ъымь ъмпьмпя бхз ӹмэузю хр `A` охцў́ мпь хцьмуохры ӹхцрыхмфрл нц `r` мѣз `true`, љхз мьръяабвгдежзи ыьуэӹмъ ць `r`.аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = [true false; true false]
+2×2 Matrix\{Bool}:
+ 1  0
+ 1  0
+
+julia> any!([1; 1], A)
+2-element Vector\{Int64}:
+ 1
+ 1
+
+julia> any!([1 1], A)
+1×2 Matrix\{Int64}:
+ 1  0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L963-L985[source] +
+
+<<Base.all-Tuple{Any},#>>
+*`Base.all`* &mdash; _Method_.
+
+`+julia
+all(itr) -> Bool
++`
+
+Ъымь ъмпьмпя уўз ӹьхмфмум нц з х́мӱццй хцрькмуўцќ мѣз `true`, охрхъэьмѣ `false` ызабвгдежз хццы ӹз мпь ьыърн `false` мэузю хр `itr` ӹр лмѣмьхэцкхм (охрьрэќърк-ьѣцпы).абвгдежз Фьаб ьрэкърќ-ьѣцпы хц `true`, мӹэ link:collections.md#Base.any-Tuple{Any}[`any`].абв
+
+Лр мпь ьэчхр ыхрзьхцк link:base.md#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `true` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `false` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
+
+Кмы цӹуз:аб link:collections.md#Base.all![`all!`], link:collections.md#Base.any-Tuple{Any}[`any`], link:collections.md#Base.count[`count`], link:math.md#Base.:&[`&`], , link:math.md#&&[`&&`], link:collections.md#Base.allunique[`allunique`].абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = [true,false,false,true]
+4-element Vector\{Bool}:
+ 1
+ 0
+ 0
+ 1
+
+julia> all(a)
+false
+
+julia> all((println(i); v) for (i, v) in enumerate(a))
+1
+2
+false
+
+julia> all([missing, false])
+false
+
+julia> all([true, missing])
+missing
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1127-L1163[source] +
+
+<<Base.all-Tuple{AbstractArray, Any},#>>
+*`Base.all`* &mdash; _Method_.
+
+`+julia
+all(p, itr) -> Bool
++`
+
+Кхрфъмьмл ѣмпьмпя мьзкрљмъч `p` ыхѣэьмъ `true` ѣцн уўз ӹьхмфмум њц `itr`, охрхъэьмѣабвгдежз `false` ыз хццӹ ыз мпь ьӹърн фмьр хр `itr` ѣцњ пкрпя `p` ыхъэьмѣ `false` ӹр лмъмьхэцќхмабвгдежз (охрьрэкърќ-ьѣцпы).аб Фь ьрэкърќ-ьѣцпы хц `true`, мӹэ link:collections.md#Base.any-Tuple{Any}[`any`].абвг
+
+Лр мпь ьэчхр ыхрзьхцк link:base.md#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `true` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `false` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> all(i\->(4\<=i\<=6), [4,5,6])
+true
+
+julia> all(i \-> (println(i); i < 3), 1:10)
+1
+2
+3
+false
+
+julia> all(i \-> i > 0, [1, missing])
+missing
+
+julia> all(i \-> i > 0, [-1, missing])
+false
+
+julia> all(i \-> i > 0, [1, 2])
+true
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1214-L1245[source] +
+
+<<Base.all!,#>>
+*`Base.all!`* &mdash; _Function_.
+
+`julia
+all!(r, A)
+`
+
+Ъымь ъмпьмпя уўз ӹмэузю хр `A` охцӱ́ мпь хцьмуохры ӹхцрыхмфрл нц `r` мѣз `true`, љхз мьръя ӹьўэымѣ ць `r`.абвгдежзикл
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = [true false; true false]
+2×2 Matrix\{Bool}:
+ 1  0
+ 1  0
+
+julia> all!([1; 1], A)
+2-element Vector\{Int64}:
+ 0
+ 0
+
+julia> all!([1 1], A)
+1×2 Matrix\{Int64}:
+ 1  0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L891-L912[source] +
+
+<<Base.count,#>>
+*`Base.count`* &mdash; _Function_.
+
+`+julia
+count([f=identity,] itr; init=0) -> Integer
++`
+
+Ъхэцк мпь ъмйфэх нц ыьхмфмум хр `itr` ѣцњ пќрпя мпь хцрькхэн `f` ӹхъэьмѣ `true`.абвгдежз Лр `f` ыр лмььрфц, ьхэцк мпь ъмйфэх нц `true` ӹьхмфмум хр `itr` (пќрпяабвгдеж луэцпы мй з хцрькмўуцќ нц хзмӱцци ӹмэу́ю).абвгд `init` буўзхцрьчц ымрнркмчӹ мпь мэузюабвг ць ьъзьы охрьхэцк фцѣн лхз мъцњмѣмпь цӹу́ ымхрфъмьмљ мпь ьэчьэц мчбь.абвгдежз
+
+!!! compat "Julia 1.6"
+    `init` лъцябмт ызя љмлљз хр Еруэс 1.6.абвг
+
+Кмы цӹуз:аб link:collections.md#Base.any-Tuple{Any}[`any`], link:collections.md#Base.sum[`sum`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> count(i\->(4\<=i\<=6), [2,3,4,5,6])
+3
+
+julia> count([true, false, true, true])
+3
+
+julia> count(>(3), 1:7, init=0x03)
+0x07
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1268-L1292[source] +
+
+`
+count(
+    pattern::Union{AbstractChar,AbstractString,AbstractPattern},
+    string::AbstractString;
+    overlap::Bool = false,
+)
+`
+
+Return the number of matches for `pattern` in `string`. This is equivalent to calling `length(findall(pattern, string))` but more efficient.
+
+If `overlap=true`, the matching sequences are allowed to overlap indices in the original string, otherwise they must be from disjoint character ranges.
+
+!!! compat "Julia 1.3"
+    This method requires at least Julia 1.3.
+
+!!! compat "Julia 1.7"
+    Using a character as the pattern requires at least Julia 1.7.
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/regex.jl#L506-L524[source] +
+
+`
+count([f=identity,] A::AbstractArray; dims=:)
+`
+
+Count the number of elements in `A` for which `f` returns `true` over the given dimensions.
+
+!!! compat "Julia 1.5"
+    `dims` keyword was added in Julia 1.5.
+
+!!! compat "Julia 1.6"
+    `init` keyword was added in Julia 1.6.
+
+*Examples*
+
+```julia-repl
+julia> A = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> count(\<=(2), A, dims=1)
+1×2 Matrix\{Int64}:
+ 1  1
+
+julia> count(\<=(2), A, dims=2)
+2×1 Matrix\{Int64}:
+ 2
+ 0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L410-L438[source] +
+
+<<Base.foreach,#>>
+*`Base.foreach`* &mdash; _Function_.
+
+`+julia
+foreach(f, c...) -> Nothing
++`
+
+Сузк хцрьќхэн `f` хц пкзм ьхмфмўм њц муй́ъмьр `c`.абвгд Чцн мучрьўэф муйзъмьр ыьхмфэоѣз, `f` ӹр лмӱу́к мыряьхмфмўм, љхз хцрьзъмьр ӹчцьы хмпяабвгдежзик бхз ъцьзѣмьр ыр лмпӹрхрн.абв
+
+`foreach` луэцпы мй љмӹэ лзмьыхр нц link:collections.md#Base.map[`map`] хмпя мпь ӹьўэымъ њц `f` мѣз ьцхабвгдеж лмљммх, ъцн мучфзам хр `foreach(println, array)`.абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> tri = 1:3:7; res = Int[];
+
+julia> foreach(x \-> push!(res, x{caret}2), tri)
+
+julia> res
+3-element Vector\{Int64}:
+  1
+ 16
+ 49
+
+julia> foreach((x, y) \-> println(x, " with ", y), tri, 'a':'z')
+1 with a
+4 with b
+7 with c
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L2745-L2772[source] +
+
+<<Base.map,#>>
+*`Base.map`* &mdash; _Function_.
+
+`+julia
+map(f, c...) -> collection
++`
+
+Тъцныхзѣь хцрькмуўцќ `c` бй охрбуччз `f` ць пќм ьхмфмӱм.абвгде Чцн мучрьўэф хцрькмуӱцќ ыьхмфэоъз,абвг буччз `f` мыряьхмфмўм, лхз чцьӹ хмпя хмпя бх́ нц фмпь ыр љмьӹэзпам.абвгдежз
+
+Кмы цӹуз link:collections.md#Base.map![`map!`], link:collections.md#Base.foreach[`foreach`], link:collections.md#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], link:arrays.md#Base.mapslices[`mapslices`], link:iterators.md#Base.Iterators.zip[`zip`], link:iterators.md#Base.Iterators.map[`Iterators.map`].абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> map(x \-> x * 2, [1, 2, 3])
+3-element Vector\{Int64}:
+ 2
+ 4
+ 6
+
+julia> map(+, [1, 2, 3], [10, 20, 30, 400, 5000])
+3-element Vector\{Int64}:
+ 11
+ 22
+ 33
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L2938-L2960[source] +
+
+`+
+map(f, A::AbstractArray...) -> N-array
++`
+
+When acting on multi-dimensional arrays of the same link:arrays.md#Base.ndims[`ndims`], they must all have the same link:arrays.md#Base.axes-Tuple{Any}[`axes`], and the answer will too.
+
+See also link:arrays.md#Base.Broadcast.broadcast[`broadcast`], which allows mismatched sizes.
+
+*Examples*
+
+```
+julia> map(//, [1 2; 3 4], [4 3; 2 1])
+2×2 Matrix{Rational\{Int64}}:
+ 1//4  2//3
+ 3//2  4//1
+
+julia> map(+, [1 2; 3 4], zeros(2,1))
+ERROR: DimensionMismatch
+
+julia> map(+, [1 2; 3 4], [1,10,100,1000], zeros(3,1))  # iterates until 3rd is exhausted
+3-element Vector\{Float64}:
+   2.0
+  13.0
+ 102.0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L3030-L3054[source] +
+
+<<Base.map!,#>>
+*`Base.map!`* &mdash; _Function_.
+
+`+julia
+map!(function, destination, collection...)
++`
+
+Ктру link:collections.md#Base.map[`map`], ьэй ымъцьӹ мпь ьўэымѣ хр `destination` ъмпьзѣ хзпь ́ ямхабвгде хцрькмуўцќ.а `destination` ьыэф мй ьз ьӹзму ы́ моъзў ӹз мпь ьымуӱ́фӹ хцрькмуўцќ.абвгде
+
+Кмы цӹуз:аб link:collections.md#Base.map[`map`], link:collections.md#Base.foreach[`foreach`], link:iterators.md#Base.Iterators.zip[`zip`], link:c.md#Base.copyto![`copyto!`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = zeros(3);
+
+julia> map!(x \-> x * 2, a, [1, 2, 3]);
+
+julia> a
+3-element Vector\{Float64}:
+ 2.0
+ 4.0
+ 6.0
+
+julia> map!(+, zeros(Int, 5), 100:999, 1:3)
+5-element Vector\{Int64}:
+ 101
+ 103
+ 105
+   0
+   0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L2995-L3023[source] +
+
+`
+map!(f, values(dict::AbstractDict))
+`
+
+Modifies `dict` by transforming each value from `val` to `f(val)`. Note that the type of `dict` cannot be changed: if `f(val)` is not an instance of the value type of `dict` then it will be converted to the value type if possible and otherwise raise an error.
+
+!!! compat "Julia 1.2"
+    `map!(f, values(dict::AbstractDict))` requires Julia 1.2 or later.
+
+*Examples*
+
+```julia-repl
+julia> d = Dict(:a \=> 1, :b \=> 2)
+Dict{Symbol, Int64} with 2 entries:
+  :a \=> 1
+  :b \=> 2
+
+julia> map!(v \-> v-1, values(d))
+ValueIterator for a Dict{Symbol, Int64} with 2 entries. Values:
+  0
+  1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L587-L609[source] +
+
+<<Base.mapreduce-Tuple{Any, Any, Any},#>>
+*`Base.mapreduce`* &mdash; _Method_.
+
+`+julia
+mapreduce(f, op, itrs...; [init])
++`
+
+Яуччз хцрькхэн `f` ць пќзм ы(ьхмфмўм) хр `itrs`, лх́ хмпь мкэљмъ мпь ьуэӹмѣ охрыэ мпь бъзхрйабвгдежзик хцрькхэн `op`.а Лр лмљрюцъч, `init` ьыэф мй з узѣьэмх ьхмфмўм ъцн `op` ь́пь уӱря ми лмхѣэьмъабвгдежз ъцн бьчфм ыхцрькмуўцќ.абв Ър ыр лмрнркмчӹхэ ъмпьмпя `init` ыр љмӹэ ѣцњ бьчфм-хцх ыхцрьќмуўцк.абвгдеж Ур узъмхмо, ьр ўуря мй бѣзыӹмкмх ць млрюцъч `init` ць тѣця пьря бьчфм ыхцрьќмӱуцк.абвгдежзи
+
+link:collections.md#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`] ыр буўзхцрькхэн ьхмузюрэшм ць охрӱу́ќабвгд `reduce(op, map(f, itr); init=init)`, ьэй уўря хр узъмхмо мьэкмам ѣмьызн мќхрӹ цхабвгд мьзрлмфъмьхр хцрькмуўцќ ыљммх ць мй лмьзмѣк.абвгд Кмы хцрьзьхмфэкцл ъцн link:collections.md#Base.reduce-Tuple{Any, Any}[`reduce`] љхзабв link:collections.md#Base.map[`map`].а
+
+!!! compat "Julia 1.2"
+    `mapreduce` пьря мучрьўэф ыъцьзѣмьр ӹмърэшмѣ Еруэс 1.2 ъц ѣмьзӱ.абвгде
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> mapreduce(x->x^2, +, [1:3;]) # == 1 + 4 + 9а
+14
++`
+
+Кпь бьрюрьзркцыӹз нц мпь хцрьќэлмъ ыр ьхмљхмчмл-хцрь́ьхмфмучфр.абвгдеж Яуўзхцрьрлљз, мфцыаб ыхцрьзьхмфмучфр бзф мӹэмъ мпь хѣэьмъ мэў́ю нц `f` ѣцњ ыьхмфмум ьзпь ъзмчч́ мӱчрьуэф ӹмфрь храбвгдежзик `itr`.аб Кыэ link:collections.md#Base.mapfoldl-Tuple{Any, Any, Any}[`mapfoldl`] ъц link:collections.md#Base.mapfoldr-Tuple{Any, Any, Any}[`mapfoldr`] лзмьӹхр ѣцнабв лммьхзъзэо ьнму ѣц ьпоръ бьрюрь́ркцыӹз љхз хцрь́ќцюхр њц `f` ѣцн бъмюм мэўзю.абвгдежзи
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L275-L301[source] +
+
+<<Base.mapfoldl-Tuple{Any, Any, Any},#>>
+*`Base.mapfoldl`* &mdash; _Method_.
+
+`julia
+mapfoldl(f, op, itr; [init])
+`
+
+Ктру link:collections.md#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], ьэй пьря лммьхзъзэо ьнмў бьрюрь́ркцыӹз, ыз хр link:collections.md#Base.foldl-Tuple{Any, Any}[`foldl`].абвгдеж Лр лмљрюцъч, мпь лѣцябмт ьхмфэоъз `init` уўря мй љмыэ буькзам мќхц.абвгдеж Ур узъмхмо, ьр ўуря мйабв бъзыӹмкмх ць млрюцѣч `init` ць тъця пьря бьчфм ыхцрьќмуўцк.абвгде
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L163-L169[source] +
+
+<<Base.mapfoldr-Tuple{Any, Any, Any},#>>
+*`Base.mapfoldr`* &mdash; _Method_.
+
+`julia
+mapfoldr(f, op, itr; [init])
+`
+
+Ктру link:collections.md#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], ьэй пьря лммьхзъзэо ьпорѣ бьрюрь́ркцыӹз, ыз хр link:collections.md#Base.foldr-Tuple{Any, Any}[`foldr`].абвгдеж Лраб лмљрюцъч, мпь лѣцябмт ьхмфэоъз `init` уўря мй љмыэ буькзам мќхц.абвгдеж Ур узъмхмо, ьр ўуря мйабв бъзыӹмкмх ць млрюцѣч `init` ць тъця пьря бьчфм ыхцрьќмуўцк.абвгде
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L211-L217[source] +
+
+<<Base.first,#>>
+*`Base.first`* &mdash; _Function_.
+
+`julia
+first(coll)
+`
+
+Ъмо мпь ьыърн ьхмфмум њц хз мўйзѣмьр хцрькмуӱцќ.абвгде Уъэьмѣ мпь ьъзьы ьхрцч нц хзабв link:collections.md#Base.AbstractRange[`AbstractRange`] хмюм нр ьр ыр бьчфм.абв
+
+Кмы цӹуз:аб link:iterators.md#Base.Iterators.only[`only`], link:collections.md#Base.firstindex[`firstindex`], link:collections.md#Base.last[`last`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> first(2:2:10)
+2
+
+julia> first([1; 2; 3; 4])
+1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L406-L422[source] +
+
+`
+first(itr, n::Integer)
+`
+
+Get the first `n` elements of the iterable collection `itr`, or fewer elements if `itr` is not long enough.
+
+See also: link:strings.md#Base.startswith[`startswith`], link:iterators.md#Base.Iterators.take[`Iterators.take`].
+
+!!! compat "Julia 1.6"
+    This method requires at least Julia 1.6.
+
+*Examples*
+
+```julia-repl
+julia> first(["foo", "bar", "qux"], 2)
+2-element Vector\{String}:
+ "foo"
+ "bar"
+
+julia> first(1:6, 10)
+1:6
+
+julia> first(Bool[], 1)
+Bool[]
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L429-L453[source] +
+
+`julia
+first(s::AbstractString, n::Integer)
+`
+
+Get a string consisting of the first `n` characters of `s`.
+
+*Examples*
+
+```julia-repl
+julia> first("∀ϵ≠0: ϵ²>0", 0)
+""
+
+julia> first("∀ϵ≠0: ϵ²>0", 1)
+"∀"
+
+julia> first("∀ϵ≠0: ϵ²>0", 3)
+"∀ϵ≠"
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/strings/basic.jl#L641-L657[source] +
+
+<<Base.last,#>>
+*`Base.last`* &mdash; _Function_.
+
+`julia
+last(coll)
+`
+
+Ъмо мпь ьызу ьхмфмўм нц хз лмъмљѣц хцрькмуӱцќ, њр ьр х́к мй лмьэчфцќ хр Ф(1) мфрь.абвгдежзик Шрпь ыра лмпыручфцкќз бй охрўузк link:collections.md#Base.lastindex[`lastindex`] ць ьмо мпь ьӹ́ӱ амљхр.абвгде Уъэьмѣ мпь лхмаб ьхрцч нц хз link:collections.md#Base.AbstractRange[`AbstractRange`] хмюм њр ьр ыр бьчфм.абвг
+
+Кмы цӹуз link:collections.md#Base.first[`first`], link:strings.md#Base.endswith[`endswith`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> last(1:2:10)
+9
+
+julia> last([1; 2; 3; 4])
+4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L461-L478[source] +
+
+`
+last(itr, n::Integer)
+`
+
+Get the last `n` elements of the iterable collection `itr`, or fewer elements if `itr` is not long enough.
+
+!!! compat "Julia 1.6"
+    This method requires at least Julia 1.6.
+
+*Examples*
+
+```julia-repl
+julia> last(["foo", "bar", "qux"], 2)
+2-element Vector\{String}:
+ "bar"
+ "qux"
+
+julia> last(1:6, 10)
+1:6
+
+julia> last(Float64[], 1)
+Float64[]
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L481-L503[source] +
+
+`julia
+last(s::AbstractString, n::Integer)
+`
+
+Get a string consisting of the last `n` characters of `s`.
+
+*Examples*
+
+```julia-repl
+julia> last("∀ϵ≠0: ϵ²>0", 0)
+""
+
+julia> last("∀ϵ≠0: ϵ²>0", 1)
+"0"
+
+julia> last("∀ϵ≠0: ϵ²>0", 3)
+"²>0"
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/strings/basic.jl#L660-L676[source] +
+
+<<Base.front,#>>
+*`Base.front`* &mdash; _Function_.
+
+`julia
+front(x::Tuple)::Tuple
+`
+
+Уъэьмѣ з `Tuple` охрьырӹхцк нц уўз ьэй мпь ьы́у ьхмхцчфцќ њц `x`.абвгдеж
+
+Кмы цӹуз:аб link:collections.md#Base.first[`first`], link:collections.md#Base.tail[`tail`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> Base.front((1,2,3))
+(1, 2)
+
+julia> Base.front(())
+ERROR: ArgumentError: Cannot call front on an empty tuple.
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/tuple.jl#L190-L205[source] +
+
+<<Base.tail,#>>
+*`Base.tail`* &mdash; _Function_.
+
+`julia
+tail(x::Tuple)::Tuple
+`
+
+Уъэьмѣ з `Tuple` охрьырӹхцк нц уўз ьэй мпь ьыърњ ьхмхцчфцќ нц `x`.абвгдеж
+
+Кмы цӹуз:аб link:collections.md#Base.front[`front`], link:collections.md#Base.rest[`rest`], link:collections.md#Base.first[`first`], link:iterators.md#Base.Iterators.peel[`Iterators.peel`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> Base.tail((1,2,3))
+(2, 3)
+
+julia> Base.tail(())
+ERROR: ArgumentError: Cannot call tail on an empty tuple.
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L235-L250[source] +
+
+<<Base.step,#>>
+*`Base.step`* &mdash; _Function_.
+
+`julia
+step(r)
+`
+
+Ъмо мпь чмьы мврӹ нц хз link:collections.md#Base.AbstractRange[`AbstractRange`] ькмсйц.абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> step(1:10)
+1
+
+julia> step(1:2:10)
+2
+
+julia> step(2.5:0.3:10.9)
+0.3
+
+julia> step(range(2.5, stop=10.9, length=85))
+0.1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L658-L677[source] +
+
+<<Base.collect-Tuple{Any},#>>
+*`Base.collect`* &mdash; _Method_.
+
+`julia
+collect(collection)
+`
+
+Уъэьмѣ хз `Array` нц уўз ыфмьр хр ́ хцрькмуӱцќ ъц ѣцьзъмьр.абвгде Чцн ымръзхцрькрл, ӹхѣэьмъабв `Pair{KeyType, ValType}`.аб Лр мпь ьхмфэоъз ыр мтру-бзѣъ́ ѣц ӹр хз ъцьзѣмьр пьря мпьабвгдеж link:collections.md#Base.IteratorSize[`HasShape`] ьрзъь, мпь ьуэымѣ ўуря мюзп мпь мф́ӹ мчзпыабвгд лхз ъмйфэх нц ыхцрӹхмфрљ ыз мпь ьхмфэоѣ́.абвгд
+
+Имыэ бй ӹхцрыхмпмъчфцк ць хѣэь з ъцьзѣмхмо цьхр х́ `Array`.абвгде
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> collect(1:2:13)
+7-element Vector\{Int64}:
+  1
+  3
+  5
+  7
+  9
+ 11
+ 13
+
+julia> [x{caret}2 for x in 1:8 if isodd(x)]
+4-element Vector\{Int64}:
+  1
+  9
+ 25
+ 49
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L682-L711[source] +
+
+<<Base.collect-Tuple{Type, Any},#>>
+*`Base.collect`* &mdash; _Method_.
+
+`julia
+collect(element_type, collection)
+`
+
+Уъэьмѣ хз `Array` пьря мпь хмюро ьхмфмум мчбь нц ўуз ыфмьр хр ́ хцрькмӱуцќ ъц мўйзѣмьр.абвгдежзи Кпь ьуэымъ ӹзп мпь мфзы мч́пӹ лхз ѣмйфэх нц ыхцрӹхмфрљ ыз `collection`.абвгдеж
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> collect(Float64, 1:2:5)
+3-element Vector{Float64}:
+ 1.0
+ 3.0
+ 5.0
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L632-L646[source] +
+
+<<Base.filter,#>>
+*`Base.filter`* &mdash; _Function_.
+
+`julia
+filter(f, a)
+`
+
+Уъэьмѣ з бчцк нц хцрьќмуўцк `a`, охрюцфмъ ыьхмфмум ѣцњ пќрпя `f` ӹр `false`.абвгдежз Кпь хцрькхэн `f` ыр лмӹызч мхц ьхмфэоъз.абвг
+
+!!! compat "Julia 1.4"
+    Ъъцччэы ѣцн `a` ӹз з мучэь ымърэшмѣ ь́ ьӹзмў Еруэс 1.4.абвгде
+
+Кмы цӹуз:аб link:collections.md#Base.filter![`filter!`], link:iterators.md#Base.Iterators.filter[`Iterators.filter`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = 1:10
+1:10
+
+julia> filter(isodd, a)
+5-element Vector\{Int64}:
+ 1
+ 3
+ 5
+ 7
+ 9
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2509-L2533[source] +
+
+`
+filter(f, d::AbstractDict)
+`
+
+Return a copy of `d`, removing elements for which `f` is `false`. The function `f` is passed `+key=>value+` pairs.
+
+*Examples*
+
+```julia-repl
+julia> d = Dict(1\=>"a", 2\=>"b")
+Dict{Int64, String} with 2 entries:
+  2 \=> "b"
+  1 \=> "a"
+
+julia> filter(p\->isodd(p.first), d)
+Dict{Int64, String} with 1 entry:
+  1 \=> "a"
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L450-L467[source] +
+
+`
+filter(f, itr::SkipMissing{<:AbstractArray})
+`
+
+Return a vector similar to the array wrapped by the given `SkipMissing` iterator but with all missing elements and those for which `f` returns `false` removed.
+
+!!! compat "Julia 1.2"
+    This method requires Julia 1.2 or later.
+
+*Examples*
+
+```julia-repl
+julia> x = [1 2; missing 4]
+2×2 Matrix{Union{Missing, Int64}}:
+ 1         2
+  missing  4
+
+julia> filter(isodd, skipmissing(x))
+1-element Vector\{Int64}:
+ 1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/missing.jl#L372-L392[source] +
+
+<<Base.filter!,#>>
+*`Base.filter!`* &mdash; _Function_.
+
+`julia
+filter!(f, a)
+`
+
+Кьзлчэ хцрькмуўцќ `a`, охрюцфмъ ыьхмфмум ѣцн пкрпя `f` ӹр `false`.абвгдеж Кпь хцрькхэн `f` ыр лмӹызч мхц ьхмфэоъз.абвг
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> filter!(isodd, Vector(1:10))
+5-element Vector{Int64}:
+ 1
+ 3
+ 5
+ 7
+ 9
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2563-L2579[source] +
+
+`
+filter!(f, d::AbstractDict)
+`
+
+Update `d`, removing elements for which `f` is `false`. The function `f` is passed `+key=>value+` pairs.
+
+*Example*
+
+```julia-repl
+julia> d = Dict(1\=>"a", 2\=>"b", 3\=>"c")
+Dict{Int64, String} with 3 entries:
+  2 \=> "b"
+  3 \=> "c"
+  1 \=> "a"
+
+julia> filter!(p\->isodd(p.first), d)
+Dict{Int64, String} with 2 entries:
+  3 \=> "c"
+  1 \=> "a"
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L408-L427[source] +
+
+<<Base.replace-Tuple{Any, Vararg{Pair}},#>>
+*`Base.replace`* &mdash; _Method_.
+
+`+julia
+replace(A, old_new::Pair...; [count::Integer])
++`
+
+Уъэьмѣ з бчцк нц хцрьќмуўцк `A` мъмпя, ѣцњ пќзм ър́ч `+old=>new+` хр `old_new`,абвгдеж уўз ымкхмъѣэќкц нц `old` мъз лмќ́учмѣ бй `new`.абвгд Яьрузэшм ыр лмхрфъмьмљ охрӹэ link:base.md#Base.isequal[`isequal`].абвг Лр `count` ыр лмрнркмчӹ, хмпь мќзучмъ ьз ьыцф `count` ӹмкхмѣъэќкц хр ў́ьць.абвгдеж
+
+Кпь ьхмфмум мчбь нц мпь ьўэымъ ӹр хмыцпк охрӹэ хцрьцфцѣч (ммы link:base.md#Base.promote_type[`promote_type`])абвгдежз лмызй хц мпь ьхмфмум мчбь нц `A` љхз хц мпь ӹмчбь њц мпь `new` ымэў́ю хр ӹързч.абвгдежзи Лр `count` ыр лмььрфц љхз мпь ьхмфмум мчбь нц `A` ӹр з `Union`, мпь ьхмфмўм мчбьабвгдежз нц мпь ьуэымъ ўуря ьцх млэӱкхр хцьмуохрӹ ымчбь пќрпя мѣз љмкзўчмъ пьря ӹмэу́ю њцабвгдежзи з ьхмъмнњрл мчбь: ѣцн мучфзам, `Union{T,Missing}` ўуря мфцкмй `T` њр `missing` ырабвгде лмкзучмъ.аб
+
+Кмы цӹуз link:collections.md#Base.replace![`replace!`], link:collections.md#Base.splice![`splice!`], link:collections.md#Base.delete![`delete!`], link:collections.md#Base.insert![`insert!`].абв
+
+!!! compat "Julia 1.7"
+    Уцрыъмю 1.7 ӹр лмѣрэшмъ ць мкзучмѣ ыьхмфмўм нц з `Tuple`.абвгде
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> replace([1, 2, 1, 3], 1\=>0, 2\=>4, count=2)
+4-element Vector\{Int64}:
+ 0
+ 4
+ 1
+ 3
+
+julia> replace([1, missing], missing\=>0)
+2-element Vector\{Int64}:
+ 1
+ 0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L576-L610[source] +
+
+<<Base.replace-Tuple{Union{Function, Type}, Any},#>>
+*`Base.replace`* &mdash; _Method_.
+
+`julia
+replace(new::Function, A; [count::Integer])
+`
+
+Уъэьмѣ з бчцк нц `A` мъмпя пќзм мэу́ю `x` хр `A` ыр лмкзўчмѣ бй `new(x)`.абвгдеж Лр `count` ыр лмрнркмчӹ, хмпь мќзучмъ ьз ьыцф `count` ӹмэў́ю хр узьцьабвгдеж (ыьхмфмкзучмъ охрмй лмхрнмљ ӹз `new(x) !== x`).абвг
+
+!!! compat "Julia 1.7"
+    Уцрыъмю 1.7 ӹр лмѣрэшмъ ць мкзучмѣ ыьхмфмўм нц з `Tuple`.абвгде
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> replace(x \-> isodd(x) ? 2x : x, [1, 2, 3, 4])
+4-element Vector\{Int64}:
+ 2
+ 2
+ 6
+ 4
+
+julia> replace(Dict(1\=>2, 3\=>4)) do kv
+           first(kv) < 3 ? first(kv)\=>3 : kv
+       end
+Dict{Int64, Int64} with 2 entries:
+  3 \=> 4
+  1 \=> 3
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L637-L663[source] +
+
+<<Base.replace!,#>>
+*`Base.replace!`* &mdash; _Function_.
+
+`+julia
+replace!(A, old_new::Pair...; [count::Integer])
++`
+
+Чцн пкзм ързч `+old=>new+` хр `old_new`, мќ́учмѣ ўуз ымкхмъѣэќкцабвгд нц `old` хр хцрькмуўцќ `A` бй `new`.абв Яьрузэшм ыр лмхрфъмьмљ охрӹэ link:base.md#Base.isequal[`isequal`].абвг Лр `count` ыр лмрнркмчӹ, хмпь мќзучмъ ьз ьыцф `count` ӹмкхмѣъэќкц хр ў́ьць.абвгдеж Кмы цӹуз link:дъмнёѣмчўзкм(Е, ър́ч::ямхелуц...)[`replace`].абвгде
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> replace!([1, 2, 1, 3], 1\=>0, 2\=>4, count=2)
+4-element Vector\{Int64}:
+ 0
+ 4
+ 1
+ 3
+
+julia> replace!(Set([1, 2, 3]), 1\=>0)
+Set\{Int64} with 3 elements:
+  0
+  2
+  3
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L506-L530[source] +
+
+`
+replace!(new::Function, A; [count::Integer])
+`
+
+Replace each element `x` in collection `A` by `new(x)`. If `count` is specified, then replace at most `count` values in total (replacements being defined as `new(x) !== x`).
+
+*Examples*
+
+```julia-repl
+julia> replace!(x \-> isodd(x) ? 2x : x, [1, 2, 3, 4])
+4-element Vector\{Int64}:
+ 2
+ 2
+ 6
+ 4
+
+julia> replace!(Dict(1\=>2, 3\=>4)) do kv
+           first(kv) < 3 ? first(kv)\=>3 : kv
+       end
+Dict{Int64, Int64} with 2 entries:
+  3 \=> 4
+  1 \=> 3
+
+julia> replace!(x\->2x, Set([3, 6]))
+Set\{Int64} with 2 elements:
+  6
+  12
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L544-L572[source] +
+
+<<Base.rest,#>>
+*`Base.rest`* &mdash; _Function_.
+
+`julia
+Base.rest(collection[, itr_state])
+`
+
+Зръмхмо хцрькхэн ѣцњ охртзь мпь урзь нц `collection`, охрьъ́ьы фцѣњ з ќрнркмчӹ хцрьзъмьрабвгдежзи мьзьы `itr_state`.аб Уъэьмѣ з `Tuple`, нр `collection` њумыьр ӹр з `Tuple`, ́ мчбьйэы нцабвгд `AbstractVector`, нр `collection` ыр хз `AbstractArray`, з мчбьйэӹ њц абвг``AbstractString`` нр `collection` ыр хз `AbstractString`, лхз х́ бъзѣьрйъз ѣць́ъмьр, охруўзњ ткзи цьабвгдеж `Iterators.rest(collection[, itr_state])`, мыряъмпьц.аб
+
+Узк мй лмљзцуъмюц ѣцн лмхрњмљ-ъмыэ хцрьќмўуцк ӹмчбь ць мврфцьыэќ мпь ѣцрю́пми нц link:дъмнёлмӹьѣэкьэърхо-зыӹрохфмхь[охрчъэӱӹабвгдежзик хр зыӹрохфмхьы], мтру `+a, b... = collection+`.абвгде
+
+!!! compat "Julia 1.6"
+    `Base.rest` ымърэшмѣ ьз ьӹзму Ерўэс 1.6.абвг
+
+Кмы цӹуз:аб link:collections.md#Base.first[`first`], link:iterators.md#Base.Iterators.rest[`Iterators.rest`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = [1 2; 3 4]
+2×2 Matrix\{Int64}:
+ 1  2
+ 3  4
+
+julia> first, state = iterate(a)
+(1, 2)
+
+julia> first, Base.rest(a, state)
+(1, [3, 2, 4])
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/tuple.jl#L101-L131[source] +
+
++++<a id="Indexable-Collections">++++++</a>+++
+
++++<a id="Indexable-Collections-1">++++++</a>+++
+
+== Indexable Collections
+
+<<Base.getindex,#>>
+*`Base.getindex`* &mdash; _Function_.
+
+`+julia
+getindex(collection, key...)
++`
+
+Кюмръьмѣ мпь ы(мэузю) лмъцьӹ ьз мпь хмюро бмт ѣц амљхр хрпьря ́ хцрькмўуцќ.абвгдежзи Кпь азьхбыаб `+a[i,j,...]+` ыр лмьъмюхцк бй мпь ѣмурчфцќ ць `+getindex(a, i, j, ...)+`.абвг
+
+Кмы цӹуз link:collections.md#Base.get[`get`], link:collections.md#Base.keys[`keys`], link:arrays.md#Base.eachindex[`eachindex`].абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = Dict("a" \=> 1, "b" \=> 2)
+Dict{String, Int64} with 2 entries:
+  "b" \=> 2
+  "a" \=> 1
+
+julia> getindex(A, "a")
+1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L902-L920[source] +
+
+<<Base.setindex!,#>>
+*`Base.setindex!`* &mdash; _Function_.
+
+`+julia
+setindex!(collection, value, key...)
++`
+
+Къцьы мпь хмюро мэузю ьз мпь хмюро бмт ѣц амлхр хрпьря ́ хцрькмўуцќ.абвгдежз Кпь азьхбы с,р[з``+,...]абв =а а+``is converted by the compiler to``+(з(!амлхрьмы, а, р, с, ...); а)+``.абвг
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L958-L963[source] +
+
+<<Base.firstindex,#>>
+*`Base.firstindex`* &mdash; _Function_.
+
+`+julia
+firstindex(collection) -> Integer
+firstindex(collection, d) -> Integer
++`
+
+Уъэьмѣ мпь ьыърн амлхр њц `collection`.абв Лр `d` ыр хмюро, хъэьмѣ мпь ьӹърн амлхр њц `collection` охцуз хцрыхмфрљ `d`.абвгдеж
+
+Кпь ымазьхбӹ `A[begin]` лхз `A[1, begin]` ъмяцу ць `A[firstindex(A)]` љх́абвг `A[1, firstindex(A, 2)]`, бумюрькмчымъ.аб
+
+Кмы цӹуз:аб link:collections.md#Base.first[`first`], link:arrays.md#Base.axes-Tuple{Any}[`axes`], link:collections.md#Base.lastindex[`lastindex`], link:strings.md#Base.nextind[`nextind`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> firstindex([1,2,4])
+1
+
+julia> firstindex(rand(3,4,5), 2)
+1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L381-L400[source] +
+
+<<Base.lastindex,#>>
+*`Base.lastindex`* &mdash; _Function_.
+
+`+julia
+lastindex(collection) -> Integer
+lastindex(collection, d) -> Integer
++`
+
+Уъэьмѣ мпь ьызу амлхр нц `collection`.абв Лр `d` ыр хмюро, хъэьмѣ мпь ьӹзу амлхр нц `collection` охцўз хцрыхмфрљ `d`.абвгдеж
+
+Кпь ымазьхбӹ `A[end]` лхз `A[end, end]` ъмяцу ць `A[lastindex(A)]` љх́абвг `A[lastindex(A, 1), lastindex(A, 2)]`, бумюрькмчымъ.аб
+
+Кмы цӹуз:аб link:arrays.md#Base.axes-Tuple{Any}[`axes`], link:collections.md#Base.firstindex[`firstindex`], link:arrays.md#Base.eachindex[`eachindex`], link:strings.md#Base.prevind[`prevind`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> lastindex([1,2,4])
+3
+
+julia> lastindex(rand(3,4,5), 2)
+4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L358-L377[source] +
+
+Fully implemented by:
+
+* link:arrays.md#Core.Array[`Array`]
+* link:arrays.md#Base.BitArray[`BitArray`]
+* link:arrays.md#Core.AbstractArray[`AbstractArray`]
+* `SubArray`
+
+Partially implemented by:
+
+* link:collections.md#Base.AbstractRange[`AbstractRange`]
+* link:collections.md#Base.UnitRange[`UnitRange`]
+* `Tuple`
+* `AbstractString`
+* link:collections.md#Base.Dict[`Dict`]
+* link:collections.md#Base.IdDict[`IdDict`]
+* link:collections.md#Base.WeakKeyDict[`WeakKeyDict`]
+* link:base.md#Core.NamedTuple[`NamedTuple`]
+
++++<a id="Dictionaries">++++++</a>+++
+
++++<a id="Dictionaries-1">++++++</a>+++
+
+== Dictionaries
+
+link:collections.md#Base.Dict[`Dict`] is the standard dictionary. Its implementation uses link:base.md#Base.hash[`hash`] as the hashing function for the key, and link:base.md#Base.isequal[`isequal`] to determine equality. Define these two functions for custom types to override how they are stored in a hash table.
+
+link:collections.md#Base.IdDict[`IdDict`] is a special hash table where the keys are always object identities.
+
+link:collections.md#Base.WeakKeyDict[`WeakKeyDict`] is a hash table implementation where the keys are weak references to objects, and thus may be garbage collected even when referenced in a hash table. Like `Dict` it uses `hash` for hashing and `isequal` for equality, unlike `Dict` it does not convert keys on insertion.
+
+link:collections.md#Base.Dict[`Dict`]s can be created by passing pair objects constructed with `+=>+` to a link:collections.md#Base.Dict[`Dict`] constructor: `+Dict("A"=>1, "B"=>2)+`. This call will attempt to infer type information from the keys and values (i.e. this example creates a `Dict{String, Int64}`). To explicitly specify types use the syntax `+Dict{KeyType,ValueType}(...)+`. For example, `+Dict{String,Int32}("A"=>1, "B"=>2)+`.
+
+Dictionaries may also be created with generators. For example, `+Dict(i => f(i) for i = 1:10)+`.
+
+Given a dictionary `D`, the syntax `D[x]` returns the value of key `x` (if it exists) or throws an error, and `D[x] = y` stores the key-value pair `+x => y+` in `D` (replacing any existing value for the key `x`).  Multiple arguments to `+D[...]+` are converted to tuples; for example, the syntax `D[x,y]`  is equivalent to `D[(x,y)]`, i.e. it refers to the value keyed by the tuple `(x,y)`.
+
+<<Base.AbstractDict,#>>
+*`Base.AbstractDict`* &mdash; _Type_.
+
+`julia
+AbstractDict{K, V}
+`
+
+Кчбьъмчэы ѣцн мтру-бъзхцрькрл ӹмчбь пьря ыбмћ њц мчбь `K` љхз ӹмэў́ю нц мчбь `V`.абвгдежзи link:collections.md#Base.Dict[`Dict`], link:collections.md#Base.IdDict[`IdDict`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд Уз `AbstractDict{K, V}` луэцпы мй хз ъць́ѣмьр нц `Pair{K, V}`.абвг
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L17-L23[source] +
+
+<<Base.Dict,#>>
+*`Base.Dict`* &mdash; _Type_.
+
+`julia
+Dict([itr])
+`
+
+`Dict{K,V}()` ыькэъьӹхцќ з пызп муй́ь пьря ӹбмт нц мчбь `K` лхз ымэўзю њц мчбь `V`.абвгдежз Шбмт мъз лмѣзчфцк пьря link:base.md#Base.isequal[`isequal`] љх́ лмпызп пьря link:base.md#Base.hash[`hash`].абвгд
+
+Умюро з муохры мўйзъмьр ьхмфэоѣ́, ӹькэъьыхцќ з link:collections.md#Base.Dict[`Dict`] мӹцпя мэузю-бмт ыѣр́чабвгдежз мъз хмтзь фцѣн 2ымучэь- `(key,value)` лмь́ъмхмо бй мпь ьхмфэоѣз.абвгде
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> Dict([("A", 1), ("B", 2)])
+Dict{String, Int64} with 2 entries:
+  "B" => 2
+  "A" => 1
++`
+
+Яумюрьзхъмьўз, ́ мкхмэшмы нц ѣрзч ӹьхмфэоъз б́ф мй лмыӹзч.абвгдеж
+
+`+julia-repl
+julia> Dict("A"=>1, "B"=>2)
+Dict{String, Int64} with 2 entries:
+  "B" => 2
+  "A" => 1
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L52-L77[source] +
+
+<<Base.IdDict,#>>
+*`Base.IdDict`* &mdash; _Type_.
+
+`julia
+IdDict([itr])
+`
+
+`IdDict{K,V}()` ыькэъьӹхцќ з пызп муй́ь охрӹэ link:base.md#Base.objectid[`objectid`] ыз пӹзп лх́абвгд `===` ыз бьрузэшм пьря ӹбмт нц мчбь `K` лх́ ымэўзю њц мчбь `V`.абвгде
+
+Кмы link:collections.md#Base.Dict[`Dict`] ъцн ѣмпьъэњ чумп.абв Ур мпь мучфзам яцўмй, Кпь абв``Dict`` ыбмт мъз уўз `isequal` лх́ мѣцнмъмпь ьмо љмпӹзп мпь мфзы, цӹ бмпь ьмо хмььрѣяъмюц.абвгдежзи Кпь `IdDict` ымпӹзп бй лр-ькмсиц, љхз ыэпь ӹмюъмымѣч мпь 3 ьхмъмнњрл ӹбмт.абвгдежз
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> Dict(true \=> "yes", 1 \=> "no", 1.0 \=> "maybe")
+Dict{Real, String} with 1 entry:
+  1.0 \=> "maybe"
+
+julia> IdDict(true \=> "yes", 1 \=> "no", 1.0 \=> "maybe")
+IdDict{Any, String} with 3 entries:
+  true \=> "yes"
+  1.0  \=> "maybe"
+  1    \=> "no"
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/iddict.jl#L3-L25[source] +
+
+<<Base.WeakKeyDict,#>>
+*`Base.WeakKeyDict`* &mdash; _Type_.
+
+`julia
+WeakKeyDict([itr])
+`
+
+`WeakKeyDict()` ыькэъьӹхцќ з пызп муй́ь мѣмпя мпь ӹбмт мъз ћзмяабвгде ымкхмъмнмѣ ць ӹьќмсйц пкрпя бзф ми мозйъ́о лмьќмуўцк хмюм хмпяабвгдеж лмкхмъмнмѣ хр з пызп муй́ь.абв
+
+Кмы link:collections.md#Base.Dict[`Dict`] ъцн ѣмпьъэњ чумп.абв  Кьцх, мтрухэ link:collections.md#Base.Dict[`Dict`],аб `WeakKeyDict` ымцл ьцх ьъмюхцк ӹбмт хц хцрьѣмыхр, ӹз ырпь љуэця бўчфр мпь бмћабвгдежз ькмсйц ызя лмќхмъмнмѣхэ мъмпябхз мѣцњми хцрьъмӹхр.абвгде
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/weakkeydict.jl#L5-L15[source] +
+
+<<Base.ImmutableDict,#>>
+*`Base.ImmutableDict`* &mdash; _Type_.
+
+`julia
+ImmutableDict
+`
+
+`ImmutableDict` ыр з бъзхцрькрл љмьхмфмучфр ӹ́ хз мўйзьэффр лмтхру ьырӱ,абвгдеж пкрпя ыр узфрьчц ъцн ўузфӹ ымрѣ́хцрьќрл ьзпь мъз љмькэѣьӹхцќ ъмюц бх́ф ӱзэлрюрљхр ыхцрьѣмӹхр.абвгдежзикл Кьцх ьзпь ьр ыр ьцх муйрӹыцч ць мюцфмъ з мэў́ю, поэцпьуз ьр хзк ми бӱу́рьѣзч хмлљръѣмюц лхз хмљлрпабвгдежзикл бй охрьъмыхр з ямх мэузю пьря мпь мф́ӹ бмт.абвгд
+
+`
+ImmutableDict(KV::Pair)
+`
+
+Кьзмък з ямх бѣьхм хр мпь `ImmutableDict` ъцн ́ `+key => value+` ѣрзчабвгд
+
+* мыэ `+(key => value) in dict+` ць ммӹ нр ырпь ъзуэкрьѣзч хцрь́хрйфцќ ӹр хр мпь ымрьъмчцѣч ьмӹабвгдежз
+* мыэ `get(dict, key, default)` ць мюмръьмѣ мпь ьӹцф ьхмкмъ мэузю ѣцн з ъ́ўэќрьѣзч бмтабвгдеж
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L772-L787[source] +
+
+<<Base.haskey,#>>
+*`Base.haskey`* &mdash; _Function_.
+
+`+julia
+haskey(collection, key) -> Bool
++`
+
+Кхрфъмьмл ѣмпьмпя з хцрькмуўцќ ызп ́ охрччзф ъцн з хмюро `key`.абвгдеж
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> D = Dict('a'\=>2, 'b'\=>3)
+Dict{Char, Int64} with 2 entries:
+  'a' \=> 2
+  'b' \=> 3
+
+julia> haskey(D, 'a')
+true
+
+julia> haskey(D, 'c')
+false
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L550-L568[source] +
+
+<<Base.get,#>>
+*`Base.get`* &mdash; _Function_.
+
+`julia
+get(collection, key, default)
+`
+
+Уъэьмѣ мпь мэузю лмъцьы ѣцн мпь хмюро бмт, ъц мпь хмюро ьўэзњмљ мэу́ю нр цх охрччзф ѣцњ мпьабвгдежзикл бмт ыр ьхмӹмъч.аб
+
+!!! compat "Julia 1.7"
+    Чцн ымучэь лхз ӹъмйфэх, ырпь хцрькхэњ ӹмѣрэшмъ ьз ьы́мў Еруэс 1.7.абвгдежз
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> d = Dict("a"\=>1, "b"\=>2);
+
+julia> get(d, "a", 3)
+1
+
+julia> get(d, "c", 3)
+3
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L501-L520[source] +
+
+`
+get(f::Function, collection, key)
+`
+
+Return the value stored for the given key, or if no mapping for the key is present, return `f()`.  Use link:collections.md#Base.get![`get!`] to also store the default value in the dictionary.
+
+This is intended to be called using `do` block syntax
+
+`julia
+get(dict, key) do
+    # default value calculated here
+    time()
+end
+`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L528-L542[source] +
+
+<<Base.get!,#>>
+*`Base.get!`* &mdash; _Function_.
+
+`julia
+get!(collection, key, default)
+`
+
+Уъэьмѣ мпь мэузю лмъцьы ѣцн мпь хмюро бмт, ъц њр цх охрччзф ѣцн мпь бмћ ӹр ьхмымъч, мѣцьӹабвгдежзик `+key => default+`, лхз хъэьмѣ `default`.аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> d = Dict("a"\=>1, "b"\=>2, "c"\=>3);
+
+julia> get!(d, "a", 5)
+1
+
+julia> get!(d, "d", 4)
+4
+
+julia> d
+Dict{String, Int64} with 4 entries:
+  "c" \=> 3
+  "b" \=> 2
+  "a" \=> 1
+  "d" \=> 4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L412-L435[source] +
+
+`
+get!(f::Function, collection, key)
+`
+
+Return the value stored for the given key, or if no mapping for the key is present, store `+key => f()+`, and return `f()`.
+
+This is intended to be called using `do` block syntax.
+
+*Examples*
+
+```julia-repl
+julia> squares = Dict{Int, Int}();
+
+julia> function get_square!(d, i)
+           get!(d, i) do
+               i{caret}2
+           end
+       end
+get_square! (generic function with 1 method)
+
+julia> get_square!(squares, 2)
+4
+
+julia> squares
+Dict{Int64, Int64} with 1 entry:
+  2 \=> 4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L438-L464[source] +
+
+<<Base.getkey,#>>
+*`Base.getkey`* &mdash; _Function_.
+
+`julia
+getkey(collection, key, default)
+`
+
+Уъэьмѣ мпь бмт охрпкьзф ьхмфэоъз `key` нр мхц ыьӹрам хр `collection`, мыряѣмпьц хъэьмѣ `default`.абвгдежзи
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> D = Dict('a'\=>2, 'b'\=>3)
+Dict{Char, Int64} with 2 entries:
+  'a' \=> 2
+  'b' \=> 3
+
+julia> getkey(D, 'a', 1)
+'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
+
+julia> getkey(D, 'd', 'a')
+'a': ASCII/Unicode U+0061 (category Ll: Letter, lowercase)
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L572-L590[source] +
+
+<<Base.delete!,#>>
+*`Base.delete!`* &mdash; _Function_.
+
+`julia
+delete!(collection, key)
+`
+
+Кьмумл мпь охрччзф ъцн мпь хмюро бмт хр з хцрькмўуцќ, њр бх́, љхз хѣэьмъ мпь хцрькмӱуцќ.абвгдежзик
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> d = Dict("a"\=>1, "b"\=>2)
+Dict{String, Int64} with 2 entries:
+  "b" \=> 2
+  "a" \=> 1
+
+julia> delete!(d, "b")
+Dict{String, Int64} with 1 entry:
+  "a" \=> 1
+
+julia> delete!(d, "b") # л ыр ьнму љмохзпкхэаб
+Dict{String, Int64} with 1 entry:
+  "a" \=> 1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L655-L675[source] +
+
+<<Base.pop!-Tuple{Any, Any, Any},#>>
+*`Base.pop!`* &mdash; _Method_.
+
+`julia
+pop!(collection, key[, default])
+`
+
+Кьмумл љхз хъэьмѣ мпь охрччзф ъцн `key` њр ьр ыьӹрам хр `collection`, мыряѣмпьц хъэьмѣабвгдежз `default`, ъц яцѣпь хз ъцѣъм нр `default` ыр ьцх лмрњркмчӹ.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> d = Dict("a"\=>1, "b"\=>2, "c"\=>3);
+
+julia> pop!(d, "a")
+1
+
+julia> pop!(d, "d")
+ERROR: KeyError: key "d" not found
+Stacktrace:
+[\...]
+
+julia> pop!(d, "e", 4)
+4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L607-L628[source] +
+
+<<Base.keys,#>>
+*`Base.keys`* &mdash; _Function_.
+
+`julia
+keys(iterator)
+`
+
+Чцн хз ъцьзѣмьр ъц хцрькмуўцќ ь́пь ызп ӹбмт лхз ымэу́ю (о.м. ӹбзѣъз љх́ ымрѣзхцрькрл),абвгдежзик хъэьмѣ хз ъцьзѣмьр ъмюц мпь ыбмт.абвг
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L73-L78[source] +
+
+<<Base.values,#>>
+*`Base.values`* &mdash; _Function_.
+
+`julia
+values(iterator)
+`
+
+Чцн хз ъцьзѣмьр ъц хцрькмуўцќ ь́пь ызп ӹбмт лхз ымэу́ю, хѣэьмъ хз ѣцьзъмьрабвгдежзи ъмюц мпь ымэузю.аб Шрпь хцрькхэн бучфры ӹхъэьмѣ ыьр ьхмфэоъз бй ьўэзњмл, мќхрӹ мпь ыьхмфмумабвгдежз нц з узъмхмо ѣць́ъмьр мѣз бўузфъцх лмѣмљрыхцк ӹьр "ымэӱ́ю".абвгдеж
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> d = Dict("a"\=>1, "b"\=>2);
+
+julia> values(d)
+ValueIterator for a Dict{String, Int64} with 2 entries. Values:
+  2
+  1
+
+julia> values([2])
+1-element Vector\{Int64}:
+ 2
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L791-L812[source] +
+
+`
+values(a::AbstractDict)
+`
+
+Return an iterator over all values in a collection. `collect(values(a))` returns an array of values. When the values are stored internally in a hash table, as is the case for `Dict`, the order in which they are returned may vary. But `keys(a)` and `values(a)` both iterate `a` and return the elements in the same order.
+
+*Examples*
+
+```julia-repl
+julia> D = Dict('a'\=>2, 'b'\=>3)
+Dict{Char, Int64} with 2 entries:
+  'a' \=> 2
+  'b' \=> 3
+
+julia> collect(values(D))
+2-element Vector\{Int64}:
+ 2
+ 3
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L107-L130[source] +
+
+<<Base.pairs,#>>
+*`Base.pairs`* &mdash; _Function_.
+
+`julia
+pairs(collection)
+`
+
+Уъэьмѣ хз ъцьзѣмьр ъмюц `+key => value+` ыѣр́ч ъцн бхзабвгд хцрькмуўцќ ьзпь ычзф ́ ьмӹ нц ыбмт ць з ьмӹ њц ымэузю.абвгде Шрпь ымлэукхр ӹбзъѣз, мъмпя мпь ыбмт мѣ́ мпь бзъѣз ӹмќрљхр.абвгдеж
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = Dict(zip(["a", "b", "c"], [1, 2, 3]))
+Dict{String, Int64} with 3 entries:
+  "c" \=> 3
+  "b" \=> 2
+  "a" \=> 1
+
+julia> pairs(a)
+Dict{String, Int64} with 3 entries:
+  "c" \=> 3
+  "b" \=> 2
+  "a" \=> 1
+
+julia> foreach(println, pairs(["a", "b", "c"]))
+1 \=> "a"
+2 \=> "b"
+3 \=> "c"
+
+julia> (;a=1, b=2, c=3) |> pairs |> collect
+3-element Vector{Pair{Symbol, Int64}}:
+ :a \=> 1
+ :b \=> 2
+ :c \=> 3
+
+julia> (;a=1, b=2, c=3) |> collect
+3-element Vector\{Int64}:
+ 1
+ 2
+ 3
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L133-L171[source] +
+
+`
+pairs(IndexLinear(), A)
+pairs(IndexCartesian(), A)
+pairs(IndexStyle(A), A)
+`
+
+An iterator that accesses each element of the array `A`, returning `+i => x+`, where `i` is the index for the element and `x = A[i]`. Identical to `pairs(A)`, except that the style of index can be selected. Also similar to `enumerate(A)`, except `i` will be a valid index for `A`, while `enumerate` always counts from 1 regardless of the indices of `A`.
+
+Specifying link:arrays.md#Base.IndexLinear[`IndexLinear()`] ensures that `i` will be an integer; specifying link:arrays.md#Base.IndexCartesian[`IndexCartesian()`] ensures that `i` will be a link:arrays.md#Base.IteratorsMD.CartesianIndex[`CartesianIndex`]; specifying `IndexStyle(A)` chooses whichever has been defined as the native indexing style for array `A`.
+
+Mutation of the bounds of the underlying array will invalidate this iterator.
+
+*Examples*
+
+```julia-repl
+julia> A = ["a" "d"; "b" "e"; "c" "f"];
+
+julia> for (index, value) in pairs(IndexStyle(A), A)
+           println("$index $value")
+       end
+1 a
+2 b
+3 c
+4 d
+5 e
+6 f
+
+julia> S = view(A, 1:2, :);
+
+julia> for (index, value) in pairs(IndexStyle(S), S)
+           println("$index $value")
+       end
+CartesianIndex(1, 1) a
+CartesianIndex(2, 1) b
+CartesianIndex(1, 2) d
+CartesianIndex(2, 2) e
+```
+
+See also link:arrays.md#Base.IndexStyle[`IndexStyle`], link:arrays.md#Base.axes-Tuple{Any}[`axes`].
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/iterators.jl#L189-L234[source] +
+
+<<Base.merge,#>>
+*`Base.merge`* &mdash; _Function_.
+
+`+julia
+merge(d::AbstractDict, others::AbstractDict...)
++`
+
+Ъкэъьыхцќ з лмоѣмф хцрькмуўцќ фцън мпь хмюро ӹхцрькмуӱцќ.абвгдеж Лр бъзыӹмкмх, мпьаб ымчбь нц мпь охрьуэӹмъ хцрькмўуцќ ӱуря мй лмьцфцѣч ць мьзљцффцкќз мпь ымчбь њцабвгдежзи мпь лмоъмф ыхцрькмуўцќ.абв Лр мпь мфзы бмт ӹр ьхмымъч хр ѣмпьцхз хцрькмуўцќ, мпьабвгде мэузю ъцн ьзпь бмт ўуря мй мпь мэӱ́ю ьр ызп хр мпь ьӹзу хцрькмўуцќ лмьырӱ.абвгдежзи Кмы цӹуз link:collections.md#Base.mergewith[`mergewith`] ъцн фцьыэк охрўлхзп њц ӹмэу́ю пьря мпь мфзы бмт.абвгдеж
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = Dict("foo" \=> 0.0, "bar" \=> 42.0)
+Dict{String, Float64} with 2 entries:
+  "bar" \=> 42.0
+  "foo" \=> 0.0
+
+julia> b = Dict("baz" \=> 17, "bar" \=> 4711)
+Dict{String, Int64} with 2 entries:
+  "bar" \=> 4711
+  "baz" \=> 17
+
+julia> merge(a, b)
+Dict{String, Float64} with 3 entries:
+  "bar" \=> 4711.0
+  "baz" \=> 17.0
+  "foo" \=> 0.0
+
+julia> merge(b, a)
+Dict{String, Float64} with 3 entries:
+  "bar" \=> 42.0
+  "baz" \=> 17.0
+  "foo" \=> 0.0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L316-L349[source] +
+
+`+
+merge(a::NamedTuple, bs::NamedTuple...)
++`
+
+Construct a new named tuple by merging two or more existing ones, in a left-associative manner. Merging proceeds left-to-right, between pairs of named tuples, and so the order of fields present in both the leftmost and rightmost named tuples take the same position as they are found in the leftmost named tuple. However, values are taken from matching fields in the rightmost named tuple that contains that field. Fields present in only the rightmost named tuple of a pair are appended at the end. A fallback is implemented for when only a single named tuple is supplied, with signature `merge(a::NamedTuple)`.
+
+!!! compat "Julia 1.1"
+    Merging 3 or more `NamedTuple` requires at least Julia 1.1.
+
+*Examples*
+
+`julia-repl
+julia> merge((a=1, b=2, c=3), (b=4, d=5))
+(a = 1, b = 4, c = 3, d = 5)
+`
+
+`julia-repl
+julia> merge((a=1, b=2), (b=3, c=(d=1,)), (c=(d=2,),))
+(a = 1, b = 3, c = (d = 2,))
+`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/namedtuple.jl#L239-L263[source] +
+
+`
+merge(a::NamedTuple, iterable)
+`
+
+Interpret an iterable of key-value pairs as a named tuple, and perform a merge.
+
+`+julia-repl
+julia> merge((a=1, b=2, c=3), [:b=>4, :d=>5])
+(a = 1, b = 4, c = 3, d = 5)
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/namedtuple.jl#L289-L298[source] +
+
+<<Base.mergewith,#>>
+*`Base.mergewith`* &mdash; _Function_.
+
+`+julia
+mergewith(combine, d::AbstractDict, others::AbstractDict...)
+mergewith(combine)
+merge(combine, d::AbstractDict, others::AbstractDict...)
++`
+
+Ъкэъьыхцќ з лмоѣмф хцрькмуўцќ фцън мпь хмюро ӹхцрькмуӱцќ.абвгдеж Лр бъзыӹмкмх, мпьаб ымчбь нц мпь охрьуэӹмъ хцрькмўуцќ ӱуря мй лмьцфцѣч ць мьзљцффцкќз мпь ымчбь њцабвгдежзи мпь лмоъмф ыхцрькмуўцќ.абв Шмэузю пьря мпь мфзы бмт ўуря мй лмхрифцк охрӹэ мпьабвгде ъмхрйфцк хцрьќхэн.аб  Кпь лмръѣэк фъцн `mergewith(combine)` ыхѣэьмъ мпь хцрьќхэњабвгд `+(args...) -> mergewith(combine, args...)+`.аб
+
+Ицпьмф `+merge(combine::Union{Function,Type}, args...)+` ыз хз ӹ́руз нцабв `+mergewith(combine, args...)+` ыр уўрьӹ муйзӱрзю́ ъцн лѣзяткзи бьрурйрь́чфцќ.абвгде
+
+!!! compat "Julia 1.5"
+    `mergewith` ымърэшмѣ Еруэс 1.5 ъц ѣмьзў.абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = Dict("foo" \=> 0.0, "bar" \=> 42.0)
+Dict{String, Float64} with 2 entries:
+  "bar" \=> 42.0
+  "foo" \=> 0.0
+
+julia> b = Dict("baz" \=> 17, "bar" \=> 4711)
+Dict{String, Int64} with 2 entries:
+  "bar" \=> 4711
+  "baz" \=> 17
+
+julia> mergewith(+, a, b)
+Dict{String, Float64} with 3 entries:
+  "bar" \=> 4753.0
+  "baz" \=> 17.0
+  "foo" \=> 0.0
+
+julia> ans == mergewith(+)(a, b)
+true
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L353-L391[source] +
+
+<<Base.merge!,#>>
+*`Base.merge!`* &mdash; _Function_.
+
+`+julia
+merge!(d::AbstractDict, others::AbstractDict...)
++`
+
+Кьзлчэ хцрькмуўцќ пьря ыързч фцѣн мпь ъмпьц ӹхцрькмуӱцќ.абвгдеж Кмы цӹуз link:collections.md#Base.merge[`merge`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> d1 = Dict(1 \=> 2, 3 \=> 4);
+
+julia> d2 = Dict(1 \=> 4, 4 \=> 5);
+
+julia> merge!(d1, d2);
+
+julia> d1
+Dict{Int64, Int64} with 3 entries:
+  4 \=> 5
+  3 \=> 4
+  1 \=> 4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L197-L217[source] +
+
+<<Base.mergewith!,#>>
+*`Base.mergewith!`* &mdash; _Function_.
+
+`+julia
+mergewith!(combine, d::AbstractDict, others::AbstractDict...) -> d
+mergewith!(combine)
+merge!(combine, d::AbstractDict, others::AbstractDict...) -> d
++`
+
+Кьзлчэ хцрькмуўцќ пьря ыързч фцѣн мпь ъмпьц ӹхцрькмуӱцќ.абвгдеж Шмэузю пьря мпь мфзы бмт ўуря мй лмхрифцк охрӹэ мпьабвгде ъмхрйфцк хцрьќхэн.аб  Кпь лмръѣэк фъцн `mergewith!(combine)` ыхѣэьмъ мпьабв хцрькхэн `+(args...) -> mergewith!(combine, args...)+`.а
+
+Ицпьмф `+merge!(combine::Union{Function,Type}, args...)+` ыз хз ӹ́руз нцабв `+mergewith!(combine, args...)+` ыр уўрьӹ муйзӱрзю́ ъцн лѣзяткзиабвг бьрурйрьзчфцк.аб
+
+!!! compat "Julia 1.5"
+    `mergewith!` ымърэшмѣ Еруэс 1.5 ъц ѣмьзў.абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> d1 = Dict(1 \=> 2, 3 \=> 4);
+
+julia> d2 = Dict(1 \=> 4, 4 \=> 5);
+
+julia> mergewith!(+, d1, d2);
+
+julia> d1
+Dict{Int64, Int64} with 3 entries:
+  4 \=> 5
+  3 \=> 4
+  1 \=> 6
+
+julia> mergewith!(-, d1, d1);
+
+julia> d1
+Dict{Int64, Int64} with 3 entries:
+  4 \=> 0
+  3 \=> 0
+  1 \=> 0
+
+julia> foldl(mergewith!(+), [d1, d2]; init=Dict{Int64, Int64}())
+Dict{Int64, Int64} with 3 entries:
+  4 \=> 5
+  3 \=> 0
+  1 \=> 4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L227-L272[source] +
+
+<<Base.sizehint!,#>>
+*`Base.sizehint!`* &mdash; _Function_.
+
+`julia
+sizehint!(s, n)
+`
+
+Ъымооэӹ ьзпь хцрькмуўцќ `s` мюъмымѣ бьркзч́ќ ъцн ьз ьӹзму `n` ыьхмфмӱм.абвгдежз Шрпь хзк мюцъчфр мќхзфѣцнъмч.абв
+
+*Шмьцх хц мпь мкхзфъцнѣмч умлцфабв*
+
+Чцн ымчбь ьзпь ьъцччэӹ `sizehint!`,абв
+
+. `push!` лхз `append!` ыљцпьмф буўзъмхмо б́ф (ьэй мѣз ьцх лмърэшмѣ ць) мьзкцуӱ́мъч зѣьамабвгдежзи мозъцьы.аб Чцн ымчбь лмьхмфмучфр хр `Base`, бмпь бўузкрчбь цљ, охрӹэ з ќрьыръэмп лмврфрьчц ѣцњабвгдежзи з узъмхмо мыэ мӹ́к.аб
+. `sizehint!` бзф уцъьхцк ырпь хцрьзќцўу́мѣч.абвг Урзоз, ьр буў́крчбь ымцл ӹрпь ъцн ымчбь храбвгд `Base`.абв
+. `empty!` ыр буъзмх ӹымўьӹцк (лхз Ф(1)) ѣцн ымчбь ь́пь ьъцччэӹ ырпь љхрт њц хцрьзќцуӱзмѣч.абвгдежзик
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1246-L1263[source] +
+
+<<Base.keytype,#>>
+*`Base.keytype`* &mdash; _Function_.
+
+`julia
+тмбьбчм(Ъ::Ъбчм{<:ЕйыьъзкьЕѣъзб})абвг
+бзъѣзьќЧьыЖз::з(мчЯьбмт)абв
+`
+
+Уъэьмѣ мпь бмт мчбь нц хз бзъѣ́.абвг Шрпь ыр узэшм ць мпьаб `eltype` нц мпь ьуэымъ њц `+keys(...)+`, лхз ӹр љмлрюцѣчабвг бухрзф ъцн бьрўрйрьзчфцк пьря мпь бѣ́хцрьќрл мкзњъмьхр.абвгде
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> keytype([1, 2, 3]) == Int
+true
+
+julia> keytype([1 2; 3 4])
+CartesianIndex\{2}
+```
+
+!!! compat "Julia 1.2"
+    Чцн ыбзъѣз, ӹрпь хцрькхэњ ымърэшмѣ ь́ ьӹзму Ерўэс 1.2.абвгде
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L135-L154[source] +
+
+`
+keytype(type)
+`
+
+Get the key type of a dictionary type. Behaves similarly to link:collections.md#Base.eltype[`eltype`].
+
+*Examples*
+
+`+julia-repl
+julia> keytype(Dict(Int32(1) => "foo"))
+Int32
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L288-L298[source] +
+
+<<Base.valtype,#>>
+*`Base.valtype`* &mdash; _Function_.
+
+`julia
+valtype(T::Type{<:AbstractArray})
+valtype(A::AbstractArray)
+`
+
+Уъэьмѣ мпь мэузю мчбь нц хз б́ъѣз.абвг Шрпь ыр узкрьхмлр ць `eltype` љхз ӹрабв лмљрюцъч бухрзф ѣцн бьрўрйрьзчфцк пьря мпь бъ́хцрьќрл мкзњѣмьхр.абвгдеж
+
+*Шмучфзамаб*
+
+`julia-repl
+julia> valtype(["one", "two", "three"])
+String
+`
+
+!!! compat "Julia 1.2"
+    Чцн ыбзъѣз, ӹрпь хцрькхэњ ымърэшмѣ ь́ ьӹзму Ерўэс 1.2.абвгде
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L162-L177[source] +
+
+`
+valtype(type)
+`
+
+Get the value type of a dictionary type. Behaves similarly to link:collections.md#Base.eltype[`eltype`].
+
+*Examples*
+
+`+julia-repl
+julia> valtype(Dict(Int32(1) => "foo"))
+String
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L302-L312[source] +
+
+Fully implemented by:
+
+* link:collections.md#Base.IdDict[`IdDict`]
+* link:collections.md#Base.Dict[`Dict`]
+* link:collections.md#Base.WeakKeyDict[`WeakKeyDict`]
+
+Partially implemented by:
+
+* link:collections.md#Base.BitSet[`BitSet`]
+* link:collections.md#Base.Set[`Set`]
+* link:base.md#Base.EnvDict[`EnvDict`]
+* link:arrays.md#Core.Array[`Array`]
+* link:arrays.md#Base.BitArray[`BitArray`]
+* link:collections.md#Base.ImmutableDict[`ImmutableDict`]
+* link:collections.md#Base.Pairs[`Iterators.Pairs`]
+
++++<a id="Set-Like-Collections">++++++</a>+++
+
++++<a id="Set-Like-Collections-1">++++++</a>+++
+
+== Set-Like Collections
+
+<<Base.AbstractSet,#>>
+*`Base.AbstractSet`* &mdash; _Type_.
+
+`+julia
+AbstractSet{T}
++`
+
+Кчбьъмчэы ѣцн мтру-ьмӹ ымчбь мӹцпя ыьхмфмўм мъз њц мчбь `T`.абвгдеж link:collections.md#Base.Set[`Set`], link:collections.md#Base.BitSet[`BitSet`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L9-L14[source] +
+
+<<Base.Set,#>>
+*`Base.Set`* &mdash; _Type_.
+
+`julia
+Set([itr])
+`
+
+Ъкэъьыхцќ з link:collections.md#Base.Set[`Set`] нц мпь ӹмэузю лмь́ѣмхмо бй мпь хмюро мўизъмьр ькмсйц, ѣц хзабвгдежзи бьчфм ьмы.аб Иуэцпы мй лмӹэ љзмьыхр нц link:collections.md#Base.BitSet[`BitSet`] ъцњ мӹѣзчы ъмомьхр ӹьмы, ѣцабвгдеж ъцн ыьмӹ њц бѣзъьрйѣз ыькмсиц.абв
+
+Кмы цӹуз:аб link:collections.md#Base.push![`push!`], link:collections.md#Base.empty![`empty!`], link:collections.md#Base.union![`union!`], link:collections.md#Base.in[`in`].аб
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L22-L30[source] +
+
+<<Base.BitSet,#>>
+*`Base.BitSet`* &mdash; _Type_.
+
+`julia
+BitSet([itr])
+`
+
+Ъкэъьыхцќ з лмьѣцӹ ьмы нц ``Int``ӹ љмьзъмхмо бй мпь хмюро муи́ѣмьр ькмсйц, ъц хзабвгдежзи бьчфм ьмы.аб Имьхмфмучфр ыз з ьрй охръьӹ, лх́ мѣцнмъмпь љмхорымл ѣцњ мӹхмљ ъмомьхр ыьмӹ.абвгдежзи Лр мпь ьмы уўря мй мӹъзчы (ѣцн мучфзам, охрлӱцп ́ ямњабвгде бъмю моѣзу ыъмомьхр), мӹэ link:collections.md#Base.Set[`Set`] лзмьыхр.абвг
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/bitset.jl#L21-L28[source] +
+
+<<Base.union,#>>
+*`Base.union`* &mdash; _Function_.
+
+`+julia
+union(s, itrs...)
+∪(s, itrs...)
++`
+
+Ъкэъьыхцќ хз ькмсйц охрхрзьхцќ уў́ ькхрьӹрл ыьхмфмум фцѣн ӱуз њц мпь ӹьхмфэоъз.абвгдежзи
+
+Кпь ьыърн ьхмфэоѣз ӹуцъьхцк ьзпя лхрт њц ѣмхр́ьхцќ ыр љмхъэьмѣ.абвгдеж Лр ырпь ӹр хз бзъѣ́, ьр ыхрзьхрзф мпь ъмлѣц хр пкрпя ӹьхмфмум ьыърн ѣ́мччз.абвгдежзи
+
+Клцкрхэ `∪` хзќ мй љмчбь би охрьръя `\cup` хмпь охрыӹмѣч йзь хр мпь Еруэс СХКЧ, лх́ хр бхзф ыъцьрљм.абвгдежзикл Шрпь ыр хз арнхр ъцьзѣмчц, охряцуў́ `s ∪ itr`.абвг
+
+Кмы цӹуз link:collections.md#Base.unique[`unique`], link:collections.md#Base.intersect[`intersect`], link:collections.md#Base.isdisjoint[`isdisjoint`], link:arrays.md#Base.vcat[`vcat`], link:iterators.md#Base.Iterators.flatten[`Iterators.flatten`].абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> union([1, 2], [3])
+3-element Vector\{Int64}:
+ 1
+ 2
+ 3
+
+julia> union([4 2 3 4 4], 1:3, 3.0)
+4-element Vector\{Float64}:
+ 4.0
+ 2.0
+ 3.0
+ 1.0
+
+julia> (0, 0.0) ∪ (-0.0, NaN)
+3-element Vector\{Real}:
+   0
+  -0.0
+ NaN
+
+julia> union(Set([1, 2]), 2:3)
+Set\{Int64} with 3 elements:
+  2
+  3
+  1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L13-L54[source] +
+
+<<Base.union!,#>>
+*`Base.union!`* &mdash; _Function_.
+
+`+julia
+union!(s::Union{AbstractSet,AbstractVector}, itrs...)
++`
+
+Ъкэъьыхцќ мпь link:collections.md#Base.union[`union`] нц лмӹызч хр ӹьмы љхз мьрѣяъмюц `s` пьря мпь ьуэӹмѣ.абвгдежз Урзьхрзф ъмлѣц пьря ыб́ъѣз.абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = Set([3, 4, 5]);
+
+julia> union!(a, 1:2:7);
+
+julia> a
+Set\{Int64} with 5 elements:
+  5
+  4
+  7
+  3
+  1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L62-L82[source] +
+
+<<Base.intersect,#>>
+*`Base.intersect`* &mdash; _Function_.
+
+`+julia
+intersect(s, itrs...)
+∩(s, itrs...)
++`
+
+Ъкэъьыхцќ мпь ьмӹ охрхрзьхцк мыцпь ӹьхмфмум пќрпя ѣзмчч́ хр ўуз нц мпь ыьхмфэоъз.абвгдежзи
+
+Кпь ьыърн ьхмфэоѣз ӹуцъьхцк ьзпя лхрт њц ѣмхр́ьхцќ ыр љмхъэьмѣ.абвгдеж Лр ырпь ӹр хз бзъѣ́, ьр ыхрзьхрзф мпь ъмлѣц хр пкрпя ӹьхмфмум ьыърн ѣ́мччз.абвгдежзи
+
+Клцкрхэ `∩` хзќ мй љмчбь би охрьръя `\cap` хмпь охрыӹмѣч йзь хр мпь Еруэс СХКЧ, лх́ хр бхзф ыъцьрљм.абвгдежзикл Шрпь ыр хз арнхр ъцьзѣмчц, охряцуў́ `s ∩ itr`.абвг
+
+Кмы цӹуз link:collections.md#Base.setdiff[`setdiff`], link:collections.md#Base.isdisjoint[`isdisjoint`], link:collections.md#Base.issubset[`issubset`], link:collections.md#Base.issetequal[`issetequal`].абв
+
+!!! compat "Julia 1.8"
+    Шз нц Еруэс 1.8 ькмыъмьхр ӹхѣэьмъ з ьўэымѣ пьря мпь мчбьум њц мпьабвгдежз лмьцфцъч-мчбь ымчбьум нц мпь цяь ӹьэчхрабвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> intersect([1, 2, 3], [3, 4, 5])
+1-element Vector\{Int64}:
+ 3
+
+julia> intersect([1, 4, 4, 5, 6], [6, 4, 6, 7, 8])
+2-element Vector\{Int64}:
+ 4
+ 6
+
+julia> intersect(1:16, 7:99)
+7:16
+
+julia> (0, 0.0) ∩ (-0.0, 0)
+1-element Vector\{Real}:
+ 0
+
+julia> intersect(Set([1, 2]), BitSet([2, 3]), 1.0:10.0)
+Set\{Float64} with 1 element:
+  2.0
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L110-L150[source] +
+
+<<Base.setdiff,#>>
+*`Base.setdiff`* &mdash; _Function_.
+
+`+julia
+setdiff(s, itrs...)
++`
+
+Ъкэъьыхцќ мпь ьмӹ нц ыьхмфмум хр `s` ьэй ьцх хр бхз њц мпь ӹмўизѣмьр хр `itrs`.абвгдежз Урзьхрзф ъмлѣц пьря ыб́ъѣз.абв
+
+Кмы цӹуз link:collections.md#Base.setdiff![`setdiff!`], link:collections.md#Base.union[`union`] лхз link:collections.md#Base.intersect[`intersect`].абв
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> setdiff([1,2,3], [3,4,5])
+2-element Vector{Int64}:
+ 1
+ 2
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L196-L211[source] +
+
+<<Base.setdiff!,#>>
+*`Base.setdiff!`* &mdash; _Function_.
+
+`+julia
+setdiff!(s, itrs...)
++`
+
+Кюцфмъ фцѣн ьмы `s` (мкзуч-хр) пќзм ьхмфмўм њц пќм муйзъмьр фцѣн `itrs`.абвгдежз Урзьхрзф ъмлѣц пьря ыб́ъѣз.абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = Set([1, 3, 4, 5]);
+
+julia> setdiff!(a, 1:2:6);
+
+julia> a
+Set\{Int64} with 1 element:
+  4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L215-L231[source] +
+
+<<Base.symdiff,#>>
+*`Base.symdiff`* &mdash; _Function_.
+
+`+julia
+symdiff(s, itrs...)
++`
+
+Ъкэъьыхцќ мпь крѣьмффбӹ мќхмъмнњрл нц ыьхмфмум хр мпь љмӹызч хр ӹьмы.абвгдежз Умпя `s` ыр ьцх хз `AbstractSet`, мпь ъмлѣц ӹр љмхрзьхр́ф.абвгд Кьцх ьзпь хр ырпь мӹзк мпь бьрќручрьўэф нц ыьхмфмум ӹъмьь́ф.абвгдеж
+
+Кмы цӹуз link:collections.md#Base.symdiff![`symdiff!`], link:collections.md#Base.setdiff[`setdiff`], link:collections.md#Base.union[`union`] лхз link:collections.md#Base.intersect[`intersect`].абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> symdiff([1,2,3], [3,4,5], [4,5,6])
+3-element Vector\{Int64}:
+ 1
+ 2
+ 6
+
+julia> symdiff([1,2,1], [2, 1, 2])
+2-element Vector\{Int64}:
+ 1
+ 2
+
+julia> symdiff(unique([1,2,1]), unique([2, 1, 2]))
+Int64[]
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L246-L271[source] +
+
+<<Base.symdiff!,#>>
+*`Base.symdiff!`* &mdash; _Function_.
+
+`+julia
+symdiff!(s::Union{AbstractSet,AbstractVector}, itrs...)
++`
+
+Ъкэъьыхцќ мпь крѣьмффбӹ мќхмъмнњрл нц мпь љмыӹзч хр ыьмӹ, лхз мьрѣяъмюц `s` пьря мпь ьуэымѣ.абвгдежзик Умпя `s` ыр хз бзъѣ́, мпь ъмлѣц ӹр љмхрзьхрзф.абвгд Кьцх ьзпь хр ырпь мӹзк мпь бьрќручрьўэф нц ыьхмфмум ӹъмьь́ф.абвгдеж
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L275-L281[source] +
+
+<<Base.intersect!,#>>
+*`Base.intersect!`* &mdash; _Function_.
+
+`+julia
+intersect!(s::Union{AbstractSet,AbstractVector}, itrs...)
++`
+
+Ъкмыъмьхр уўз лмӹызч хр ӹьмы љх́ мьрѣяъмюц `s` пьря мпь ьуэӹмѣ.абвгдеж Урзьхрзф ъмлѣц пьря ыб́ъѣз.абв
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L180-L185[source] +
+
+<<Base.issubset,#>>
+*`Base.issubset`* &mdash; _Function_.
+
+`+julia
+issubset(a, b) -> Bool
+⊆(a, b) -> Bool
+⊇(b, a) -> Bool
++`
+
+Кхрфъмьмл ѣмпьмпя бъмюм ьхмфмум нц `a` ыр цӹўз хр `b`, охрыэ link:collections.md#Base.in[`in`].абвгдеж
+
+Кмы цӹуз link:collections.md#Base.:⊊[`⊊`], link:collections.md#Base.:⊈[`⊈`], link:collections.md#Base.intersect[`∩`], link:collections.md#Base.union[`∪`], link:strings.md#Base.contains[`contains`].абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> issubset([1, 2], [1, 2, 3])
+true
+
+julia> [1, 2, 3] ⊆ [1, 2]
+false
+
+julia> [1, 2, 3] ⊇ [1, 2]
+true
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L300-L320[source] +
+
+<<Base.:⊈,#>>
+*`Base.:⊈`* &mdash; _Function_.
+
+`+julia
+⊈(a, b) -> Bool
+⊉(b, a) -> Bool
++`
+
+Уцрьзомх нц `⊆` лхз `⊇`, м.р. ыткмпќ ь́пь `a` ӹр ьцх з ьмыйэӹ њц `b`.абвгдеж
+
+Кмы цӹуз link:collections.md#Base.issubset[`issubset`] (`⊆`), link:collections.md#Base.:⊊[`⊊`].абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> (1, 2) ⊈ (2, 3)
+true
+
+julia> (1, 2) ⊈ (1, 2, 3)
+false
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L390-L406[source] +
+
+<<Base.:⊊,#>>
+*`Base.:⊊`* &mdash; _Function_.
+
+`+julia
+⊊(a, b) -> Bool
+⊋(b, a) -> Bool
++`
+
+Шмхрфъмьмл нр `a` ыр з ьмӹйэы њц, ьэи ьцх узэшм ць, `b`.абвгде
+
+Кмы цӹуз link:collections.md#Base.issubset[`issubset`] (`⊆`), link:collections.md#Base.:⊈[`⊈`].абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> (1, 2) ⊊ (1, 2, 3)
+true
+
+julia> (1, 2) ⊊ (1, 2)
+false
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L363-L379[source] +
+
+<<Base.issetequal,#>>
+*`Base.issetequal`* &mdash; _Function_.
+
+`+julia
+issetequal(a, b) -> Bool
++`
+
+Кхрфъмьмл ѣмпьмпя `a` љхз `b` мюзп мпь мф́ы ӹьхмфмум.абвгде Ъхмузюрэшмаб ць `a ⊆ b && b ⊆ a` ьэй мъцф ьхмркрнњм хмпя муирыӹцч.абвг
+
+Кмы цӹуз:аб link:collections.md#Base.isdisjoint[`isdisjoint`], link:collections.md#Base.union[`union`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> issetequal([1, 2], [1, 2, 3])
+false
+
+julia> issetequal([1, 2], [2, 1])
+true
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L414-L430[source] +
+
+<<Base.isdisjoint,#>>
+*`Base.isdisjoint`* &mdash; _Function_.
+
+`+julia
+isdisjoint(a, b) -> Bool
++`
+
+Кхрфъмьмл ѣмпьмпя мпь ыхцрькмуўцќ `a` љхз `b` мъз ьхрцсӹрл.абвгде Ъхмузюрэшм ць `isempty(a ∩ b)` ьэй мъцф ьхмркрнњм хмпя мўирыӹцч.абвгде
+
+Кмы цӹуз:аб link:collections.md#Base.intersect[`intersect`], link:collections.md#Base.isempty[`isempty`], link:collections.md#Base.issetequal[`issetequal`].аб
+
+!!! compat "Julia 1.5"
+    Шрпь хцрькхэн ымърэшмѣ ьз ьӹзму Ерўэс 1.5.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> isdisjoint([1, 2], [2, 3, 4])
+false
+
+julia> isdisjoint([3, 1], [2, 4])
+true
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L449-L468[source] +
+
+Fully implemented by:
+
+* link:collections.md#Base.BitSet[`BitSet`]
+* link:collections.md#Base.Set[`Set`]
+
+Partially implemented by:
+
+* link:arrays.md#Core.Array[`Array`]
+
++++<a id="Dequeues">++++++</a>+++
+
++++<a id="Dequeues-1">++++++</a>+++
+
+== Dequeues
+
+<<Base.push!,#>>
+*`Base.push!`* &mdash; _Function_.
+
+`+julia
+push!(collection, items...) -> collection
++`
+
+Ъъмыхр мхц ѣц мъцф `items` хр `collection`.абв Лр `collection` ыр хз лмъмљѣц ъмхрзьхцк,абв мпь ыфмьр мъз лмьѣмӹхр ьз мпь љхм (хр мпь хмюро ъмлѣц).абвгде
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> push!([1, 2, 3], 4, 5, 6)
+6-element Vector{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
++`
+
+Лр `collection` ыр лмъмљѣц, мӹэ link:collections.md#Base.append![`append!`] ць лљз уўз мпь ыьхмфмум нц ъмпьцх́абвгдеж хцрькмуўцќ ць ьр.аб Кпь ьуэымъ нц мпь охрлмкмѣч мўчфзам ӹр ьхмузюрэшм ць `́ччмхљ!([1, 2, 3], [4,абвгдежзи 5, 6])`. For `ЪмыькзъьШйз` objects, link:дѣмн[`эхрцх!`] х́ќ ми лмӹэ љзмьыхр.абвгде
+
+Кмы link:collections.md#Base.sizehint![`sizehint!`] ъцн ӹмьцх ьэцйз мпь мкхзфѣцњъмч умлцф.абвгд
+
+Кмы цӹуз link:collections.md#Base.pushfirst![`pushfirst!`].аб
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1027-L1052[source] +
+
+<<Base.pop!,#>>
+*`Base.pop!`* &mdash; _Function_.
+
+`+julia
+pop!(collection) -> item
++`
+
+Кюцфмъ хз фмьр хр `collection` лхз хѣэьмъ ьр.абвг Лр `collection` ыр хзаб лмъмљѣц ъмхрзьхцк, мпь ьызу фмьр ӹр лмхѣэьмъ; ѣцн љмъмлѣцхэ ыъмхр́ьхцќ,абвгдежз хз бъзѣьрйъ́ ьхмфмум ыр лмхѣэьмъ.абвг
+
+Кмы цӹуз:аб link:collections.md#Base.popfirst![`popfirst!`], link:collections.md#Base.popat![`popat!`], link:collections.md#Base.delete![`delete!`], link:collections.md#Base.deleteat![`deleteat!`], link:collections.md#Base.splice![`splice!`], лхз link:collections.md#Base.push![`push!`].абвг
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A=[1, 2, 3]
+3-element Vector\{Int64}:
+ 1
+ 2
+ 3
+
+julia> pop!(A)
+3
+
+julia> A
+2-element Vector\{Int64}:
+ 1
+ 2
+
+julia> S = Set([1, 2])
+Set\{Int64} with 2 elements:
+  2
+  1
+
+julia> pop!(S)
+2
+
+julia> S
+Set\{Int64} with 1 element:
+  1
+
+julia> pop!(Dict(1\=>2))
+1 \=> 2
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1271-L1311[source] +
+
+`julia
+pop!(collection, key[, default])
+`
+
+Кьмумл љхз хъэьмѣ мпь охрччзф ъцн `key` њр ьр ыьӹрам хр `collection`, мыряѣмпьц хъэьмѣабвгдежз `default`, ъц яцѣпь хз ъцѣъм нр `default` ыр ьцх лмрњркмчӹ.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> d = Dict("a"\=>1, "b"\=>2, "c"\=>3);
+
+julia> pop!(d, "a")
+1
+
+julia> pop!(d, "d")
+ERROR: KeyError: key "d" not found
+Stacktrace:
+[\...]
+
+julia> pop!(d, "e", 4)
+4
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L607-L628[source] +
+
+<<Base.popat!,#>>
+*`Base.popat!`* &mdash; _Function_.
+
+`julia
+popat!(a::Vector, i::Integer, [default])
+`
+
+Кюцфмъ мпь фмьр ьз мпь хмюро `i` лхз хѣэьмъ ьр.абвгд Ъхмэшмыйэӹ ыфмьраб мъз лмьнрпы ць уўрњ мпь охрьуэӹмѣ чзо.абвг Умпя `i` ыр ьцх з лрузю амљхр ъцн `a`, хѣэьмъ `default`, ѣц яцъпь х́ ѣцъѣм њрабвгдежз `default` ыр ьцх лмрнркмчӹ.аб
+
+Кмы цӹуз:аб link:collections.md#Base.pop![`pop!`], link:collections.md#Base.popfirst![`popfirst!`], link:collections.md#Base.deleteat![`deleteat!`], link:collections.md#Base.splice![`splice!`].аб
+
+!!! compat "Julia 1.5"
+    Шрпь хцрькхэн ыр муйзўрзю́ ӹз њц Еруэс 1.5.абвгд
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> a = [4, 3, 2, 1]; popat!(a, 2)
+3
+
+julia> a
+3-element Vector\{Int64}:
+ 4
+ 2
+ 1
+
+julia> popat!(a, 4, missing)
+missing
+
+julia> popat!(a, 4)
+ERROR: BoundsError: attempt to access 3-element Vector\{Int64} at index [4]
+[\...]
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1321-L1352[source] +
+
+<<Base.pushfirst!,#>>
+*`Base.pushfirst!`* &mdash; _Function_.
+
+`+julia
+pushfirst!(collection, items...) -> collection
++`
+
+Ъъмыхр мхц ѣц мъцф `items` ьз мпь охрххромй нц `collection`.абвгд
+
+Шрпь хцрькхэн ыр лмуўзќ `unshift` хр бхзф ъмпьц охрфф́ѣоцъч ӹмозэохзу.абвгдеж
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> pushfirst!([1, 2, 3, 4], 5, 6)
+6-element Vector{Int64}:
+ 5
+ 6
+ 1
+ 2
+ 3
+ 4
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1369-L1387[source] +
+
+<<Base.popfirst!,#>>
+*`Base.popfirst!`* &mdash; _Function_.
+
+`+julia
+popfirst!(collection) -> item
++`
+
+Кюцфмъ мпь ьыѣрн `item` фцъњ `collection`.абв
+
+Шрпь хцрькхэн ыр лмуўзќ `shift` хр бхзф ъмпьц охрфф́ѣоцъч ӹмозэохзу.абвгдеж
+
+Кмы цӹуз:аб link:collections.md#Base.pop![`pop!`], link:collections.md#Base.popat![`popat!`], link:collections.md#Base.delete![`delete!`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = [1, 2, 3, 4, 5, 6]
+6-element Vector\{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+
+julia> popfirst!(A)
+1
+
+julia> A
+5-element Vector\{Int64}:
+ 2
+ 3
+ 4
+ 5
+ 6
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1395-L1426[source] +
+
+<<Base.insert!,#>>
+*`Base.insert!`* &mdash; _Function_.
+
+`julia
+insert!(a::Vector, index::Integer, item)
+`
+
+Ъъмыхр хз `item` цьхр `a` ьз мпь хмюро `index`.абвг `index` ыр мпь амлхр нц `item` храбв мпь охрьуэымъ `a`.аб
+
+Кмы цӹуз:аб link:collections.md#Base.push![`push!`], link:collections.md#Base.replace-Tuple{Any, Vararg{Pair}}[`replace`], link:collections.md#Base.popat![`popat!`], link:collections.md#Base.splice![`splice!`].аб
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> insert!(Any[1:6;], 3, "here")
+7-element Vector{Any}:
+ 1
+ 2
+  "here"
+ 3
+ 4
+ 5
+ 6
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1436-L1456[source] +
+
+<<Base.deleteat!,#>>
+*`Base.deleteat!`* &mdash; _Function_.
+
+`julia
+deleteat!(a::Vector, i::Integer)
+`
+
+Кюцфмъ мпь фмьр ьз мпь хмюро `i` лхз хѣэьмъ мпь љмрнрлцф `a`.абвгдеж Ъхмэшмыйэӹ ыфмьраб мъз лмьнрпы ць уўрњ мпь охрьуэӹмѣ чзо.абвг
+
+Кмы цӹуз:аб link:collections.md#Base.delete![`delete!`], link:collections.md#Base.popat![`popat!`], link:collections.md#Base.splice![`splice!`].аб
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> deleteat!([6, 5, 4, 3, 2, 1], 2)
+5-element Vector{Int64}:
+ 6
+ 4
+ 3
+ 2
+ 1
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1466-L1484[source] +
+
+`
+deleteat!(a::Vector, inds)
+`
+
+Remove the items at the indices given by `inds`, and return the modified `a`. Subsequent items are shifted to fill the resulting gap.
+
+`inds` can be either an iterator or a collection of sorted and unique integer indices, or a boolean vector of the same length as `a` with `true` indicating entries to delete.
+
+*Examples*
+
+```julia-repl
+julia> deleteat!([6, 5, 4, 3, 2, 1], 1:2:5)
+3-element Vector\{Int64}:
+ 5
+ 3
+ 1
+
+julia> deleteat!([6, 5, 4, 3, 2, 1], [true, false, true, false, true, false])
+3-element Vector\{Int64}:
+ 5
+ 3
+ 1
+
+julia> deleteat!([6, 5, 4, 3, 2, 1], (2, 2))
+ERROR: ArgumentError: indices must be unique and sorted
+Stacktrace:
+[\...]
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1503-L1531[source] +
+
+<<Base.keepat!,#>>
+*`Base.keepat!`* &mdash; _Function_.
+
+`julia
+keepat!(a::Vector, inds)
+keepat!(a::BitVector, inds)
+`
+
+Кюцфмъ мпь ыфмьр ьз уўз мпь ӹмкрлхр пќрпя мѣ́ ьцх хмюро бй `inds`,абвгдеж лхз хъэьмѣ мпь љмрнрлцф `a`.абв Шфмьр пкрпя мъз ьчмт мѣз лмьнрпы ць уўрњ мпь охрьуэӹмъ ыч́о.абвгдеж
+
+`inds` ьыэф мй хз ъцьзѣмьр нц лмьъцӹ љх́ мэшрхэ ѣмомьхр ымкрлхр.абвгдеж Кмы цӹуз link:collections.md#Base.deleteat![`deleteat!`].аб
+
+!!! compat "Julia 1.7"
+    Шрпь хцрькхэн ыр муйзўрзю́ ӹз њц Еруэс 1.7.абвгд
+
+*Шмучфзамаб*
+
+`+julia-repl
+julia> keepat!([6, 5, 4, 3, 2, 1], 1:2:5)
+3-element Vector{Int64}:
+ 6
+ 4
+ 2
++`
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2596-L2618[source] +
+
+`+
+keepat!(a::Vector, m::AbstractVector{Bool})
+keepat!(a::BitVector, m::AbstractVector{Bool})
++`
+
+The in-place version of logical indexing `a = a[m]`. That is, `keepat!(a, m)` on vectors of equal length `a` and `m` will remove all elements from `a` for which `m` at the corresponding index is `false`.
+
+*Examples*
+
+```julia-repl
+julia> a = [:a, :b, :c];
+
+julia> keepat!(a, [true, false, true])
+2-element Vector\{Symbol}:
+ :a
+ :c
+
+julia> a
+2-element Vector\{Symbol}:
+ :a
+ :c
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2621-L2643[source] +
+
+<<Base.splice!,#>>
+*`Base.splice!`* &mdash; _Function_.
+
+`+julia
+splice!(a::Vector, index::Integer, [replacement]) -> item
++`
+
+Кюцфмъ мпь фмьр ьз мпь хмюро амлхр, љхз хѣэьмъ мпь лмюцфмѣ фмьр.абвгдеж Ъхмэшмыйэӹ ыфмьр мъз лмьнрпӹ ьњму ць ўурн мпь охрьӱэымѣ чзо.абвгдеж Лр лмрнркмчы, ьхмфмќзучмъ ӹмэўзю фцѣњ х́ љмъмлѣцабвгде хцрькмуўцќ уӱря мй лмкручы хр мќзўч нц мпь љмюцфмъ фмьр.абвгдеж
+
+Кмы цӹуз:аб link:collections.md#Base.replace-Tuple{Any, Vararg{Pair}}[`replace`], link:collections.md#Base.delete![`delete!`], link:collections.md#Base.deleteat![`deleteat!`], link:collections.md#Base.pop![`pop!`], link:collections.md#Base.popat![`popat!`].абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> A = [6, 5, 4, 3, 2, 1]; splice!(A, 5)
+2
+
+julia> A
+5-element Vector\{Int64}:
+ 6
+ 5
+ 4
+ 3
+ 1
+
+julia> splice!(A, 5, -1)
+1
+
+julia> A
+5-element Vector\{Int64}:
+  6
+  5
+  4
+  3
+ -1
+
+julia> splice!(A, 1, [-1, -2, -3])
+6
+
+julia> A
+7-element Vector\{Int64}:
+ -1
+ -2
+ -3
+  5
+  4
+  3
+ -1
+```
+
+Фь ьъмыхр `replacement` мѣцнмй хз амлхр `n` ьэцпьря охрюцфмъ бхз ӹфмьр, мыэабвгдеж `splice!(collection, n:n-1, replacement)`.аб
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1604-L1654[source] +
+
+`+
+splice!(a::Vector, indices, [replacement]) -> items
++`
+
+Remove items at specified indices, and return a collection containing the removed items. Subsequent items are shifted left to fill the resulting gaps. If specified, replacement values from an ordered collection will be spliced in place of the removed items; in this case, `indices` must be a `AbstractUnitRange`.
+
+To insert `replacement` before an index `n` without removing any items, use `splice!(collection, n:n-1, replacement)`.
+
+!!! compat "Julia 1.5"
+    Prior to Julia 1.5, `indices` must always be a `UnitRange`.
+
+!!! compat "Julia 1.8"
+    Prior to Julia 1.8, `indices` must be a `UnitRange` if splicing in replacement values.
+
+*Examples*
+
+```julia-repl
+julia> A = [-1, -2, -3, 5, 4, 3, -1]; splice!(A, 4:3, 2)
+Int64[]
+
+julia> A
+8-element Vector\{Int64}:
+ -1
+ -2
+ -3
+  2
+  5
+  4
+  3
+ -1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1673-L1707[source] +
+
+<<Base.resize!,#>>
+*`Base.resize!`* &mdash; _Function_.
+
+`+julia
+resize!(a::Vector, n::Integer) -> Vector
++`
+
+Кврымъ `a` ць хрзьхцк `n` ӹьхмфмум.абвг Лр `n` ыр ъмуўзфӹ хзпь мпь ьхмѣъэк хцрьќмуӱцкабвгд пьохму, мпь ьыърн `n` ӹьхмфмўм уӱря мй лмхрзьмѣ.абвгд Лр `n` ыр ъмоѣзу, мпь ямх ӹьхмфмўм мъз ьцхабвгд лммьхзъзэо ць мй љмвру́рьрхр.абв
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> resize!([6, 5, 4, 3, 2, 1], 3)
+3-element Vector\{Int64}:
+ 6
+ 5
+ 4
+
+julia> a = resize!([6, 5, 4, 3, 2, 1], 8);
+
+julia> length(a)
+8
+
+julia> a[1:6]
+6-element Vector\{Int64}:
+ 6
+ 5
+ 4
+ 3
+ 2
+ 1
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1203-L1232[source] +
+
+<<Base.append!,#>>
+*`Base.append!`* &mdash; _Function_.
+
+`+julia
+append!(collection, collections...) -> collection.
++`
+
+Чцн хз лмъмљѣц ъмхрзьхцк `collection`, лљ́ мпь ыьхмфмум њц пќзм абвгде``collections`` ць мпь лхм нц ьр.аб
+
+!!! compat "Julia 1.6"
+    Мхрбнркмчы мучрьўэф ӹхцрьќмуӱцк ць мй лмљхмччз ымърэшмѣ ьз ьӹ́му Ерўэс 1.6.абвгдежзи
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> append!([1], [2, 3])
+3-element Vector\{Int64}:
+ 1
+ 2
+ 3
+
+julia> append!([1, 2, 3], [4, 5], [6])
+6-element Vector\{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+```
+
+Кыэ link:collections.md#Base.push![`push!`] ць лљз узэлрюрљхр ӹфмьр ць `collection` пкрпя мъ́ ьцх блзмѣўзабвгдеж ымюумӹфмпь хр ъмпьцхз хцрькмўуцќ.абвг Кпь ьуэымъ нц мпь охрлмкмѣч мўчфзам ӹр ьхмузюрэшм цьабвгде `push!([1, 2, 3], 4, 5, 6)`.аб
+
+Кмы link:collections.md#Base.sizehint![`sizehint!`] ъцн ӹмьцх ьэцйз мпь мкхзфѣцњъмч умлцф.абвгд
+
+Кмы цӹуз link:arrays.md#Base.vcat[`vcat`] ъцн ыѣцькмю, link:collections.md#Base.union![`union!`] ъцњ ӹьмы,абвгд лхз link:collections.md#Base.prepend![`prepend!`] љхз link:collections.md#Base.pushfirst![`pushfirst!`] ъцн мпь мьрыцччц ѣмлъц.абвгд
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1069-L1104[source] +
+
+<<Base.prepend!,#>>
+*`Base.prepend!`* &mdash; _Function_.
+
+`+julia
+prepend!(a::Vector, collections...) -> collection
++`
+
+Ъъмыхр мпь ӹьхмфмум нц пкзм `collections` ць мпь охрххромй њц `a`.абвгде
+
+Умпя `collections` ымрнркмчӹ мучрьўэф ыхцрьќмуӱцк, ъмлѣц ӹр љмхрзьхрзф:абвгдеж ыьхмфмум нц `collections[1]` ўуря ъзмччз ьӹцфьњмӱ хр `a`, лх́ цы хц.абвгде
+
+!!! compat "Julia 1.6"
+    Мхрбнркмчы мучрьўэф ӹхцрьќмуӱцк ць мй лмљхмчмъч ымѣрэшмъ ьз ьӹзму Ерўэс 1.6.абвгдежзи
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> prepend!([3], [1, 2])
+3-element Vector\{Int64}:
+ 1
+ 2
+ 3
+
+julia> prepend!([6], [1, 2], [3, 4, 5])
+6-element Vector\{Int64}:
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1135-L1163[source] +
+
+Fully implemented by:
+
+* `Vector` (a.k.a. 1-dimensional link:arrays.md#Core.Array[`Array`])
+* `BitVector` (a.k.a. 1-dimensional link:arrays.md#Base.BitArray[`BitArray`])
+
++++<a id="Utility-Collections">++++++</a>+++
+
++++<a id="Utility-Collections-1">++++++</a>+++
+
+== Utility Collections
+
+<<Core.Pair,#>>
+*`Core.Pair`* &mdash; _Type_.
+
+`+julia
+Pair(x, y)
+x => y
++`
+
+Ъкэъьыхцќ з `Pair` ькмсйц пьря мчбь `Pair{typeof(x), typeof(y)}`.абвг Кпь ыьхмфмума мъз лмѣцьы хр мпь ӹљумрн `first` лхз `second`.абвг Ямпь хзк цыуз мй лмӹымќќ зрюабв хцрьзъмьр (ьэй з `Pair` ыр лмь́мѣь ӹз з муохры "ъ́ўзкӹ" ѣцн охрьызќљ́цъи ӹхцрьзѣмчц).абвгдежзи
+
+Кмы цӹуз link:collections.md#Base.Dict[`Dict`].аб
+
+*Шмучфзамаб*
+
+```julia-repl
+julia> p = "foo" \=> 7
+"foo" \=> 7
+
+julia> typeof(p)
+Pair{String, Int64}
+
+julia> p.first
+"foo"
+
+julia> for x in p
+           println(x)
+       end
+foo
+7
+```
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/pair.jl#L5-L32[source] +
+
+<<Base.Pairs,#>>
+*`Base.Pairs`* &mdash; _Type_.
+
+`julia
+Iterators.Pairs(values, keys) <: AbstractDict{eltype(keys), eltype(values)}
+`
+
+Шфъцныхзѣь хз муй́амлхр ъмхрзьхцк цьхр з Эмрю-бѣ́хцрьќрљ њц мпь мфзӹ зь́л.абвгдежзи Мхрбнрлцф мпь мкзчы-бмт њц мпь охрбуъмљхэ зь́л бзф мьзљрў́юхр ӹрпь ьќмсйц.абвгдежзи
+
+https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L26-L31[source] +
