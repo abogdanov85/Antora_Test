@@ -1,5 +1,11 @@
 == Collections and Data Structures
 
+Тест ссылки через base/collections.adoc: xref:base/collections.adoc#base-abstractrange[`AbstractRange`]
+
+Тест ссылки через pages/base/collections.adoc xref:pages/base/collections.adoc#base-abstractrange[`AbstractRange`]
+
+Тест ссылки через collections.adoc xref:collections.adoc#base-abstractrange[`AbstractRange`]
+
 === Iteration
 
 Sequential iteration is implemented by the
