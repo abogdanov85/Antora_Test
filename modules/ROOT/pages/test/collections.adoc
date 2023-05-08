@@ -121,6 +121,7 @@ Fully implemented by:
 * `Tuple`
 * `Number`
 * xref:arrays.adoc#Core.AbstractArray[`AbstractArray`]
+* xref:arrays.adoc[Test]
 * xref:collections.adoc#Base.BitSet[`BitSet`]
 * xref:collections.adoc#Base.IdDict[`IdDict`]
 * xref:collections.adoc#Base.Dict[`Dict`]
