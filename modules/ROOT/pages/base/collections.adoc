@@ -1,10 +1,15 @@
 == Collections and Data Structures
 
-Тест ссылки через base/collections.adoc: xref:base/collections.adoc#base-abstractrange[`AbstractRange`]
+Тест ссылки на раздел на этой же странице через base/collections.adoc: xref:base/collections.adoc#_base_iterate_function[`Текст ссылки`]
 
-Тест ссылки через pages/base/collections.adoc xref:pages/base/collections.adoc#base-abstractrange[`AbstractRange`]
+Тест ссылки на раздел на этой же странице через pages/base/collections.adoc xref:pages/base/collections.adoc#_base_iterate_function[`Текст ссылки`]
 
-Тест ссылки через collections.adoc xref:collections.adoc#base-abstractrange[`AbstractRange`]
+Тест ссылки на раздел на этой же странице через collections.adoc xref:collections.adoc#_base_iterate_function[`Текст ссылки`]
+
+
+Тест ссылки на раздел на другой странице в другой папке через pages/manual xref:pages/manual/interfaces.adoc#man-interface-iteration[текст ссылки]
+
+Тест ссылки на раздел на другой странице в другой папке через manual xref:manual/interfaces.adoc#man-interface-iteration[текст ссылки]
 
 === Iteration
 
