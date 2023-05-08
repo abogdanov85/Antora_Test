@@ -1,5 +1,11 @@
 == Getting Started
 
+Тест ссылки на другую страницу в той же папке без указания папки: xref:interfaces.adoc#iteration[Test]
+
+Тест ссылки на другую страницу в той же папке с указанием папки: xref:manual/interfaces.adoc#iteration[Test]
+
+Тест ссылки на другую страницу в той же папке с указанием корневой папки: xref:paes/manual/interfaces.adoc#iteration[Test]
+
 Julia installation is straightforward, whether using precompiled
 binaries or compiling from source. Download and install Julia by
 following the instructions at https://julialang.org/downloads/.
