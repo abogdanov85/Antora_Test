@@ -125,7 +125,7 @@ Fully implemented by:
 
 == Constructors and Types
 
-[[Base.AbstractRange]]
+[#Base.AbstractRange]
 ==== *`Base.AbstractRange`* &mdash; _Type_.
 
 [,julia]
