@@ -12,7 +12,7 @@
 
 == Constructors and Types
 
-[id=Core.AbstractArray]
+[id="Core.AbstractArray"]
 ==== *`Core.AbstractArray`* &mdash; _Type_.
 
 [,julia]
@@ -20,13 +20,13 @@
 AbstractArray{T,N}
 ----
 
-Supertype for `N`-dimensional arrays (or array-like types) with elements of type `T`. xref:arrays.adoc#Core.Array[`Array`] and other types are subtypes of this. See the manual section on the xref:manual:interfaces.adoc#man-interface-array[`AbstractArray` interface].
+Supertype for `N`-dimensional arrays (or array-like types) with elements of type `T`. xref:arrays.adoc#Core.Array[`Array`] and other types are subtypes of this. See the manual section on the xref:../manual/interfaces.adoc#man-interface-array[`AbstractArray` interface].
 
 See also: xref:arrays.adoc#Base.AbstractVector[`AbstractVector`], xref:arrays.adoc#Base.AbstractMatrix[`AbstractMatrix`], xref:collections.adoc#Base.eltype[`eltype`], xref:arrays.adoc#Base.ndims[`ndims`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L5-L13[source] +
 
-[id=Base.AbstractVector]
+[id="Base.AbstractVector"]
 ==== *`Base.AbstractVector`* &mdash; _Type_.
 
 [,julia]
@@ -38,7 +38,7 @@ Supertype for one-dimensional arrays (or array-like types) with elements of type
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L17-L22[source] +
 
-[id=Base.AbstractMatrix]
+[id="Base.AbstractMatrix"]
 ==== *`Base.AbstractMatrix`* &mdash; _Type_.
 
 [,julia]
@@ -50,7 +50,7 @@ Supertype for two-dimensional arrays (or array-like types) with elements of type
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L25-L30[source] +
 
-[id=Base.AbstractVecOrMat]
+[id="Base.AbstractVecOrMat"]
 ==== *`Base.AbstractVecOrMat`* &mdash; _Type_.
 
 [,julia]
@@ -62,7 +62,7 @@ Union type of xref:arrays.adoc#Base.AbstractVector[`+AbstractVector{T}+`] and xr
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L33-L37[source] +
 
-[id=Core.Array]
+[id="Core.Array"]
 ==== *`Core.Array`* &mdash; _Type_.
 
 [,julia]
@@ -84,8 +84,6 @@ Array{T,N}(undef, dims)
 ----
 
 Construct an uninitialized `N`-dimensional xref:arrays.adoc#Core.Array[`Array`] containing elements of type `T`. `N` can either be supplied explicitly, as in `Array{T,N}(undef, dims)`, or be determined by the length or number of `dims`. `dims` may be a tuple or a series of integer arguments corresponding to the lengths in each dimension. If the rank `N` is supplied explicitly, then it must match the length or number of `dims`. Here xref:arrays.adoc#Core.undef[`undef`] is the xref:arrays.adoc#Core.UndefInitializer[`UndefInitializer`].
-
-Тест ссылки с пробелом: xref:base:arrays.adoc#Core.Array-Tuple{UndefInitializer, Any}[ссылка]
 
 *Examples*
 
@@ -112,7 +110,7 @@ julia> similar(B, 2, 4, 1) # use typeof(B), and the given size
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2222-L2254[source] +
 
-[id=Core.Array-Tuple{Nothing, Any}]
+[id="Core.Array-Tuple{Nothing, Any}"]
 ==== *`Core.Array`* &mdash; _Method_.
 
 [,julia]
@@ -140,7 +138,7 @@ julia> Array{Union{Nothing, Int}}(nothing, 2, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2257-L2277[source] +
 
-[id=Core.Array-Tuple{Missing, Any}]
+[id="Core.Array-Tuple{Missing, Any}"]
 ==== *`Core.Array`* &mdash; _Method_.
 
 [,julia]
@@ -168,7 +166,7 @@ julia> Array{Union{Missing, Int}}(missing, 2, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2281-L2301[source] +
 
-[id=Core.UndefInitializer]
+[id="Core.UndefInitializer"]
 ==== *`Core.UndefInitializer`* &mdash; _Type_.
 
 [,julia]
@@ -191,7 +189,7 @@ julia> Array{Float64, 1}(UndefInitializer(), 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2304-L2319[source] +
 
-[id=Core.undef]
+[id="Core.undef"]
 ==== *`Core.undef`* &mdash; _Constant_.
 
 [,julia]
@@ -216,7 +214,7 @@ julia> Array{Float64, 1}(undef, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2322-L2339[source] +
 
-[id=Base.Vector]
+[id="Base.Vector"]
 ==== *`Base.Vector`* &mdash; _Type_.
 
 [,julia]
@@ -230,7 +228,7 @@ See also xref:arrays.adoc#Base.empty[`empty`], xref:arrays.adoc#Base.similar[`si
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L52-L59[source] +
 
-[id=Base.Vector-Tuple{UndefInitializer, Any}]
+[id="Base.Vector-Tuple{UndefInitializer, Any}"]
 ==== *`Base.Vector`* &mdash; _Method_.
 
 [,julia]
@@ -253,7 +251,7 @@ julia> Vector{Float64}(undef, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2118-L2131[source] +
 
-[id=Base.Vector-Tuple{Nothing, Any}]
+[id="Base.Vector-Tuple{Nothing, Any}"]
 ==== *`Base.Vector`* &mdash; _Method_.
 
 [,julia]
@@ -275,7 +273,7 @@ julia> Vector{Union{Nothing, String}}(nothing, 2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2134-L2148[source] +
 
-[id=Base.Vector-Tuple{Missing, Any}]
+[id="Base.Vector-Tuple{Missing, Any}"]
 ==== *`Base.Vector`* &mdash; _Method_.
 
 [,julia]
@@ -297,7 +295,7 @@ julia> Vector{Union{Missing, String}}(missing, 2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2151-L2165[source] +
 
-[id=Base.Matrix]
+[id="Base.Matrix"]
 ==== *`Base.Matrix`* &mdash; _Type_.
 
 [,julia]
@@ -311,7 +309,7 @@ See also xref:arrays.adoc#Base.fill[`fill`], xref:arrays.adoc#Base.zeros[`zeros`
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L62-L70[source] +
 
-[id=Base.Matrix-Tuple{UndefInitializer, Any, Any}]
+[id="Base.Matrix-Tuple{UndefInitializer, Any, Any}"]
 ==== *`Base.Matrix`* &mdash; _Method_.
 
 [,julia]
@@ -338,7 +336,7 @@ julia> similar(ans, Int32, 2, 2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2168-L2185[source] +
 
-[id=Base.Matrix-Tuple{Nothing, Any, Any}]
+[id="Base.Matrix-Tuple{Nothing, Any, Any}"]
 ==== *`Base.Matrix`* &mdash; _Method_.
 
 [,julia]
@@ -360,7 +358,7 @@ julia> Matrix{Union{Nothing, String}}(nothing, 2, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2188-L2202[source] +
 
-[id=Base.Matrix-Tuple{Missing, Any, Any}]
+[id="Base.Matrix-Tuple{Missing, Any, Any}"]
 ==== *`Base.Matrix`* &mdash; _Method_.
 
 [,julia]
@@ -382,7 +380,7 @@ julia> Matrix{Union{Missing, String}}(missing, 2, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2205-L2219[source] +
 
-[id=Base.VecOrMat]
+[id="Base.VecOrMat"]
 ==== *`Base.VecOrMat`* &mdash; _Type_.
 
 [,julia]
@@ -414,7 +412,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L73-L96[source] +
 
-[id=Core.DenseArray]
+[id="Core.DenseArray"]
 ==== *`Core.DenseArray`* &mdash; _Type_.
 
 [,julia]
@@ -432,7 +430,7 @@ DenseArray{T, N} <: AbstractArray{T,N}
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L92-L104[source] +
 
-[id=Base.DenseVector]
+[id="Base.DenseVector"]
 ==== *`Base.DenseVector`* &mdash; _Type_.
 
 [,julia]
@@ -444,7 +442,7 @@ One-dimensional xref:arrays.adoc#Core.DenseArray[`DenseArray`] with elements of 
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L100-L104[source] +
 
-[id=Base.DenseMatrix]
+[id="Base.DenseMatrix"]
 ==== *`Base.DenseMatrix`* &mdash; _Type_.
 
 [,julia]
@@ -456,7 +454,7 @@ Two-dimensional xref:arrays.adoc#Core.DenseArray[`DenseArray`] with elements of 
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L107-L111[source] +
 
-[id=Base.DenseVecOrMat]
+[id="Base.DenseVecOrMat"]
 ==== *`Base.DenseVecOrMat`* &mdash; _Type_.
 
 [,julia]
@@ -468,7 +466,7 @@ Union type of xref:arrays.adoc#Base.DenseVector[`+DenseVector{T}+`] and xref:arr
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L114-L118[source] +
 
-[id=Base.StridedArray]
+[id="Base.StridedArray"]
 ==== *`Base.StridedArray`* &mdash; _Type_.
 
 [,julia]
@@ -476,13 +474,13 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 StridedArray{T, N}
 ----
 
-A hard-coded xref:base.adoc#Core.Union[`Union`] of common array types that follow the xref:manual:interfaces.adoc#man-interface-strided-arrays[strided array interface], with elements of type `T` and `N` dimensions.
+A hard-coded xref:base.adoc#Core.Union[`Union`] of common array types that follow the xref:../manual/interfaces.adoc#man-interface-strided-arrays[strided array interface], with elements of type `T` and `N` dimensions.
 
 If `A` is a `StridedArray`, then its elements are stored in memory with offsets, which may vary between dimensions but are constant within a dimension. For example, `A` could have stride 2 in dimension 1, and stride 3 in dimension 2. Incrementing `A` along dimension `d` jumps in memory by [`strides(A, d)`] slots. Strided arrays are particularly important and useful because they can sometimes be passed directly as pointers to foreign language libraries like BLAS.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2776-L2788[source] +
 
-[id=Base.StridedVector]
+[id="Base.StridedVector"]
 ==== *`Base.StridedVector`* &mdash; _Type_.
 
 [,julia]
@@ -494,7 +492,7 @@ One dimensional xref:arrays.adoc#Base.StridedArray[`StridedArray`] with elements
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2791-L2795[source] +
 
-[id=Base.StridedMatrix]
+[id="Base.StridedMatrix"]
 ==== *`Base.StridedMatrix`* &mdash; _Type_.
 
 [,julia]
@@ -506,7 +504,7 @@ Two dimensional xref:arrays.adoc#Base.StridedArray[`StridedArray`] with elements
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2798-L2802[source] +
 
-[id=Base.StridedVecOrMat]
+[id="Base.StridedVecOrMat"]
 ==== *`Base.StridedVecOrMat`* &mdash; _Type_.
 
 [,julia]
@@ -518,7 +516,7 @@ Union type of xref:arrays.adoc#Base.StridedVector[`StridedVector`] and xref:arra
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2805-L2809[source] +
 
-[id=Base.getindex-Tuple{Type, Vararg{Any}}]
+[id="Base.getindex-Tuple{Type, Vararg{Any}}"]
 ==== *`Base.getindex`* &mdash; _Method_.
 
 [,julia]
@@ -547,7 +545,7 @@ julia> getindex(Int8, 1, 2, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L382-L402[source] +
 
-[id=Base.zeros]
+[id="Base.zeros"]
 ==== *`Base.zeros`* &mdash; _Function_.
 
 [,julia]
@@ -574,7 +572,7 @@ julia> zeros(Int8, 2, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L539-L557[source] +
 
-[id=Base.ones]
+[id="Base.ones"]
 ==== *`Base.ones`* &mdash; _Function_.
 
 [,julia]
@@ -601,7 +599,7 @@ julia> ones(ComplexF64, 2, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L560-L578[source] +
 
-[id=Base.BitArray]
+[id="Base.BitArray"]
 ==== *`Base.BitArray`* &mdash; _Type_.
 
 [,julia]
@@ -613,14 +611,14 @@ Space-efficient `N`-dimensional boolean array, using just one bit for each boole
 
 ``BitArray``s pack up to 64 values into every 8 bytes, resulting in an 8x space efficiency over `Array{Bool, N}` and allowing some operations to work on 64 values at once.
 
-By default, Julia returns `BitArrays` from xref:manual:arrays.adoc#Broadcasting[broadcasting] operations that generate boolean elements (including dotted-comparisons like `.==`) as well as from the functions xref:arrays.adoc#Base.trues[`trues`] and xref:arrays.adoc#Base.falses[`falses`].
+By default, Julia returns `BitArrays` from xref:../manual/arrays.adoc#Broadcasting[broadcasting] operations that generate boolean elements (including dotted-comparisons like `.==`) as well as from the functions xref:arrays.adoc#Base.trues[`trues`] and xref:arrays.adoc#Base.falses[`falses`].
 
 !!! note
     Due to its packed storage format, concurrent access to the elements of a `BitArray` where at least one of them is a write is not thread safe.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/bitarray.jl#L7-L23[source] +
 
-[id=Base.BitArray-Tuple{UndefInitializer, Vararg{Integer}}]
+[id="Base.BitArray-Tuple{UndefInitializer, Vararg{Integer}}"]
 ==== *`Base.BitArray`* &mdash; _Method_.
 
 [,julia]
@@ -649,7 +647,7 @@ julia> BitArray(undef, (3, 1))
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/bitarray.jl#L48-L68[source] +
 
-[id=Base.BitArray-Tuple{Any}]
+[id="Base.BitArray-Tuple{Any}"]
 ==== *`Base.BitArray`* &mdash; _Method_.
 
 [,julia]
@@ -685,7 +683,7 @@ julia> BitArray(x+y == 3 for x = 1:2 for y = 1:3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/bitarray.jl#L549-L576[source] +
 
-[id=Base.trues]
+[id="Base.trues"]
 ==== *`Base.trues`* &mdash; _Function_.
 
 [,julia]
@@ -707,7 +705,7 @@ julia> trues(2,3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/bitarray.jl#L408-L420[source] +
 
-[id=Base.falses]
+[id="Base.falses"]
 ==== *`Base.falses`* &mdash; _Function_.
 
 [,julia]
@@ -729,7 +727,7 @@ julia> falses(2,3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/bitarray.jl#L390-L402[source] +
 
-[id=Base.fill]
+[id="Base.fill"]
 ==== *`Base.fill`* &mdash; _Function_.
 
 [,julia]
@@ -771,7 +769,7 @@ julia> v
  [8675309]
 ----
 
-To create an array of many independent inner arrays, use a xref:manual:arrays.adoc#man-comprehensions[comprehension] instead. This creates a new and distinct array on each iteration of the loop:
+To create an array of many independent inner arrays, use a xref:../manual/arrays.adoc#man-comprehensions[comprehension] instead. This creates a new and distinct array on each iteration of the loop:
 
 [,julia-repl]
 ----
@@ -825,7 +823,7 @@ julia> A # both A[1] and A[2] are the very same vector
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L436-L531[source] +
 
-[id=Base.fill!]
+[id="Base.fill!"]
 ==== *`Base.fill!`* &mdash; _Function_.
 
 [,julia]
@@ -864,7 +862,7 @@ julia> x = 0; f() = (global x += 1; x); fill!(Vector{Int}(undef, 3), f())
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L1065-L1096[source] +
 
-[id=Base.empty]
+[id="Base.empty"]
 ==== *`Base.empty`* &mdash; _Function_.
 
 [,julia]
@@ -907,7 +905,7 @@ Custom `AbstractDict` subtypes may choose which specific dictionary type is best
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L176-L187[source] +
 
-[id=Base.similar]
+[id="Base.similar"]
 ==== *`Base.similar`* &mdash; _Function_.
 
 [,julia]
@@ -980,7 +978,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 == Basic functions
 
-[id=Base.ndims]
+[id="Base.ndims"]
 ==== *`Base.ndims`* &mdash; _Function_.
 
 [,julia]
@@ -1006,7 +1004,7 @@ julia> ndims(A)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L224-L240[source] +
 
-[id=Base.size]
+[id="Base.size"]
 ==== *`Base.size`* &mdash; _Function_.
 
 [,julia]
@@ -1035,7 +1033,7 @@ julia> size(A, 2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L20-L41[source] +
 
-[id=Base.axes-Tuple{Any}]
+[id="Base.axes-Tuple{Any}"]
 ==== *`Base.axes`* &mdash; _Method_.
 
 [,julia]
@@ -1059,7 +1057,7 @@ julia> axes(A)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L77-L92[source] +
 
-[id=Base.axes-Tuple{AbstractArray, Any}]
+[id="Base.axes-Tuple{AbstractArray, Any}"]
 ==== *`Base.axes`* &mdash; _Method_.
 
 [,julia]
@@ -1096,7 +1094,7 @@ ix[(begin+1):end]  # works for generalized indexes
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L44-L73[source] +
 
-[id=Base.length-Tuple{AbstractArray}]
+[id="Base.length-Tuple{AbstractArray}"]
 ==== *`Base.length`* &mdash; _Method_.
 
 [,julia]
@@ -1119,7 +1117,7 @@ julia> length([1 2; 3 4])
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L265-L278[source] +
 
-[id=Base.keys-Tuple{AbstractArray}]
+[id="Base.keys-Tuple{AbstractArray}"]
 ==== *`Base.keys`* &mdash; _Method_.
 
 [,julia]
@@ -1135,7 +1133,7 @@ Note that the `keys` of an array might not be the most efficient index type; for
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L119-L131[source] +
 
-[id=Base.eachindex]
+[id="Base.eachindex"]
 ==== *`Base.eachindex`* &mdash; _Function_.
 
 [,julia]
@@ -1170,7 +1168,7 @@ CartesianIndex(2, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L295-L329[source] +
 
-[id=Base.IndexStyle]
+[id="Base.IndexStyle"]
 ==== *`Base.IndexStyle`* &mdash; _Type_.
 
 [,julia]
@@ -1193,7 +1191,7 @@ If you define both styles of indexing for your `AbstractArray`, this trait can b
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L68-L93[source] +
 
-[id=Base.IndexLinear]
+[id="Base.IndexLinear"]
 ==== *`Base.IndexLinear`* &mdash; _Type_.
 
 [,julia]
@@ -1211,7 +1209,7 @@ See also xref:arrays.adoc#Base.IndexCartesian[`IndexCartesian`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L16-L36[source] +
 
-[id=Base.IndexCartesian]
+[id="Base.IndexCartesian"]
 ==== *`Base.IndexCartesian`* &mdash; _Type_.
 
 [,julia]
@@ -1231,7 +1229,7 @@ See also xref:arrays.adoc#Base.IndexLinear[`IndexLinear`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L39-L65[source] +
 
-[id=Base.conj!]
+[id="Base.conj!"]
 ==== *`Base.conj!`* &mdash; _Function_.
 
 [,julia]
@@ -1262,7 +1260,7 @@ julia> A
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarraymath.jl#L98-L119[source] +
 
-[id=Base.stride]
+[id="Base.stride"]
 ==== *`Base.stride`* &mdash; _Function_.
 
 [,julia]
@@ -1289,7 +1287,7 @@ julia> stride(A,3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L528-L545[source] +
 
-[id=Base.strides]
+[id="Base.strides"]
 ==== *`Base.strides`* &mdash; _Function_.
 
 [,julia]
@@ -1319,9 +1317,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 == Broadcast and vectorization
 
-See also the xref:manual:functions.adoc#man-vectorized[dot syntax for vectorizing functions]; for example, `+f.(args...)+` implicitly calls `+broadcast(f, args...)+`. Rather than relying on "vectorized" methods of functions like `sin` to operate on arrays, you should use `sin.(a)` to vectorize via `broadcast`.
+See also the xref:../manual/functions.adoc#man-vectorized[dot syntax for vectorizing functions]; for example, `+f.(args...)+` implicitly calls `+broadcast(f, args...)+`. Rather than relying on "vectorized" methods of functions like `sin` to operate on arrays, you should use `sin.(a)` to vectorize via `broadcast`.
 
-[id=Base.Broadcast.broadcast]
+[id="Base.Broadcast.broadcast"]
 ==== *`Base.Broadcast.broadcast`* &mdash; _Function_.
 
 [,julia]
@@ -1395,7 +1393,7 @@ julia> string.(("one","two","three","four"), ": ", 1:4)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L722-L797[source] +
 
-[id=Base.Broadcast.broadcast!]
+[id="Base.Broadcast.broadcast!"]
 ==== *`Base.Broadcast.broadcast!`* &mdash; _Function_.
 
 [,julia]
@@ -1433,7 +1431,7 @@ julia> A
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L804-L836[source] +
 
-[id=Base.Broadcast.@__dot__]
+[id="Base.Broadcast.@__dot__"]
 ==== *`Base.Broadcast.@__dot__`* &mdash; _Macro_.
 
 [,julia]
@@ -1464,7 +1462,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 For specializing broadcast on custom types, see
 
-[id=Base.Broadcast.BroadcastStyle]
+[id="Base.Broadcast.BroadcastStyle"]
 ==== *`Base.Broadcast.BroadcastStyle`* &mdash; _Type_.
 
 `BroadcastStyle` is an abstract type and trait-function used to determine behavior of objects under broadcasting. `BroadcastStyle(typeof(x))` returns the style associated with `x`. To customize the broadcasting behavior of a type, one can declare a style by defining a type/method pair
@@ -1474,11 +1472,11 @@ struct MyContainerStyle <: BroadcastStyle end
 Base.BroadcastStyle(::Type{<:MyContainer}) = MyContainerStyle()
 ----
 
-One then writes method(s) (at least xref:arrays.adoc#Base.similar[`similar`]) operating on `+Broadcasted{MyContainerStyle}+`. There are also several pre-defined subtypes of `BroadcastStyle` that you may be able to leverage; see the xref:manual:interfaces.adoc#man-interfaces-broadcasting[Interfaces chapter] for more information.
+One then writes method(s) (at least xref:arrays.adoc#Base.similar[`similar`]) operating on `+Broadcasted{MyContainerStyle}+`. There are also several pre-defined subtypes of `BroadcastStyle` that you may be able to leverage; see the xref:../manual/interfaces.adoc#man-interfaces-broadcasting[Interfaces chapter] for more information.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L21-L34[source] +
 
-[id=Base.Broadcast.AbstractArrayStyle]
+[id="Base.Broadcast.AbstractArrayStyle"]
 ==== *`Base.Broadcast.AbstractArrayStyle`* &mdash; _Type_.
 
 `+Broadcast.AbstractArrayStyle{N} <: BroadcastStyle+` is the abstract supertype for any style associated with an `AbstractArray` type. The `N` parameter is the dimensionality, which can be handy for AbstractArray types that only support specific dimensionalities:
@@ -1508,21 +1506,21 @@ See also xref:arrays.adoc#Base.Broadcast.DefaultArrayStyle[`Broadcast.DefaultArr
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L51-L76[source] +
 
-[id=Base.Broadcast.ArrayStyle]
+[id="Base.Broadcast.ArrayStyle"]
 ==== *`Base.Broadcast.ArrayStyle`* &mdash; _Type_.
 
 `+Broadcast.ArrayStyle{MyArrayType}()+` is a xref:arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] indicating that an object behaves as an array for broadcasting. It presents a simple way to construct xref:arrays.adoc#Base.Broadcast.AbstractArrayStyle[`Broadcast.AbstractArrayStyle`]s for specific `AbstractArray` container types. Broadcast styles created this way lose track of dimensionality; if keeping track is important for your type, you should create your own custom xref:arrays.adoc#Base.Broadcast.AbstractArrayStyle[`Broadcast.AbstractArrayStyle`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L79-L85[source] +
 
-[id=Base.Broadcast.DefaultArrayStyle]
+[id="Base.Broadcast.DefaultArrayStyle"]
 ==== *`Base.Broadcast.DefaultArrayStyle`* &mdash; _Type_.
 
 `+Broadcast.DefaultArrayStyle{N}()+` is a xref:arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] indicating that an object behaves as an `N`-dimensional array for broadcasting. Specifically, `DefaultArrayStyle` is used for any `AbstractArray` type that hasn't defined a specialized style, and in the absence of overrides from other `broadcast` arguments the resulting output type is `Array`. When there are multiple inputs to `broadcast`, `DefaultArrayStyle` "loses" to any other xref:arrays.adoc#Base.Broadcast.ArrayStyle[`Broadcast.ArrayStyle`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L89-L96[source] +
 
-[id=Base.Broadcast.broadcastable]
+[id="Base.Broadcast.broadcastable"]
 ==== *`Base.Broadcast.broadcastable`* &mdash; _Function_.
 
 [,julia]
@@ -1555,7 +1553,7 @@ Base.RefValue{String}("hello")
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L672-L699[source] +
 
-[id=Base.Broadcast.combine_axes]
+[id="Base.Broadcast.combine_axes"]
 ==== *`Base.Broadcast.combine_axes`* &mdash; _Function_.
 
 [,julia]
@@ -1576,7 +1574,7 @@ julia> Broadcast.combine_axes(1, 1, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L485-L497[source] +
 
-[id=Base.Broadcast.combine_styles]
+[id="Base.Broadcast.combine_styles"]
 ==== *`Base.Broadcast.combine_styles`* &mdash; _Function_.
 
 [,julia]
@@ -1596,7 +1594,7 @@ Base.Broadcast.DefaultArrayStyle{2}()
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L418-L431[source] +
 
-[id=Base.Broadcast.result_style]
+[id="Base.Broadcast.result_style"]
 ==== *`Base.Broadcast.result_style`* &mdash; _Function_.
 
 [,julia]
@@ -1625,7 +1623,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 == Indexing and assignment
 
-[id=Base.getindex-Tuple{AbstractArray, Vararg{Any}}]
+[id="Base.getindex-Tuple{AbstractArray, Vararg{Any}}"]
 ==== *`Base.getindex`* &mdash; _Method_.
 
 [,julia]
@@ -1633,7 +1631,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 getindex(A, inds...)
 ----
 
-Return a subset of array `A` as specified by `inds`, where each `ind` may be, for example, an `Int`, an xref:collections.adoc#Base.AbstractRange[`AbstractRange`], or a xref:arrays.adoc#Base.Vector[`Vector`]. See the manual section on xref:manual:arrays.adoc#man-array-indexing[array indexing] for details.
+Return a subset of array `A` as specified by `inds`, where each `ind` may be, for example, an `Int`, an xref:collections.adoc#Base.AbstractRange[`AbstractRange`], or a xref:arrays.adoc#Base.Vector[`Vector`]. See the manual section on xref:../manual/arrays.adoc#man-array-indexing[array indexing] for details.
 
 *Examples*
 
@@ -1661,7 +1659,7 @@ julia> getindex(A, 2:4)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L1209-L1237[source] +
 
-[id=Base.setindex!-Tuple{AbstractArray, Any, Vararg{Any}}]
+[id="Base.setindex!-Tuple{AbstractArray, Any, Vararg{Any}}"]
 ==== *`Base.setindex!`* &mdash; _Method_.
 
 [,julia]
@@ -1690,7 +1688,7 @@ julia> A
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L1320-L1340[source] +
 
-[id=Base.copyto!-Tuple{AbstractArray, CartesianIndices, AbstractArray, CartesianIndices}]
+[id="Base.copyto!-Tuple{AbstractArray, CartesianIndices, AbstractArray, CartesianIndices}"]
 ==== *`Base.copyto!`* &mdash; _Method_.
 
 [,julia]
@@ -1723,7 +1721,7 @@ julia> copyto!(A, Ainds, B, Binds)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L1133-L1157[source] +
 
-[id=Base.copy!]
+[id="Base.copy!"]
 ==== *`Base.copy!`* &mdash; _Function_.
 
 [,julia]
@@ -1740,7 +1738,7 @@ See also xref:c.adoc#Base.copyto![`copyto!`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L866-L880[source] +
 
-[id=Base.isassigned]
+[id="Base.isassigned"]
 ==== *`Base.isassigned`* &mdash; _Function_.
 
 [,julia]
@@ -1774,7 +1772,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L641-L666[source] +
 
-[id=Base.Colon]
+[id="Base.Colon"]
 ==== *`Base.Colon`* &mdash; _Type_.
 
 [,julia]
@@ -1790,7 +1788,7 @@ The singleton instance of `Colon` is also a function used to construct ranges; s
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L675-L686[source] +
 
-[id=Base.IteratorsMD.CartesianIndex]
+[id="Base.IteratorsMD.CartesianIndex"]
 ==== *`Base.IteratorsMD.CartesianIndex`* &mdash; _Type_.
 
 [,julia]
@@ -1837,7 +1835,7 @@ julia> A[CartesianIndex((1, 1, 2, 1))]
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L18-L63[source] +
 
-[id=Base.IteratorsMD.CartesianIndices]
+[id="Base.IteratorsMD.CartesianIndices"]
 ==== *`Base.IteratorsMD.CartesianIndices`* &mdash; _Type_.
 
 [,julia]
@@ -1927,7 +1925,7 @@ For cartesian to linear index conversion, see xref:arrays.adoc#Base.LinearIndice
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L166-L247[source] +
 
-[id=Base.Dims]
+[id="Base.Dims"]
 ==== *`Base.Dims`* &mdash; _Type_.
 
 [,julia]
@@ -1939,7 +1937,7 @@ An `NTuple` of `N` ``Int``s used to represent the dimensions of an xref:arrays.a
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L3-L8[source] +
 
-[id=Base.LinearIndices]
+[id="Base.LinearIndices"]
 ==== *`Base.LinearIndices`* &mdash; _Type_.
 
 [,julia]
@@ -1991,7 +1989,7 @@ julia> linear[1,2]
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L401-L447[source] +
 
-[id=Base.to_indices]
+[id="Base.to_indices"]
 ==== *`Base.to_indices`* &mdash; _Function_.
 
 [,julia]
@@ -2009,7 +2007,7 @@ More complicated index types may require more context about the dimension into w
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L304-L323[source] +
 
-[id=Base.checkbounds]
+[id="Base.checkbounds"]
 ==== *`Base.checkbounds`* &mdash; _Function_.
 
 [,julia]
@@ -2050,7 +2048,7 @@ Throw an error if the specified indices `I` are not in bounds for the given arra
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L661-L665[source] +
 
-[id=Base.checkindex]
+[id="Base.checkindex"]
 ==== *`Base.checkindex`* &mdash; _Function_.
 
 [,julia]
@@ -2075,7 +2073,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L706-L724[source] +
 
-[id=Base.elsize]
+[id="Base.elsize"]
 ==== *`Base.elsize`* &mdash; _Function_.
 
 [,julia]
@@ -2105,9 +2103,9 @@ A "`view`" is a data structure that acts like an array (it is a subtype of `Abst
 
 For example, if `x` is an array and `v = @view x[1:10]`, then `v` acts like a 10-element array, but its data is actually accessing the first 10 elements of `x`. Writing to a view, e.g. `v[3] = 2`, writes directly to the underlying array `x` (in this case modifying `x[3]`).
 
-Slicing operations like `x[1:10]` create a copy by default in Julia. `@view x[1:10]` changes it to make a view. The `@views` macro can be used on a whole block of code (e.g. `+@views function foo() .... end+` or `+@views begin ... end+`) to change all the slicing operations in that block to use views.  Sometimes making a copy of the data is faster and sometimes using a view is faster, as described in the xref:manual:performance-tips.adoc#man-performance-views[performance tips].
+Slicing operations like `x[1:10]` create a copy by default in Julia. `@view x[1:10]` changes it to make a view. The `@views` macro can be used on a whole block of code (e.g. `+@views function foo() .... end+` or `+@views begin ... end+`) to change all the slicing operations in that block to use views.  Sometimes making a copy of the data is faster and sometimes using a view is faster, as described in the xref:../manual/performance-tips.adoc#man-performance-views[performance tips].
 
-[id=Base.view]
+[id="Base.view"]
 ==== *`Base.view`* &mdash; _Function_.
 
 [,julia]
@@ -2152,7 +2150,7 @@ julia> view(2:5, 2:3) # returns a range as type is immutable
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/subarray.jl#L128-L173[source] +
 
-[id=Base.@view]
+[id="Base.@view"]
 ==== *`Base.@view`* &mdash; _Macro_.
 
 [,julia]
@@ -2164,7 +2162,7 @@ Transform the indexing expression `+A[inds...]+` into the equivalent xref:arrays
 
 This can only be applied directly to a single indexing expression and is particularly helpful for expressions that include the special `begin` or `end` indexing syntaxes like `A[begin, 2:end-1]` (as those are not supported by the normal xref:arrays.adoc#Base.view[`view`] function).
 
-Note that `@view` cannot be used as the target of a regular assignment (e.g., `+@view(A[1, 2:end]) = ...+`), nor would the un-decorated xref:manual:arrays.adoc#man-indexed-assignment[indexed assignment] (`+A[1, 2:end] = ...+`) or broadcasted indexed assignment (`+A[1, 2:end] .= ...+`) make a copy.  It can be useful, however, for _updating_ broadcasted assignments like `@view(A[1, 2:end]) .+= 1` because this is a simple syntax for `@view(A[1, 2:end]) .= @view(A[1, 2:end]) + 1`, and the indexing expression on the right-hand side would otherwise make a copy without the `@view`.
+Note that `@view` cannot be used as the target of a regular assignment (e.g., `+@view(A[1, 2:end]) = ...+`), nor would the un-decorated xref:../manual/arrays.adoc#man-indexed-assignment[indexed assignment] (`+A[1, 2:end] = ...+`) or broadcasted indexed assignment (`+A[1, 2:end] .= ...+`) make a copy.  It can be useful, however, for _updating_ broadcasted assignments like `@view(A[1, 2:end]) .+= 1` because this is a simple syntax for `@view(A[1, 2:end]) .= @view(A[1, 2:end]) + 1`, and the indexing expression on the right-hand side would otherwise make a copy without the `@view`.
 
 See also xref:arrays.adoc#Base.@views[`@views`] to switch an entire block of code to use views for non-scalar indexing.
 
@@ -2198,7 +2196,7 @@ julia> A
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/views.jl#L77-L124[source] +
 
-[id=Base.@views]
+[id="Base.@views"]
 ==== *`Base.@views`* &mdash; _Macro_.
 
 [,julia]
@@ -2234,7 +2232,7 @@ julia> A
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/views.jl#L208-L241[source] +
 
-[id=Base.parent]
+[id="Base.parent"]
 ==== *`Base.parent`* &mdash; _Function_.
 
 [,julia]
@@ -2266,7 +2264,7 @@ julia> parent(V)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L1383-L1408[source] +
 
-[id=Base.parentindices]
+[id="Base.parentindices"]
 ==== *`Base.parentindices`* &mdash; _Function_.
 
 [,julia]
@@ -2293,7 +2291,7 @@ julia> parentindices(V)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/subarray.jl#L81-L98[source] +
 
-[id=Base.selectdim]
+[id="Base.selectdim"]
 ==== *`Base.selectdim`* &mdash; _Function_.
 
 [,julia]
@@ -2329,7 +2327,7 @@ julia> selectdim(A, 2, 3:4)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarraymath.jl#L225-L251[source] +
 
-[id=Base.reinterpret]
+[id="Base.reinterpret"]
 ==== *`Base.reinterpret`* &mdash; _Function_.
 
 [,julia]
@@ -2392,7 +2390,7 @@ julia> reinterpret(reshape, Int, a)             # the result is a matrix
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reinterpretarray.jl#L98-L134[source] +
 
-[id=Base.reshape]
+[id="Base.reshape"]
 ==== *`Base.reshape`* &mdash; _Function_.
 
 [,julia]
@@ -2448,7 +2446,7 @@ julia> reshape(1:6, 2, 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reshapedarray.jl#L54-L107[source] +
 
-[id=Base.dropdims]
+[id="Base.dropdims"]
 ==== *`Base.dropdims`* &mdash; _Function_.
 
 [,julia]
@@ -2487,7 +2485,7 @@ julia> b[1,1,1] = 5; a
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarraymath.jl#L48-L81[source] +
 
-[id=Base.vec]
+[id="Base.vec"]
 ==== *`Base.vec`* &mdash; _Function_.
 
 [,julia]
@@ -2523,7 +2521,7 @@ See also xref:arrays.adoc#Base.reshape[`reshape`], xref:arrays.adoc#Base.dropdim
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarraymath.jl#L11-L40[source] +
 
-[id=Base.SubArray]
+[id="Base.SubArray"]
 ==== *`Base.SubArray`* &mdash; _Type_.
 
 [,julia]
@@ -2543,7 +2541,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 == Concatenation and permutation
 
-[id=Base.cat]
+[id="Base.cat"]
 ==== *`Base.cat`* &mdash; _Function_.
 
 [,julia]
@@ -2575,7 +2573,7 @@ julia> cat(true, trues(2,2), trues(4)', dims=(1,2))
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L1883-L1915[source] +
 
-[id=Base.vcat]
+[id="Base.vcat"]
 ==== *`Base.vcat`* &mdash; _Function_.
 
 [,julia]
@@ -2630,7 +2628,7 @@ julia> reduce(vcat, vs)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L1768-L1814[source] +
 
-[id=Base.hcat]
+[id="Base.hcat"]
 ==== *`Base.hcat`* &mdash; _Function_.
 
 [,julia]
@@ -2700,7 +2698,7 @@ julia> reduce(hcat, vs)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L1816-L1877[source] +
 
-[id=Base.hvcat]
+[id="Base.hvcat"]
 ==== *`Base.hvcat`* &mdash; _Function_.
 
 [,julia]
@@ -2744,7 +2742,7 @@ If the first argument is a single integer `n`, then all block rows are assumed t
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L1951-L1988[source] +
 
-[id=Base.hvncat]
+[id="Base.hvncat"]
 ==== *`Base.hvncat`* &mdash; _Function_.
 
 [,julia]
@@ -2831,7 +2829,7 @@ julia> hvncat(((3, 3), (3, 3), (6,)), true, a, b, c, d, e, f)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L2102-L2187[source] +
 
-[id=Base.vect]
+[id="Base.vect"]
 ==== *`Base.vect`* &mdash; _Function_.
 
 [,julia]
@@ -2854,7 +2852,7 @@ julia> a = Base.vect(UInt8(1), 2.5, 1//2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L128-L142[source] +
 
-[id=Base.circshift]
+[id="Base.circshift"]
 ==== *`Base.circshift`* &mdash; _Function_.
 
 [,julia]
@@ -2918,7 +2916,7 @@ julia> circshift(a, -1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarraymath.jl#L264-L320[source] +
 
-[id=Base.circshift!]
+[id="Base.circshift!"]
 ==== *`Base.circshift!`* &mdash; _Function_.
 
 [,julia]
@@ -2934,7 +2932,7 @@ See also xref:arrays.adoc#Base.circshift[`circshift`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L1162-L1172[source] +
 
-[id=Base.circcopy!]
+[id="Base.circcopy!"]
 ==== *`Base.circcopy!`* &mdash; _Function_.
 
 [,julia]
@@ -2972,7 +2970,7 @@ true
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L1218-L1250[source] +
 
-[id=Base.findall-Tuple{Any}]
+[id="Base.findall-Tuple{Any}"]
 ==== *`Base.findall`* &mdash; _Method_.
 
 [,julia]
@@ -3018,7 +3016,7 @@ Int64[]
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2313-L2352[source] +
 
-[id=Base.findall-Tuple{Function, Any}]
+[id="Base.findall-Tuple{Function, Any}"]
 ==== *`Base.findall`* &mdash; _Method_.
 
 [,julia]
@@ -3075,7 +3073,7 @@ julia> findall(x -> x >= 0, d)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2256-L2306[source] +
 
-[id=Base.findfirst-Tuple{Any}]
+[id="Base.findfirst-Tuple{Any}"]
 ==== *`Base.findfirst`* &mdash; _Method_.
 
 [,julia]
@@ -3116,7 +3114,7 @@ CartesianIndex(2, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1954-L1988[source] +
 
-[id=Base.findfirst-Tuple{Function, Any}]
+[id="Base.findfirst-Tuple{Function, Any}"]
 ==== *`Base.findfirst`* &mdash; _Method_.
 
 [,julia]
@@ -3158,7 +3156,7 @@ CartesianIndex(2, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2031-L2065[source] +
 
-[id=Base.findlast-Tuple{Any}]
+[id="Base.findlast-Tuple{Any}"]
 ==== *`Base.findlast`* &mdash; _Method_.
 
 [,julia]
@@ -3201,7 +3199,7 @@ CartesianIndex(2, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2127-L2162[source] +
 
-[id=Base.findlast-Tuple{Function, Any}]
+[id="Base.findlast-Tuple{Function, Any}"]
 ==== *`Base.findlast`* &mdash; _Method_.
 
 [,julia]
@@ -3240,7 +3238,7 @@ CartesianIndex(2, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2213-L2244[source] +
 
-[id=Base.findnext-Tuple{Any, Integer}]
+[id="Base.findnext-Tuple{Any, Integer}"]
 ==== *`Base.findnext`* &mdash; _Method_.
 
 [,julia]
@@ -3279,7 +3277,7 @@ CartesianIndex(2, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1920-L1951[source] +
 
-[id=Base.findnext-Tuple{Function, Any, Integer}]
+[id="Base.findnext-Tuple{Function, Any, Integer}"]
 ==== *`Base.findnext`* &mdash; _Method_.
 
 [,julia]
@@ -3310,7 +3308,7 @@ CartesianIndex(1, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1994-L2017[source] +
 
-[id=Base.findprev-Tuple{Any, Integer}]
+[id="Base.findprev-Tuple{Any, Integer}"]
 ==== *`Base.findprev`* &mdash; _Method_.
 
 [,julia]
@@ -3351,7 +3349,7 @@ CartesianIndex(2, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2091-L2124[source] +
 
-[id=Base.findprev-Tuple{Function, Any, Integer}]
+[id="Base.findprev-Tuple{Function, Any, Integer}"]
 ==== *`Base.findprev`* &mdash; _Method_.
 
 [,julia]
@@ -3390,7 +3388,7 @@ CartesianIndex(2, 1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2168-L2199[source] +
 
-[id=Base.permutedims]
+[id="Base.permutedims"]
 ==== *`Base.permutedims`* &mdash; _Function_.
 
 [,julia]
@@ -3505,7 +3503,7 @@ julia> transpose(V)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/permuteddimsarray.jl#L164-L190[source] +
 
-[id=Base.permutedims!]
+[id="Base.permutedims!"]
 ==== *`Base.permutedims!`* &mdash; _Function_.
 
 [,julia]
@@ -3519,7 +3517,7 @@ See also xref:arrays.adoc#Base.permutedims[`permutedims`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/permuteddimsarray.jl#L193-L203[source] +
 
-[id=Base.PermutedDimsArrays.PermutedDimsArray]
+[id="Base.PermutedDimsArrays.PermutedDimsArray"]
 ==== *`Base.PermutedDimsArrays.PermutedDimsArray`* &mdash; _Type_.
 
 [,julia]
@@ -3548,7 +3546,7 @@ true
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/permuteddimsarray.jl#L20-L41[source] +
 
-[id=Base.promote_shape]
+[id="Base.promote_shape"]
 ==== *`Base.promote_shape`* &mdash; _Function_.
 
 [,julia]
@@ -3581,7 +3579,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 == Array functions
 
-[id=Base.accumulate]
+[id="Base.accumulate"]
 ==== *`Base.accumulate`* &mdash; _Function_.
 
 [,julia]
@@ -3632,7 +3630,7 @@ julia> accumulate(+, fill(1, 2, 5), dims=2, init=100.0)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/accumulate.jl#L225-L271[source] +
 
-[id=Base.accumulate!]
+[id="Base.accumulate!"]
 ==== *`Base.accumulate!`* &mdash; _Function_.
 
 [,julia]
@@ -3679,7 +3677,7 @@ julia> accumulate!(*, B, A, dims=2, init=10)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/accumulate.jl#L297-L336[source] +
 
-[id=Base.cumprod]
+[id="Base.cumprod"]
 ==== *`Base.cumprod`* &mdash; _Function_.
 
 [,julia]
@@ -3743,7 +3741,7 @@ julia> cumprod("julia")
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/accumulate.jl#L191-L220[source] +
 
-[id=Base.cumprod!]
+[id="Base.cumprod!"]
 ==== *`Base.cumprod!`* &mdash; _Function_.
 
 [,julia]
@@ -3763,7 +3761,7 @@ Cumulative product of a vector `x`, storing the result in `y`. See also xref:arr
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/accumulate.jl#L157-L162[source] +
 
-[id=Base.cumsum]
+[id="Base.cumsum"]
 ==== *`Base.cumsum`* &mdash; _Function_.
 
 [,julia]
@@ -3847,7 +3845,7 @@ julia> cumsum(fill(1, 2) for i in 1:3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/accumulate.jl#L116-L143[source] +
 
-[id=Base.cumsum!]
+[id="Base.cumsum!"]
 ==== *`Base.cumsum!`* &mdash; _Function_.
 
 [,julia]
@@ -3859,7 +3857,7 @@ Cumulative sum of `A` along the dimension `dims`, storing the result in `B`. See
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/accumulate.jl#L41-L45[source] +
 
-[id=Base.diff]
+[id="Base.diff"]
 ==== *`Base.diff`* &mdash; _Function_.
 
 [,julia]
@@ -3896,7 +3894,7 @@ julia> diff(vec(a))
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L967-L996[source] +
 
-[id=Base.repeat]
+[id="Base.repeat"]
 ==== *`Base.repeat`* &mdash; _Function_.
 
 [,julia]
@@ -4003,7 +4001,7 @@ julia> repeat('A', 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/strings/string.jl#L325-L336[source] +
 
-[id=Base.rot180]
+[id="Base.rot180"]
 ==== *`Base.rot180`* &mdash; _Function_.
 
 [,julia]
@@ -4058,7 +4056,7 @@ julia> rot180(a,2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/arraymath.jl#L260-L283[source] +
 
-[id=Base.rotl90]
+[id="Base.rotl90"]
 ==== *`Base.rotl90`* &mdash; _Function_.
 
 [,julia]
@@ -4123,7 +4121,7 @@ julia> rotl90(a,4)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/arraymath.jl#L185-L218[source] +
 
-[id=Base.rotr90]
+[id="Base.rotr90"]
 ==== *`Base.rotr90`* &mdash; _Function_.
 
 [,julia]
@@ -4188,7 +4186,7 @@ julia> rotr90(a,4)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/arraymath.jl#L225-L258[source] +
 
-[id=Base.mapslices]
+[id="Base.mapslices"]
 ==== *`Base.mapslices`* &mdash; _Function_.
 
 [,julia]
@@ -4239,7 +4237,7 @@ julia> mapslices(sum, a, dims = [1,2])
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L2782-L2827[source] +
 
-[id=Base.eachrow]
+[id="Base.eachrow"]
 ==== *`Base.eachrow`* &mdash; _Function_.
 
 [,julia]
@@ -4276,7 +4274,7 @@ julia> collect(eachrow(a))
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarraymath.jl#L520-L549[source] +
 
-[id=Base.eachcol]
+[id="Base.eachcol"]
 ==== *`Base.eachcol`* &mdash; _Function_.
 
 [,julia]
@@ -4313,7 +4311,7 @@ julia> collect(eachcol(a))
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarraymath.jl#L553-L582[source] +
 
-[id=Base.eachslice]
+[id="Base.eachslice"]
 ==== *`Base.eachslice`* &mdash; _Function_.
 
 [,julia]
@@ -4361,7 +4359,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 == Combinatorics
 
-[id=Base.invperm]
+[id="Base.invperm"]
 ==== *`Base.invperm`* &mdash; _Function_.
 
 [,julia]
@@ -4410,7 +4408,7 @@ julia> B[invperm(v)]
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/combinatorics.jl#L237-L277[source] +
 
-[id=Base.isperm]
+[id="Base.isperm"]
 ==== *`Base.isperm`* &mdash; _Function_.
 
 [,julia]
@@ -4433,7 +4431,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/combinatorics.jl#L55-L68[source] +
 
-[id=Base.permute!-Tuple{Any, AbstractVector}]
+[id="Base.permute!-Tuple{Any, AbstractVector}"]
 ==== *`Base.permute!`* &mdash; _Method_.
 
 [,julia]
@@ -4467,7 +4465,7 @@ julia> A
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/combinatorics.jl#L161-L187[source] +
 
-[id=Base.invpermute!]
+[id="Base.invpermute!"]
 ==== *`Base.invpermute!`* &mdash; _Function_.
 
 [,julia]
@@ -4497,7 +4495,7 @@ julia> A
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/combinatorics.jl#L214-L234[source] +
 
-[id=Base.reverse-Tuple{AbstractVector}]
+[id="Base.reverse-Tuple{AbstractVector}"]
 ==== *`Base.reverse`* &mdash; _Method_.
 
 [,julia]
@@ -4532,7 +4530,7 @@ julia> reverse(b)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/arraymath.jl#L30-L58[source] +
 
-[id=Base.reverseind]
+[id="Base.reverseind"]
 ==== *`Base.reverseind`* &mdash; _Function_.
 
 [,julia]
@@ -4560,7 +4558,7 @@ Julia🚀
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/strings/basic.jl#L679-L699[source] +
 
-[id=Base.reverse!]
+[id="Base.reverse!"]
 ==== *`Base.reverse!`* &mdash; _Function_.
 
 [,julia]
