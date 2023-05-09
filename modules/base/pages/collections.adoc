@@ -125,10 +125,10 @@ Fully implemented by:
 
 == Constructors and Types
 
-[#test_header] 
+[id=test_header] 
 ==== *`Base.AbstractRange`* &mdash; _Type_.
 
-[#test.header] 
+[id=test.header] 
 Test text.
 
 [,julia]
