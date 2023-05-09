@@ -74,7 +74,7 @@ Array{T,N} <: AbstractArray{T,N}
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L45-L49[source] +
 
-[id=Core.Array-Tuple{UndefInitializer,{sp}Any}]
+[id=Core.Array-Tuple{UndefInitializer,%20Any}]
 ==== *`Core.Array`* &mdash; _Method_.
 
 [,julia]
