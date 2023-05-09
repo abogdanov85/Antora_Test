@@ -6,6 +6,8 @@ custom type, objects of that type not only receive those
 functionalities, but they are also able to be used in other methods that
 are written to generically build upon those behaviors.
 
+Тестовая ссылка: xref:getting-started.adoc#_resources[_resources]
+
 === Iteration
 
 [width="100%",cols="<15%,<10%,<75%",options="header",]
@@ -61,7 +63,7 @@ iterator.
 |===
 
 Sequential iteration is implemented by the
-xref:base/collections.adoc#Base.iterate[`iterate`] function. Instead of
+xref:base:collections.adoc#Base.iterate[`iterate`] function. Instead of
 mutating objects as they are iterated over, Julia iterators may keep
 track of the iteration state externally from the object. The return
 value from iterate is always either a tuple of a value and a state, or
