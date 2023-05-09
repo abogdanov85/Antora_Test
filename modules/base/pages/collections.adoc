@@ -125,9 +125,8 @@ Fully implemented by:
 
 == Constructors and Types
 
-<<Base.AbstractRange,# test text>>
-
-# *`Base.AbstractRange`*
+[[Base.AbstractRange]]
+*`Base.AbstractRange`* &mdash; _Type_.
 
 [,julia]
 ----
