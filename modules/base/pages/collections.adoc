@@ -127,6 +127,9 @@ Fully implemented by:
 
 ==== [#Base.AbstractRange]*`Base.AbstractRange`* &mdash; _Type_.
 
+[#test_header] 
+Test text.
+
 [,julia]
 ----
 AbstractRange{T}
