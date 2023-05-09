@@ -125,7 +125,7 @@ Fully implemented by:
 
 == Constructors and Types
 
-[id=test_header] 
+[id=Base.AbstractRange] 
 ==== *`Base.AbstractRange`* &mdash; _Type_.
 
 [id=test.header] 
