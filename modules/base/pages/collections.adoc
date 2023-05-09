@@ -645,7 +645,7 @@ julia> unique(A, dims=3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L1612-L1650[source] +
 
-[[Base.unique!]]
+[id=Base.unique!]
 ==== *`Base.unique!`* &mdash; _Function_.
 
 [,julia]
