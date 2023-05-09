@@ -74,7 +74,7 @@ Array{T,N} <: AbstractArray{T,N}
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L45-L49[source] +
 
-[id=Core.Array-Tuple{UndefInitializer,%20Any}]
+[id=Core.Array-Tuple{UndefInitializer,_Any}]
 ==== *`Core.Array`* &mdash; _Method_.
 
 [,julia]
@@ -85,7 +85,7 @@ Array{T,N}(undef, dims)
 
 Construct an uninitialized `N`-dimensional xref:arrays.adoc#Core.Array[`Array`] containing elements of type `T`. `N` can either be supplied explicitly, as in `Array{T,N}(undef, dims)`, or be determined by the length or number of `dims`. `dims` may be a tuple or a series of integer arguments corresponding to the lengths in each dimension. If the rank `N` is supplied explicitly, then it must match the length or number of `dims`. Here xref:arrays.adoc#Core.undef[`undef`] is the xref:arrays.adoc#Core.UndefInitializer[`UndefInitializer`].
 
-Тест ссылки с пробелом: xref:base:arrays.adoc#Core.Array-Tuple{UndefInitializer, Any}[ссылка]
+Тест ссылки с пробелом: xref:base:arrays.adoc#Core.Array-Tuple{UndefInitializer,_Any}[ссылка]
 
 *Examples*
 
