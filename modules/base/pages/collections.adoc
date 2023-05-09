@@ -31,6 +31,9 @@ xref:manual/interfaces.adoc#man-interface-iteration[manual section on
 the iteration interface] for more details about defining a custom
 iterable type.
 
+Тестовая ссылка с двоеточием: xref:manual:interfaces.adoc#man-interface-iteration[manual section on
+the iteration interface]
+
 # *`Base.iterate`* — _Function_.
 
 [source,julia]
