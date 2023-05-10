@@ -35,7 +35,7 @@ end
 
 The `state` object may be anything, and should be chosen appropriately for each iterable type. See the xref:manual/interfaces.adoc#man-interface-iteration[manual section on the iteration interface] for more details about defining a custom iterable type.
 
-[id=Base.iterate]
+[id="Base.iterate"]
 ==== *`Base.iterate`* &mdash; _Function_.
 
 [,julia]
@@ -47,7 +47,7 @@ iterate(iter [, state]) -> Union{Nothing, Tuple{Any, Any}}
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L897-L903[source] +
 
-[id=Base.IteratorSize]
+[id="Base.IteratorSize"]
 ==== *`Base.IteratorSize`* &mdash; _Type_.
 
 [,julia]
@@ -59,10 +59,10 @@ IteratorSize(itertype::Type) -> IteratorSize
 
 * `SizeUnknown()` нр мпь пьохму (ъмйфэх њц ыьхмфмўм) ьцххзк ми лмхрфѣмьмљ хр мќхзюл́.абвгдежз
 * `HasLength()` нр мъмпь ыр з лмарњ, мьрхрн пьохму.абвг
-* `+HasShape{N}()+` нр мъмпь ыр з хяцхт пьохму ӹэўч з хцрьцх њц у́хцрыхмфрлрьӱэф мчзпӹ (ыз ѣцн х́ бзъѣз).абвгдежзик  Ур ырпь мӹзк `N` луэцпы мюро мпь ъмйфэх нц ӹхцрыхмфрљ, лхз мпь xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`] хцрьќхэњ ӹр љрў́юабвгдежзик  ъцн мпь ѣцьзъмьр.аб
+* `+HasShape{N}()+` нр мъмпь ыр з хяцхт пьохму ӹэўч з хцрьцх њц у́хцрыхмфрлрьӱэф мчзпӹ (ыз ѣцн х́ бзъѣз).абвгдежзик  Ур ырпь мӹзк `N` луэцпы мюро мпь ъмйфэх нц ӹхцрыхмфрљ, лхз мпь xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`] хцрьќхэњ ӹр љрў́юабвгдежзик  ъцн мпь ѣцьзъмьр.аб
 * `IsInfinite()` нр мпь ъцьзѣмьр ылумрб ӹмэўзю ъмюмѣцњ.абвгд
 
-Кпь ьуэзнмл мэўзю (ъцњ ыѣць́ъмьр ьзпь цљ ьцх мхрнмл ӹрпь хцрькхэњ) ыр `HasLength()`.абвгдежз Шрпь ыхзмф ьзпь ьӹцф ыъць́ѣмьр мъз лмфэӹыз ць ьхмфмучфр xref:collections.adoc#Base.length[`length`].абвгдеж
+Кпь ьуэзнмл мэўзю (ъцњ ыѣць́ъмьр ьзпь цљ ьцх мхрнмл ӹрпь хцрькхэњ) ыр `HasLength()`.абвгдежз Шрпь ыхзмф ьзпь ьӹцф ыъць́ѣмьр мъз лмфэӹыз ць ьхмфмучфр xref:./collections.adoc#Base.length[`length`].абвгдеж
 
 Шрпь ьрзъь ыр буўзѣмхмо лмӹэ ць ькмумы хммяьмй ӹфпьръцоӱ́ ьзпь мьзќцуў́-мѣч мкзчы ъцн ѣрмпьабвгдежзикл ьуэымъ, лхз ӹфпьрѣцоўз ь́пь мврымъ ѣрмпь ьуэӹмъ бӱузьхмфмѣкхр.абвгдеж
 
@@ -77,7 +77,7 @@ Base.HasLength()
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/generator.jl#L66-L91[source] +
 
-[id=Base.IteratorEltype]
+[id="Base.IteratorEltype"]
 ==== *`Base.IteratorEltype`* &mdash; _Type_.
 
 [,julia]
@@ -88,9 +88,9 @@ IteratorEltype(itertype::Type) -> IteratorEltype
 Умюро мпь мчбь нц хз ъцьзѣмьр, хъэьмѣ мхц њц мпь охряцуўцн ымэу́ю:абвгдежз
 
 * `EltypeUnknown()` нр мпь мчбь њц ыьхмфмум лмљўмрб бй мпь ъцьзѣмьр ӹр ьцх хяцхт хр мкхзюл́.абвгдежзи
-* `HasEltype()` нр мпь ьхмфмум мчбь ыр хяцхт, лхз xref:collections.adoc#Base.eltype[`eltype`] љўэця хъэьмѣ з уэњохрх́мф мэӱзю.абвгдежз
+* `HasEltype()` нр мпь ьхмфмум мчбь ыр хяцхт, лхз xref:./collections.adoc#Base.eltype[`eltype`] љўэця хъэьмѣ з уэњохрх́мф мэӱзю.абвгдежз
 
-`HasEltype()` ыр мпь ьуэзнмл, мкхрӹ ыъцьзѣмьр мъ́ љмфэӹыз ць ьхмфмўчфр xref:collections.adoc#Base.eltype[`eltype`].абвгдеж
+`HasEltype()` ыр мпь ьуэзнмл, мкхрӹ ыъцьзѣмьр мъ́ љмфэӹыз ць ьхмфмўчфр xref:./collections.adoc#Base.eltype[`eltype`].абвгдеж
 
 Шрпь ьрзъь ыр буўзѣмхмо лмӹэ ць ькмумы хммяьмй ӹфпьръцоӱ́ ьзпь мьзќцуў́-мѣч з крнрќмчыабвгдежзик мчбь нц ьуэымъ, лхз ӹфпьрѣцоўз ь́пь ткрч з ьуэымъ мчбь љмӹзй хц мпь ымчбь њц лмљӱмрбабвгдежзик ымэузю.а
 
@@ -104,20 +104,20 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 Fully implemented by:
 
-* xref:collections.adoc#Base.AbstractRange[`AbstractRange`]
-* xref:collections.adoc#Base.UnitRange[`UnitRange`]
+* xref:./collections.adoc#Base.AbstractRange[`AbstractRange`]
+* xref:./collections.adoc#Base.UnitRange[`UnitRange`]
 * `Tuple`
 * `Number`
 * xref:./arrays.adoc#Core.AbstractArray[`AbstractArray`]
-* xref:collections.adoc#Base.BitSet[`BitSet`]
-* xref:collections.adoc#Base.IdDict[`IdDict`]
-* xref:collections.adoc#Base.Dict[`Dict`]
-* xref:collections.adoc#Base.WeakKeyDict[`WeakKeyDict`]
+* xref:./collections.adoc#Base.BitSet[`BitSet`]
+* xref:./collections.adoc#Base.IdDict[`IdDict`]
+* xref:./collections.adoc#Base.Dict[`Dict`]
+* xref:./collections.adoc#Base.WeakKeyDict[`WeakKeyDict`]
 * `EachLine`
 * `AbstractString`
-* xref:collections.adoc#Base.Set[`Set`]
-* xref:collections.adoc#Core.Pair[`Pair`]
-* xref:base.adoc#Core.NamedTuple[`NamedTuple`]
+* xref:./collections.adoc#Base.Set[`Set`]
+* xref:./collections.adoc#Core.Pair[`Pair`]
+* xref:./base.adoc#Core.NamedTuple[`NamedTuple`]
 
 +++<a id="Constructors-and-Types">++++++</a>+++
 
@@ -125,7 +125,7 @@ Fully implemented by:
 
 == Constructors and Types
 
-[id=Base.AbstractRange]
+[id="Base.AbstractRange"]
 ==== *`Base.AbstractRange`* &mdash; _Type_.
 
 [,julia]
@@ -133,11 +133,11 @@ Fully implemented by:
 AbstractRange{T}
 ----
 
-Кчбьъмчэы ѣцн ӹмохзъ пьря ыьхмфмум њц мчбь `T`.абвгд xref:collections.adoc#Base.UnitRange[`UnitRange`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
+Кчбьъмчэы ѣцн ӹмохзъ пьря ыьхмфмум њц мчбь `T`.абвгд xref:./collections.adoc#Base.UnitRange[`UnitRange`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L245-L250[source] +
 
-[id=Base.OrdinalRange]
+[id="Base.OrdinalRange"]
 ==== *`Base.OrdinalRange`* &mdash; _Type_.
 
 [,julia]
@@ -145,11 +145,11 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 OrdinalRange{T, S} <: AbstractRange{T}
 ----
 
-Кчбьъмчэы ѣцн узхрлъц ӹмохзѣ пьря ыьхмфмўм њц мчбь `T` пьряабвгдеж ы(охркзчӹ) нц мчбь `S`.аб Кпь ычмьӹ луэцпы мй ькзам-ӹбзяў́абвг ымучрьўэф нц xref:numbers.adoc#Base.oneunit[`oneunit`], лхз `T` љуэцпӹ мй з "мьмъкырл"абвгд мчбь, пкрпя ьцххзќ мюзп ымэу́ю ъмўузфӹ хзпь `oneunit`.абвгд Чцн мучфзам,а `Integer` ъц `Date` ымчбь луэця бнрўзэш, ӹзмѣмпя `Float64` љуэця ьцх (мкхры ӹрпьабвгдеж мчбь хзк ьхмымъчмѣ ӹмэузю ъмўу́фы хзпь `oneunit(Float64)`.абвгд xref:collections.adoc#Base.UnitRange[`UnitRange`], xref:collections.adoc#Base.StepRange[`StepRange`], лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
+Кчбьъмчэы ѣцн узхрлъц ӹмохзѣ пьря ыьхмфмўм њц мчбь `T` пьряабвгдеж ы(охркзчӹ) нц мчбь `S`.аб Кпь ычмьӹ луэцпы мй ькзам-ӹбзяў́абвг ымучрьўэф нц xref:./numbers.adoc#Base.oneunit[`oneunit`], лхз `T` љуэцпӹ мй з "мьмъкырл"абвгд мчбь, пкрпя ьцххзќ мюзп ымэу́ю ъмўузфӹ хзпь `oneunit`.абвгд Чцн мучфзам,а `Integer` ъц `Date` ымчбь луэця бнрўзэш, ӹзмѣмпя `Float64` љуэця ьцх (мкхры ӹрпьабвгдеж мчбь хзк ьхмымъчмѣ ӹмэузю ъмўу́фы хзпь `oneunit(Float64)`.абвгд xref:./collections.adoc#Base.UnitRange[`UnitRange`], xref:./collections.adoc#Base.StepRange[`StepRange`], лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L260-L270[source] +
 
-[id=Base.AbstractUnitRange]
+[id="Base.AbstractUnitRange"]
 ==== *`Base.AbstractUnitRange`* &mdash; _Type_.
 
 [,julia]
@@ -157,11 +157,11 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 AbstractUnitRange{T} <: OrdinalRange{T, T}
 ----
 
-Кчбьъмчэы ѣцн ӹмохзъ пьря з чмьы мврӹ њц xref:numbers.adoc#Base.oneunit[`oneunit(T)`] пьря ыьхмфмум нц мчбь `T`.абвгдежз xref:collections.adoc#Base.UnitRange[`UnitRange`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
+Кчбьъмчэы ѣцн ӹмохзъ пьря з чмьы мврӹ њц xref:./numbers.adoc#Base.oneunit[`oneunit(T)`] пьря ыьхмфмум нц мчбь `T`.абвгдежз xref:./collections.adoc#Base.UnitRange[`UnitRange`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L273-L278[source] +
 
-[id=Base.StepRange]
+[id="Base.StepRange"]
 ==== *`Base.StepRange`* &mdash; _Type_.
 
 [,julia]
@@ -192,7 +192,7 @@ StepRange{Int64, Int64}
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L281-L306[source] +
 
-[id=Base.UnitRange]
+[id="Base.UnitRange"]
 ==== *`Base.UnitRange`* &mdash; _Type_.
 
 [,julia]
@@ -218,7 +218,7 @@ UnitRange{Int64}
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L371-L389[source] +
 
-[id=Base.LinRange]
+[id="Base.LinRange"]
 ==== *`Base.LinRange`* &mdash; _Type_.
 
 [,julia]
@@ -237,7 +237,7 @@ julia> LinRange(1.5, 5.5, 9)
  1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5
 ----
 
-Имъзчфцк ць охрыэ xref:math.adoc#Base.range[`range`], буьќмѣрл охрькэъьӹхцќ з `LinRange` љўэцпыабвгде мюзп ыӹму лзмпъмюц ьэй ь'хця бѣь ць ькмъѣцќ ъцн охрь́цўњ ьхрцч ыѣцъѣм:абвгдежз
+Имъзчфцк ць охрыэ xref:./math.adoc#Base.range[`range`], буьќмѣрл охрькэъьӹхцќ з `LinRange` љўэцпыабвгде мюзп ыӹму лзмпъмюц ьэй ь'хця бѣь ць ькмъѣцќ ъцн охрь́цўњ ьхрцч ыѣцъѣм:абвгдежз
 
 [,julia-repl]
 ----
@@ -266,7 +266,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 == General Collections
 
-[id=Base.isempty]
+[id="Base.isempty"]
 ==== *`Base.isempty`* &mdash; _Function_.
 
 [,julia]
@@ -297,7 +297,7 @@ Return `true` if no tasks are waiting on the condition, `false` otherwise.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/condition.jl#L159-L163[source] +
 
-[id=Base.empty!]
+[id="Base.empty!"]
 ==== *`Base.empty!`* &mdash; _Function_.
 
 [,julia]
@@ -324,7 +324,7 @@ Dict{String, Int64}()
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L247-L264[source] +
 
-[id=Base.length]
+[id="Base.length"]
 ==== *`Base.length`* &mdash; _Function_.
 
 [,julia]
@@ -334,9 +334,9 @@ length(collection) -> Integer
 
 Уъэьмѣ мпь ъмйфэх нц ыьхмфмум хр мпь хцрькмўуцќ.абвгде
 
-Кыэ xref:collections.adoc#Base.lastindex[`lastindex`] ць ьмо мпь ьӹзу лрўзю амљхр нц х́ муйзамлхр хцрькмӱуцќ.абвгдеж
+Кыэ xref:./collections.adoc#Base.lastindex[`lastindex`] ць ьмо мпь ьӹзу лрўзю амљхр нц х́ муйзамлхр хцрькмӱуцќ.абвгдеж
 
-Кмы цӹуз:аб xref:arrays.adoc#Base.size[`size`], xref:arrays.adoc#Base.ndims[`ndims`], xref:arrays.adoc#Base.eachindex[`eachindex`].аб
+Кмы цӹуз:аб xref:./arrays.adoc#Base.size[`size`], xref:./arrays.adoc#Base.ndims[`ndims`], xref:./arrays.adoc#Base.eachindex[`eachindex`].аб
 
 *Шмучфзамаб*
 
@@ -354,7 +354,7 @@ julia> length([1 2; 3 4])
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L242-L262[source] +
 
-[id=Base.checked_length]
+[id="Base.checked_length"]
 ==== *`Base.checked_length`* &mdash; _Function_.
 
 [,julia]
@@ -368,18 +368,18 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 Fully implemented by:
 
-* xref:collections.adoc#Base.AbstractRange[`AbstractRange`]
-* xref:collections.adoc#Base.UnitRange[`UnitRange`]
+* xref:./collections.adoc#Base.AbstractRange[`AbstractRange`]
+* xref:./collections.adoc#Base.UnitRange[`UnitRange`]
 * `Tuple`
 * `Number`
-* xref:arrays.adoc#Core.AbstractArray[`AbstractArray`]
-* xref:collections.adoc#Base.BitSet[`BitSet`]
-* xref:collections.adoc#Base.IdDict[`IdDict`]
-* xref:collections.adoc#Base.Dict[`Dict`]
-* xref:collections.adoc#Base.WeakKeyDict[`WeakKeyDict`]
+* xref:./arrays.adoc#Core.AbstractArray[`AbstractArray`]
+* xref:./collections.adoc#Base.BitSet[`BitSet`]
+* xref:./collections.adoc#Base.IdDict[`IdDict`]
+* xref:./collections.adoc#Base.Dict[`Dict`]
+* xref:./collections.adoc#Base.WeakKeyDict[`WeakKeyDict`]
 * `AbstractString`
-* xref:collections.adoc#Base.Set[`Set`]
-* xref:base.adoc#Core.NamedTuple[`NamedTuple`]
+* xref:./collections.adoc#Base.Set[`Set`]
+* xref:./base.adoc#Core.NamedTuple[`NamedTuple`]
 
 +++<a id="Iterable-Collections">++++++</a>+++
 
@@ -387,7 +387,7 @@ Fully implemented by:
 
 == Iterable Collections
 
-[id=Base.in]
+[id="Base.in"]
 ==== *`Base.in`* &mdash; _Function_.
 
 [,julia]
@@ -396,11 +396,11 @@ in(item, collection) -> Bool
 ∈(item, collection) -> Bool
 ----
 
-Кхрфъмьмл ѣмпьмпя хз фмьр ыр хр мпь хмюро хцрькмуўцќ, хр мпь мӹхмы ьзпь ьр ӹрабвгдежзи xref:math.adoc#Base.:==[`==`] ць мхц нц мпь ымэузю лмьзъмхмо бй охрь́ѣмьр ъмюц мпь хцрькмўуцќ.абвгдежз Шхъэьмѣ з `Bool` мэузю, ьчмкам нр `item` ыр xref:base.adoc#Base.missing[`missing`] ъц абвгд``collection`` ыхрзьхцк `missing` ьэй ьцх `item`, хр пќрпя мӹзк `missing` ыр лмхъэьмѣабвгде (https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў],абв охрпкьзф мпь ъцрюзпмй нц xref:collections.adoc#Base.any-Tuple{Any}[`any`] лх́ xref:math.adoc#Base.:==[`==`]).абвг
+Кхрфъмьмл ѣмпьмпя хз фмьр ыр хр мпь хмюро хцрькмуўцќ, хр мпь мӹхмы ьзпь ьр ӹрабвгдежзи xref:./math.adoc#Base.:==[`==`] ць мхц нц мпь ымэузю лмьзъмхмо бй охрь́ѣмьр ъмюц мпь хцрькмўуцќ.абвгдежз Шхъэьмѣ з `Bool` мэузю, ьчмкам нр `item` ыр xref:./base.adoc#Base.missing[`missing`] ъц абвгд``collection`` ыхрзьхцк `missing` ьэй ьцх `item`, хр пќрпя мӹзк `missing` ыр лмхъэьмѣабвгде (https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў],абв охрпкьзф мпь ъцрюзпмй нц xref:./collections.adoc#Base.any-Tuple{Any}[`any`] лх́ xref:./math.adoc#Base.:==[`==`]).абвг
 
-Кфцы ӹхцрькмуўцќ яцуӱцн з буьпорўы ьхмъмњнрл хцрьрхрњмљ.абвгдеж Чцн мучфзам,а xref:collections.adoc#Base.Set[`Set`]ы ткмпќ ъмпьмпя мпь фмьр xref:base.adoc#Base.isequal[`isequal`] ць мхц нц мпь ӹьхмфмум.абвгде xref:collections.adoc#Base.Dict[`Dict`]ы тццу ъцн `+key=>value+` ӹѣрзч, лхз мпь бмћ ыр љмъ́чфцк охрӹэабвгде xref:base.adoc#Base.isequal[`isequal`].а Фь ьымь ъцн мпь мкхмӹмѣч њц з бмт хр з бъ́хцрьќрл,абвгде мыэ xref:collections.adoc#Base.haskey[`haskey`] ъц `k in keys(dict)`.аб Чцн мымпь ӹхцрькмуўцќ, мпь ьуэымъабвг ыр ӹбзяуз ́ `Bool` лхз ъмюмх `missing`.абв
+Кфцы ӹхцрькмуўцќ яцуӱцн з буьпорўы ьхмъмњнрл хцрьрхрњмљ.абвгдеж Чцн мучфзам,а xref:./collections.adoc#Base.Set[`Set`]ы ткмпќ ъмпьмпя мпь фмьр xref:./base.adoc#Base.isequal[`isequal`] ць мхц нц мпь ӹьхмфмум.абвгде xref:./collections.adoc#Base.Dict[`Dict`]ы тццу ъцн `+key=>value+` ӹѣрзч, лхз мпь бмћ ыр љмъ́чфцк охрӹэабвгде xref:./base.adoc#Base.isequal[`isequal`].а Фь ьымь ъцн мпь мкхмӹмѣч њц з бмт хр з бъ́хцрьќрл,абвгде мыэ xref:./collections.adoc#Base.haskey[`haskey`] ъц `k in keys(dict)`.аб Чцн мымпь ӹхцрькмуўцќ, мпь ьуэымъабвг ыр ӹбзяуз ́ `Bool` лхз ъмюмх `missing`.абв
 
-Фь мхрфъмьмл ѣмпьмпя хз фмьр ыр ьцх хр з хмюро хцрькмуўцќ, ммӹ xref:collections.adoc#Base.:∉[`:∉`].абвгдежз Ыцб бзф цыуз мь́омх мпь `in` бй охрцл `!(a in b)` пкрпя ӹр бўузќроцӱ ъзурфры ць "ьцх хр".абвгдежзи
+Фь мхрфъмьмл ѣмпьмпя хз фмьр ыр ьцх хр з хмюро хцрькмуўцќ, ммӹ xref:./collections.adoc#Base.:∉[`:∉`].абвгдежз Ыцб бзф цыуз мь́омх мпь `in` бй охрцл `!(a in b)` пкрпя ӹр бўузќроцӱ ъзурфры ць "ьцх хр".абвгдежзи
 
 Умпя охрьызклзцъй пьря `in.(items, collection)` ѣц `items .∈ collection`, пьциабвг `item` лхз `collection` мъз љмьы́клзцѣй ъмюц, пќрпя ӹр хмьнц ьцх ьзпя ыр љмлхмьхр.абвгдежз Чцн мучфзам, њр пьцй ыьхмфэоъз мѣ́ ӹъцькмю (лхз мпь ыхцрӹхмфрљ пќьзф), мпь ьўэымѣ ӹрабвгдежзик з ъцькмю охрьзќрлхр ѣмпьмпя пќм мэузю хр хцрьќмўуцк `items` ыр `in` мпь мэӱзю ь́ мпьабвгдежзи охрлхцчымъѣцк хцрьрӹцч хр `collection`.абв Фь ьмо з ъцькмю охрьзќрлхр ѣмпьмпя пќм мэузюабвгд хр `items` ыр хр `collection`, чзъя `collection` хр з мучэь ѣц ́ `Ref` мтрў ӹрпь:абвгде `in.(items, Ref(collection))` ъц `items .∈ Ref(collection)`.а
 
@@ -446,11 +446,11 @@ julia> [1, 2] .∈ ([2, 3],)
  1
 ----
 
-Кмы цӹуз:аб xref:sort.adoc#Base.Sort.insorted[`insorted`], xref:strings.adoc#Base.contains[`contains`], xref:strings.adoc#Base.occursin[`occursin`], xref:collections.adoc#Base.issubset[`issubset`].аб
+Кмы цӹуз:аб xref:./sort.adoc#Base.Sort.insorted[`insorted`], xref:./strings.adoc#Base.contains[`contains`], xref:./strings.adoc#Base.occursin[`occursin`], xref:./collections.adoc#Base.issubset[`issubset`].аб
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/operators.jl#L1279-L1349[source] +
 
-[id=Base.:∉]
+[id="Base.:∉"]
 ==== *`Base.:∉`* &mdash; _Function_.
 
 [,julia]
@@ -486,7 +486,7 @@ julia> [1, 2] .∉ ([2, 3],)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/operators.jl#L1352-L1384[source] +
 
-[id=Base.eltype]
+[id="Base.eltype"]
 ==== *`Base.eltype`* &mdash; _Function_.
 
 [,julia]
@@ -496,7 +496,7 @@ eltype(type)
 
 Кхрфъмьмл мпь мчбь нц мпь ыьхмфмум љмьзѣмхмо бй охрьзъмьр ́ хцрькмўуцќ њц мпь хмюро `type`.абвгдежзик Чцн бъзхцрькрл ымчбь, ӹрпь уўря мй з `Pair{KeyType,ValType}`.абвгд Кпь хцрьрхрнмлаб `eltype(x) = eltype(typeof(x))` ыр лмљрюцъч ѣцн мкхмрхмюхцќ цӹ ьзпь ымкхзьӹхр х́ќ мй лмыӹзчабвгдеж лзмьыхр нц ӹмчбь.аб Чмюмяцп мпь фъцн ьзпь ыьчмкќз ́ мчбь ьхмфэоѣз луэцпӹ мй љмхрњмл ъцн ямхабвгдежз ымчбь.а
 
-Кмы цӹуз:аб xref:collections.adoc#Base.keytype[`keytype`], xref:base.adoc#Core.typeof[`typeof`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.keytype[`keytype`], xref:./base.adoc#Core.typeof[`typeof`].аб
 
 *Шмучфзамаб*
 
@@ -511,7 +511,7 @@ UInt8
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L184-L203[source] +
 
-[id=Base.indexin]
+[id="Base.indexin"]
 ==== *`Base.indexin`* &mdash; _Function_.
 
 [,julia]
@@ -521,7 +521,7 @@ indexin(a, b)
 
 Уъэьмѣ хз бзъѣ́ охрхрзьхцк мпь ьыърн амлхр хр `b` ѣцњабвгде пкзм мэузю хр `a` ь́пь ыр з ъмйфмф нц `b`.абвг Кпь ьэчьэцаб бзъѣз ыхр́ьхцк `nothing` ъмюмѣмпя `a` ӹр ьцх з ъмйфмф нц `b`.абвгде
 
-Кмы цӹуз:аб xref:sort.adoc#Base.sortperm[`sortperm`], xref:arrays.adoc#Base.findfirst-Tuple{Any}[`findfirst`].аб
+Кмы цӹуз:аб xref:./sort.adoc#Base.sortperm[`sortperm`], xref:./arrays.adoc#Base.findfirst-Tuple{Any}[`findfirst`].аб
 
 *Шмучфзамаб*
 
@@ -549,7 +549,7 @@ julia> indexin(b, a)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2376-L2406[source] +
 
-[id=Base.unique]
+[id="Base.unique"]
 ==== *`Base.unique`* &mdash; _Function_.
 
 [,julia]
@@ -557,9 +557,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 unique(itr)
 ----
 
-Уъэьмѣ хз бзъѣ́ охрхрзьхцк бухц мпь мэшрхэ ыьхмфмўм нц хцрьќмуӱцк `itr`,абвгдежз ыз лмхрфъмьмљ бй xref:base.adoc#Base.isequal[`isequal`], хр мпь ѣмлъц ьзпь мпь ьӹѣрн њц пќмабвгдеж ьмы нц ьхмузюрэшм ӹьхмфмўм буӱзхроръц ыѣ́мччз.абвгд Кпь ьхмфмум мчбь нц мпьабв ьэчхр ыр лмюъмӹмѣч.аб
+Уъэьмѣ хз бзъѣ́ охрхрзьхцк бухц мпь мэшрхэ ыьхмфмўм нц хцрьќмуӱцк `itr`,абвгдежз ыз лмхрфъмьмљ бй xref:./base.adoc#Base.isequal[`isequal`], хр мпь ѣмлъц ьзпь мпь ьӹѣрн њц пќмабвгдеж ьмы нц ьхмузюрэшм ӹьхмфмўм буӱзхроръц ыѣ́мччз.абвгд Кпь ьхмфмум мчбь нц мпьабв ьэчхр ыр лмюъмӹмѣч.аб
 
-Кмы цӹуз:аб xref:collections.adoc#Base.unique![`unique!`], xref:collections.adoc#Base.allunique[`allunique`], xref:collections.adoc#Base.allequal[`allequal`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.unique![`unique!`], xref:./collections.adoc#Base.allunique[`allunique`], xref:./collections.adoc#Base.allequal[`allequal`].аб
 
 *Шмучфзамаб*
 
@@ -642,7 +642,7 @@ julia> unique(A, dims=3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L1612-L1650[source] +
 
-[id=Base.unique!]
+[id="Base.unique!"]
 ==== *`Base.unique!`* &mdash; _Function_.
 
 [,julia]
@@ -683,7 +683,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 unique!(A::AbstractVector)
 ----
 
-Remove duplicate items as determined by xref:base.adoc#Base.isequal[`isequal`], then return the modified `A`. `unique!` will return the elements of `A` in the order that they occur. If you do not care about the order of the returned data, then calling `(sort!(A); unique!(A))` will be much more efficient as long as the elements of `A` can be sorted.
+Remove duplicate items as determined by xref:./base.adoc#Base.isequal[`isequal`], then return the modified `A`. `unique!` will return the elements of `A` in the order that they occur. If you do not care about the order of the returned data, then calling `(sort!(A); unique!(A))` will be much more efficient as long as the elements of `A` can be sorted.
 
 *Examples*
 
@@ -715,7 +715,7 @@ julia> unique!(B)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L337-L370[source] +
 
-[id=Base.allunique]
+[id="Base.allunique"]
 ==== *`Base.allunique`* &mdash; _Function_.
 
 [,julia]
@@ -723,9 +723,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 allunique(itr) -> Bool
 ----
 
-Уъэьмѣ `true` нр уўз ымэузю фцъњ `itr` мѣ́ ькхрьӹрл хмпя љмъзчфцќ пьря xref:base.adoc#Base.isequal[`isequal`].абвгдежз
+Уъэьмѣ `true` нр уўз ымэузю фцъњ `itr` мѣ́ ькхрьӹрл хмпя љмъзчфцќ пьря xref:./base.adoc#Base.isequal[`isequal`].абвгдежз
 
-Кмы цӹуз:аб xref:collections.adoc#Base.unique[`unique`], xref:sort.adoc#Base.issorted[`issorted`], xref:collections.adoc#Base.allequal[`allequal`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.unique[`unique`], xref:./sort.adoc#Base.issorted[`issorted`], xref:./collections.adoc#Base.allequal[`allequal`].аб
 
 *Шмучфзамаб*
 
@@ -746,7 +746,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L381-L402[source] +
 
-[id=Base.allequal]
+[id="Base.allequal"]
 ==== *`Base.allequal`* &mdash; _Function_.
 
 [,julia]
@@ -754,9 +754,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 allequal(itr) -> Bool
 ----
 
-Уъэьмѣ `true` нр уўз ымэузю фцъњ `itr` мѣ́ ӱзэшм хмпя лмъзчфцк пьря xref:base.adoc#Base.isequal[`isequal`].абвгдеж
+Уъэьмѣ `true` нр уўз ымэузю фцъњ `itr` мѣ́ ӱзэшм хмпя лмъзчфцк пьря xref:./base.adoc#Base.isequal[`isequal`].абвгдеж
 
-Кмы цӹуз:аб xref:collections.adoc#Base.unique[`unique`], xref:collections.adoc#Base.allunique[`allunique`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.unique[`unique`], xref:./collections.adoc#Base.allunique[`allunique`].аб
 
 !!! compat "Julia 1.8"
     Кпь `allequal` хцрькхэн ымърэшмѣ ьз ьӹзму Ерўэс 1.8.абвгд
@@ -783,7 +783,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L430-L457[source] +
 
-[id=Base.reduce-Tuple{Any, Any}]
+[id="Base.reduce-Tuple{Any, Any}"]
 ==== *`Base.reduce`* &mdash; _Method_.
 
 [,julia]
@@ -797,7 +797,7 @@ reduce(op, itr; [init])
 
 Шхцрькэлмъ ѣцн хрзьъмќ љмыэ-бухцффцк ӹѣцьзъмчц б́ф мюзп ўзрќмчы ӹхцрь́ьхмфмучфр, лхзабвгдежзик луэцпы мй љмӹэ лзмьыхр:абв `maximum(itr)`, `minimum(itr)`, `sum(itr)`, `prod(itr)`,а  `any(itr)`, `all(itr)`.а
 
-Кпь бьрюрьзркцыӹз нц мпь хцрьќэлмъ ыр хцрь́ьхмфмучфр ьхмљхмчмл.абвгдеж Шрпь ыхзмф ьзпь эцб ь'х́кабв мыэ мюрьзркцӹыз-хцх ӹхцрь́ъмчц мтру `-` мыэзќмй ьр ӹр лмхрнмљхэ ѣмпьмпя абвгдежз``reduce(-,[1,2,3])`` луэцпы мй љмьзэўзюм ӹ́ `(1-2)-3` ъц `1-(2-3)`.абв Кыэ xref:collections.adoc#Base.foldl-Tuple{Any, Any}[`foldl`] ъцаб xref:collections.adoc#Base.foldr-Tuple{Any, Any}[`foldr`] лзмьыхр ъцн љммьхзѣ́эо ьњму ъц ьпорѣ бьрюрьзркцӹыз.абвгде
+Кпь бьрюрьзркцыӹз нц мпь хцрьќэлмъ ыр хцрь́ьхмфмучфр ьхмљхмчмл.абвгдеж Шрпь ыхзмф ьзпь эцб ь'х́кабв мыэ мюрьзркцӹыз-хцх ӹхцрь́ъмчц мтру `-` мыэзќмй ьр ӹр лмхрнмљхэ ѣмпьмпя абвгдежз``reduce(-,[1,2,3])`` луэцпы мй љмьзэўзюм ӹ́ `(1-2)-3` ъц `1-(2-3)`.абв Кыэ xref:./collections.adoc#Base.foldl-Tuple{Any, Any}[`foldl`] ъцаб xref:./collections.adoc#Base.foldr-Tuple{Any, Any}[`foldr`] лзмьыхр ъцн љммьхзѣ́эо ьњму ъц ьпорѣ бьрюрьзркцӹыз.абвгде
 
 Кфцы ӹхцрьзъмчц мьзуэфэкќ́ ѣцъѣм.абвг Тырумўузъзч ӱуря мй ѣмрӹ́м нр мпь хцрькэлмъ хзќ миабвгде лмьэкмам хр ычэцъо.аб Къэьэн ыхцрӹѣмю њц Еруэс ьпорф мохзпк мпь фпьръцоўз.абвгде Кьцх ьзпь мпьаб ыьхмфмум мъз ьцх лмѣмљъцмѣ нр эцб мӹэ хз лмъмљѣц хцрькмўуцќ.абвгдеж
 
@@ -814,7 +814,7 @@ julia> reduce(*, [2; 3; 4]; init=-1)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L450-L482[source] +
 
-[id=Base.foldl-Tuple{Any, Any}]
+[id="Base.foldl-Tuple{Any, Any}"]
 ==== *`Base.foldl`* &mdash; _Method_.
 
 [,julia]
@@ -822,9 +822,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 foldl(op, itr; [init])
 ----
 
-Ктру xref:collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`], ьэй пьря лммьхзъзэо ьнмў бьрюрь́ркцыӹз.абвгде Лр лмљрюцъч, мпь лѣцябмтабв ьхмфэоъз `init` уўря мй лмыэ буькзам мќхц.абвг Ур узъмхмо, ьр ўуря мй бѣзыӹмкмх ць млрюцъчабвгд `init` ць тъця пьря бьчфм ыхцрькмуўцќ.абвг
+Ктру xref:./collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`], ьэй пьря лммьхзъзэо ьнмў бьрюрь́ркцыӹз.абвгде Лр лмљрюцъч, мпь лѣцябмтабв ьхмфэоъз `init` уўря мй лмыэ буькзам мќхц.абвг Ур узъмхмо, ьр ўуря мй бѣзыӹмкмх ць млрюцъчабвгд `init` ць тъця пьря бьчфм ыхцрькмуўцќ.абвг
 
-Кмы цӹуз xref:collections.adoc#Base.mapfoldl-Tuple{Any, Any, Any}[`mapfoldl`], xref:collections.adoc#Base.foldr-Tuple{Any, Any}[`foldr`], xref:arrays.adoc#Base.accumulate[`accumulate`].абв
+Кмы цӹуз xref:./collections.adoc#Base.mapfoldl-Tuple{Any, Any, Any}[`mapfoldl`], xref:./collections.adoc#Base.foldr-Tuple{Any, Any}[`foldr`], xref:./arrays.adoc#Base.accumulate[`accumulate`].абв
 
 *Шмучфзамаб*
 
@@ -842,7 +842,7 @@ julia> accumulate(=>, (1,2,3,4))
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L172-L192[source] +
 
-[id=Base.foldr-Tuple{Any, Any}]
+[id="Base.foldr-Tuple{Any, Any}"]
 ==== *`Base.foldr`* &mdash; _Method_.
 
 [,julia]
@@ -850,7 +850,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 foldr(op, itr; [init])
 ----
 
-Ктру xref:collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`], ьэй пьря лммьхзъзэо ьпорѣ бьрюрь́ркцыӹз.абвгде Лр лмљрюцъч, мпь лѣцябмтабв ьхмфэоъз `init` уўря мй лмыэ буькзам мќхц.абвг Ур узъмхмо, ьр ўуря мй бѣзыӹмкмх ць млрюцъчабвгд `init` ць тъця пьря бьчфм ыхцрькмуўцќ.абвг
+Ктру xref:./collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`], ьэй пьря лммьхзъзэо ьпорѣ бьрюрь́ркцыӹз.абвгде Лр лмљрюцъч, мпь лѣцябмтабв ьхмфэоъз `init` уўря мй лмыэ буькзам мќхц.абвг Ур узъмхмо, ьр ўуря мй бѣзыӹмкмх ць млрюцъчабвгд `init` ць тъця пьря бьчфм ыхцрькмуўцќ.абвг
 
 *Шмучфзамаб*
 
@@ -865,7 +865,7 @@ julia> foldr(=>, 1:4; init=0)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L221-L236[source] +
 
-[id=Base.maximum]
+[id="Base.maximum"]
 ==== *`Base.maximum`* &mdash; _Function_.
 
 [,julia]
@@ -932,9 +932,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 maximum(A::AbstractArray; dims)
 ----
 
-Compute the maximum value of an array over the given dimensions. See also the xref:math.adoc#Base.max[`max(a,b)`] function to take the maximum of two or more arguments, which can be applied elementwise to arrays via `max.(a,b)`.
+Compute the maximum value of an array over the given dimensions. See also the xref:./math.adoc#Base.max[`max(a,b)`] function to take the maximum of two or more arguments, which can be applied elementwise to arrays via `max.(a,b)`.
 
-See also: xref:collections.adoc#Base.maximum![`maximum!`], xref:collections.adoc#Base.extrema[`extrema`], xref:collections.adoc#Base.findmax[`findmax`], xref:collections.adoc#Base.argmax[`argmax`].
+See also: xref:./collections.adoc#Base.maximum![`maximum!`], xref:./collections.adoc#Base.extrema[`extrema`], xref:./collections.adoc#Base.findmax[`findmax`], xref:./collections.adoc#Base.argmax[`argmax`].
 
 *Examples*
 
@@ -984,7 +984,7 @@ julia> maximum(abs2, A, dims=2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L649-L671[source] +
 
-[id=Base.maximum!]
+[id="Base.maximum!"]
 ==== *`Base.maximum!`* &mdash; _Function_.
 
 [,julia]
@@ -1015,7 +1015,7 @@ julia> maximum!([1 1], A)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L674-L695[source] +
 
-[id=Base.minimum]
+[id="Base.minimum"]
 ==== *`Base.minimum`* &mdash; _Function_.
 
 [,julia]
@@ -1082,9 +1082,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 minimum(A::AbstractArray; dims)
 ----
 
-Compute the minimum value of an array over the given dimensions. See also the xref:math.adoc#Base.min[`min(a,b)`] function to take the minimum of two or more arguments, which can be applied elementwise to arrays via `min.(a,b)`.
+Compute the minimum value of an array over the given dimensions. See also the xref:./math.adoc#Base.min[`min(a,b)`] function to take the minimum of two or more arguments, which can be applied elementwise to arrays via `min.(a,b)`.
 
-See also: xref:collections.adoc#Base.minimum![`minimum!`], xref:collections.adoc#Base.extrema[`extrema`], xref:collections.adoc#Base.findmin[`findmin`], xref:collections.adoc#Base.argmin[`argmin`].
+See also: xref:./collections.adoc#Base.minimum![`minimum!`], xref:./collections.adoc#Base.extrema[`extrema`], xref:./collections.adoc#Base.findmin[`findmin`], xref:./collections.adoc#Base.argmin[`argmin`].
 
 *Examples*
 
@@ -1134,7 +1134,7 @@ julia> minimum(abs2, A, dims=2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L726-L748[source] +
 
-[id=Base.minimum!]
+[id="Base.minimum!"]
 ==== *`Base.minimum!`* &mdash; _Function_.
 
 [,julia]
@@ -1165,7 +1165,7 @@ julia> minimum!([1 1], A)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L751-L772[source] +
 
-[id=Base.extrema]
+[id="Base.extrema"]
 ==== *`Base.extrema`* &mdash; _Function_.
 
 [,julia]
@@ -1229,7 +1229,7 @@ extrema(A::AbstractArray; dims) -> Array{Tuple}
 
 Compute the minimum and maximum elements of an array over the given dimensions.
 
-See also: xref:collections.adoc#Base.minimum[`minimum`], xref:collections.adoc#Base.maximum[`maximum`], xref:collections.adoc#Base.extrema![`extrema!`].
+See also: xref:./collections.adoc#Base.minimum[`minimum`], xref:./collections.adoc#Base.maximum[`maximum`], xref:./collections.adoc#Base.extrema![`extrema!`].
 
 *Examples*
 
@@ -1267,7 +1267,7 @@ Compute the minimum and maximum of `f` applied to each element in the given dime
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L805-L813[source] +
 
-[id=Base.extrema!]
+[id="Base.extrema!"]
 ==== *`Base.extrema!`* &mdash; _Function_.
 
 [,julia]
@@ -1301,7 +1301,7 @@ julia> extrema!([(1, 1);; (1, 1)], A)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L816-L840[source] +
 
-[id=Base.argmax]
+[id="Base.argmax"]
 ==== *`Base.argmax`* &mdash; _Function_.
 
 [,julia]
@@ -1326,7 +1326,7 @@ Values are compared with `isless`.
 !!! compat "Julia 1.7"
     This method requires Julia 1.7 or later.
 
-See also xref:collections.adoc#Base.argmin[`argmin`], xref:collections.adoc#Base.findmax[`findmax`].
+See also xref:./collections.adoc#Base.argmin[`argmin`], xref:./collections.adoc#Base.findmax[`findmax`].
 
 *Examples*
 
@@ -1351,7 +1351,7 @@ The collection must not be empty.
 
 Values are compared with `isless`.
 
-See also: xref:collections.adoc#Base.argmin[`argmin`], xref:collections.adoc#Base.findmax[`findmax`].
+See also: xref:./collections.adoc#Base.argmin[`argmin`], xref:./collections.adoc#Base.findmax[`findmax`].
 
 *Examples*
 
@@ -1396,7 +1396,7 @@ julia> argmax(A, dims=2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1201-L1223[source] +
 
-[id=Base.argmin]
+[id="Base.argmin"]
 ==== *`Base.argmin`* &mdash; _Function_.
 
 [,julia]
@@ -1421,7 +1421,7 @@ Return a value `x` in the domain of `f` for which `f(x)` is minimised. If there 
 !!! compat "Julia 1.7"
     This method requires Julia 1.7 or later.
 
-See also xref:collections.adoc#Base.argmax[`argmax`], xref:collections.adoc#Base.findmin[`findmin`].
+See also xref:./collections.adoc#Base.argmax[`argmax`], xref:./collections.adoc#Base.findmin[`findmin`].
 
 *Examples*
 
@@ -1449,7 +1449,7 @@ The collection must not be empty.
 
 `NaN` is treated as less than all other values except `missing`.
 
-See also: xref:collections.adoc#Base.argmax[`argmax`], xref:collections.adoc#Base.findmin[`findmin`].
+See also: xref:./collections.adoc#Base.argmax[`argmax`], xref:./collections.adoc#Base.findmin[`findmin`].
 
 *Examples*
 
@@ -1494,7 +1494,7 @@ julia> argmin(A, dims=2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1176-L1198[source] +
 
-[id=Base.findmax]
+[id="Base.findmax"]
 ==== *`Base.findmax`* &mdash; _Function_.
 
 [,julia]
@@ -1536,7 +1536,7 @@ findmax(itr) -> (x, index)
 
 Return the maximal element of the collection `itr` and its index or key. If there are multiple maximal elements, then the first one will be returned. Values are compared with `isless`.
 
-See also: xref:collections.adoc#Base.findmin[`findmin`], xref:collections.adoc#Base.argmax[`argmax`], xref:collections.adoc#Base.maximum[`maximum`].
+See also: xref:./collections.adoc#Base.findmin[`findmin`], xref:./collections.adoc#Base.argmax[`argmax`], xref:./collections.adoc#Base.maximum[`maximum`].
 
 *Examples*
 
@@ -1578,7 +1578,7 @@ julia> findmax(A, dims=2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1139-L1158[source] +
 
-[id=Base.findmin]
+[id="Base.findmin"]
 ==== *`Base.findmin`* &mdash; _Function_.
 
 [,julia]
@@ -1620,7 +1620,7 @@ findmin(itr) -> (x, index)
 
 Return the minimal element of the collection `itr` and its index or key. If there are multiple minimal elements, then the first one will be returned. `NaN` is treated as less than all other values except `missing`.
 
-See also: xref:collections.adoc#Base.findmax[`findmax`], xref:collections.adoc#Base.argmin[`argmin`], xref:collections.adoc#Base.minimum[`minimum`].
+See also: xref:./collections.adoc#Base.findmax[`findmax`], xref:./collections.adoc#Base.argmin[`argmin`], xref:./collections.adoc#Base.minimum[`minimum`].
 
 *Examples*
 
@@ -1662,7 +1662,7 @@ julia> findmin(A, dims=2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1092-L1111[source] +
 
-[id=Base.findmax!]
+[id="Base.findmax!"]
 ==== *`Base.findmax!`* &mdash; _Function_.
 
 [,julia]
@@ -1674,7 +1674,7 @@ findmax!(rval, rind, A) -> (maxval, index)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1127-L1133[source] +
 
-[id=Base.findmin!]
+[id="Base.findmin!"]
 ==== *`Base.findmin!`* &mdash; _Function_.
 
 [,julia]
@@ -1686,7 +1686,7 @@ findmin!(rval, rind, A) -> (minval, index)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L1080-L1086[source] +
 
-[id=Base.sum]
+[id="Base.sum"]
 ==== *`Base.sum`* &mdash; _Function_.
 
 [,julia]
@@ -1739,7 +1739,7 @@ The value returned for empty `itr` can be specified by `init`. It must be the ad
 !!! compat "Julia 1.6"
     Keyword argument `init` requires Julia 1.6 or later.
 
-See also: xref:collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`], xref:collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], xref:collections.adoc#Base.count[`count`], xref:collections.adoc#Base.union[`union`].
+See also: xref:./collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`], xref:./collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], xref:./collections.adoc#Base.count[`count`], xref:./collections.adoc#Base.union[`union`].
 
 *Examples*
 
@@ -1808,7 +1808,7 @@ julia> sum(abs2, A, dims=2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L499-L521[source] +
 
-[id=Base.sum!]
+[id="Base.sum!"]
 ==== *`Base.sum!`* &mdash; _Function_.
 
 [,julia]
@@ -1839,7 +1839,7 @@ julia> sum!([1 1], A)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L524-L545[source] +
 
-[id=Base.prod]
+[id="Base.prod"]
 ==== *`Base.prod`* &mdash; _Function_.
 
 [,julia]
@@ -1879,7 +1879,7 @@ The value returned for empty `itr` can be specified by `init`. It must be the mu
 !!! compat "Julia 1.6"
     Keyword argument `init` requires Julia 1.6 or later.
 
-See also: xref:collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`], xref:arrays.adoc#Base.cumprod[`cumprod`], xref:collections.adoc#Base.any-Tuple{Any}[`any`].
+See also: xref:./collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`], xref:./arrays.adoc#Base.cumprod[`cumprod`], xref:./collections.adoc#Base.any-Tuple{Any}[`any`].
 
 *Examples*
 
@@ -1948,7 +1948,7 @@ julia> prod(abs2, A, dims=2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L572-L594[source] +
 
-[id=Base.prod!]
+[id="Base.prod!"]
 ==== *`Base.prod!`* &mdash; _Function_.
 
 [,julia]
@@ -1979,7 +1979,7 @@ julia> prod!([1 1], A)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L597-L618[source] +
 
-[id=Base.any-Tuple{Any}]
+[id="Base.any-Tuple{Any}"]
 ==== *`Base.any`* &mdash; _Method_.
 
 [,julia]
@@ -1987,14 +1987,14 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 any(itr) -> Bool
 ----
 
-Ъымь ъмпьмпя бхз ӹьхмфмум нц з х́мўццй хцрькмуӱцќ мѣз `true`, охрхъэьмѣ `true` ызабвгдежз хццы ӹз мпь ьыърн `true` мэузю хр `itr` ӹр лмѣмьхэцкхм (охрьрэќърк-ьѣцпы).абвгдежз Фьаб ьрэкърќ-ьѣцпы хц `false`, мӹэ xref:collections.adoc#Base.all-Tuple{Any}[`all`].абв
+Ъымь ъмпьмпя бхз ӹьхмфмум нц з х́мўццй хцрькмуӱцќ мѣз `true`, охрхъэьмѣ `true` ызабвгдежз хццы ӹз мпь ьыърн `true` мэузю хр `itr` ӹр лмѣмьхэцкхм (охрьрэќърк-ьѣцпы).абвгдежз Фьаб ьрэкърќ-ьѣцпы хц `false`, мӹэ xref:./collections.adoc#Base.all-Tuple{Any}[`all`].абв
 
-Лр мпь ьэчхр ыхрзьхцк xref:base.adoc#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `false` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `true` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
+Лр мпь ьэчхр ыхрзьхцк xref:./base.adoc#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `false` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `true` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
 
 [cols=4*]
 |===
-| Кмы цӹуз:аб xref:collections.adoc#Base.all-Tuple{Any}[`all`], xref:collections.adoc#Base.count[`count`], xref:collections.adoc#Base.sum[`sum`], [`\|`](math.adoc#Base.:
-| ), , [`\|\|`](math.adoc#
+| Кмы цӹуз:аб xref:./collections.adoc#Base.all-Tuple{Any}[`all`], xref:./collections.adoc#Base.count[`count`], xref:./collections.adoc#Base.sum[`sum`], [`\|`](math.md#Base.:
+| ), , [`\|\|`](math.md#
 |
 | ).абв
 |===
@@ -2026,7 +2026,7 @@ missing
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1089-L1124[source] +
 
-[id=Base.any-Tuple{AbstractArray, Any}]
+[id="Base.any-Tuple{AbstractArray, Any}"]
 ==== *`Base.any`* &mdash; _Method_.
 
 [,julia]
@@ -2034,9 +2034,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 any(p, itr) -> Bool
 ----
 
-Кхрфъмьмл ѣмпьмпя мьзкрљмъч `p` ыхѣэьмъ `true` ѣцн бхз ӹьхмфмум њц `itr`, охрхъэьмѣабвгдежз `true` ыз хццӹ ыз мпь ьӹърн фмьр хр `itr` ѣцњ пкрпя `p` ыхъэьмѣ `true` ӹр лмъмьхэцќхмабвгдежз (охрьрэкърќ-ьѣцпы).аб Фь ьрэкърќ-ьѣцпы хц `false`, мӹэ xref:collections.adoc#Base.all-Tuple{Any}[`all`].абвг
+Кхрфъмьмл ѣмпьмпя мьзкрљмъч `p` ыхѣэьмъ `true` ѣцн бхз ӹьхмфмум њц `itr`, охрхъэьмѣабвгдежз `true` ыз хццӹ ыз мпь ьӹърн фмьр хр `itr` ѣцњ пкрпя `p` ыхъэьмѣ `true` ӹр лмъмьхэцќхмабвгдежз (охрьрэкърќ-ьѣцпы).аб Фь ьрэкърќ-ьѣцпы хц `false`, мӹэ xref:./collections.adoc#Base.all-Tuple{Any}[`all`].абвг
 
-Лр мпь ьэчхр ыхрзьхцк xref:base.adoc#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `false` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `true` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
+Лр мпь ьэчхр ыхрзьхцк xref:./base.adoc#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `false` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `true` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
 
 *Шмучфзамаб*
 
@@ -2064,7 +2064,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1166-L1198[source] +
 
-[id=Base.any!]
+[id="Base.any!"]
 ==== *`Base.any!`* &mdash; _Function_.
 
 [,julia]
@@ -2095,7 +2095,7 @@ julia> any!([1 1], A)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L963-L985[source] +
 
-[id=Base.all-Tuple{Any}]
+[id="Base.all-Tuple{Any}"]
 ==== *`Base.all`* &mdash; _Method_.
 
 [,julia]
@@ -2103,11 +2103,11 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 all(itr) -> Bool
 ----
 
-Ъымь ъмпьмпя уўз ӹьхмфмум нц з х́мӱццй хцрькмуўцќ мѣз `true`, охрхъэьмѣ `false` ызабвгдежз хццы ӹз мпь ьыърн `false` мэузю хр `itr` ӹр лмѣмьхэцкхм (охрьрэќърк-ьѣцпы).абвгдежз Фьаб ьрэкърќ-ьѣцпы хц `true`, мӹэ xref:collections.adoc#Base.any-Tuple{Any}[`any`].абв
+Ъымь ъмпьмпя уўз ӹьхмфмум нц з х́мӱццй хцрькмуўцќ мѣз `true`, охрхъэьмѣ `false` ызабвгдежз хццы ӹз мпь ьыърн `false` мэузю хр `itr` ӹр лмѣмьхэцкхм (охрьрэќърк-ьѣцпы).абвгдежз Фьаб ьрэкърќ-ьѣцпы хц `true`, мӹэ xref:./collections.adoc#Base.any-Tuple{Any}[`any`].абв
 
-Лр мпь ьэчхр ыхрзьхцк xref:base.adoc#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `true` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `false` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
+Лр мпь ьэчхр ыхрзьхцк xref:./base.adoc#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `true` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `false` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
 
-Кмы цӹуз:аб xref:collections.adoc#Base.all![`all!`], xref:collections.adoc#Base.any-Tuple{Any}[`any`], xref:collections.adoc#Base.count[`count`], xref:math.adoc#Base.:&[`&`], , xref:math.adoc#&&[`&&`], xref:collections.adoc#Base.allunique[`allunique`].абвг
+Кмы цӹуз:аб xref:./collections.adoc#Base.all![`all!`], xref:./collections.adoc#Base.any-Tuple{Any}[`any`], xref:./collections.adoc#Base.count[`count`], xref:./math.adoc#Base.:&[`&`], , xref:./math.adoc#&&[`&&`], xref:./collections.adoc#Base.allunique[`allunique`].абвг
 
 *Шмучфзамаб*
 
@@ -2137,7 +2137,7 @@ missing
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1127-L1163[source] +
 
-[id=Base.all-Tuple{AbstractArray, Any}]
+[id="Base.all-Tuple{AbstractArray, Any}"]
 ==== *`Base.all`* &mdash; _Method_.
 
 [,julia]
@@ -2145,9 +2145,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 all(p, itr) -> Bool
 ----
 
-Кхрфъмьмл ѣмпьмпя мьзкрљмъч `p` ыхѣэьмъ `true` ѣцн уўз ӹьхмфмум њц `itr`, охрхъэьмѣабвгдежз `false` ыз хццӹ ыз мпь ьӹърн фмьр хр `itr` ѣцњ пкрпя `p` ыхъэьмѣ `false` ӹр лмъмьхэцќхмабвгдежз (охрьрэкърќ-ьѣцпы).аб Фь ьрэкърќ-ьѣцпы хц `true`, мӹэ xref:collections.adoc#Base.any-Tuple{Any}[`any`].абвг
+Кхрфъмьмл ѣмпьмпя мьзкрљмъч `p` ыхѣэьмъ `true` ѣцн уўз ӹьхмфмум њц `itr`, охрхъэьмѣабвгдежз `false` ыз хццӹ ыз мпь ьӹърн фмьр хр `itr` ѣцњ пкрпя `p` ыхъэьмѣ `false` ӹр лмъмьхэцќхмабвгдежз (охрьрэкърќ-ьѣцпы).аб Фь ьрэкърќ-ьѣцпы хц `true`, мӹэ xref:./collections.adoc#Base.any-Tuple{Any}[`any`].абвг
 
-Лр мпь ьэчхр ыхрзьхцк xref:base.adoc#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `true` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `false` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
+Лр мпь ьэчхр ыхрзьхцк xref:./base.adoc#Base.missing[`missing`] ӹмэузю, хъэьмѣ `missing` нр ўу́ охрыӹрф-хцхабвгдеж ымэузю мъз `true` (ѣц бўьхму́юрэшм, нр мпь ьэчхр ӹхрзьхцк цх `false` мэӱзю), охряцуўцњабвгдежзи https://en.wikipedia.org/wiki/Three-valued_logic[лмэузю-ммъпь кроцў].аб
 
 *Шмучфзамаб*
 
@@ -2174,7 +2174,7 @@ true
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L1214-L1245[source] +
 
-[id=Base.all!]
+[id="Base.all!"]
 ==== *`Base.all!`* &mdash; _Function_.
 
 [,julia]
@@ -2205,7 +2205,7 @@ julia> all!([1 1], A)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L891-L912[source] +
 
-[id=Base.count]
+[id="Base.count"]
 ==== *`Base.count`* &mdash; _Function_.
 
 [,julia]
@@ -2218,7 +2218,7 @@ count([f=identity,] itr; init=0) -> Integer
 !!! compat "Julia 1.6"
     `init` лъцябмт ызя љмлљз хр Еруэс 1.6.абвг
 
-Кмы цӹуз:аб xref:collections.adoc#Base.any-Tuple{Any}[`any`], xref:collections.adoc#Base.sum[`sum`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.any-Tuple{Any}[`any`], xref:./collections.adoc#Base.sum[`sum`].аб
 
 *Шмучфзамаб*
 
@@ -2289,7 +2289,7 @@ julia> count(<=(2), A, dims=2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reducedim.jl#L410-L438[source] +
 
-[id=Base.foreach]
+[id="Base.foreach"]
 ==== *`Base.foreach`* &mdash; _Function_.
 
 [,julia]
@@ -2299,7 +2299,7 @@ foreach(f, c...) -> Nothing
 
 Сузк хцрьќхэн `f` хц пкзм ьхмфмўм њц муй́ъмьр `c`.абвгд Чцн мучрьўэф муйзъмьр ыьхмфэоѣз, `f` ӹр лмӱу́к мыряьхмфмўм, љхз хцрьзъмьр ӹчцьы хмпяабвгдежзик бхз ъцьзѣмьр ыр лмпӹрхрн.абв
 
-`foreach` луэцпы мй љмӹэ лзмьыхр нц xref:collections.adoc#Base.map[`map`] хмпя мпь ӹьўэымъ њц `f` мѣз ьцхабвгдеж лмљммх, ъцн мучфзам хр `foreach(println, array)`.абв
+`foreach` луэцпы мй љмӹэ лзмьыхр нц xref:./collections.adoc#Base.map[`map`] хмпя мпь ӹьўэымъ њц `f` мѣз ьцхабвгдеж лмљммх, ъцн мучфзам хр `foreach(println, array)`.абв
 
 *Шмучфзамаб*
 
@@ -2323,7 +2323,7 @@ julia> foreach((x, y) -> println(x, " with ", y), tri, 'a':'z')
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L2745-L2772[source] +
 
-[id=Base.map]
+[id="Base.map"]
 ==== *`Base.map`* &mdash; _Function_.
 
 [,julia]
@@ -2333,7 +2333,7 @@ map(f, c...) -> collection
 
 Тъцныхзѣь хцрькмуўцќ `c` бй охрбуччз `f` ць пќм ьхмфмӱм.абвгде Чцн мучрьўэф хцрькмуӱцќ ыьхмфэоъз,абвг буччз `f` мыряьхмфмўм, лхз чцьӹ хмпя хмпя бх́ нц фмпь ыр љмьӹэзпам.абвгдежз
 
-Кмы цӹуз xref:collections.adoc#Base.map![`map!`], xref:collections.adoc#Base.foreach[`foreach`], xref:collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], xref:arrays.adoc#Base.mapslices[`mapslices`], xref:iterators.adoc#Base.Iterators.zip[`zip`], xref:iterators.adoc#Base.Iterators.map[`Iterators.map`].абвг
+Кмы цӹуз xref:./collections.adoc#Base.map![`map!`], xref:./collections.adoc#Base.foreach[`foreach`], xref:./collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], xref:./arrays.adoc#Base.mapslices[`mapslices`], xref:./iterators.adoc#Base.Iterators.zip[`zip`], xref:./iterators.adoc#Base.Iterators.map[`Iterators.map`].абвг
 
 *Шмучфзамаб*
 
@@ -2358,9 +2358,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 map(f, A::AbstractArray...) -> N-array
 ----
 
-When acting on multi-dimensional arrays of the same xref:arrays.adoc#Base.ndims[`ndims`], they must all have the same xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`], and the answer will too.
+When acting on multi-dimensional arrays of the same xref:./arrays.adoc#Base.ndims[`ndims`], they must all have the same xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`], and the answer will too.
 
-See also xref:arrays.adoc#Base.Broadcast.broadcast[`broadcast`], which allows mismatched sizes.
+See also xref:./arrays.adoc#Base.Broadcast.broadcast[`broadcast`], which allows mismatched sizes.
 
 *Examples*
 
@@ -2382,7 +2382,7 @@ julia> map(+, [1 2; 3 4], [1,10,100,1000], zeros(3,1))  # iterates until 3rd is 
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L3030-L3054[source] +
 
-[id=Base.map!]
+[id="Base.map!"]
 ==== *`Base.map!`* &mdash; _Function_.
 
 [,julia]
@@ -2390,9 +2390,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 map!(function, destination, collection...)
 ----
 
-Ктру xref:collections.adoc#Base.map[`map`], ьэй ымъцьӹ мпь ьўэымѣ хр `destination` ъмпьзѣ хзпь ́ ямхабвгде хцрькмуўцќ.а `destination` ьыэф мй ьз ьӹзму ы́ моъзў ӹз мпь ьымуӱ́фӹ хцрькмуўцќ.абвгде
+Ктру xref:./collections.adoc#Base.map[`map`], ьэй ымъцьӹ мпь ьўэымѣ хр `destination` ъмпьзѣ хзпь ́ ямхабвгде хцрькмуўцќ.а `destination` ьыэф мй ьз ьӹзму ы́ моъзў ӹз мпь ьымуӱ́фӹ хцрькмуўцќ.абвгде
 
-Кмы цӹуз:аб xref:collections.adoc#Base.map[`map`], xref:collections.adoc#Base.foreach[`foreach`], xref:iterators.adoc#Base.Iterators.zip[`zip`], xref:c.adoc#Base.copyto![`copyto!`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.map[`map`], xref:./collections.adoc#Base.foreach[`foreach`], xref:./iterators.adoc#Base.Iterators.zip[`zip`], xref:./c.adoc#Base.copyto![`copyto!`].аб
 
 *Шмучфзамаб*
 
@@ -2445,7 +2445,7 @@ ValueIterator for a Dict{Symbol, Int64} with 2 entries. Values:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L587-L609[source] +
 
-[id=Base.mapreduce-Tuple{Any, Any, Any}]
+[id="Base.mapreduce-Tuple{Any, Any, Any}"]
 ==== *`Base.mapreduce`* &mdash; _Method_.
 
 [,julia]
@@ -2455,7 +2455,7 @@ mapreduce(f, op, itrs...; [init])
 
 Яуччз хцрькхэн `f` ць пќзм ы(ьхмфмўм) хр `itrs`, лх́ хмпь мкэљмъ мпь ьуэӹмѣ охрыэ мпь бъзхрйабвгдежзик хцрькхэн `op`.а Лр лмљрюцъч, `init` ьыэф мй з узѣьэмх ьхмфмўм ъцн `op` ь́пь уӱря ми лмхѣэьмъабвгдежз ъцн бьчфм ыхцрькмуўцќ.абв Ър ыр лмрнркмчӹхэ ъмпьмпя `init` ыр љмӹэ ѣцњ бьчфм-хцх ыхцрьќмуўцк.абвгдеж Ур узъмхмо, ьр ўуря мй бѣзыӹмкмх ць млрюцъч `init` ць тѣця пьря бьчфм ыхцрьќмӱуцк.абвгдежзи
 
-xref:collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`] ыр буўзхцрькхэн ьхмузюрэшм ць охрӱу́ќабвгд `reduce(op, map(f, itr); init=init)`, ьэй уўря хр узъмхмо мьэкмам ѣмьызн мќхрӹ цхабвгд мьзрлмфъмьхр хцрькмуўцќ ыљммх ць мй лмьзмѣк.абвгд Кмы хцрьзьхмфэкцл ъцн xref:collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`] љхзабв xref:collections.adoc#Base.map[`map`].а
+xref:./collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`] ыр буўзхцрькхэн ьхмузюрэшм ць охрӱу́ќабвгд `reduce(op, map(f, itr); init=init)`, ьэй уўря хр узъмхмо мьэкмам ѣмьызн мќхрӹ цхабвгд мьзрлмфъмьхр хцрькмуўцќ ыљммх ць мй лмьзмѣк.абвгд Кмы хцрьзьхмфэкцл ъцн xref:./collections.adoc#Base.reduce-Tuple{Any, Any}[`reduce`] љхзабв xref:./collections.adoc#Base.map[`map`].а
 
 !!! compat "Julia 1.2"
     `mapreduce` пьря мучрьўэф ыъцьзѣмьр ӹмърэшмѣ Еруэс 1.2 ъц ѣмьзӱ.абвгде
@@ -2468,11 +2468,11 @@ julia> mapreduce(x->x^2, +, [1:3;]) # == 1 + 4 + 9а
 14
 ----
 
-Кпь бьрюрьзркцыӹз нц мпь хцрьќэлмъ ыр ьхмљхмчмл-хцрь́ьхмфмучфр.абвгдеж Яуўзхцрьрлљз, мфцыаб ыхцрьзьхмфмучфр бзф мӹэмъ мпь хѣэьмъ мэў́ю нц `f` ѣцњ ыьхмфмум ьзпь ъзмчч́ мӱчрьуэф ӹмфрь храбвгдежзик `itr`.аб Кыэ xref:collections.adoc#Base.mapfoldl-Tuple{Any, Any, Any}[`mapfoldl`] ъц xref:collections.adoc#Base.mapfoldr-Tuple{Any, Any, Any}[`mapfoldr`] лзмьӹхр ѣцнабв лммьхзъзэо ьнму ѣц ьпоръ бьрюрь́ркцыӹз љхз хцрь́ќцюхр њц `f` ѣцн бъмюм мэўзю.абвгдежзи
+Кпь бьрюрьзркцыӹз нц мпь хцрьќэлмъ ыр ьхмљхмчмл-хцрь́ьхмфмучфр.абвгдеж Яуўзхцрьрлљз, мфцыаб ыхцрьзьхмфмучфр бзф мӹэмъ мпь хѣэьмъ мэў́ю нц `f` ѣцњ ыьхмфмум ьзпь ъзмчч́ мӱчрьуэф ӹмфрь храбвгдежзик `itr`.аб Кыэ xref:./collections.adoc#Base.mapfoldl-Tuple{Any, Any, Any}[`mapfoldl`] ъц xref:./collections.adoc#Base.mapfoldr-Tuple{Any, Any, Any}[`mapfoldr`] лзмьӹхр ѣцнабв лммьхзъзэо ьнму ѣц ьпоръ бьрюрь́ркцыӹз љхз хцрь́ќцюхр њц `f` ѣцн бъмюм мэўзю.абвгдежзи
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L275-L301[source] +
 
-[id=Base.mapfoldl-Tuple{Any, Any, Any}]
+[id="Base.mapfoldl-Tuple{Any, Any, Any}"]
 ==== *`Base.mapfoldl`* &mdash; _Method_.
 
 [,julia]
@@ -2480,11 +2480,11 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 mapfoldl(f, op, itr; [init])
 ----
 
-Ктру xref:collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], ьэй пьря лммьхзъзэо ьнмў бьрюрь́ркцыӹз, ыз хр xref:collections.adoc#Base.foldl-Tuple{Any, Any}[`foldl`].абвгдеж Лр лмљрюцъч, мпь лѣцябмт ьхмфэоъз `init` уўря мй љмыэ буькзам мќхц.абвгдеж Ур узъмхмо, ьр ўуря мйабв бъзыӹмкмх ць млрюцѣч `init` ць тъця пьря бьчфм ыхцрьќмуўцк.абвгде
+Ктру xref:./collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], ьэй пьря лммьхзъзэо ьнмў бьрюрь́ркцыӹз, ыз хр xref:./collections.adoc#Base.foldl-Tuple{Any, Any}[`foldl`].абвгдеж Лр лмљрюцъч, мпь лѣцябмт ьхмфэоъз `init` уўря мй љмыэ буькзам мќхц.абвгдеж Ур узъмхмо, ьр ўуря мйабв бъзыӹмкмх ць млрюцѣч `init` ць тъця пьря бьчфм ыхцрьќмуўцк.абвгде
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L163-L169[source] +
 
-[id=Base.mapfoldr-Tuple{Any, Any, Any}]
+[id="Base.mapfoldr-Tuple{Any, Any, Any}"]
 ==== *`Base.mapfoldr`* &mdash; _Method_.
 
 [,julia]
@@ -2492,11 +2492,11 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 mapfoldr(f, op, itr; [init])
 ----
 
-Ктру xref:collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], ьэй пьря лммьхзъзэо ьпорѣ бьрюрь́ркцыӹз, ыз хр xref:collections.adoc#Base.foldr-Tuple{Any, Any}[`foldr`].абвгдеж Лраб лмљрюцъч, мпь лѣцябмт ьхмфэоъз `init` уўря мй љмыэ буькзам мќхц.абвгдеж Ур узъмхмо, ьр ўуря мйабв бъзыӹмкмх ць млрюцѣч `init` ць тъця пьря бьчфм ыхцрьќмуўцк.абвгде
+Ктру xref:./collections.adoc#Base.mapreduce-Tuple{Any, Any, Any}[`mapreduce`], ьэй пьря лммьхзъзэо ьпорѣ бьрюрь́ркцыӹз, ыз хр xref:./collections.adoc#Base.foldr-Tuple{Any, Any}[`foldr`].абвгдеж Лраб лмљрюцъч, мпь лѣцябмт ьхмфэоъз `init` уўря мй љмыэ буькзам мќхц.абвгдеж Ур узъмхмо, ьр ўуря мйабв бъзыӹмкмх ць млрюцѣч `init` ць тъця пьря бьчфм ыхцрьќмуўцк.абвгде
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/reduce.jl#L211-L217[source] +
 
-[id=Base.first]
+[id="Base.first"]
 ==== *`Base.first`* &mdash; _Function_.
 
 [,julia]
@@ -2504,9 +2504,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 first(coll)
 ----
 
-Ъмо мпь ьыърн ьхмфмум њц хз мўйзѣмьр хцрькмуӱцќ.абвгде Уъэьмѣ мпь ьъзьы ьхрцч нц хзабв xref:collections.adoc#Base.AbstractRange[`AbstractRange`] хмюм нр ьр ыр бьчфм.абв
+Ъмо мпь ьыърн ьхмфмум њц хз мўйзѣмьр хцрькмуӱцќ.абвгде Уъэьмѣ мпь ьъзьы ьхрцч нц хзабв xref:./collections.adoc#Base.AbstractRange[`AbstractRange`] хмюм нр ьр ыр бьчфм.абв
 
-Кмы цӹуз:аб xref:iterators.adoc#Base.Iterators.only[`only`], xref:collections.adoc#Base.firstindex[`firstindex`], xref:collections.adoc#Base.last[`last`].аб
+Кмы цӹуз:аб xref:./iterators.adoc#Base.Iterators.only[`only`], xref:./collections.adoc#Base.firstindex[`firstindex`], xref:./collections.adoc#Base.last[`last`].аб
 
 *Шмучфзамаб*
 
@@ -2527,7 +2527,7 @@ first(itr, n::Integer)
 
 Get the first `n` elements of the iterable collection `itr`, or fewer elements if `itr` is not long enough.
 
-See also: xref:strings.adoc#Base.startswith[`startswith`], xref:iterators.adoc#Base.Iterators.take[`Iterators.take`].
+See also: xref:./strings.adoc#Base.startswith[`startswith`], xref:./iterators.adoc#Base.Iterators.take[`Iterators.take`].
 
 !!! compat "Julia 1.6"
     This method requires at least Julia 1.6.
@@ -2573,7 +2573,7 @@ julia> first("∀ϵ≠0: ϵ²>0", 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/strings/basic.jl#L641-L657[source] +
 
-[id=Base.last]
+[id="Base.last"]
 ==== *`Base.last`* &mdash; _Function_.
 
 [,julia]
@@ -2581,9 +2581,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 last(coll)
 ----
 
-Ъмо мпь ьызу ьхмфмўм нц хз лмъмљѣц хцрькмуӱцќ, њр ьр х́к мй лмьэчфцќ хр Ф(1) мфрь.абвгдежзик Шрпь ыра лмпыручфцкќз бй охрўузк xref:collections.adoc#Base.lastindex[`lastindex`] ць ьмо мпь ьӹ́ӱ амљхр.абвгде Уъэьмѣ мпь лхмаб ьхрцч нц хз xref:collections.adoc#Base.AbstractRange[`AbstractRange`] хмюм њр ьр ыр бьчфм.абвг
+Ъмо мпь ьызу ьхмфмўм нц хз лмъмљѣц хцрькмуӱцќ, њр ьр х́к мй лмьэчфцќ хр Ф(1) мфрь.абвгдежзик Шрпь ыра лмпыручфцкќз бй охрўузк xref:./collections.adoc#Base.lastindex[`lastindex`] ць ьмо мпь ьӹ́ӱ амљхр.абвгде Уъэьмѣ мпь лхмаб ьхрцч нц хз xref:./collections.adoc#Base.AbstractRange[`AbstractRange`] хмюм њр ьр ыр бьчфм.абвг
 
-Кмы цӹуз xref:collections.adoc#Base.first[`first`], xref:strings.adoc#Base.endswith[`endswith`].аб
+Кмы цӹуз xref:./collections.adoc#Base.first[`first`], xref:./strings.adoc#Base.endswith[`endswith`].аб
 
 *Шмучфзамаб*
 
@@ -2648,7 +2648,7 @@ julia> last("∀ϵ≠0: ϵ²>0", 3)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/strings/basic.jl#L660-L676[source] +
 
-[id=Base.front]
+[id="Base.front"]
 ==== *`Base.front`* &mdash; _Function_.
 
 [,julia]
@@ -2658,7 +2658,7 @@ front(x::Tuple)::Tuple
 
 Уъэьмѣ з `Tuple` охрьырӹхцк нц уўз ьэй мпь ьы́у ьхмхцчфцќ њц `x`.абвгдеж
 
-Кмы цӹуз:аб xref:collections.adoc#Base.first[`first`], xref:collections.adoc#Base.tail[`tail`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.first[`first`], xref:./collections.adoc#Base.tail[`tail`].аб
 
 *Шмучфзамаб*
 
@@ -2673,7 +2673,7 @@ ERROR: ArgumentError: Cannot call front on an empty tuple.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/tuple.jl#L190-L205[source] +
 
-[id=Base.tail]
+[id="Base.tail"]
 ==== *`Base.tail`* &mdash; _Function_.
 
 [,julia]
@@ -2683,7 +2683,7 @@ tail(x::Tuple)::Tuple
 
 Уъэьмѣ з `Tuple` охрьырӹхцк нц уўз ьэй мпь ьыърњ ьхмхцчфцќ нц `x`.абвгдеж
 
-Кмы цӹуз:аб xref:collections.adoc#Base.front[`front`], xref:collections.adoc#Base.rest[`rest`], xref:collections.adoc#Base.first[`first`], xref:iterators.adoc#Base.Iterators.peel[`Iterators.peel`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.front[`front`], xref:./collections.adoc#Base.rest[`rest`], xref:./collections.adoc#Base.first[`first`], xref:./iterators.adoc#Base.Iterators.peel[`Iterators.peel`].аб
 
 *Шмучфзамаб*
 
@@ -2698,7 +2698,7 @@ ERROR: ArgumentError: Cannot call tail on an empty tuple.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L235-L250[source] +
 
-[id=Base.step]
+[id="Base.step"]
 ==== *`Base.step`* &mdash; _Function_.
 
 [,julia]
@@ -2706,7 +2706,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 step(r)
 ----
 
-Ъмо мпь чмьы мврӹ нц хз xref:collections.adoc#Base.AbstractRange[`AbstractRange`] ькмсйц.абвг
+Ъмо мпь чмьы мврӹ нц хз xref:./collections.adoc#Base.AbstractRange[`AbstractRange`] ькмсйц.абвг
 
 *Шмучфзамаб*
 
@@ -2727,7 +2727,7 @@ julia> step(range(2.5, stop=10.9, length=85))
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/range.jl#L658-L677[source] +
 
-[id=Base.collect-Tuple{Any}]
+[id="Base.collect-Tuple{Any}"]
 ==== *`Base.collect`* &mdash; _Method_.
 
 [,julia]
@@ -2735,7 +2735,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 collect(collection)
 ----
 
-Уъэьмѣ хз `Array` нц уўз ыфмьр хр ́ хцрькмуӱцќ ъц ѣцьзъмьр.абвгде Чцн ымръзхцрькрл, ӹхѣэьмъабв `Pair{KeyType, ValType}`.аб Лр мпь ьхмфэоъз ыр мтру-бзѣъ́ ѣц ӹр хз ъцьзѣмьр пьря мпьабвгдеж xref:collections.adoc#Base.IteratorSize[`HasShape`] ьрзъь, мпь ьуэымѣ ўуря мюзп мпь мф́ӹ мчзпыабвгд лхз ъмйфэх нц ыхцрӹхмфрљ ыз мпь ьхмфэоѣ́.абвгд
+Уъэьмѣ хз `Array` нц уўз ыфмьр хр ́ хцрькмуӱцќ ъц ѣцьзъмьр.абвгде Чцн ымръзхцрькрл, ӹхѣэьмъабв `Pair{KeyType, ValType}`.аб Лр мпь ьхмфэоъз ыр мтру-бзѣъ́ ѣц ӹр хз ъцьзѣмьр пьря мпьабвгдеж xref:./collections.adoc#Base.IteratorSize[`HasShape`] ьрзъь, мпь ьуэымѣ ўуря мюзп мпь мф́ӹ мчзпыабвгд лхз ъмйфэх нц ыхцрӹхмфрљ ыз мпь ьхмфэоѣ́.абвгд
 
 Имыэ бй ӹхцрыхмпмъчфцк ць хѣэь з ъцьзѣмхмо цьхр х́ `Array`.абвгде
 
@@ -2763,7 +2763,7 @@ julia> [x^2 for x in 1:8 if isodd(x)]
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L682-L711[source] +
 
-[id=Base.collect-Tuple{Type, Any}]
+[id="Base.collect-Tuple{Type, Any}"]
 ==== *`Base.collect`* &mdash; _Method_.
 
 [,julia]
@@ -2786,7 +2786,7 @@ julia> collect(Float64, 1:2:5)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L632-L646[source] +
 
-[id=Base.filter]
+[id="Base.filter"]
 ==== *`Base.filter`* &mdash; _Function_.
 
 [,julia]
@@ -2799,7 +2799,7 @@ filter(f, a)
 !!! compat "Julia 1.4"
     Ъъцччэы ѣцн `a` ӹз з мучэь ымърэшмѣ ь́ ьӹзмў Еруэс 1.4.абвгде
 
-Кмы цӹуз:аб xref:collections.adoc#Base.filter![`filter!`], xref:iterators.adoc#Base.Iterators.filter[`Iterators.filter`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.filter![`filter!`], xref:./iterators.adoc#Base.Iterators.filter[`Iterators.filter`].аб
 
 *Шмучфзамаб*
 
@@ -2866,7 +2866,7 @@ julia> filter(isodd, skipmissing(x))
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/missing.jl#L372-L392[source] +
 
-[id=Base.filter!]
+[id="Base.filter!"]
 ==== *`Base.filter!`* &mdash; _Function_.
 
 [,julia]
@@ -2915,7 +2915,7 @@ Dict{Int64, String} with 2 entries:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L408-L427[source] +
 
-[id=Base.replace-Tuple{Any, Vararg{Pair}}]
+[id="Base.replace-Tuple{Any, Vararg{Pair}}"]
 ==== *`Base.replace`* &mdash; _Method_.
 
 [,julia]
@@ -2923,11 +2923,11 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 replace(A, old_new::Pair...; [count::Integer])
 ----
 
-Уъэьмѣ з бчцк нц хцрьќмуўцк `A` мъмпя, ѣцњ пќзм ър́ч `+old=>new+` хр `old_new`,абвгдеж уўз ымкхмъѣэќкц нц `old` мъз лмќ́учмѣ бй `new`.абвгд Яьрузэшм ыр лмхрфъмьмљ охрӹэ xref:base.adoc#Base.isequal[`isequal`].абвг Лр `count` ыр лмрнркмчӹ, хмпь мќзучмъ ьз ьыцф `count` ӹмкхмѣъэќкц хр ў́ьць.абвгдеж
+Уъэьмѣ з бчцк нц хцрьќмуўцк `A` мъмпя, ѣцњ пќзм ър́ч `+old=>new+` хр `old_new`,абвгдеж уўз ымкхмъѣэќкц нц `old` мъз лмќ́учмѣ бй `new`.абвгд Яьрузэшм ыр лмхрфъмьмљ охрӹэ xref:./base.adoc#Base.isequal[`isequal`].абвг Лр `count` ыр лмрнркмчӹ, хмпь мќзучмъ ьз ьыцф `count` ӹмкхмѣъэќкц хр ў́ьць.абвгдеж
 
-Кпь ьхмфмум мчбь нц мпь ьўэымъ ӹр хмыцпк охрӹэ хцрьцфцѣч (ммы xref:base.adoc#Base.promote_type[`promote_type`])абвгдежз лмызй хц мпь ьхмфмум мчбь нц `A` љхз хц мпь ӹмчбь њц мпь `new` ымэў́ю хр ӹързч.абвгдежзи Лр `count` ыр лмььрфц љхз мпь ьхмфмум мчбь нц `A` ӹр з `Union`, мпь ьхмфмўм мчбьабвгдежз нц мпь ьуэымъ ўуря ьцх млэӱкхр хцьмуохрӹ ымчбь пќрпя мѣз љмкзўчмъ пьря ӹмэу́ю њцабвгдежзи з ьхмъмнњрл мчбь: ѣцн мучфзам, `Union{T,Missing}` ўуря мфцкмй `T` њр `missing` ырабвгде лмкзучмъ.аб
+Кпь ьхмфмум мчбь нц мпь ьўэымъ ӹр хмыцпк охрӹэ хцрьцфцѣч (ммы xref:./base.adoc#Base.promote_type[`promote_type`])абвгдежз лмызй хц мпь ьхмфмум мчбь нц `A` љхз хц мпь ӹмчбь њц мпь `new` ымэў́ю хр ӹързч.абвгдежзи Лр `count` ыр лмььрфц љхз мпь ьхмфмум мчбь нц `A` ӹр з `Union`, мпь ьхмфмўм мчбьабвгдежз нц мпь ьуэымъ ўуря ьцх млэӱкхр хцьмуохрӹ ымчбь пќрпя мѣз љмкзўчмъ пьря ӹмэу́ю њцабвгдежзи з ьхмъмнњрл мчбь: ѣцн мучфзам, `Union{T,Missing}` ўуря мфцкмй `T` њр `missing` ырабвгде лмкзучмъ.аб
 
-Кмы цӹуз xref:collections.adoc#Base.replace![`replace!`], xref:collections.adoc#Base.splice![`splice!`], xref:collections.adoc#Base.delete![`delete!`], xref:collections.adoc#Base.insert![`insert!`].абв
+Кмы цӹуз xref:./collections.adoc#Base.replace![`replace!`], xref:./collections.adoc#Base.splice![`splice!`], xref:./collections.adoc#Base.delete![`delete!`], xref:./collections.adoc#Base.insert![`insert!`].абв
 
 !!! compat "Julia 1.7"
     Уцрыъмю 1.7 ӹр лмѣрэшмъ ць мкзучмѣ ыьхмфмўм нц з `Tuple`.абвгде
@@ -2951,7 +2951,7 @@ julia> replace([1, missing], missing=>0)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L576-L610[source] +
 
-[id=Base.replace-Tuple{Union{Function, Type}, Any}]
+[id="Base.replace-Tuple{Union{Function, Type}, Any}"]
 ==== *`Base.replace`* &mdash; _Method_.
 
 [,julia]
@@ -2985,7 +2985,7 @@ Dict{Int64, Int64} with 2 entries:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L637-L663[source] +
 
-[id=Base.replace!]
+[id="Base.replace!"]
 ==== *`Base.replace!`* &mdash; _Function_.
 
 [,julia]
@@ -2993,7 +2993,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 replace!(A, old_new::Pair...; [count::Integer])
 ----
 
-Чцн пкзм ързч `+old=>new+` хр `old_new`, мќ́учмѣ ўуз ымкхмъѣэќкцабвгд нц `old` хр хцрькмуўцќ `A` бй `new`.абв Яьрузэшм ыр лмхрфъмьмљ охрӹэ xref:base.adoc#Base.isequal[`isequal`].абвг Лр `count` ыр лмрнркмчӹ, хмпь мќзучмъ ьз ьыцф `count` ӹмкхмѣъэќкц хр ў́ьць.абвгдеж Кмы цӹуз xref:дъмнёѣмчўзкм(Е, ър́ч::ямхелуц...)[`replace`].абвгде
+Чцн пкзм ързч `+old=>new+` хр `old_new`, мќ́учмѣ ўуз ымкхмъѣэќкцабвгд нц `old` хр хцрькмуўцќ `A` бй `new`.абв Яьрузэшм ыр лмхрфъмьмљ охрӹэ xref:./base.adoc#Base.isequal[`isequal`].абвг Лр `count` ыр лмрнркмчӹ, хмпь мќзучмъ ьз ьыцф `count` ӹмкхмѣъэќкц хр ў́ьць.абвгдеж Кмы цӹуз link:дъмнёѣмчўзкм(Е, ър́ч::ямхелуц...)[`replace`].абвгде
 
 *Шмучфзамаб*
 
@@ -3047,7 +3047,7 @@ Set{Int64} with 2 elements:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L544-L572[source] +
 
-[id=Base.rest]
+[id="Base.rest"]
 ==== *`Base.rest`* &mdash; _Function_.
 
 [,julia]
@@ -3057,12 +3057,12 @@ Base.rest(collection[, itr_state])
 
 Зръмхмо хцрькхэн ѣцњ охртзь мпь урзь нц `collection`, охрьъ́ьы фцѣњ з ќрнркмчӹ хцрьзъмьрабвгдежзи мьзьы `itr_state`.аб Уъэьмѣ з `Tuple`, нр `collection` њумыьр ӹр з `Tuple`, ́ мчбьйэы нцабвгд `AbstractVector`, нр `collection` ыр хз `AbstractArray`, з мчбьйэӹ њц абвг``AbstractString`` нр `collection` ыр хз `AbstractString`, лхз х́ бъзѣьрйъз ѣць́ъмьр, охруўзњ ткзи цьабвгдеж `Iterators.rest(collection[, itr_state])`, мыряъмпьц.аб
 
-Узк мй лмљзцуъмюц ѣцн лмхрњмљ-ъмыэ хцрьќмўуцк ӹмчбь ць мврфцьыэќ мпь ѣцрю́пми нц xref:дъмнёлмӹьѣэкьэърхо-зыӹрохфмхь[охрчъэӱӹабвгдежзик хр зыӹрохфмхьы], мтру `+a, b... = collection+`.абвгде
+Узк мй лмљзцуъмюц ѣцн лмхрњмљ-ъмыэ хцрьќмўуцк ӹмчбь ць мврфцьыэќ мпь ѣцрю́пми нц link:дъмнёлмӹьѣэкьэърхо-зыӹрохфмхь[охрчъэӱӹабвгдежзик хр зыӹрохфмхьы], мтру `+a, b... = collection+`.абвгде
 
 !!! compat "Julia 1.6"
     `Base.rest` ымърэшмѣ ьз ьӹзму Ерўэс 1.6.абвг
 
-Кмы цӹуз:аб xref:collections.adoc#Base.first[`first`], xref:iterators.adoc#Base.Iterators.rest[`Iterators.rest`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.first[`first`], xref:./iterators.adoc#Base.Iterators.rest[`Iterators.rest`].аб
 
 *Шмучфзамаб*
 
@@ -3088,7 +3088,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 == Indexable Collections
 
-[id=Base.getindex]
+[id="Base.getindex"]
 ==== *`Base.getindex`* &mdash; _Function_.
 
 [,julia]
@@ -3098,7 +3098,7 @@ getindex(collection, key...)
 
 Кюмръьмѣ мпь ы(мэузю) лмъцьӹ ьз мпь хмюро бмт ѣц амљхр хрпьря ́ хцрькмўуцќ.абвгдежзи Кпь азьхбыаб `+a[i,j,...]+` ыр лмьъмюхцк бй мпь ѣмурчфцќ ць `+getindex(a, i, j, ...)+`.абвг
 
-Кмы цӹуз xref:collections.adoc#Base.get[`get`], xref:collections.adoc#Base.keys[`keys`], xref:arrays.adoc#Base.eachindex[`eachindex`].абв
+Кмы цӹуз xref:./collections.adoc#Base.get[`get`], xref:./collections.adoc#Base.keys[`keys`], xref:./arrays.adoc#Base.eachindex[`eachindex`].абв
 
 *Шмучфзамаб*
 
@@ -3115,7 +3115,7 @@ julia> getindex(A, "a")
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L902-L920[source] +
 
-[id=Base.setindex!]
+[id="Base.setindex!"]
 ==== *`Base.setindex!`* &mdash; _Function_.
 
 [,julia]
@@ -3127,7 +3127,7 @@ setindex!(collection, value, key...)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L958-L963[source] +
 
-[id=Base.firstindex]
+[id="Base.firstindex"]
 ==== *`Base.firstindex`* &mdash; _Function_.
 
 [,julia]
@@ -3140,7 +3140,7 @@ firstindex(collection, d) -> Integer
 
 Кпь ымазьхбӹ `A[begin]` лхз `A[1, begin]` ъмяцу ць `A[firstindex(A)]` љх́абвг `A[1, firstindex(A, 2)]`, бумюрькмчымъ.аб
 
-Кмы цӹуз:аб xref:collections.adoc#Base.first[`first`], xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`], xref:collections.adoc#Base.lastindex[`lastindex`], xref:strings.adoc#Base.nextind[`nextind`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.first[`first`], xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`], xref:./collections.adoc#Base.lastindex[`lastindex`], xref:./strings.adoc#Base.nextind[`nextind`].аб
 
 *Шмучфзамаб*
 
@@ -3155,7 +3155,7 @@ julia> firstindex(rand(3,4,5), 2)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L381-L400[source] +
 
-[id=Base.lastindex]
+[id="Base.lastindex"]
 ==== *`Base.lastindex`* &mdash; _Function_.
 
 [,julia]
@@ -3168,7 +3168,7 @@ lastindex(collection, d) -> Integer
 
 Кпь ымазьхбӹ `A[end]` лхз `A[end, end]` ъмяцу ць `A[lastindex(A)]` љх́абвг `A[lastindex(A, 1), lastindex(A, 2)]`, бумюрькмчымъ.аб
 
-Кмы цӹуз:аб xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`], xref:collections.adoc#Base.firstindex[`firstindex`], xref:arrays.adoc#Base.eachindex[`eachindex`], xref:strings.adoc#Base.prevind[`prevind`].аб
+Кмы цӹуз:аб xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`], xref:./collections.adoc#Base.firstindex[`firstindex`], xref:./arrays.adoc#Base.eachindex[`eachindex`], xref:./strings.adoc#Base.prevind[`prevind`].аб
 
 *Шмучфзамаб*
 
@@ -3185,21 +3185,21 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 Fully implemented by:
 
-* xref:arrays.adoc#Core.Array[`Array`]
-* xref:arrays.adoc#Base.BitArray[`BitArray`]
-* xref:arrays.adoc#Core.AbstractArray[`AbstractArray`]
+* xref:./arrays.adoc#Core.Array[`Array`]
+* xref:./arrays.adoc#Base.BitArray[`BitArray`]
+* xref:./arrays.adoc#Core.AbstractArray[`AbstractArray`]
 * `SubArray`
 
 Partially implemented by:
 
-* xref:collections.adoc#Base.AbstractRange[`AbstractRange`]
-* xref:collections.adoc#Base.UnitRange[`UnitRange`]
+* xref:./collections.adoc#Base.AbstractRange[`AbstractRange`]
+* xref:./collections.adoc#Base.UnitRange[`UnitRange`]
 * `Tuple`
 * `AbstractString`
-* xref:collections.adoc#Base.Dict[`Dict`]
-* xref:collections.adoc#Base.IdDict[`IdDict`]
-* xref:collections.adoc#Base.WeakKeyDict[`WeakKeyDict`]
-* xref:base.adoc#Core.NamedTuple[`NamedTuple`]
+* xref:./collections.adoc#Base.Dict[`Dict`]
+* xref:./collections.adoc#Base.IdDict[`IdDict`]
+* xref:./collections.adoc#Base.WeakKeyDict[`WeakKeyDict`]
+* xref:./base.adoc#Core.NamedTuple[`NamedTuple`]
 
 +++<a id="Dictionaries">++++++</a>+++
 
@@ -3207,19 +3207,19 @@ Partially implemented by:
 
 == Dictionaries
 
-xref:collections.adoc#Base.Dict[`Dict`] is the standard dictionary. Its implementation uses xref:base.adoc#Base.hash[`hash`] as the hashing function for the key, and xref:base.adoc#Base.isequal[`isequal`] to determine equality. Define these two functions for custom types to override how they are stored in a hash table.
+xref:./collections.adoc#Base.Dict[`Dict`] is the standard dictionary. Its implementation uses xref:./base.adoc#Base.hash[`hash`] as the hashing function for the key, and xref:./base.adoc#Base.isequal[`isequal`] to determine equality. Define these two functions for custom types to override how they are stored in a hash table.
 
-xref:collections.adoc#Base.IdDict[`IdDict`] is a special hash table where the keys are always object identities.
+xref:./collections.adoc#Base.IdDict[`IdDict`] is a special hash table where the keys are always object identities.
 
-xref:collections.adoc#Base.WeakKeyDict[`WeakKeyDict`] is a hash table implementation where the keys are weak references to objects, and thus may be garbage collected even when referenced in a hash table. Like `Dict` it uses `hash` for hashing and `isequal` for equality, unlike `Dict` it does not convert keys on insertion.
+xref:./collections.adoc#Base.WeakKeyDict[`WeakKeyDict`] is a hash table implementation where the keys are weak references to objects, and thus may be garbage collected even when referenced in a hash table. Like `Dict` it uses `hash` for hashing and `isequal` for equality, unlike `Dict` it does not convert keys on insertion.
 
-xref:collections.adoc#Base.Dict[`Dict`]s can be created by passing pair objects constructed with `+=>+` to a xref:collections.adoc#Base.Dict[`Dict`] constructor: `+Dict("A"=>1, "B"=>2)+`. This call will attempt to infer type information from the keys and values (i.e. this example creates a `Dict{String, Int64}`). To explicitly specify types use the syntax `+Dict{KeyType,ValueType}(...)+`. For example, `+Dict{String,Int32}("A"=>1, "B"=>2)+`.
+xref:./collections.adoc#Base.Dict[`Dict`]s can be created by passing pair objects constructed with `+=>+` to a xref:./collections.adoc#Base.Dict[`Dict`] constructor: `+Dict("A"=>1, "B"=>2)+`. This call will attempt to infer type information from the keys and values (i.e. this example creates a `Dict{String, Int64}`). To explicitly specify types use the syntax `+Dict{KeyType,ValueType}(...)+`. For example, `+Dict{String,Int32}("A"=>1, "B"=>2)+`.
 
 Dictionaries may also be created with generators. For example, `+Dict(i => f(i) for i = 1:10)+`.
 
 Given a dictionary `D`, the syntax `D[x]` returns the value of key `x` (if it exists) or throws an error, and `D[x] = y` stores the key-value pair `+x => y+` in `D` (replacing any existing value for the key `x`).  Multiple arguments to `+D[...]+` are converted to tuples; for example, the syntax `D[x,y]`  is equivalent to `D[(x,y)]`, i.e. it refers to the value keyed by the tuple `(x,y)`.
 
-[id=Base.AbstractDict]
+[id="Base.AbstractDict"]
 ==== *`Base.AbstractDict`* &mdash; _Type_.
 
 [,julia]
@@ -3227,11 +3227,11 @@ Given a dictionary `D`, the syntax `D[x]` returns the value of key `x` (if it ex
 AbstractDict{K, V}
 ----
 
-Кчбьъмчэы ѣцн мтру-бъзхцрькрл ӹмчбь пьря ыбмћ њц мчбь `K` љхз ӹмэў́ю нц мчбь `V`.абвгдежзи xref:collections.adoc#Base.Dict[`Dict`], xref:collections.adoc#Base.IdDict[`IdDict`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд Уз `AbstractDict{K, V}` луэцпы мй хз ъць́ѣмьр нц `Pair{K, V}`.абвг
+Кчбьъмчэы ѣцн мтру-бъзхцрькрл ӹмчбь пьря ыбмћ њц мчбь `K` љхз ӹмэў́ю нц мчбь `V`.абвгдежзи xref:./collections.adoc#Base.Dict[`Dict`], xref:./collections.adoc#Base.IdDict[`IdDict`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд Уз `AbstractDict{K, V}` луэцпы мй хз ъць́ѣмьр нц `Pair{K, V}`.абвг
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L17-L23[source] +
 
-[id=Base.Dict]
+[id="Base.Dict"]
 ==== *`Base.Dict`* &mdash; _Type_.
 
 [,julia]
@@ -3239,9 +3239,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Dict([itr])
 ----
 
-`Dict{K,V}()` ыькэъьӹхцќ з пызп муй́ь пьря ӹбмт нц мчбь `K` лхз ымэўзю њц мчбь `V`.абвгдежз Шбмт мъз лмѣзчфцк пьря xref:base.adoc#Base.isequal[`isequal`] љх́ лмпызп пьря xref:base.adoc#Base.hash[`hash`].абвгд
+`Dict{K,V}()` ыькэъьӹхцќ з пызп муй́ь пьря ӹбмт нц мчбь `K` лхз ымэўзю њц мчбь `V`.абвгдежз Шбмт мъз лмѣзчфцк пьря xref:./base.adoc#Base.isequal[`isequal`] љх́ лмпызп пьря xref:./base.adoc#Base.hash[`hash`].абвгд
 
-Умюро з муохры мўйзъмьр ьхмфэоѣ́, ӹькэъьыхцќ з xref:collections.adoc#Base.Dict[`Dict`] мӹцпя мэузю-бмт ыѣр́чабвгдежз мъз хмтзь фцѣн 2ымучэь- `(key,value)` лмь́ъмхмо бй мпь ьхмфэоѣз.абвгде
+Умюро з муохры мўйзъмьр ьхмфэоѣ́, ӹькэъьыхцќ з xref:./collections.adoc#Base.Dict[`Dict`] мӹцпя мэузю-бмт ыѣр́чабвгдежз мъз хмтзь фцѣн 2ымучэь- `(key,value)` лмь́ъмхмо бй мпь ьхмфэоѣз.абвгде
 
 *Шмучфзамаб*
 
@@ -3265,7 +3265,7 @@ Dict{String, Int64} with 2 entries:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L52-L77[source] +
 
-[id=Base.IdDict]
+[id="Base.IdDict"]
 ==== *`Base.IdDict`* &mdash; _Type_.
 
 [,julia]
@@ -3273,9 +3273,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 IdDict([itr])
 ----
 
-`IdDict{K,V}()` ыькэъьӹхцќ з пызп муй́ь охрӹэ xref:base.adoc#Base.objectid[`objectid`] ыз пӹзп лх́абвгд `===` ыз бьрузэшм пьря ӹбмт нц мчбь `K` лх́ ымэўзю њц мчбь `V`.абвгде
+`IdDict{K,V}()` ыькэъьӹхцќ з пызп муй́ь охрӹэ xref:./base.adoc#Base.objectid[`objectid`] ыз пӹзп лх́абвгд `===` ыз бьрузэшм пьря ӹбмт нц мчбь `K` лх́ ымэўзю њц мчбь `V`.абвгде
 
-Кмы xref:collections.adoc#Base.Dict[`Dict`] ъцн ѣмпьъэњ чумп.абв Ур мпь мучфзам яцўмй, Кпь абв``Dict`` ыбмт мъз уўз `isequal` лх́ мѣцнмъмпь ьмо љмпӹзп мпь мфзы, цӹ бмпь ьмо хмььрѣяъмюц.абвгдежзи Кпь `IdDict` ымпӹзп бй лр-ькмсиц, љхз ыэпь ӹмюъмымѣч мпь 3 ьхмъмнњрл ӹбмт.абвгдежз
+Кмы xref:./collections.adoc#Base.Dict[`Dict`] ъцн ѣмпьъэњ чумп.абв Ур мпь мучфзам яцўмй, Кпь абв``Dict`` ыбмт мъз уўз `isequal` лх́ мѣцнмъмпь ьмо љмпӹзп мпь мфзы, цӹ бмпь ьмо хмььрѣяъмюц.абвгдежзи Кпь `IdDict` ымпӹзп бй лр-ькмсиц, љхз ыэпь ӹмюъмымѣч мпь 3 ьхмъмнњрл ӹбмт.абвгдежз
 
 *Шмучфзамаб*
 
@@ -3294,7 +3294,7 @@ IdDict{Any, String} with 3 entries:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/iddict.jl#L3-L25[source] +
 
-[id=Base.WeakKeyDict]
+[id="Base.WeakKeyDict"]
 ==== *`Base.WeakKeyDict`* &mdash; _Type_.
 
 [,julia]
@@ -3304,11 +3304,11 @@ WeakKeyDict([itr])
 
 `WeakKeyDict()` ыькэъьӹхцќ з пызп муй́ь мѣмпя мпь ӹбмт мъз ћзмяабвгде ымкхмъмнмѣ ць ӹьќмсйц пкрпя бзф ми мозйъ́о лмьќмуўцк хмюм хмпяабвгдеж лмкхмъмнмѣ хр з пызп муй́ь.абв
 
-Кмы xref:collections.adoc#Base.Dict[`Dict`] ъцн ѣмпьъэњ чумп.абв  Кьцх, мтрухэ xref:collections.adoc#Base.Dict[`Dict`],аб `WeakKeyDict` ымцл ьцх ьъмюхцк ӹбмт хц хцрьѣмыхр, ӹз ырпь љуэця бўчфр мпь бмћабвгдежз ькмсйц ызя лмќхмъмнмѣхэ мъмпябхз мѣцњми хцрьъмӹхр.абвгде
+Кмы xref:./collections.adoc#Base.Dict[`Dict`] ъцн ѣмпьъэњ чумп.абв  Кьцх, мтрухэ xref:./collections.adoc#Base.Dict[`Dict`],аб `WeakKeyDict` ымцл ьцх ьъмюхцк ӹбмт хц хцрьѣмыхр, ӹз ырпь љуэця бўчфр мпь бмћабвгдежз ькмсйц ызя лмќхмъмнмѣхэ мъмпябхз мѣцњми хцрьъмӹхр.абвгде
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/weakkeydict.jl#L5-L15[source] +
 
-[id=Base.ImmutableDict]
+[id="Base.ImmutableDict"]
 ==== *`Base.ImmutableDict`* &mdash; _Type_.
 
 [,julia]
@@ -3329,7 +3329,7 @@ ImmutableDict(KV::Pair)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L772-L787[source] +
 
-[id=Base.haskey]
+[id="Base.haskey"]
 ==== *`Base.haskey`* &mdash; _Function_.
 
 [,julia]
@@ -3357,7 +3357,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L550-L568[source] +
 
-[id=Base.get]
+[id="Base.get"]
 ==== *`Base.get`* &mdash; _Function_.
 
 [,julia]
@@ -3389,7 +3389,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 get(f::Function, collection, key)
 ----
 
-Return the value stored for the given key, or if no mapping for the key is present, return `f()`.  Use xref:collections.adoc#Base.get![`get!`] to also store the default value in the dictionary.
+Return the value stored for the given key, or if no mapping for the key is present, return `f()`.  Use xref:./collections.adoc#Base.get![`get!`] to also store the default value in the dictionary.
 
 This is intended to be called using `do` block syntax
 
@@ -3403,7 +3403,7 @@ end
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L528-L542[source] +
 
-[id=Base.get!]
+[id="Base.get!"]
 ==== *`Base.get!`* &mdash; _Function_.
 
 [,julia]
@@ -3466,7 +3466,7 @@ Dict{Int64, Int64} with 1 entry:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L438-L464[source] +
 
-[id=Base.getkey]
+[id="Base.getkey"]
 ==== *`Base.getkey`* &mdash; _Function_.
 
 [,julia]
@@ -3494,7 +3494,7 @@ julia> getkey(D, 'd', 'a')
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L572-L590[source] +
 
-[id=Base.delete!]
+[id="Base.delete!"]
 ==== *`Base.delete!`* &mdash; _Function_.
 
 [,julia]
@@ -3524,7 +3524,7 @@ Dict{String, Int64} with 1 entry:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L655-L675[source] +
 
-[id=Base.pop!-Tuple{Any, Any, Any}]
+[id="Base.pop!-Tuple{Any, Any, Any}"]
 ==== *`Base.pop!`* &mdash; _Method_.
 
 [,julia]
@@ -3554,7 +3554,7 @@ julia> pop!(d, "e", 4)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L607-L628[source] +
 
-[id=Base.keys]
+[id="Base.keys"]
 ==== *`Base.keys`* &mdash; _Function_.
 
 [,julia]
@@ -3566,7 +3566,7 @@ keys(iterator)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L73-L78[source] +
 
-[id=Base.values]
+[id="Base.values"]
 ==== *`Base.values`* &mdash; _Function_.
 
 [,julia]
@@ -3617,7 +3617,7 @@ julia> collect(values(D))
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L107-L130[source] +
 
-[id=Base.pairs]
+[id="Base.pairs"]
 ==== *`Base.pairs`* &mdash; _Function_.
 
 [,julia]
@@ -3671,7 +3671,7 @@ pairs(IndexStyle(A), A)
 
 An iterator that accesses each element of the array `A`, returning `+i => x+`, where `i` is the index for the element and `x = A[i]`. Identical to `pairs(A)`, except that the style of index can be selected. Also similar to `enumerate(A)`, except `i` will be a valid index for `A`, while `enumerate` always counts from 1 regardless of the indices of `A`.
 
-Specifying xref:arrays.adoc#Base.IndexLinear[`IndexLinear()`] ensures that `i` will be an integer; specifying xref:arrays.adoc#Base.IndexCartesian[`IndexCartesian()`] ensures that `i` will be a xref:arrays.adoc#Base.IteratorsMD.CartesianIndex[`CartesianIndex`]; specifying `IndexStyle(A)` chooses whichever has been defined as the native indexing style for array `A`.
+Specifying xref:./arrays.adoc#Base.IndexLinear[`IndexLinear()`] ensures that `i` will be an integer; specifying xref:./arrays.adoc#Base.IndexCartesian[`IndexCartesian()`] ensures that `i` will be a xref:./arrays.adoc#Base.IteratorsMD.CartesianIndex[`CartesianIndex`]; specifying `IndexStyle(A)` chooses whichever has been defined as the native indexing style for array `A`.
 
 Mutation of the bounds of the underlying array will invalidate this iterator.
 
@@ -3702,11 +3702,11 @@ CartesianIndex(1, 2) d
 CartesianIndex(2, 2) e
 ----
 
-See also xref:arrays.adoc#Base.IndexStyle[`IndexStyle`], xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`].
+See also xref:./arrays.adoc#Base.IndexStyle[`IndexStyle`], xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/iterators.jl#L189-L234[source] +
 
-[id=Base.merge]
+[id="Base.merge"]
 ==== *`Base.merge`* &mdash; _Function_.
 
 [,julia]
@@ -3714,7 +3714,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 merge(d::AbstractDict, others::AbstractDict...)
 ----
 
-Ъкэъьыхцќ з лмоѣмф хцрькмуўцќ фцън мпь хмюро ӹхцрькмуӱцќ.абвгдеж Лр бъзыӹмкмх, мпьаб ымчбь нц мпь охрьуэӹмъ хцрькмўуцќ ӱуря мй лмьцфцѣч ць мьзљцффцкќз мпь ымчбь њцабвгдежзи мпь лмоъмф ыхцрькмуўцќ.абв Лр мпь мфзы бмт ӹр ьхмымъч хр ѣмпьцхз хцрькмуўцќ, мпьабвгде мэузю ъцн ьзпь бмт ўуря мй мпь мэӱ́ю ьр ызп хр мпь ьӹзу хцрькмўуцќ лмьырӱ.абвгдежзи Кмы цӹуз xref:collections.adoc#Base.mergewith[`mergewith`] ъцн фцьыэк охрўлхзп њц ӹмэу́ю пьря мпь мфзы бмт.абвгдеж
+Ъкэъьыхцќ з лмоѣмф хцрькмуўцќ фцън мпь хмюро ӹхцрькмуӱцќ.абвгдеж Лр бъзыӹмкмх, мпьаб ымчбь нц мпь охрьуэӹмъ хцрькмўуцќ ӱуря мй лмьцфцѣч ць мьзљцффцкќз мпь ымчбь њцабвгдежзи мпь лмоъмф ыхцрькмуўцќ.абв Лр мпь мфзы бмт ӹр ьхмымъч хр ѣмпьцхз хцрькмуўцќ, мпьабвгде мэузю ъцн ьзпь бмт ўуря мй мпь мэӱ́ю ьр ызп хр мпь ьӹзу хцрькмўуцќ лмьырӱ.абвгдежзи Кмы цӹуз xref:./collections.adoc#Base.mergewith[`mergewith`] ъцн фцьыэк охрўлхзп њц ӹмэу́ю пьря мпь мфзы бмт.абвгдеж
 
 *Шмучфзамаб*
 
@@ -3784,7 +3784,7 @@ julia> merge((a=1, b=2, c=3), [:b=>4, :d=>5])
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/namedtuple.jl#L289-L298[source] +
 
-[id=Base.mergewith]
+[id="Base.mergewith"]
 ==== *`Base.mergewith`* &mdash; _Function_.
 
 [,julia]
@@ -3827,7 +3827,7 @@ true
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L353-L391[source] +
 
-[id=Base.merge!]
+[id="Base.merge!"]
 ==== *`Base.merge!`* &mdash; _Function_.
 
 [,julia]
@@ -3835,7 +3835,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 merge!(d::AbstractDict, others::AbstractDict...)
 ----
 
-Кьзлчэ хцрькмуўцќ пьря ыързч фцѣн мпь ъмпьц ӹхцрькмуӱцќ.абвгдеж Кмы цӹуз xref:collections.adoc#Base.merge[`merge`].аб
+Кьзлчэ хцрькмуўцќ пьря ыързч фцѣн мпь ъмпьц ӹхцрькмуӱцќ.абвгдеж Кмы цӹуз xref:./collections.adoc#Base.merge[`merge`].аб
 
 *Шмучфзамаб*
 
@@ -3856,7 +3856,7 @@ Dict{Int64, Int64} with 3 entries:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L197-L217[source] +
 
-[id=Base.mergewith!]
+[id="Base.mergewith!"]
 ==== *`Base.mergewith!`* &mdash; _Function_.
 
 [,julia]
@@ -3906,7 +3906,7 @@ Dict{Int64, Int64} with 3 entries:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L227-L272[source] +
 
-[id=Base.sizehint!]
+[id="Base.sizehint!"]
 ==== *`Base.sizehint!`* &mdash; _Function_.
 
 [,julia]
@@ -3926,7 +3926,7 @@ sizehint!(s, n)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1246-L1263[source] +
 
-[id=Base.keytype]
+[id="Base.keytype"]
 ==== *`Base.keytype`* &mdash; _Function_.
 
 [,julia]
@@ -3957,7 +3957,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 keytype(type)
 ----
 
-Get the key type of a dictionary type. Behaves similarly to xref:collections.adoc#Base.eltype[`eltype`].
+Get the key type of a dictionary type. Behaves similarly to xref:./collections.adoc#Base.eltype[`eltype`].
 
 *Examples*
 
@@ -3969,7 +3969,7 @@ Int32
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractdict.jl#L288-L298[source] +
 
-[id=Base.valtype]
+[id="Base.valtype"]
 ==== *`Base.valtype`* &mdash; _Function_.
 
 [,julia]
@@ -3997,7 +3997,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 valtype(type)
 ----
 
-Get the value type of a dictionary type. Behaves similarly to xref:collections.adoc#Base.eltype[`eltype`].
+Get the value type of a dictionary type. Behaves similarly to xref:./collections.adoc#Base.eltype[`eltype`].
 
 *Examples*
 
@@ -4011,19 +4011,19 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 Fully implemented by:
 
-* xref:collections.adoc#Base.IdDict[`IdDict`]
-* xref:collections.adoc#Base.Dict[`Dict`]
-* xref:collections.adoc#Base.WeakKeyDict[`WeakKeyDict`]
+* xref:./collections.adoc#Base.IdDict[`IdDict`]
+* xref:./collections.adoc#Base.Dict[`Dict`]
+* xref:./collections.adoc#Base.WeakKeyDict[`WeakKeyDict`]
 
 Partially implemented by:
 
-* xref:collections.adoc#Base.BitSet[`BitSet`]
-* xref:collections.adoc#Base.Set[`Set`]
-* xref:base.adoc#Base.EnvDict[`EnvDict`]
-* xref:arrays.adoc#Core.Array[`Array`]
-* xref:arrays.adoc#Base.BitArray[`BitArray`]
-* xref:collections.adoc#Base.ImmutableDict[`ImmutableDict`]
-* xref:collections.adoc#Base.Pairs[`Iterators.Pairs`]
+* xref:./collections.adoc#Base.BitSet[`BitSet`]
+* xref:./collections.adoc#Base.Set[`Set`]
+* xref:./base.adoc#Base.EnvDict[`EnvDict`]
+* xref:./arrays.adoc#Core.Array[`Array`]
+* xref:./arrays.adoc#Base.BitArray[`BitArray`]
+* xref:./collections.adoc#Base.ImmutableDict[`ImmutableDict`]
+* xref:./collections.adoc#Base.Pairs[`Iterators.Pairs`]
 
 +++<a id="Set-Like-Collections">++++++</a>+++
 
@@ -4031,7 +4031,7 @@ Partially implemented by:
 
 == Set-Like Collections
 
-[id=Base.AbstractSet]
+[id="Base.AbstractSet"]
 ==== *`Base.AbstractSet`* &mdash; _Type_.
 
 [,julia]
@@ -4039,11 +4039,11 @@ Partially implemented by:
 AbstractSet{T}
 ----
 
-Кчбьъмчэы ѣцн мтру-ьмӹ ымчбь мӹцпя ыьхмфмўм мъз њц мчбь `T`.абвгдеж xref:collections.adoc#Base.Set[`Set`], xref:collections.adoc#Base.BitSet[`BitSet`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
+Кчбьъмчэы ѣцн мтру-ьмӹ ымчбь мӹцпя ыьхмфмўм мъз њц мчбь `T`.абвгдеж xref:./collections.adoc#Base.Set[`Set`], xref:./collections.adoc#Base.BitSet[`BitSet`] лхз ъмпьц ымчбь мѣз ӹмчбьйэы нц ӹрпь.абвгд
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L9-L14[source] +
 
-[id=Base.Set]
+[id="Base.Set"]
 ==== *`Base.Set`* &mdash; _Type_.
 
 [,julia]
@@ -4051,13 +4051,13 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Set([itr])
 ----
 
-Ъкэъьыхцќ з xref:collections.adoc#Base.Set[`Set`] нц мпь ӹмэузю лмь́ѣмхмо бй мпь хмюро мўизъмьр ькмсйц, ѣц хзабвгдежзи бьчфм ьмы.аб Иуэцпы мй лмӹэ љзмьыхр нц xref:collections.adoc#Base.BitSet[`BitSet`] ъцњ мӹѣзчы ъмомьхр ӹьмы, ѣцабвгдеж ъцн ыьмӹ њц бѣзъьрйѣз ыькмсиц.абв
+Ъкэъьыхцќ з xref:./collections.adoc#Base.Set[`Set`] нц мпь ӹмэузю лмь́ѣмхмо бй мпь хмюро мўизъмьр ькмсйц, ѣц хзабвгдежзи бьчфм ьмы.аб Иуэцпы мй лмӹэ љзмьыхр нц xref:./collections.adoc#Base.BitSet[`BitSet`] ъцњ мӹѣзчы ъмомьхр ӹьмы, ѣцабвгдеж ъцн ыьмӹ њц бѣзъьрйѣз ыькмсиц.абв
 
-Кмы цӹуз:аб xref:collections.adoc#Base.push![`push!`], xref:collections.adoc#Base.empty![`empty!`], xref:collections.adoc#Base.union![`union!`], xref:collections.adoc#Base.in[`in`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.push![`push!`], xref:./collections.adoc#Base.empty![`empty!`], xref:./collections.adoc#Base.union![`union!`], xref:./collections.adoc#Base.in[`in`].аб
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/set.jl#L22-L30[source] +
 
-[id=Base.BitSet]
+[id="Base.BitSet"]
 ==== *`Base.BitSet`* &mdash; _Type_.
 
 [,julia]
@@ -4065,11 +4065,11 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 BitSet([itr])
 ----
 
-Ъкэъьыхцќ з лмьѣцӹ ьмы нц ``Int``ӹ љмьзъмхмо бй мпь хмюро муи́ѣмьр ькмсйц, ъц хзабвгдежзи бьчфм ьмы.аб Имьхмфмучфр ыз з ьрй охръьӹ, лх́ мѣцнмъмпь љмхорымл ѣцњ мӹхмљ ъмомьхр ыьмӹ.абвгдежзи Лр мпь ьмы уўря мй мӹъзчы (ѣцн мучфзам, охрлӱцп ́ ямњабвгде бъмю моѣзу ыъмомьхр), мӹэ xref:collections.adoc#Base.Set[`Set`] лзмьыхр.абвг
+Ъкэъьыхцќ з лмьѣцӹ ьмы нц ``Int``ӹ љмьзъмхмо бй мпь хмюро муи́ѣмьр ькмсйц, ъц хзабвгдежзи бьчфм ьмы.аб Имьхмфмучфр ыз з ьрй охръьӹ, лх́ мѣцнмъмпь љмхорымл ѣцњ мӹхмљ ъмомьхр ыьмӹ.абвгдежзи Лр мпь ьмы уўря мй мӹъзчы (ѣцн мучфзам, охрлӱцп ́ ямњабвгде бъмю моѣзу ыъмомьхр), мӹэ xref:./collections.adoc#Base.Set[`Set`] лзмьыхр.абвг
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/bitset.jl#L21-L28[source] +
 
-[id=Base.union]
+[id="Base.union"]
 ==== *`Base.union`* &mdash; _Function_.
 
 [,julia]
@@ -4084,7 +4084,7 @@ union(s, itrs...)
 
 Клцкрхэ `∪` хзќ мй љмчбь би охрьръя `\cup` хмпь охрыӹмѣч йзь хр мпь Еруэс СХКЧ, лх́ хр бхзф ыъцьрљм.абвгдежзикл Шрпь ыр хз арнхр ъцьзѣмчц, охряцуў́ `s ∪ itr`.абвг
 
-Кмы цӹуз xref:collections.adoc#Base.unique[`unique`], xref:collections.adoc#Base.intersect[`intersect`], xref:collections.adoc#Base.isdisjoint[`isdisjoint`], xref:arrays.adoc#Base.vcat[`vcat`], xref:iterators.adoc#Base.Iterators.flatten[`Iterators.flatten`].абвг
+Кмы цӹуз xref:./collections.adoc#Base.unique[`unique`], xref:./collections.adoc#Base.intersect[`intersect`], xref:./collections.adoc#Base.isdisjoint[`isdisjoint`], xref:./arrays.adoc#Base.vcat[`vcat`], xref:./iterators.adoc#Base.Iterators.flatten[`Iterators.flatten`].абвг
 
 *Шмучфзамаб*
 
@@ -4118,7 +4118,7 @@ Set{Int64} with 3 elements:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L13-L54[source] +
 
-[id=Base.union!]
+[id="Base.union!"]
 ==== *`Base.union!`* &mdash; _Function_.
 
 [,julia]
@@ -4126,7 +4126,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 union!(s::Union{AbstractSet,AbstractVector}, itrs...)
 ----
 
-Ъкэъьыхцќ мпь xref:collections.adoc#Base.union[`union`] нц лмӹызч хр ӹьмы љхз мьрѣяъмюц `s` пьря мпь ьуэӹмѣ.абвгдежз Урзьхрзф ъмлѣц пьря ыб́ъѣз.абв
+Ъкэъьыхцќ мпь xref:./collections.adoc#Base.union[`union`] нц лмӹызч хр ӹьмы љхз мьрѣяъмюц `s` пьря мпь ьуэӹмѣ.абвгдежз Урзьхрзф ъмлѣц пьря ыб́ъѣз.абв
 
 *Шмучфзамаб*
 
@@ -4147,7 +4147,7 @@ Set{Int64} with 5 elements:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L62-L82[source] +
 
-[id=Base.intersect]
+[id="Base.intersect"]
 ==== *`Base.intersect`* &mdash; _Function_.
 
 [,julia]
@@ -4162,7 +4162,7 @@ intersect(s, itrs...)
 
 Клцкрхэ `∩` хзќ мй љмчбь би охрьръя `\cap` хмпь охрыӹмѣч йзь хр мпь Еруэс СХКЧ, лх́ хр бхзф ыъцьрљм.абвгдежзикл Шрпь ыр хз арнхр ъцьзѣмчц, охряцуў́ `s ∩ itr`.абвг
 
-Кмы цӹуз xref:collections.adoc#Base.setdiff[`setdiff`], xref:collections.adoc#Base.isdisjoint[`isdisjoint`], xref:collections.adoc#Base.issubset[`issubset`], xref:collections.adoc#Base.issetequal[`issetequal`].абв
+Кмы цӹуз xref:./collections.adoc#Base.setdiff[`setdiff`], xref:./collections.adoc#Base.isdisjoint[`isdisjoint`], xref:./collections.adoc#Base.issubset[`issubset`], xref:./collections.adoc#Base.issetequal[`issetequal`].абв
 
 !!! compat "Julia 1.8"
     Шз нц Еруэс 1.8 ькмыъмьхр ӹхѣэьмъ з ьўэымѣ пьря мпь мчбьум њц мпьабвгдежз лмьцфцъч-мчбь ымчбьум нц мпь цяь ӹьэчхрабвгд
@@ -4194,7 +4194,7 @@ Set{Float64} with 1 element:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L110-L150[source] +
 
-[id=Base.setdiff]
+[id="Base.setdiff"]
 ==== *`Base.setdiff`* &mdash; _Function_.
 
 [,julia]
@@ -4204,7 +4204,7 @@ setdiff(s, itrs...)
 
 Ъкэъьыхцќ мпь ьмӹ нц ыьхмфмум хр `s` ьэй ьцх хр бхз њц мпь ӹмўизѣмьр хр `itrs`.абвгдежз Урзьхрзф ъмлѣц пьря ыб́ъѣз.абв
 
-Кмы цӹуз xref:collections.adoc#Base.setdiff![`setdiff!`], xref:collections.adoc#Base.union[`union`] лхз xref:collections.adoc#Base.intersect[`intersect`].абв
+Кмы цӹуз xref:./collections.adoc#Base.setdiff![`setdiff!`], xref:./collections.adoc#Base.union[`union`] лхз xref:./collections.adoc#Base.intersect[`intersect`].абв
 
 *Шмучфзамаб*
 
@@ -4218,7 +4218,7 @@ julia> setdiff([1,2,3], [3,4,5])
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L196-L211[source] +
 
-[id=Base.setdiff!]
+[id="Base.setdiff!"]
 ==== *`Base.setdiff!`* &mdash; _Function_.
 
 [,julia]
@@ -4243,7 +4243,7 @@ Set{Int64} with 1 element:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L215-L231[source] +
 
-[id=Base.symdiff]
+[id="Base.symdiff"]
 ==== *`Base.symdiff`* &mdash; _Function_.
 
 [,julia]
@@ -4253,7 +4253,7 @@ symdiff(s, itrs...)
 
 Ъкэъьыхцќ мпь крѣьмффбӹ мќхмъмнњрл нц ыьхмфмум хр мпь љмӹызч хр ӹьмы.абвгдежз Умпя `s` ыр ьцх хз `AbstractSet`, мпь ъмлѣц ӹр љмхрзьхр́ф.абвгд Кьцх ьзпь хр ырпь мӹзк мпь бьрќручрьўэф нц ыьхмфмум ӹъмьь́ф.абвгдеж
 
-Кмы цӹуз xref:collections.adoc#Base.symdiff![`symdiff!`], xref:collections.adoc#Base.setdiff[`setdiff`], xref:collections.adoc#Base.union[`union`] лхз xref:collections.adoc#Base.intersect[`intersect`].абвг
+Кмы цӹуз xref:./collections.adoc#Base.symdiff![`symdiff!`], xref:./collections.adoc#Base.setdiff[`setdiff`], xref:./collections.adoc#Base.union[`union`] лхз xref:./collections.adoc#Base.intersect[`intersect`].абвг
 
 *Шмучфзамаб*
 
@@ -4276,7 +4276,7 @@ Int64[]
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L246-L271[source] +
 
-[id=Base.symdiff!]
+[id="Base.symdiff!"]
 ==== *`Base.symdiff!`* &mdash; _Function_.
 
 [,julia]
@@ -4288,7 +4288,7 @@ symdiff!(s::Union{AbstractSet,AbstractVector}, itrs...)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L275-L281[source] +
 
-[id=Base.intersect!]
+[id="Base.intersect!"]
 ==== *`Base.intersect!`* &mdash; _Function_.
 
 [,julia]
@@ -4300,7 +4300,7 @@ intersect!(s::Union{AbstractSet,AbstractVector}, itrs...)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L180-L185[source] +
 
-[id=Base.issubset]
+[id="Base.issubset"]
 ==== *`Base.issubset`* &mdash; _Function_.
 
 [,julia]
@@ -4310,9 +4310,9 @@ issubset(a, b) -> Bool
 ⊇(b, a) -> Bool
 ----
 
-Кхрфъмьмл ѣмпьмпя бъмюм ьхмфмум нц `a` ыр цӹўз хр `b`, охрыэ xref:collections.adoc#Base.in[`in`].абвгдеж
+Кхрфъмьмл ѣмпьмпя бъмюм ьхмфмум нц `a` ыр цӹўз хр `b`, охрыэ xref:./collections.adoc#Base.in[`in`].абвгдеж
 
-Кмы цӹуз xref:collections.adoc#Base.:⊊[`⊊`], xref:collections.adoc#Base.:⊈[`⊈`], xref:collections.adoc#Base.intersect[`∩`], xref:collections.adoc#Base.union[`∪`], xref:strings.adoc#Base.contains[`contains`].абвг
+Кмы цӹуз xref:./collections.adoc#Base.:⊊[`⊊`], xref:./collections.adoc#Base.:⊈[`⊈`], xref:./collections.adoc#Base.intersect[`∩`], xref:./collections.adoc#Base.union[`∪`], xref:./strings.adoc#Base.contains[`contains`].абвг
 
 *Шмучфзамаб*
 
@@ -4330,7 +4330,7 @@ true
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L300-L320[source] +
 
-[id=Base.:⊈]
+[id="Base.:⊈"]
 ==== *`Base.:⊈`* &mdash; _Function_.
 
 [,julia]
@@ -4341,7 +4341,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 Уцрьзомх нц `⊆` лхз `⊇`, м.р. ыткмпќ ь́пь `a` ӹр ьцх з ьмыйэӹ њц `b`.абвгдеж
 
-Кмы цӹуз xref:collections.adoc#Base.issubset[`issubset`] (`⊆`), xref:collections.adoc#Base.:⊊[`⊊`].абв
+Кмы цӹуз xref:./collections.adoc#Base.issubset[`issubset`] (`⊆`), xref:./collections.adoc#Base.:⊊[`⊊`].абв
 
 *Шмучфзамаб*
 
@@ -4356,7 +4356,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L390-L406[source] +
 
-[id=Base.:⊊]
+[id="Base.:⊊"]
 ==== *`Base.:⊊`* &mdash; _Function_.
 
 [,julia]
@@ -4367,7 +4367,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 Шмхрфъмьмл нр `a` ыр з ьмӹйэы њц, ьэи ьцх узэшм ць, `b`.абвгде
 
-Кмы цӹуз xref:collections.adoc#Base.issubset[`issubset`] (`⊆`), xref:collections.adoc#Base.:⊈[`⊈`].абв
+Кмы цӹуз xref:./collections.adoc#Base.issubset[`issubset`] (`⊆`), xref:./collections.adoc#Base.:⊈[`⊈`].абв
 
 *Шмучфзамаб*
 
@@ -4382,7 +4382,7 @@ false
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L363-L379[source] +
 
-[id=Base.issetequal]
+[id="Base.issetequal"]
 ==== *`Base.issetequal`* &mdash; _Function_.
 
 [,julia]
@@ -4392,7 +4392,7 @@ issetequal(a, b) -> Bool
 
 Кхрфъмьмл ѣмпьмпя `a` љхз `b` мюзп мпь мф́ы ӹьхмфмум.абвгде Ъхмузюрэшмаб ць `a ⊆ b && b ⊆ a` ьэй мъцф ьхмркрнњм хмпя муирыӹцч.абвг
 
-Кмы цӹуз:аб xref:collections.adoc#Base.isdisjoint[`isdisjoint`], xref:collections.adoc#Base.union[`union`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.isdisjoint[`isdisjoint`], xref:./collections.adoc#Base.union[`union`].аб
 
 *Шмучфзамаб*
 
@@ -4407,7 +4407,7 @@ true
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractset.jl#L414-L430[source] +
 
-[id=Base.isdisjoint]
+[id="Base.isdisjoint"]
 ==== *`Base.isdisjoint`* &mdash; _Function_.
 
 [,julia]
@@ -4417,7 +4417,7 @@ isdisjoint(a, b) -> Bool
 
 Кхрфъмьмл ѣмпьмпя мпь ыхцрькмуўцќ `a` љхз `b` мъз ьхрцсӹрл.абвгде Ъхмузюрэшм ць `isempty(a ∩ b)` ьэй мъцф ьхмркрнњм хмпя мўирыӹцч.абвгде
 
-Кмы цӹуз:аб xref:collections.adoc#Base.intersect[`intersect`], xref:collections.adoc#Base.isempty[`isempty`], xref:collections.adoc#Base.issetequal[`issetequal`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.intersect[`intersect`], xref:./collections.adoc#Base.isempty[`isempty`], xref:./collections.adoc#Base.issetequal[`issetequal`].аб
 
 !!! compat "Julia 1.5"
     Шрпь хцрькхэн ымърэшмѣ ьз ьӹзму Ерўэс 1.5.абвгд
@@ -4437,12 +4437,12 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 Fully implemented by:
 
-* xref:collections.adoc#Base.BitSet[`BitSet`]
-* xref:collections.adoc#Base.Set[`Set`]
+* xref:./collections.adoc#Base.BitSet[`BitSet`]
+* xref:./collections.adoc#Base.Set[`Set`]
 
 Partially implemented by:
 
-* xref:arrays.adoc#Core.Array[`Array`]
+* xref:./arrays.adoc#Core.Array[`Array`]
 
 +++<a id="Dequeues">++++++</a>+++
 
@@ -4450,7 +4450,7 @@ Partially implemented by:
 
 == Dequeues
 
-[id=Base.push!]
+[id="Base.push!"]
 ==== *`Base.push!`* &mdash; _Function_.
 
 [,julia]
@@ -4474,15 +4474,15 @@ julia> push!([1, 2, 3], 4, 5, 6)
  6
 ----
 
-Лр `collection` ыр лмъмљѣц, мӹэ xref:collections.adoc#Base.append![`append!`] ць лљз уўз мпь ыьхмфмум нц ъмпьцх́абвгдеж хцрькмуўцќ ць ьр.аб Кпь ьуэымъ нц мпь охрлмкмѣч мўчфзам ӹр ьхмузюрэшм ць `́ччмхљ!([1, 2, 3], [4,абвгдежзи 5, 6])`. For `ЪмыькзъьШйз` objects, xref:дѣмн[`эхрцх!`] х́ќ ми лмӹэ љзмьыхр.абвгде
+Лр `collection` ыр лмъмљѣц, мӹэ xref:./collections.adoc#Base.append![`append!`] ць лљз уўз мпь ыьхмфмум нц ъмпьцх́абвгдеж хцрькмуўцќ ць ьр.аб Кпь ьуэымъ нц мпь охрлмкмѣч мўчфзам ӹр ьхмузюрэшм ць `́ччмхљ!([1, 2, 3], [4,абвгдежзи 5, 6])`. For `ЪмыькзъьШйз` objects, link:дѣмн[`эхрцх!`] х́ќ ми лмӹэ љзмьыхр.абвгде
 
-Кмы xref:collections.adoc#Base.sizehint![`sizehint!`] ъцн ӹмьцх ьэцйз мпь мкхзфѣцњъмч умлцф.абвгд
+Кмы xref:./collections.adoc#Base.sizehint![`sizehint!`] ъцн ӹмьцх ьэцйз мпь мкхзфѣцњъмч умлцф.абвгд
 
-Кмы цӹуз xref:collections.adoc#Base.pushfirst![`pushfirst!`].аб
+Кмы цӹуз xref:./collections.adoc#Base.pushfirst![`pushfirst!`].аб
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1027-L1052[source] +
 
-[id=Base.pop!]
+[id="Base.pop!"]
 ==== *`Base.pop!`* &mdash; _Function_.
 
 [,julia]
@@ -4492,7 +4492,7 @@ pop!(collection) -> item
 
 Кюцфмъ хз фмьр хр `collection` лхз хѣэьмъ ьр.абвг Лр `collection` ыр хзаб лмъмљѣц ъмхрзьхцк, мпь ьызу фмьр ӹр лмхѣэьмъ; ѣцн љмъмлѣцхэ ыъмхр́ьхцќ,абвгдежз хз бъзѣьрйъ́ ьхмфмум ыр лмхѣэьмъ.абвг
 
-Кмы цӹуз:аб xref:collections.adoc#Base.popfirst![`popfirst!`], xref:collections.adoc#Base.popat![`popat!`], xref:collections.adoc#Base.delete![`delete!`], xref:collections.adoc#Base.deleteat![`deleteat!`], xref:collections.adoc#Base.splice![`splice!`], лхз xref:collections.adoc#Base.push![`push!`].абвг
+Кмы цӹуз:аб xref:./collections.adoc#Base.popfirst![`popfirst!`], xref:./collections.adoc#Base.popat![`popat!`], xref:./collections.adoc#Base.delete![`delete!`], xref:./collections.adoc#Base.deleteat![`deleteat!`], xref:./collections.adoc#Base.splice![`splice!`], лхз xref:./collections.adoc#Base.push![`push!`].абвг
 
 *Шмучфзамаб*
 
@@ -4557,7 +4557,7 @@ julia> pop!(d, "e", 4)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/dict.jl#L607-L628[source] +
 
-[id=Base.popat!]
+[id="Base.popat!"]
 ==== *`Base.popat!`* &mdash; _Function_.
 
 [,julia]
@@ -4567,7 +4567,7 @@ popat!(a::Vector, i::Integer, [default])
 
 Кюцфмъ мпь фмьр ьз мпь хмюро `i` лхз хѣэьмъ ьр.абвгд Ъхмэшмыйэӹ ыфмьраб мъз лмьнрпы ць уўрњ мпь охрьуэӹмѣ чзо.абвг Умпя `i` ыр ьцх з лрузю амљхр ъцн `a`, хѣэьмъ `default`, ѣц яцъпь х́ ѣцъѣм њрабвгдежз `default` ыр ьцх лмрнркмчӹ.аб
 
-Кмы цӹуз:аб xref:collections.adoc#Base.pop![`pop!`], xref:collections.adoc#Base.popfirst![`popfirst!`], xref:collections.adoc#Base.deleteat![`deleteat!`], xref:collections.adoc#Base.splice![`splice!`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.pop![`pop!`], xref:./collections.adoc#Base.popfirst![`popfirst!`], xref:./collections.adoc#Base.deleteat![`deleteat!`], xref:./collections.adoc#Base.splice![`splice!`].аб
 
 !!! compat "Julia 1.5"
     Шрпь хцрькхэн ыр муйзўрзю́ ӹз њц Еруэс 1.5.абвгд
@@ -4595,7 +4595,7 @@ ERROR: BoundsError: attempt to access 3-element Vector{Int64} at index [4]
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1321-L1352[source] +
 
-[id=Base.pushfirst!]
+[id="Base.pushfirst!"]
 ==== *`Base.pushfirst!`* &mdash; _Function_.
 
 [,julia]
@@ -4623,7 +4623,7 @@ julia> pushfirst!([1, 2, 3, 4], 5, 6)
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1369-L1387[source] +
 
-[id=Base.popfirst!]
+[id="Base.popfirst!"]
 ==== *`Base.popfirst!`* &mdash; _Function_.
 
 [,julia]
@@ -4635,7 +4635,7 @@ popfirst!(collection) -> item
 
 Шрпь хцрькхэн ыр лмуўзќ `shift` хр бхзф ъмпьц охрфф́ѣоцъч ӹмозэохзу.абвгдеж
 
-Кмы цӹуз:аб xref:collections.adoc#Base.pop![`pop!`], xref:collections.adoc#Base.popat![`popat!`], xref:collections.adoc#Base.delete![`delete!`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.pop![`pop!`], xref:./collections.adoc#Base.popat![`popat!`], xref:./collections.adoc#Base.delete![`delete!`].аб
 
 *Шмучфзамаб*
 
@@ -4664,7 +4664,7 @@ julia> A
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1395-L1426[source] +
 
-[id=Base.insert!]
+[id="Base.insert!"]
 ==== *`Base.insert!`* &mdash; _Function_.
 
 [,julia]
@@ -4674,7 +4674,7 @@ insert!(a::Vector, index::Integer, item)
 
 Ъъмыхр хз `item` цьхр `a` ьз мпь хмюро `index`.абвг `index` ыр мпь амлхр нц `item` храбв мпь охрьуэымъ `a`.аб
 
-Кмы цӹуз:аб xref:collections.adoc#Base.push![`push!`], xref:collections.adoc#Base.replace-Tuple{Any, Vararg{Pair}}[`replace`], xref:collections.adoc#Base.popat![`popat!`], xref:collections.adoc#Base.splice![`splice!`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.push![`push!`], xref:./collections.adoc#Base.replace-Tuple{Any, Vararg{Pair}}[`replace`], xref:./collections.adoc#Base.popat![`popat!`], xref:./collections.adoc#Base.splice![`splice!`].аб
 
 *Шмучфзамаб*
 
@@ -4693,7 +4693,7 @@ julia> insert!(Any[1:6;], 3, "here")
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1436-L1456[source] +
 
-[id=Base.deleteat!]
+[id="Base.deleteat!"]
 ==== *`Base.deleteat!`* &mdash; _Function_.
 
 [,julia]
@@ -4703,7 +4703,7 @@ deleteat!(a::Vector, i::Integer)
 
 Кюцфмъ мпь фмьр ьз мпь хмюро `i` лхз хѣэьмъ мпь љмрнрлцф `a`.абвгдеж Ъхмэшмыйэӹ ыфмьраб мъз лмьнрпы ць уўрњ мпь охрьуэӹмѣ чзо.абвг
 
-Кмы цӹуз:аб xref:collections.adoc#Base.delete![`delete!`], xref:collections.adoc#Base.popat![`popat!`], xref:collections.adoc#Base.splice![`splice!`].аб
+Кмы цӹуз:аб xref:./collections.adoc#Base.delete![`delete!`], xref:./collections.adoc#Base.popat![`popat!`], xref:./collections.adoc#Base.splice![`splice!`].аб
 
 *Шмучфзамаб*
 
@@ -4752,7 +4752,7 @@ Stacktrace:
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1503-L1531[source] +
 
-[id=Base.keepat!]
+[id="Base.keepat!"]
 ==== *`Base.keepat!`* &mdash; _Function_.
 
 [,julia]
@@ -4763,7 +4763,7 @@ keepat!(a::BitVector, inds)
 
 Кюцфмъ мпь ыфмьр ьз уўз мпь ӹмкрлхр пќрпя мѣ́ ьцх хмюро бй `inds`,абвгдеж лхз хъэьмѣ мпь љмрнрлцф `a`.абв Шфмьр пкрпя мъз ьчмт мѣз лмьнрпы ць уўрњ мпь охрьуэӹмъ ыч́о.абвгдеж
 
-`inds` ьыэф мй хз ъцьзѣмьр нц лмьъцӹ љх́ мэшрхэ ѣмомьхр ымкрлхр.абвгдеж Кмы цӹуз xref:collections.adoc#Base.deleteat![`deleteat!`].аб
+`inds` ьыэф мй хз ъцьзѣмьр нц лмьъцӹ љх́ мэшрхэ ѣмомьхр ымкрлхр.абвгдеж Кмы цӹуз xref:./collections.adoc#Base.deleteat![`deleteat!`].аб
 
 !!! compat "Julia 1.7"
     Шрпь хцрькхэн ыр муйзўрзю́ ӹз њц Еруэс 1.7.абвгд
@@ -4807,7 +4807,7 @@ julia> a
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L2621-L2643[source] +
 
-[id=Base.splice!]
+[id="Base.splice!"]
 ==== *`Base.splice!`* &mdash; _Function_.
 
 [,julia]
@@ -4817,7 +4817,7 @@ splice!(a::Vector, index::Integer, [replacement]) -> item
 
 Кюцфмъ мпь фмьр ьз мпь хмюро амлхр, љхз хѣэьмъ мпь лмюцфмѣ фмьр.абвгдеж Ъхмэшмыйэӹ ыфмьр мъз лмьнрпӹ ьњму ць ўурн мпь охрьӱэымѣ чзо.абвгдеж Лр лмрнркмчы, ьхмфмќзучмъ ӹмэўзю фцѣњ х́ љмъмлѣцабвгде хцрькмуўцќ уӱря мй лмкручы хр мќзўч нц мпь љмюцфмъ фмьр.абвгдеж
 
-Кмы цӹуз:аб xref:collections.adoc#Base.replace-Tuple{Any, Vararg{Pair}}[`replace`], xref:collections.adoc#Base.delete![`delete!`], xref:collections.adoc#Base.deleteat![`deleteat!`], xref:collections.adoc#Base.pop![`pop!`], xref:collections.adoc#Base.popat![`popat!`].абв
+Кмы цӹуз:аб xref:./collections.adoc#Base.replace-Tuple{Any, Vararg{Pair}}[`replace`], xref:./collections.adoc#Base.delete![`delete!`], xref:./collections.adoc#Base.deleteat![`deleteat!`], xref:./collections.adoc#Base.pop![`pop!`], xref:./collections.adoc#Base.popat![`popat!`].абв
 
 *Шмучфзамаб*
 
@@ -4898,7 +4898,7 @@ julia> A
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1673-L1707[source] +
 
-[id=Base.resize!]
+[id="Base.resize!"]
 ==== *`Base.resize!`* &mdash; _Function_.
 
 [,julia]
@@ -4935,7 +4935,7 @@ julia> a[1:6]
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1203-L1232[source] +
 
-[id=Base.append!]
+[id="Base.append!"]
 ==== *`Base.append!`* &mdash; _Function_.
 
 [,julia]
@@ -4968,15 +4968,15 @@ julia> append!([1, 2, 3], [4, 5], [6])
  6
 ----
 
-Кыэ xref:collections.adoc#Base.push![`push!`] ць лљз узэлрюрљхр ӹфмьр ць `collection` пкрпя мъ́ ьцх блзмѣўзабвгдеж ымюумӹфмпь хр ъмпьцхз хцрькмўуцќ.абвг Кпь ьуэымъ нц мпь охрлмкмѣч мўчфзам ӹр ьхмузюрэшм цьабвгде `push!([1, 2, 3], 4, 5, 6)`.аб
+Кыэ xref:./collections.adoc#Base.push![`push!`] ць лљз узэлрюрљхр ӹфмьр ць `collection` пкрпя мъ́ ьцх блзмѣўзабвгдеж ымюумӹфмпь хр ъмпьцхз хцрькмўуцќ.абвг Кпь ьуэымъ нц мпь охрлмкмѣч мўчфзам ӹр ьхмузюрэшм цьабвгде `push!([1, 2, 3], 4, 5, 6)`.аб
 
-Кмы xref:collections.adoc#Base.sizehint![`sizehint!`] ъцн ӹмьцх ьэцйз мпь мкхзфѣцњъмч умлцф.абвгд
+Кмы xref:./collections.adoc#Base.sizehint![`sizehint!`] ъцн ӹмьцх ьэцйз мпь мкхзфѣцњъмч умлцф.абвгд
 
-Кмы цӹуз xref:arrays.adoc#Base.vcat[`vcat`] ъцн ыѣцькмю, xref:collections.adoc#Base.union![`union!`] ъцњ ӹьмы,абвгд лхз xref:collections.adoc#Base.prepend![`prepend!`] љхз xref:collections.adoc#Base.pushfirst![`pushfirst!`] ъцн мпь мьрыцччц ѣмлъц.абвгд
+Кмы цӹуз xref:./arrays.adoc#Base.vcat[`vcat`] ъцн ыѣцькмю, xref:./collections.adoc#Base.union![`union!`] ъцњ ӹьмы,абвгд лхз xref:./collections.adoc#Base.prepend![`prepend!`] љхз xref:./collections.adoc#Base.pushfirst![`pushfirst!`] ъцн мпь мьрыцччц ѣмлъц.абвгд
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L1069-L1104[source] +
 
-[id=Base.prepend!]
+[id="Base.prepend!"]
 ==== *`Base.prepend!`* &mdash; _Function_.
 
 [,julia]
@@ -5015,8 +5015,8 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 Fully implemented by:
 
-* `Vector` (a.k.a. 1-dimensional xref:arrays.adoc#Core.Array[`Array`])
-* `BitVector` (a.k.a. 1-dimensional xref:arrays.adoc#Base.BitArray[`BitArray`])
+* `Vector` (a.k.a. 1-dimensional xref:./arrays.adoc#Core.Array[`Array`])
+* `BitVector` (a.k.a. 1-dimensional xref:./arrays.adoc#Base.BitArray[`BitArray`])
 
 +++<a id="Utility-Collections">++++++</a>+++
 
@@ -5024,7 +5024,7 @@ Fully implemented by:
 
 == Utility Collections
 
-[id=Core.Pair]
+[id="Core.Pair"]
 ==== *`Core.Pair`* &mdash; _Type_.
 
 [,julia]
@@ -5035,7 +5035,7 @@ x => y
 
 Ъкэъьыхцќ з `Pair` ькмсйц пьря мчбь `Pair{typeof(x), typeof(y)}`.абвг Кпь ыьхмфмума мъз лмѣцьы хр мпь ӹљумрн `first` лхз `second`.абвг Ямпь хзк цыуз мй лмӹымќќ зрюабв хцрьзъмьр (ьэй з `Pair` ыр лмь́мѣь ӹз з муохры "ъ́ўзкӹ" ѣцн охрьызќљ́цъи ӹхцрьзѣмчц).абвгдежзи
 
-Кмы цӹуз xref:collections.adoc#Base.Dict[`Dict`].аб
+Кмы цӹуз xref:./collections.adoc#Base.Dict[`Dict`].аб
 
 *Шмучфзамаб*
 
@@ -5059,7 +5059,7 @@ foo
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/pair.jl#L5-L32[source] +
 
-[id=Base.Pairs]
+[id="Base.Pairs"]
 ==== *`Base.Pairs`* &mdash; _Type_.
 
 [,julia]

@@ -20,9 +20,9 @@
 AbstractArray{T,N}
 ----
 
-Supertype for `N`-dimensional arrays (or array-like types) with elements of type `T`. xref:arrays.adoc#Core.Array[`Array`] and other types are subtypes of this. See the manual section on the xref:../manual/interfaces.adoc#man-interface-array[`AbstractArray` interface].
+Supertype for `N`-dimensional arrays (or array-like types) with elements of type `T`. xref:./arrays.adoc#Core.Array[`Array`] and other types are subtypes of this. See the manual section on the xref:manual/interfaces.adoc#man-interface-array[`AbstractArray` interface].
 
-See also: xref:arrays.adoc#Base.AbstractVector[`AbstractVector`], xref:arrays.adoc#Base.AbstractMatrix[`AbstractMatrix`], xref:collections.adoc#Base.eltype[`eltype`], xref:arrays.adoc#Base.ndims[`ndims`].
+See also: xref:./arrays.adoc#Base.AbstractVector[`AbstractVector`], xref:./arrays.adoc#Base.AbstractMatrix[`AbstractMatrix`], xref:./collections.adoc#Base.eltype[`eltype`], xref:./arrays.adoc#Base.ndims[`ndims`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L5-L13[source] +
 
@@ -34,7 +34,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 AbstractVector{T}
 ----
 
-Supertype for one-dimensional arrays (or array-like types) with elements of type `T`. Alias for xref:arrays.adoc#Core.AbstractArray[`AbstractArray{T,1}`].
+Supertype for one-dimensional arrays (or array-like types) with elements of type `T`. Alias for xref:./arrays.adoc#Core.AbstractArray[`AbstractArray{T,1}`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L17-L22[source] +
 
@@ -46,7 +46,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 AbstractMatrix{T}
 ----
 
-Supertype for two-dimensional arrays (or array-like types) with elements of type `T`. Alias for xref:arrays.adoc#Core.AbstractArray[`AbstractArray{T,2}`].
+Supertype for two-dimensional arrays (or array-like types) with elements of type `T`. Alias for xref:./arrays.adoc#Core.AbstractArray[`AbstractArray{T,2}`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L25-L30[source] +
 
@@ -58,7 +58,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 AbstractVecOrMat{T}
 ----
 
-Union type of xref:arrays.adoc#Base.AbstractVector[`+AbstractVector{T}+`] and xref:arrays.adoc#Base.AbstractMatrix[`+AbstractMatrix{T}+`].
+Union type of xref:./arrays.adoc#Base.AbstractVector[`+AbstractVector{T}+`] and xref:./arrays.adoc#Base.AbstractMatrix[`+AbstractMatrix{T}+`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L33-L37[source] +
 
@@ -83,7 +83,7 @@ Array{T}(undef, dims)
 Array{T,N}(undef, dims)
 ----
 
-Construct an uninitialized `N`-dimensional xref:arrays.adoc#Core.Array[`Array`] containing elements of type `T`. `N` can either be supplied explicitly, as in `Array{T,N}(undef, dims)`, or be determined by the length or number of `dims`. `dims` may be a tuple or a series of integer arguments corresponding to the lengths in each dimension. If the rank `N` is supplied explicitly, then it must match the length or number of `dims`. Here xref:arrays.adoc#Core.undef[`undef`] is the xref:arrays.adoc#Core.UndefInitializer[`UndefInitializer`].
+Construct an uninitialized `N`-dimensional xref:./arrays.adoc#Core.Array[`Array`] containing elements of type `T`. `N` can either be supplied explicitly, as in `Array{T,N}(undef, dims)`, or be determined by the length or number of `dims`. `dims` may be a tuple or a series of integer arguments corresponding to the lengths in each dimension. If the rank `N` is supplied explicitly, then it must match the length or number of `dims`. Here xref:./arrays.adoc#Core.undef[`undef`] is the xref:./arrays.adoc#Core.UndefInitializer[`UndefInitializer`].
 
 *Examples*
 
@@ -119,7 +119,7 @@ Array{T}(nothing, dims)
 Array{T,N}(nothing, dims)
 ----
 
-Construct an `N`-dimensional xref:arrays.adoc#Core.Array[`Array`] containing elements of type `T`, initialized with xref:constants.adoc#Core.nothing[`nothing`] entries. Element type `T` must be able to hold these values, i.e. `Nothing <: T`.
+Construct an `N`-dimensional xref:./arrays.adoc#Core.Array[`Array`] containing elements of type `T`, initialized with xref:./constants.adoc#Core.nothing[`nothing`] entries. Element type `T` must be able to hold these values, i.e. `Nothing <: T`.
 
 *Examples*
 
@@ -147,7 +147,7 @@ Array{T}(missing, dims)
 Array{T,N}(missing, dims)
 ----
 
-Construct an `N`-dimensional xref:arrays.adoc#Core.Array[`Array`] containing elements of type `T`, initialized with xref:base.adoc#Base.missing[`missing`] entries. Element type `T` must be able to hold these values, i.e. `Missing <: T`.
+Construct an `N`-dimensional xref:./arrays.adoc#Core.Array[`Array`] containing elements of type `T`, initialized with xref:./base.adoc#Base.missing[`missing`] entries. Element type `T` must be able to hold these values, i.e. `Missing <: T`.
 
 *Examples*
 
@@ -174,7 +174,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 UndefInitializer
 ----
 
-Singleton type used in array initialization, indicating the array-constructor-caller would like an uninitialized array. See also xref:arrays.adoc#Core.undef[`undef`], an alias for `UndefInitializer()`.
+Singleton type used in array initialization, indicating the array-constructor-caller would like an uninitialized array. See also xref:./arrays.adoc#Core.undef[`undef`], an alias for `UndefInitializer()`.
 
 *Examples*
 
@@ -197,9 +197,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 undef
 ----
 
-Alias for `UndefInitializer()`, which constructs an instance of the singleton type xref:arrays.adoc#Core.UndefInitializer[`UndefInitializer`], used in array initialization to indicate the array-constructor-caller would like an uninitialized array.
+Alias for `UndefInitializer()`, which constructs an instance of the singleton type xref:./arrays.adoc#Core.UndefInitializer[`UndefInitializer`], used in array initialization to indicate the array-constructor-caller would like an uninitialized array.
 
-See also: xref:base.adoc#Base.missing[`missing`], xref:arrays.adoc#Base.similar[`similar`].
+See also: xref:./base.adoc#Base.missing[`missing`], xref:./arrays.adoc#Base.similar[`similar`].
 
 *Examples*
 
@@ -222,9 +222,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Vector{T} <: AbstractVector{T}
 ----
 
-One-dimensional dense array with elements of type `T`, often used to represent a mathematical vector. Alias for xref:arrays.adoc#Core.Array[`Array{T,1}`].
+One-dimensional dense array with elements of type `T`, often used to represent a mathematical vector. Alias for xref:./arrays.adoc#Core.Array[`Array{T,1}`].
 
-See also xref:arrays.adoc#Base.empty[`empty`], xref:arrays.adoc#Base.similar[`similar`] and xref:numbers.adoc#Base.zero[`zero`] for creating vectors.
+See also xref:./arrays.adoc#Base.empty[`empty`], xref:./arrays.adoc#Base.similar[`similar`] and xref:./numbers.adoc#Base.zero[`zero`] for creating vectors.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L52-L59[source] +
 
@@ -236,7 +236,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Vector{T}(undef, n)
 ----
 
-Construct an uninitialized xref:arrays.adoc#Base.Vector[`+Vector{T}+`] of length `n`.
+Construct an uninitialized xref:./arrays.adoc#Base.Vector[`+Vector{T}+`] of length `n`.
 
 *Examples*
 
@@ -259,7 +259,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Vector{T}(nothing, m)
 ----
 
-Construct a xref:arrays.adoc#Base.Vector[`+Vector{T}+`] of length `m`, initialized with xref:constants.adoc#Core.nothing[`nothing`] entries. Element type `T` must be able to hold these values, i.e. `Nothing <: T`.
+Construct a xref:./arrays.adoc#Base.Vector[`+Vector{T}+`] of length `m`, initialized with xref:./constants.adoc#Core.nothing[`nothing`] entries. Element type `T` must be able to hold these values, i.e. `Nothing <: T`.
 
 *Examples*
 
@@ -281,7 +281,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Vector{T}(missing, m)
 ----
 
-Construct a xref:arrays.adoc#Base.Vector[`+Vector{T}+`] of length `m`, initialized with xref:base.adoc#Base.missing[`missing`] entries. Element type `T` must be able to hold these values, i.e. `Missing <: T`.
+Construct a xref:./arrays.adoc#Base.Vector[`+Vector{T}+`] of length `m`, initialized with xref:./base.adoc#Base.missing[`missing`] entries. Element type `T` must be able to hold these values, i.e. `Missing <: T`.
 
 *Examples*
 
@@ -303,9 +303,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Matrix{T} <: AbstractMatrix{T}
 ----
 
-Two-dimensional dense array with elements of type `T`, often used to represent a mathematical matrix. Alias for xref:arrays.adoc#Core.Array[`Array{T,2}`].
+Two-dimensional dense array with elements of type `T`, often used to represent a mathematical matrix. Alias for xref:./arrays.adoc#Core.Array[`Array{T,2}`].
 
-See also xref:arrays.adoc#Base.fill[`fill`], xref:arrays.adoc#Base.zeros[`zeros`], xref:arrays.adoc#Core.undef[`undef`] and xref:arrays.adoc#Base.similar[`similar`] for creating matrices.
+See also xref:./arrays.adoc#Base.fill[`fill`], xref:./arrays.adoc#Base.zeros[`zeros`], xref:./arrays.adoc#Core.undef[`undef`] and xref:./arrays.adoc#Base.similar[`similar`] for creating matrices.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L62-L70[source] +
 
@@ -317,7 +317,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Matrix{T}(undef, m, n)
 ----
 
-Construct an uninitialized xref:arrays.adoc#Base.Matrix[`+Matrix{T}+`] of size `m`×`n`.
+Construct an uninitialized xref:./arrays.adoc#Base.Matrix[`+Matrix{T}+`] of size `m`×`n`.
 
 *Examples*
 
@@ -344,7 +344,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Matrix{T}(nothing, m, n)
 ----
 
-Construct a xref:arrays.adoc#Base.Matrix[`+Matrix{T}+`] of size `m`×`n`, initialized with xref:constants.adoc#Core.nothing[`nothing`] entries. Element type `T` must be able to hold these values, i.e. `Nothing <: T`.
+Construct a xref:./arrays.adoc#Base.Matrix[`+Matrix{T}+`] of size `m`×`n`, initialized with xref:./constants.adoc#Core.nothing[`nothing`] entries. Element type `T` must be able to hold these values, i.e. `Nothing <: T`.
 
 *Examples*
 
@@ -366,7 +366,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Matrix{T}(missing, m, n)
 ----
 
-Construct a xref:arrays.adoc#Base.Matrix[`+Matrix{T}+`] of size `m`×`n`, initialized with xref:base.adoc#Base.missing[`missing`] entries. Element type `T` must be able to hold these values, i.e. `Missing <: T`.
+Construct a xref:./arrays.adoc#Base.Matrix[`+Matrix{T}+`] of size `m`×`n`, initialized with xref:./base.adoc#Base.missing[`missing`] entries. Element type `T` must be able to hold these values, i.e. `Missing <: T`.
 
 *Examples*
 
@@ -388,7 +388,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 VecOrMat{T}
 ----
 
-Тестовый перевод для VecOrMat. Ссылка: xref:arrays.adoc#Base.Vector[`+Vector{T}+`]. Русский текст.
+Тестовый перевод для VecOrMat. Ссылка: xref:./arrays.adoc#Base.Vector[`+Vector{T}+`]. Русский текст.
 
 Вторая строка текста.
 
@@ -438,7 +438,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 DenseVector{T}
 ----
 
-One-dimensional xref:arrays.adoc#Core.DenseArray[`DenseArray`] with elements of type `T`. Alias for `DenseArray{T,1}`.
+One-dimensional xref:./arrays.adoc#Core.DenseArray[`DenseArray`] with elements of type `T`. Alias for `DenseArray{T,1}`.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L100-L104[source] +
 
@@ -450,7 +450,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 DenseMatrix{T}
 ----
 
-Two-dimensional xref:arrays.adoc#Core.DenseArray[`DenseArray`] with elements of type `T`. Alias for `DenseArray{T,2}`.
+Two-dimensional xref:./arrays.adoc#Core.DenseArray[`DenseArray`] with elements of type `T`. Alias for `DenseArray{T,2}`.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L107-L111[source] +
 
@@ -462,7 +462,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 DenseVecOrMat{T}
 ----
 
-Union type of xref:arrays.adoc#Base.DenseVector[`+DenseVector{T}+`] and xref:arrays.adoc#Base.DenseMatrix[`+DenseMatrix{T}+`].
+Union type of xref:./arrays.adoc#Base.DenseVector[`+DenseVector{T}+`] and xref:./arrays.adoc#Base.DenseMatrix[`+DenseMatrix{T}+`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/array.jl#L114-L118[source] +
 
@@ -474,7 +474,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 StridedArray{T, N}
 ----
 
-A hard-coded xref:base.adoc#Core.Union[`Union`] of common array types that follow the xref:../manual/interfaces.adoc#man-interface-strided-arrays[strided array interface], with elements of type `T` and `N` dimensions.
+A hard-coded xref:./base.adoc#Core.Union[`Union`] of common array types that follow the xref:manual/interfaces.adoc#man-interface-strided-arrays[strided array interface], with elements of type `T` and `N` dimensions.
 
 If `A` is a `StridedArray`, then its elements are stored in memory with offsets, which may vary between dimensions but are constant within a dimension. For example, `A` could have stride 2 in dimension 1, and stride 3 in dimension 2. Incrementing `A` along dimension `d` jumps in memory by [`strides(A, d)`] slots. Strided arrays are particularly important and useful because they can sometimes be passed directly as pointers to foreign language libraries like BLAS.
 
@@ -488,7 +488,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 StridedVector{T}
 ----
 
-One dimensional xref:arrays.adoc#Base.StridedArray[`StridedArray`] with elements of type `T`.
+One dimensional xref:./arrays.adoc#Base.StridedArray[`StridedArray`] with elements of type `T`.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2791-L2795[source] +
 
@@ -500,7 +500,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 StridedMatrix{T}
 ----
 
-Two dimensional xref:arrays.adoc#Base.StridedArray[`StridedArray`] with elements of type `T`.
+Two dimensional xref:./arrays.adoc#Base.StridedArray[`StridedArray`] with elements of type `T`.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2798-L2802[source] +
 
@@ -512,7 +512,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 StridedVecOrMat{T}
 ----
 
-Union type of xref:arrays.adoc#Base.StridedVector[`StridedVector`] and xref:arrays.adoc#Base.StridedMatrix[`StridedMatrix`] with elements of type `T`.
+Union type of xref:./arrays.adoc#Base.StridedVector[`StridedVector`] and xref:./arrays.adoc#Base.StridedMatrix[`StridedMatrix`] with elements of type `T`.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/docs/basedocs.jl#L2805-L2809[source] +
 
@@ -554,7 +554,7 @@ zeros([T=Float64,] dims::Tuple)
 zeros([T=Float64,] dims...)
 ----
 
-Create an `Array`, with element type `T`, of all zeros with size specified by `dims`. See also xref:arrays.adoc#Base.fill[`fill`], xref:arrays.adoc#Base.ones[`ones`], xref:numbers.adoc#Base.zero[`zero`].
+Create an `Array`, with element type `T`, of all zeros with size specified by `dims`. See also xref:./arrays.adoc#Base.fill[`fill`], xref:./arrays.adoc#Base.ones[`ones`], xref:./numbers.adoc#Base.zero[`zero`].
 
 *Examples*
 
@@ -581,7 +581,7 @@ ones([T=Float64,] dims::Tuple)
 ones([T=Float64,] dims...)
 ----
 
-Create an `Array`, with element type `T`, of all ones with size specified by `dims`. See also xref:arrays.adoc#Base.fill[`fill`], xref:arrays.adoc#Base.zeros[`zeros`].
+Create an `Array`, with element type `T`, of all ones with size specified by `dims`. See also xref:./arrays.adoc#Base.fill[`fill`], xref:./arrays.adoc#Base.zeros[`zeros`].
 
 *Examples*
 
@@ -611,7 +611,7 @@ Space-efficient `N`-dimensional boolean array, using just one bit for each boole
 
 ``BitArray``s pack up to 64 values into every 8 bytes, resulting in an 8x space efficiency over `Array{Bool, N}` and allowing some operations to work on 64 values at once.
 
-By default, Julia returns `BitArrays` from xref:../manual/arrays.adoc#Broadcasting[broadcasting] operations that generate boolean elements (including dotted-comparisons like `.==`) as well as from the functions xref:arrays.adoc#Base.trues[`trues`] and xref:arrays.adoc#Base.falses[`falses`].
+By default, Julia returns `BitArrays` from xref:manual/arrays.adoc#Broadcasting[broadcasting] operations that generate boolean elements (including dotted-comparisons like `.==`) as well as from the functions xref:./arrays.adoc#Base.trues[`trues`] and xref:./arrays.adoc#Base.falses[`falses`].
 
 !!! note
     Due to its packed storage format, concurrent access to the elements of a `BitArray` where at least one of them is a write is not thread safe.
@@ -627,7 +627,7 @@ BitArray(undef, dims::Integer...)
 BitArray{N}(undef, dims::NTuple{N,Int})
 ----
 
-Construct an undef xref:arrays.adoc#Base.BitArray[`BitArray`] with the given dimensions. Behaves identically to the xref:arrays.adoc#Core.Array[`Array`] constructor. See xref:arrays.adoc#Core.undef[`undef`].
+Construct an undef xref:./arrays.adoc#Base.BitArray[`BitArray`] with the given dimensions. Behaves identically to the xref:./arrays.adoc#Core.Array[`Array`] constructor. See xref:./arrays.adoc#Core.undef[`undef`].
 
 *Examples*
 
@@ -655,7 +655,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 BitArray(itr)
 ----
 
-Construct a xref:arrays.adoc#Base.BitArray[`BitArray`] generated by the given iterable object. The shape is inferred from the `itr` object.
+Construct a xref:./arrays.adoc#Base.BitArray[`BitArray`] generated by the given iterable object. The shape is inferred from the `itr` object.
 
 *Examples*
 
@@ -742,7 +742,7 @@ For example, `fill(1.0, (5,5))` returns a 5×5 array of floats, with `1.0` in ev
 
 The dimension lengths `dims` may be specified as either a tuple or a sequence of arguments. An `N`-length tuple or `N` arguments following the `value` specify an `N`-dimensional array. Thus, a common idiom for creating a zero-dimensional array with its only location set to `x` is `fill(x)`.
 
-Every location of the returned array is set to (and is thus xref:base.adoc#Core.:===[`===`] to) the `value` that was passed; this means that if the `value` is itself modified, all elements of the ``fill``ed array will reflect that modification because they're _still_ that very `value`. This is of no concern with `fill(1.0, (5,5))` as the `value` `1.0` is immutable and cannot itself be modified, but can be unexpected with mutable values like -- most commonly -- arrays.  For example, `fill([], 3)` places _the very same_ empty array in all three locations of the returned vector:
+Every location of the returned array is set to (and is thus xref:./base.adoc#Core.:===[`===`] to) the `value` that was passed; this means that if the `value` is itself modified, all elements of the ``fill``ed array will reflect that modification because they're _still_ that very `value`. This is of no concern with `fill(1.0, (5,5))` as the `value` `1.0` is immutable and cannot itself be modified, but can be unexpected with mutable values like -- most commonly -- arrays.  For example, `fill([], 3)` places _the very same_ empty array in all three locations of the returned vector:
 
 [,julia-repl]
 ----
@@ -769,7 +769,7 @@ julia> v
  [8675309]
 ----
 
-To create an array of many independent inner arrays, use a xref:../manual/arrays.adoc#man-comprehensions[comprehension] instead. This creates a new and distinct array on each iteration of the loop:
+To create an array of many independent inner arrays, use a xref:manual/arrays.adoc#man-comprehensions[comprehension] instead. This creates a new and distinct array on each iteration of the loop:
 
 [,julia-repl]
 ----
@@ -793,7 +793,7 @@ julia> v2
  []
 ----
 
-See also: xref:arrays.adoc#Base.fill![`fill!`], xref:arrays.adoc#Base.zeros[`zeros`], xref:arrays.adoc#Base.ones[`ones`], xref:arrays.adoc#Base.similar[`similar`].
+See also: xref:./arrays.adoc#Base.fill![`fill!`], xref:./arrays.adoc#Base.zeros[`zeros`], xref:./arrays.adoc#Base.ones[`ones`], xref:./arrays.adoc#Base.similar[`similar`].
 
 *Examples*
 
@@ -880,7 +880,7 @@ empty(v::AbstractVector, [eltype])
 
 Create an empty vector similar to `v`, optionally changing the `eltype`.
 
-See also: xref:collections.adoc#Base.empty![`empty!`], xref:collections.adoc#Base.isempty[`isempty`], xref:arrays.adoc#Base.isassigned[`isassigned`].
+See also: xref:./collections.adoc#Base.empty![`empty!`], xref:./collections.adoc#Base.isempty[`isempty`], xref:./arrays.adoc#Base.isassigned[`isassigned`].
 
 *Examples*
 
@@ -936,7 +936,7 @@ julia> similar(trues(10,10), 2)
  0
 ----
 
-Since ``BitArray``s can only store elements of type xref:numbers.adoc#Core.Bool[`Bool`], however, if you request a different element type it will create a regular `Array` instead:
+Since ``BitArray``s can only store elements of type xref:./numbers.adoc#Core.Bool[`Bool`], however, if you request a different element type it will create a regular `Array` instead:
 
 [,julia-repl]
 ----
@@ -946,7 +946,7 @@ julia> similar(falses(10), Float64, 2, 4)
  2.18425e-314  2.18425e-314  2.18425e-314  2.18425e-314
 ----
 
-See also: xref:arrays.adoc#Core.undef[`undef`], xref:arrays.adoc#Base.isassigned[`isassigned`].
+See also: xref:./arrays.adoc#Core.undef[`undef`], xref:./arrays.adoc#Base.isassigned[`isassigned`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L750-L792[source] +
 
@@ -990,7 +990,7 @@ ndims(A::AbstractArray) -> Integer
 
 Return the number of dimensions of `A`.
 
-See also: xref:arrays.adoc#Base.size[`size`], xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`].
+See also: xref:./arrays.adoc#Base.size[`size`], xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`].
 
 *Examples*
 
@@ -1014,9 +1014,9 @@ size(A::AbstractArray, [dim])
 
 Return a tuple containing the dimensions of `A`. Optionally you can specify a dimension to just get the length of that dimension.
 
-Note that `size` may not be defined for arrays with non-standard indices, in which case xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`] may be useful. See the manual chapter on xref:../devdocs/offset-arrays.adoc#man-custom-indices[arrays with custom indices].
+Note that `size` may not be defined for arrays with non-standard indices, in which case xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`] may be useful. See the manual chapter on xref:devdocs/offset-arrays.adoc#man-custom-indices[arrays with custom indices].
 
-See also: xref:collections.adoc#Base.length[`length`], xref:arrays.adoc#Base.ndims[`ndims`], xref:arrays.adoc#Base.eachindex[`eachindex`], xref:base.adoc#Base.sizeof-Tuple{Type}[`sizeof`].
+See also: xref:./collections.adoc#Base.length[`length`], xref:./arrays.adoc#Base.ndims[`ndims`], xref:./arrays.adoc#Base.eachindex[`eachindex`], xref:./base.adoc#Base.sizeof-Tuple{Type}[`sizeof`].
 
 *Examples*
 
@@ -1043,7 +1043,7 @@ axes(A)
 
 Return the tuple of valid indices for array `A`.
 
-See also: xref:arrays.adoc#Base.size[`size`], xref:collections.adoc#Base.keys[`keys`], xref:arrays.adoc#Base.eachindex[`eachindex`].
+See also: xref:./arrays.adoc#Base.size[`size`], xref:./collections.adoc#Base.keys[`keys`], xref:./arrays.adoc#Base.eachindex[`eachindex`].
 
 *Examples*
 
@@ -1069,7 +1069,7 @@ axes(A, d)
 
 Return the valid range of indices for array `A` along dimension `d`.
 
-See also xref:arrays.adoc#Base.size[`size`], and the manual chapter on xref:../devdocs/offset-arrays.adoc#man-custom-indices[arrays with custom indices].
+See also xref:./arrays.adoc#Base.size[`size`], and the manual chapter on xref:devdocs/offset-arrays.adoc#man-custom-indices[arrays with custom indices].
 
 *Examples*
 
@@ -1083,7 +1083,7 @@ Base.OneTo(6)
 
 *Usage note*
 
-Each of the indices has to be an `AbstractUnitRange{<:Integer}`, but at the same time can be a type that uses custom indices. So, for example, if you need a subset, use generalized indexing constructs like `begin`/`end` or xref:collections.adoc#Base.firstindex[`firstindex`]/xref:collections.adoc#Base.lastindex[`lastindex`]:
+Each of the indices has to be an `AbstractUnitRange{<:Integer}`, but at the same time can be a type that uses custom indices. So, for example, if you need a subset, use generalized indexing constructs like `begin`/`end` or xref:./collections.adoc#Base.firstindex[`firstindex`]/xref:./collections.adoc#Base.lastindex[`lastindex`]:
 
 [,julia]
 ----
@@ -1127,9 +1127,9 @@ keys(a::AbstractArray)
 
 Return an efficient array describing all valid indices for `a` arranged in the shape of `a` itself.
 
-They keys of 1-dimensional arrays (vectors) are integers, whereas all other N-dimensional arrays use xref:arrays.adoc#Base.IteratorsMD.CartesianIndex[`CartesianIndex`] to describe their locations.  Often the special array types xref:arrays.adoc#Base.LinearIndices[`LinearIndices`] and xref:arrays.adoc#Base.IteratorsMD.CartesianIndices[`CartesianIndices`] are used to efficiently represent these arrays of integers and ``CartesianIndex``es, respectively.
+They keys of 1-dimensional arrays (vectors) are integers, whereas all other N-dimensional arrays use xref:./arrays.adoc#Base.IteratorsMD.CartesianIndex[`CartesianIndex`] to describe their locations.  Often the special array types xref:./arrays.adoc#Base.LinearIndices[`LinearIndices`] and xref:./arrays.adoc#Base.IteratorsMD.CartesianIndices[`CartesianIndices`] are used to efficiently represent these arrays of integers and ``CartesianIndex``es, respectively.
 
-Note that the `keys` of an array might not be the most efficient index type; for maximum performance use  xref:arrays.adoc#Base.eachindex[`eachindex`] instead.
+Note that the `keys` of an array might not be the most efficient index type; for maximum performance use  xref:./arrays.adoc#Base.eachindex[`eachindex`] instead.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarray.jl#L119-L131[source] +
 
@@ -1143,7 +1143,7 @@ eachindex(A...)
 
 Create an iterable object for visiting each index of an `AbstractArray` `A` in an efficient manner. For array types that have opted into fast linear indexing (like `Array`), this is simply the range `1:length(A)`. For other array types, return a specialized Cartesian range to efficiently index into the array with indices specified for every dimension. For other iterables, including strings and dictionaries, return an iterator object supporting arbitrary index types (e.g. unevenly spaced or non-integer indices).
 
-If you supply more than one `AbstractArray` argument, `eachindex` will create an iterable object that is fast for all arguments (a xref:collections.adoc#Base.UnitRange[`UnitRange`] if all inputs have fast linear indexing, a xref:arrays.adoc#Base.IteratorsMD.CartesianIndices[`CartesianIndices`] otherwise). If the arrays have different sizes and/or dimensionalities, a `DimensionMismatch` exception will be thrown.
+If you supply more than one `AbstractArray` argument, `eachindex` will create an iterable object that is fast for all arguments (a xref:./collections.adoc#Base.UnitRange[`UnitRange`] if all inputs have fast linear indexing, a xref:./arrays.adoc#Base.IteratorsMD.CartesianIndices[`CartesianIndices`] otherwise). If the arrays have different sizes and/or dimensionalities, a `DimensionMismatch` exception will be thrown.
 
 *Examples*
 
@@ -1177,17 +1177,17 @@ IndexStyle(A)
 IndexStyle(typeof(A))
 ----
 
-`IndexStyle` specifies the "native indexing style" for array `A`. When you define a new xref:arrays.adoc#Core.AbstractArray[`AbstractArray`] type, you can choose to implement either linear indexing (with xref:arrays.adoc#Base.IndexLinear[`IndexLinear`]) or cartesian indexing. If you decide to only implement linear indexing, then you must set this trait for your array type:
+`IndexStyle` specifies the "native indexing style" for array `A`. When you define a new xref:./arrays.adoc#Core.AbstractArray[`AbstractArray`] type, you can choose to implement either linear indexing (with xref:./arrays.adoc#Base.IndexLinear[`IndexLinear`]) or cartesian indexing. If you decide to only implement linear indexing, then you must set this trait for your array type:
 
 ----
 Base.IndexStyle(::Type{<:MyArray}) = IndexLinear()
 ----
 
-The default is xref:arrays.adoc#Base.IndexCartesian[`IndexCartesian()`].
+The default is xref:./arrays.adoc#Base.IndexCartesian[`IndexCartesian()`].
 
 Julia's internal indexing machinery will automatically (and invisibly) recompute all indexing operations into the preferred style. This allows users to access elements of your array using any indexing style, even when explicit methods have not been provided.
 
-If you define both styles of indexing for your `AbstractArray`, this trait can be used to select the most performant indexing style. Some methods check this trait on their inputs, and dispatch to different algorithms depending on the most efficient access pattern. In particular, xref:arrays.adoc#Base.eachindex[`eachindex`] creates an iterator whose type depends on the setting of this trait.
+If you define both styles of indexing for your `AbstractArray`, this trait can be used to select the most performant indexing style. Some methods check this trait on their inputs, and dispatch to different algorithms depending on the most efficient access pattern. In particular, xref:./arrays.adoc#Base.eachindex[`eachindex`] creates an iterator whose type depends on the setting of this trait.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L68-L93[source] +
 
@@ -1199,13 +1199,13 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 IndexLinear()
 ----
 
-Subtype of xref:arrays.adoc#Base.IndexStyle[`IndexStyle`] used to describe arrays which are optimally indexed by one linear index.
+Subtype of xref:./arrays.adoc#Base.IndexStyle[`IndexStyle`] used to describe arrays which are optimally indexed by one linear index.
 
-A linear indexing style uses one integer index to describe the position in the array (even if it's a multidimensional array) and column-major ordering is used to efficiently access the elements. This means that requesting xref:arrays.adoc#Base.eachindex[`eachindex`] from an array that is `IndexLinear` will return a simple one-dimensional range, even if it is multidimensional.
+A linear indexing style uses one integer index to describe the position in the array (even if it's a multidimensional array) and column-major ordering is used to efficiently access the elements. This means that requesting xref:./arrays.adoc#Base.eachindex[`eachindex`] from an array that is `IndexLinear` will return a simple one-dimensional range, even if it is multidimensional.
 
 A custom array that reports its `IndexStyle` as `IndexLinear` only needs to implement indexing (and indexed assignment) with a single `Int` index; all other indexing expressions -- including multidimensional accesses -- will be recomputed to the linear index.  For example, if `A` were a `2×3` custom matrix with linear indexing, and we referenced `A[1, 3]`, this would be recomputed to the equivalent linear index and call `A[5]` since `2*1 + 3 = 5`.
 
-See also xref:arrays.adoc#Base.IndexCartesian[`IndexCartesian`].
+See also xref:./arrays.adoc#Base.IndexCartesian[`IndexCartesian`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L16-L36[source] +
 
@@ -1217,15 +1217,15 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 IndexCartesian()
 ----
 
-Subtype of xref:arrays.adoc#Base.IndexStyle[`IndexStyle`] used to describe arrays which are optimally indexed by a Cartesian index. This is the default for new custom xref:arrays.adoc#Core.AbstractArray[`AbstractArray`] subtypes.
+Subtype of xref:./arrays.adoc#Base.IndexStyle[`IndexStyle`] used to describe arrays which are optimally indexed by a Cartesian index. This is the default for new custom xref:./arrays.adoc#Core.AbstractArray[`AbstractArray`] subtypes.
 
-A Cartesian indexing style uses multiple integer indices to describe the position in a multidimensional array, with exactly one index per dimension. This means that requesting xref:arrays.adoc#Base.eachindex[`eachindex`] from an array that is `IndexCartesian` will return a range of xref:arrays.adoc#Base.IteratorsMD.CartesianIndices[`CartesianIndices`].
+A Cartesian indexing style uses multiple integer indices to describe the position in a multidimensional array, with exactly one index per dimension. This means that requesting xref:./arrays.adoc#Base.eachindex[`eachindex`] from an array that is `IndexCartesian` will return a range of xref:./arrays.adoc#Base.IteratorsMD.CartesianIndices[`CartesianIndices`].
 
 A `N`-dimensional custom array that reports its `IndexStyle` as `IndexCartesian` needs to implement indexing (and indexed assignment) with exactly `N` `Int` indices; all other indexing expressions -- including linear indexing -- will be recomputed to the equivalent Cartesian location.  For example, if `A` were a `2×3` custom matrix with cartesian indexing, and we referenced `A[5]`, this would be recomputed to the equivalent Cartesian index and call `A[1, 3]` since `5 = 2*1 + 3`.
 
 It is significantly more expensive to compute Cartesian indices from a linear index than it is to go the other way.  The former operation requires division -- a very costly operation -- whereas the latter only uses multiplication and addition and is essentially free. This asymmetry means it is far more costly to use linear indexing with an `IndexCartesian` array than it is to use Cartesian indexing with an `IndexLinear` array.
 
-See also xref:arrays.adoc#Base.IndexLinear[`IndexLinear`].
+See also xref:./arrays.adoc#Base.IndexLinear[`IndexLinear`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L39-L65[source] +
 
@@ -1239,7 +1239,7 @@ conj!(A)
 
 Transform an array to its complex conjugate in-place.
 
-See also xref:math.adoc#Base.conj[`conj`].
+See also xref:./math.adoc#Base.conj[`conj`].
 
 *Examples*
 
@@ -1270,7 +1270,7 @@ stride(A, k::Integer)
 
 Return the distance in memory (in number of elements) between adjacent elements in dimension `k`.
 
-See also: xref:arrays.adoc#Base.strides[`strides`].
+See also: xref:./arrays.adoc#Base.strides[`strides`].
 
 *Examples*
 
@@ -1297,7 +1297,7 @@ strides(A)
 
 Return a tuple of the memory strides in each dimension.
 
-See also: xref:arrays.adoc#Base.stride[`stride`].
+See also: xref:./arrays.adoc#Base.stride[`stride`].
 
 *Examples*
 
@@ -1317,7 +1317,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 
 == Broadcast and vectorization
 
-See also the xref:../manual/functions.adoc#man-vectorized[dot syntax for vectorizing functions]; for example, `+f.(args...)+` implicitly calls `+broadcast(f, args...)+`. Rather than relying on "vectorized" methods of functions like `sin` to operate on arrays, you should use `sin.(a)` to vectorize via `broadcast`.
+See also the xref:manual/functions.adoc#man-vectorized[dot syntax for vectorizing functions]; for example, `+f.(args...)+` implicitly calls `+broadcast(f, args...)+`. Rather than relying on "vectorized" methods of functions like `sin` to operate on arrays, you should use `sin.(a)` to vectorize via `broadcast`.
 
 [id="Base.Broadcast.broadcast"]
 ==== *`Base.Broadcast.broadcast`* &mdash; _Function_.
@@ -1327,9 +1327,9 @@ See also the xref:../manual/functions.adoc#man-vectorized[dot syntax for vectori
 broadcast(f, As...)
 ----
 
-Broadcast the function `f` over the arrays, tuples, collections, xref:c.adoc#Core.Ref[`Ref`]s and/or scalars `As`.
+Broadcast the function `f` over the arrays, tuples, collections, xref:./c.adoc#Core.Ref[`Ref`]s and/or scalars `As`.
 
-Broadcasting applies the function `f` over the elements of the container arguments and the scalars themselves in `As`. Singleton and missing dimensions are expanded to match the extents of the other arguments by virtually repeating the value. By default, only a limited number of types are considered scalars, including ``Number``s, ``String``s, ``Symbol``s, ``Type``s, ``Function``s and some common singletons like xref:base.adoc#Base.missing[`missing`] and xref:constants.adoc#Core.nothing[`nothing`]. All other arguments are iterated over or indexed into elementwise.
+Broadcasting applies the function `f` over the elements of the container arguments and the scalars themselves in `As`. Singleton and missing dimensions are expanded to match the extents of the other arguments by virtually repeating the value. By default, only a limited number of types are considered scalars, including ``Number``s, ``String``s, ``Symbol``s, ``Type``s, ``Function``s and some common singletons like xref:./base.adoc#Base.missing[`missing`] and xref:./constants.adoc#Core.nothing[`nothing`]. All other arguments are iterated over or indexed into elementwise.
 
 The resulting container type is established by the following rules:
 
@@ -1401,7 +1401,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 broadcast!(f, dest, As...)
 ----
 
-Like xref:arrays.adoc#Base.Broadcast.broadcast[`broadcast`], but store the result of `+broadcast(f, As...)+` in the `dest` array. Note that `dest` is only used to store the result, and does not supply arguments to `f` unless it is also listed in the `As`, as in `broadcast!(f, A, A, B)` to perform `A[:] = broadcast(f, A, B)`.
+Like xref:./arrays.adoc#Base.Broadcast.broadcast[`broadcast`], but store the result of `+broadcast(f, As...)+` in the `dest` array. Note that `dest` is only used to store the result, and does not supply arguments to `f` unless it is also listed in the `As`, as in `broadcast!(f, A, A, B)` to perform `A[:] = broadcast(f, A, B)`.
 
 *Examples*
 
@@ -1472,7 +1472,7 @@ struct MyContainerStyle <: BroadcastStyle end
 Base.BroadcastStyle(::Type{<:MyContainer}) = MyContainerStyle()
 ----
 
-One then writes method(s) (at least xref:arrays.adoc#Base.similar[`similar`]) operating on `+Broadcasted{MyContainerStyle}+`. There are also several pre-defined subtypes of `BroadcastStyle` that you may be able to leverage; see the xref:../manual/interfaces.adoc#man-interfaces-broadcasting[Interfaces chapter] for more information.
+One then writes method(s) (at least xref:./arrays.adoc#Base.similar[`similar`]) operating on `+Broadcasted{MyContainerStyle}+`. There are also several pre-defined subtypes of `BroadcastStyle` that you may be able to leverage; see the xref:manual/interfaces.adoc#man-interfaces-broadcasting[Interfaces chapter] for more information.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L21-L34[source] +
 
@@ -1493,30 +1493,30 @@ struct MyArrayStyle <: Broadcast.AbstractArrayStyle{Any} end
 Base.BroadcastStyle(::Type{<:MyArray}) = MyArrayStyle()
 ----
 
-In cases where you want to be able to mix multiple ``AbstractArrayStyle``s and keep track of dimensionality, your style needs to support a xref:base.adoc#Base.Val[`Val`] constructor:
+In cases where you want to be able to mix multiple ``AbstractArrayStyle``s and keep track of dimensionality, your style needs to support a xref:./base.adoc#Base.Val[`Val`] constructor:
 
 ----
 struct MyArrayStyleDim{N} <: Broadcast.AbstractArrayStyle{N} end
 (::Type{<:MyArrayStyleDim})(::Val{N}) where N = MyArrayStyleDim{N}()
 ----
 
-Note that if two or more `AbstractArrayStyle` subtypes conflict, broadcasting machinery will fall back to producing ``Array``s. If this is undesirable, you may need to define binary xref:arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] rules to control the output type.
+Note that if two or more `AbstractArrayStyle` subtypes conflict, broadcasting machinery will fall back to producing ``Array``s. If this is undesirable, you may need to define binary xref:./arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] rules to control the output type.
 
-See also xref:arrays.adoc#Base.Broadcast.DefaultArrayStyle[`Broadcast.DefaultArrayStyle`].
+See also xref:./arrays.adoc#Base.Broadcast.DefaultArrayStyle[`Broadcast.DefaultArrayStyle`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L51-L76[source] +
 
 [id="Base.Broadcast.ArrayStyle"]
 ==== *`Base.Broadcast.ArrayStyle`* &mdash; _Type_.
 
-`+Broadcast.ArrayStyle{MyArrayType}()+` is a xref:arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] indicating that an object behaves as an array for broadcasting. It presents a simple way to construct xref:arrays.adoc#Base.Broadcast.AbstractArrayStyle[`Broadcast.AbstractArrayStyle`]s for specific `AbstractArray` container types. Broadcast styles created this way lose track of dimensionality; if keeping track is important for your type, you should create your own custom xref:arrays.adoc#Base.Broadcast.AbstractArrayStyle[`Broadcast.AbstractArrayStyle`].
+`+Broadcast.ArrayStyle{MyArrayType}()+` is a xref:./arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] indicating that an object behaves as an array for broadcasting. It presents a simple way to construct xref:./arrays.adoc#Base.Broadcast.AbstractArrayStyle[`Broadcast.AbstractArrayStyle`]s for specific `AbstractArray` container types. Broadcast styles created this way lose track of dimensionality; if keeping track is important for your type, you should create your own custom xref:./arrays.adoc#Base.Broadcast.AbstractArrayStyle[`Broadcast.AbstractArrayStyle`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L79-L85[source] +
 
 [id="Base.Broadcast.DefaultArrayStyle"]
 ==== *`Base.Broadcast.DefaultArrayStyle`* &mdash; _Type_.
 
-`+Broadcast.DefaultArrayStyle{N}()+` is a xref:arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] indicating that an object behaves as an `N`-dimensional array for broadcasting. Specifically, `DefaultArrayStyle` is used for any `AbstractArray` type that hasn't defined a specialized style, and in the absence of overrides from other `broadcast` arguments the resulting output type is `Array`. When there are multiple inputs to `broadcast`, `DefaultArrayStyle` "loses" to any other xref:arrays.adoc#Base.Broadcast.ArrayStyle[`Broadcast.ArrayStyle`].
+`+Broadcast.DefaultArrayStyle{N}()+` is a xref:./arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] indicating that an object behaves as an `N`-dimensional array for broadcasting. Specifically, `DefaultArrayStyle` is used for any `AbstractArray` type that hasn't defined a specialized style, and in the absence of overrides from other `broadcast` arguments the resulting output type is `Array`. When there are multiple inputs to `broadcast`, `DefaultArrayStyle` "loses" to any other xref:./arrays.adoc#Base.Broadcast.ArrayStyle[`Broadcast.ArrayStyle`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/broadcast.jl#L89-L96[source] +
 
@@ -1528,11 +1528,11 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Broadcast.broadcastable(x)
 ----
 
-Return either `x` or an object like `x` such that it supports xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`], indexing, and its type supports xref:arrays.adoc#Base.ndims[`ndims`].
+Return either `x` or an object like `x` such that it supports xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`], indexing, and its type supports xref:./arrays.adoc#Base.ndims[`ndims`].
 
-If `x` supports iteration, the returned value should have the same `axes` and indexing behaviors as xref:collections.adoc#Base.collect-Tuple{Any}[`collect(x)`].
+If `x` supports iteration, the returned value should have the same `axes` and indexing behaviors as xref:./collections.adoc#Base.collect-Tuple{Any}[`collect(x)`].
 
-If `x` is not an `AbstractArray` but it supports `axes`, indexing, and its type supports `ndims`, then `broadcastable(::typeof(x))` may be implemented to just return itself. Further, if `x` defines its own xref:arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`], then it must define its `broadcastable` method to return itself for the custom style to have any effect.
+If `x` is not an `AbstractArray` but it supports `axes`, indexing, and its type supports `ndims`, then `broadcastable(::typeof(x))` may be implemented to just return itself. Further, if `x` defines its own xref:./arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`], then it must define its `broadcastable` method to return itself for the custom style to have any effect.
 
 *Examples*
 
@@ -1582,7 +1582,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 combine_styles(cs...) -> BroadcastStyle
 ----
 
-Decides which `BroadcastStyle` to use for any number of value arguments. Uses xref:arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] to get the style for each argument, and uses xref:arrays.adoc#Base.Broadcast.result_style[`result_style`] to combine styles.
+Decides which `BroadcastStyle` to use for any number of value arguments. Uses xref:./arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] to get the style for each argument, and uses xref:./arrays.adoc#Base.Broadcast.result_style[`result_style`] to combine styles.
 
 *Examples*
 
@@ -1602,7 +1602,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 result_style(s1::BroadcastStyle[, s2::BroadcastStyle]) -> BroadcastStyle
 ----
 
-Takes one or two ``BroadcastStyle``s and combines them using xref:arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] to determine a common `BroadcastStyle`.
+Takes one or two ``BroadcastStyle``s and combines them using xref:./arrays.adoc#Base.Broadcast.BroadcastStyle[`BroadcastStyle`] to determine a common `BroadcastStyle`.
 
 *Examples*
 
@@ -1631,7 +1631,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 getindex(A, inds...)
 ----
 
-Return a subset of array `A` as specified by `inds`, where each `ind` may be, for example, an `Int`, an xref:collections.adoc#Base.AbstractRange[`AbstractRange`], or a xref:arrays.adoc#Base.Vector[`Vector`]. See the manual section on xref:../manual/arrays.adoc#man-array-indexing[array indexing] for details.
+Return a subset of array `A` as specified by `inds`, where each `ind` may be, for example, an `Int`, an xref:./collections.adoc#Base.AbstractRange[`AbstractRange`], or a xref:./arrays.adoc#Base.Vector[`Vector`]. See the manual section on xref:manual/arrays.adoc#man-array-indexing[array indexing] for details.
 
 *Examples*
 
@@ -1729,9 +1729,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 copy!(dst, src) -> dst
 ----
 
-In-place xref:base.adoc#Base.copy[`copy`] of `src` into `dst`, discarding any pre-existing elements in `dst`. If `dst` and `src` are of the same type, `dst == src` should hold after the call. If `dst` and `src` are multidimensional arrays, they must have equal xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`].
+In-place xref:./base.adoc#Base.copy[`copy`] of `src` into `dst`, discarding any pre-existing elements in `dst`. If `dst` and `src` are of the same type, `dst == src` should hold after the call. If `dst` and `src` are multidimensional arrays, they must have equal xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`].
 
-See also xref:c.adoc#Base.copyto![`copyto!`].
+See also xref:./c.adoc#Base.copyto![`copyto!`].
 
 !!! compat "Julia 1.1"
     This method requires at least Julia 1.1. In Julia 1.0 this method is available from the `Future` standard library as `Future.copy!`.
@@ -1782,9 +1782,9 @@ Colon()
 
 Colons (:) are used to signify indexing entire objects or dimensions at once.
 
-Very few operations are defined on Colons directly; instead they are converted by xref:arrays.adoc#Base.to_indices[`to_indices`] to an internal vector type (`Base.Slice`) to represent the collection of indices they span before being used.
+Very few operations are defined on Colons directly; instead they are converted by xref:./arrays.adoc#Base.to_indices[`to_indices`] to an internal vector type (`Base.Slice`) to represent the collection of indices they span before being used.
 
-The singleton instance of `Colon` is also a function used to construct ranges; see xref:math.adoc#Base.::[`:`].
+The singleton instance of `Colon` is also a function used to construct ranges; see xref:./math.adoc#Base.::[`:`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/essentials.jl#L675-L686[source] +
 
@@ -1799,7 +1799,7 @@ CartesianIndex((i, j, k...)) -> I
 
 Create a multidimensional index `I`, which can be used for indexing a multidimensional array `A`.  In particular, `A[I]` is equivalent to `+A[i,j,k...]+`.  One can freely mix integer and `CartesianIndex` indices; for example, `A[Ipre, i, Ipost]` (where `Ipre` and `Ipost` are `CartesianIndex` indices and `i` is an `Int`) can be a useful expression when writing algorithms that work along a single dimension of an array of arbitrary dimensionality.
 
-A `CartesianIndex` is sometimes produced by xref:arrays.adoc#Base.eachindex[`eachindex`], and always when iterating with an explicit xref:arrays.adoc#Base.IteratorsMD.CartesianIndices[`CartesianIndices`].
+A `CartesianIndex` is sometimes produced by xref:./arrays.adoc#Base.eachindex[`eachindex`], and always when iterating with an explicit xref:./arrays.adoc#Base.IteratorsMD.CartesianIndices[`CartesianIndices`].
 
 *Examples*
 
@@ -1844,7 +1844,7 @@ CartesianIndices(sz::Dims) -> R
 CartesianIndices((istart:[istep:]istop, jstart:[jstep:]jstop, ...)) -> R
 ----
 
-Define a region `R` spanning a multidimensional rectangular range of integer indices. These are most commonly encountered in the context of iteration, where `+for I in R ... end+` will return xref:arrays.adoc#Base.IteratorsMD.CartesianIndex[`CartesianIndex`] indices `I` equivalent to the nested loops
+Define a region `R` spanning a multidimensional rectangular range of integer indices. These are most commonly encountered in the context of iteration, where `+for I in R ... end+` will return xref:./arrays.adoc#Base.IteratorsMD.CartesianIndex[`CartesianIndex`] indices `I` equivalent to the nested loops
 
 ----
 for j = jstart:jstep:jstop
@@ -1921,7 +1921,7 @@ julia> CIs .+ CI
 CartesianIndices((5:6, 9:10))
 ----
 
-For cartesian to linear index conversion, see xref:arrays.adoc#Base.LinearIndices[`LinearIndices`].
+For cartesian to linear index conversion, see xref:./arrays.adoc#Base.LinearIndices[`LinearIndices`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L166-L247[source] +
 
@@ -1933,7 +1933,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 Dims{N}
 ----
 
-An `NTuple` of `N` ``Int``s used to represent the dimensions of an xref:arrays.adoc#Core.AbstractArray[`AbstractArray`].
+An `NTuple` of `N` ``Int``s used to represent the dimensions of an xref:./arrays.adoc#Core.AbstractArray[`AbstractArray`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/indices.jl#L3-L8[source] +
 
@@ -1945,7 +1945,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 LinearIndices(A::AbstractArray)
 ----
 
-Return a `LinearIndices` array with the same shape and xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`] as `A`, holding the linear index of each entry in `A`. Indexing this array with cartesian indices allows mapping them to linear indices.
+Return a `LinearIndices` array with the same shape and xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`] as `A`, holding the linear index of each entry in `A`. Indexing this array with cartesian indices allows mapping them to linear indices.
 
 For arrays with conventional indexing (indices start at 1), or any multidimensional array, linear indices range from 1 to `length(A)`. However, for ``AbstractVector``s linear indices are `axes(A, 1)`, and therefore do not start at 1 for vectors with unconventional indexing.
 
@@ -1969,7 +1969,7 @@ LinearIndices(sz::Dims) -> R
 LinearIndices((istart:istop, jstart:jstop, ...)) -> R
 ----
 
-Return a `LinearIndices` array with the specified shape or xref:arrays.adoc#Base.axes-Tuple{Any}[`axes`].
+Return a `LinearIndices` array with the specified shape or xref:./arrays.adoc#Base.axes-Tuple{Any}[`axes`].
 
 *Example*
 
@@ -2015,9 +2015,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 checkbounds(Bool, A, I...)
 ----
 
-Return `true` if the specified indices `I` are in bounds for the given array `A`. Subtypes of `AbstractArray` should specialize this method if they need to provide custom bounds checking behaviors; however, in many cases one can rely on ``A``'s indices and xref:arrays.adoc#Base.checkindex[`checkindex`].
+Return `true` if the specified indices `I` are in bounds for the given array `A`. Subtypes of `AbstractArray` should specialize this method if they need to provide custom bounds checking behaviors; however, in many cases one can rely on ``A``'s indices and xref:./arrays.adoc#Base.checkindex[`checkindex`].
 
-See also xref:arrays.adoc#Base.checkindex[`checkindex`].
+See also xref:./arrays.adoc#Base.checkindex[`checkindex`].
 
 *Examples*
 
@@ -2058,7 +2058,7 @@ checkindex(Bool, inds::AbstractUnitRange, index)
 
 Return `true` if the given `index` is within the bounds of `inds`. Custom types that would like to behave as indices for all arrays can extend this method in order to provide a specialized bounds checking implementation.
 
-See also xref:arrays.adoc#Base.checkbounds[`checkbounds`].
+See also xref:./arrays.adoc#Base.checkbounds[`checkbounds`].
 
 *Examples*
 
@@ -2103,7 +2103,7 @@ A "`view`" is a data structure that acts like an array (it is a subtype of `Abst
 
 For example, if `x` is an array and `v = @view x[1:10]`, then `v` acts like a 10-element array, but its data is actually accessing the first 10 elements of `x`. Writing to a view, e.g. `v[3] = 2`, writes directly to the underlying array `x` (in this case modifying `x[3]`).
 
-Slicing operations like `x[1:10]` create a copy by default in Julia. `@view x[1:10]` changes it to make a view. The `@views` macro can be used on a whole block of code (e.g. `+@views function foo() .... end+` or `+@views begin ... end+`) to change all the slicing operations in that block to use views.  Sometimes making a copy of the data is faster and sometimes using a view is faster, as described in the xref:../manual/performance-tips.adoc#man-performance-views[performance tips].
+Slicing operations like `x[1:10]` create a copy by default in Julia. `@view x[1:10]` changes it to make a view. The `@views` macro can be used on a whole block of code (e.g. `+@views function foo() .... end+` or `+@views begin ... end+`) to change all the slicing operations in that block to use views.  Sometimes making a copy of the data is faster and sometimes using a view is faster, as described in the xref:manual/performance-tips.adoc#man-performance-views[performance tips].
 
 [id="Base.view"]
 ==== *`Base.view`* &mdash; _Function_.
@@ -2113,7 +2113,7 @@ Slicing operations like `x[1:10]` create a copy by default in Julia. `@view x[1:
 view(A, inds...)
 ----
 
-Like xref:collections.adoc#Base.getindex[`getindex`], but returns a lightweight array that lazily references (or is effectively a _view_ into) the parent array `A` at the given index or indices `inds` instead of eagerly extracting elements or constructing a copied subset. Calling xref:collections.adoc#Base.getindex[`getindex`] or xref:collections.adoc#Base.setindex![`setindex!`] on the returned value (often a xref:arrays.adoc#Base.SubArray[`SubArray`]) computes the indices to access or modify the parent array on the fly.  The behavior is undefined if the shape of the parent array is changed after `view` is called because there is no bound check for the parent array; e.g., it may cause a segmentation fault.
+Like xref:./collections.adoc#Base.getindex[`getindex`], but returns a lightweight array that lazily references (or is effectively a _view_ into) the parent array `A` at the given index or indices `inds` instead of eagerly extracting elements or constructing a copied subset. Calling xref:./collections.adoc#Base.getindex[`getindex`] or xref:./collections.adoc#Base.setindex![`setindex!`] on the returned value (often a xref:./arrays.adoc#Base.SubArray[`SubArray`]) computes the indices to access or modify the parent array on the fly.  The behavior is undefined if the shape of the parent array is changed after `view` is called because there is no bound check for the parent array; e.g., it may cause a segmentation fault.
 
 Some immutable parent arrays (like ranges) may choose to simply recompute a new array in some circumstances instead of returning a `SubArray` if doing so is efficient and provides compatible semantics.
 
@@ -2158,13 +2158,13 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 @view A[inds...]
 ----
 
-Transform the indexing expression `+A[inds...]+` into the equivalent xref:arrays.adoc#Base.view[`view`] call.
+Transform the indexing expression `+A[inds...]+` into the equivalent xref:./arrays.adoc#Base.view[`view`] call.
 
-This can only be applied directly to a single indexing expression and is particularly helpful for expressions that include the special `begin` or `end` indexing syntaxes like `A[begin, 2:end-1]` (as those are not supported by the normal xref:arrays.adoc#Base.view[`view`] function).
+This can only be applied directly to a single indexing expression and is particularly helpful for expressions that include the special `begin` or `end` indexing syntaxes like `A[begin, 2:end-1]` (as those are not supported by the normal xref:./arrays.adoc#Base.view[`view`] function).
 
-Note that `@view` cannot be used as the target of a regular assignment (e.g., `+@view(A[1, 2:end]) = ...+`), nor would the un-decorated xref:../manual/arrays.adoc#man-indexed-assignment[indexed assignment] (`+A[1, 2:end] = ...+`) or broadcasted indexed assignment (`+A[1, 2:end] .= ...+`) make a copy.  It can be useful, however, for _updating_ broadcasted assignments like `@view(A[1, 2:end]) .+= 1` because this is a simple syntax for `@view(A[1, 2:end]) .= @view(A[1, 2:end]) + 1`, and the indexing expression on the right-hand side would otherwise make a copy without the `@view`.
+Note that `@view` cannot be used as the target of a regular assignment (e.g., `+@view(A[1, 2:end]) = ...+`), nor would the un-decorated xref:manual/arrays.adoc#man-indexed-assignment[indexed assignment] (`+A[1, 2:end] = ...+`) or broadcasted indexed assignment (`+A[1, 2:end] .= ...+`) make a copy.  It can be useful, however, for _updating_ broadcasted assignments like `@view(A[1, 2:end]) .+= 1` because this is a simple syntax for `@view(A[1, 2:end]) .= @view(A[1, 2:end]) + 1`, and the indexing expression on the right-hand side would otherwise make a copy without the `@view`.
 
-See also xref:arrays.adoc#Base.@views[`@views`] to switch an entire block of code to use views for non-scalar indexing.
+See also xref:./arrays.adoc#Base.@views[`@views`] to switch an entire block of code to use views for non-scalar indexing.
 
 !!! compat "Julia 1.5"
     Using `begin` in an indexing expression to refer to the first index requires at least Julia 1.5.
@@ -2204,7 +2204,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 @views expression
 ----
 
-Convert every array-slicing operation in the given expression (which may be a `begin`/`end` block, loop, function, etc.) to return a view. Scalar indices, non-array types, and explicit xref:collections.adoc#Base.getindex[`getindex`] calls (as opposed to `+array[...]+`) are unaffected.
+Convert every array-slicing operation in the given expression (which may be a `begin`/`end` block, loop, function, etc.) to return a view. Scalar indices, non-array types, and explicit xref:./collections.adoc#Base.getindex[`getindex`] calls (as opposed to `+array[...]+`) are unaffected.
 
 !!! note
     The `@views` macro only affects `+array[...]+` expressions that appear explicitly in the given `expression`, not array slicing that occurs in functions called by that code.
@@ -2272,7 +2272,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 parentindices(A)
 ----
 
-Return the indices in the xref:arrays.adoc#Base.parent[`parent`] which correspond to the array view `A`.
+Return the indices in the xref:./arrays.adoc#Base.parent[`parent`] which correspond to the array view `A`.
 
 *Examples*
 
@@ -2303,7 +2303,7 @@ Return a view of all the data of `A` where the index for dimension `d` equals `i
 
 Equivalent to `+view(A,:,:,...,i,:,:,...)+` where `i` is in position `d`.
 
-See also: xref:arrays.adoc#Base.eachslice[`eachslice`].
+See also: xref:./arrays.adoc#Base.eachslice[`eachslice`].
 
 *Examples*
 
@@ -2335,7 +2335,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 reinterpret(type, A)
 ----
 
-Change the type-interpretation of a block of memory. For arrays, this constructs a view of the array with the same binary data as the given array, but with the specified element type. For example, `reinterpret(Float32, UInt32(7))` interprets the 4 bytes corresponding to `UInt32(7)` as a xref:numbers.adoc#Core.Float32[`Float32`].
+Change the type-interpretation of a block of memory. For arrays, this constructs a view of the array with the same binary data as the given array, but with the specified element type. For example, `reinterpret(Float32, UInt32(7))` interprets the 4 bytes corresponding to `UInt32(7)` as a xref:./numbers.adoc#Core.Float32[`Float32`].
 
 *Examples*
 
@@ -2458,7 +2458,7 @@ Return an array with the same data as `A`, but with the dimensions specified by 
 
 The result shares the same underlying data as `A`, such that the result is mutable if and only if `A` is mutable, and setting elements of one alters the values of the other.
 
-See also: xref:arrays.adoc#Base.reshape[`reshape`], xref:arrays.adoc#Base.vec[`vec`].
+See also: xref:./arrays.adoc#Base.reshape[`reshape`], xref:./arrays.adoc#Base.vec[`vec`].
 
 *Examples*
 
@@ -2517,7 +2517,7 @@ julia> vec(1:3)
 1:3
 ----
 
-See also xref:arrays.adoc#Base.reshape[`reshape`], xref:arrays.adoc#Base.dropdims[`dropdims`].
+See also xref:./arrays.adoc#Base.reshape[`reshape`], xref:./arrays.adoc#Base.dropdims[`dropdims`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/abstractarraymath.jl#L11-L40[source] +
 
@@ -2531,7 +2531,7 @@ SubArray{T,N,P,I,L} <: AbstractArray{T,N}
 
 `N`-dimensional view into a parent array (of type `P`) with an element type `T`, restricted by a tuple of indices (of type `I`). `L` is true for types that support fast linear indexing, and `false` otherwise.
 
-Construct ``SubArray``s using the xref:arrays.adoc#Base.view[`view`] function.
+Construct ``SubArray``s using the xref:./arrays.adoc#Base.view[`view`] function.
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/subarray.jl#L7-L13[source] +
 
@@ -2551,7 +2551,7 @@ cat(A...; dims)
 
 Concatenate the input arrays along the specified dimensions in the iterable `dims`. For dimensions not in `dims`, all input arrays should have the same size, which will also be the size of the output array along that dimension. For dimensions in `dims`, the size of the output array is the sum of the sizes of the input arrays along that dimension. If `dims` is a single number, the different arrays are tightly stacked along that dimension. If `dims` is an iterable containing several dimensions, this allows one to construct block diagonal matrices and their higher-dimensional analogues by simultaneously increasing several dimensions for every new input array and putting zero blocks elsewhere. For example, `+cat(matrices...; dims=(1,2))+` builds a block diagonal matrix, i.e. a block matrix with `matrices[1]`, `matrices[2]`, ... as diagonal blocks and matching zero blocks away from the diagonal.
 
-See also xref:arrays.adoc#Base.hcat[`hcat`], xref:arrays.adoc#Base.vcat[`vcat`], xref:arrays.adoc#Base.hvcat[`hvcat`], xref:arrays.adoc#Base.repeat[`repeat`].
+See also xref:./arrays.adoc#Base.hcat[`hcat`], xref:./arrays.adoc#Base.vcat[`vcat`], xref:./arrays.adoc#Base.hvcat[`hvcat`], xref:./arrays.adoc#Base.repeat[`repeat`].
 
 *Examples*
 
@@ -2837,7 +2837,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 vect(X...)
 ----
 
-Create a xref:arrays.adoc#Base.Vector[`Vector`] with element type computed from the `promote_typeof` of the argument, containing the argument list.
+Create a xref:./arrays.adoc#Base.Vector[`Vector`] with element type computed from the `promote_typeof` of the argument, containing the argument list.
 
 *Examples*
 
@@ -2862,7 +2862,7 @@ circshift(A, shifts)
 
 Circularly shift, i.e. rotate, the data in an array. The second argument is a tuple or vector giving the amount to shift in each dimension, or an integer to shift only in the first dimension.
 
-See also: xref:arrays.adoc#Base.circshift![`circshift!`], xref:arrays.adoc#Base.circcopy![`circcopy!`], xref:math.adoc#Base.bitrotate[`bitrotate`], xref:math.adoc#Base.:<<[`<<`].
+See also: xref:./arrays.adoc#Base.circshift![`circshift!`], xref:./arrays.adoc#Base.circcopy![`circcopy!`], xref:./math.adoc#Base.bitrotate[`bitrotate`], xref:./math.adoc#Base.:<<[`<<`].
 
 *Examples*
 
@@ -2928,7 +2928,7 @@ Circularly shift, i.e. rotate, the data in `src`, storing the result in `dest`. 
 
 The `dest` array must be distinct from the `src` array (they cannot alias each other).
 
-See also xref:arrays.adoc#Base.circshift[`circshift`].
+See also xref:./arrays.adoc#Base.circshift[`circshift`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/multidimensional.jl#L1162-L1172[source] +
 
@@ -2942,7 +2942,7 @@ circcopy!(dest, src)
 
 Copy `src` to `dest`, indexing each dimension modulo its length. `src` and `dest` must have the same size, but can be offset in their indices; any offset results in a (circular) wraparound. If the arrays have overlapping indices, then on the domain of the overlap `dest` agrees with `src`.
 
-See also: xref:arrays.adoc#Base.circshift[`circshift`].
+See also: xref:./arrays.adoc#Base.circshift[`circshift`].
 
 *Examples*
 
@@ -2980,9 +2980,9 @@ findall(A)
 
 Return a vector `I` of the `true` indices or keys of `A`. If there are no such elements of `A`, return an empty array. To search for other kinds of values, pass a predicate as the first argument.
 
-Indices or keys are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices or keys are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
-See also: xref:arrays.adoc#Base.findfirst-Tuple{Any}[`findfirst`], xref:sort.adoc#Base.Sort.searchsorted[`searchsorted`].
+See also: xref:./arrays.adoc#Base.findfirst-Tuple{Any}[`findfirst`], xref:./sort.adoc#Base.Sort.searchsorted[`searchsorted`].
 
 *Examples*
 
@@ -3026,7 +3026,7 @@ findall(f::Function, A)
 
 Return a vector `I` of the indices or keys of `A` where `f(A[I])` returns `true`. If there are no such elements of `A`, return an empty array.
 
-Indices or keys are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices or keys are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
 *Examples*
 
@@ -3083,9 +3083,9 @@ findfirst(A)
 
 Return the index or key of the first `true` value in `A`. Return `nothing` if no such value is found. To search for other kinds of values, pass a predicate as the first argument.
 
-Indices or keys are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices or keys are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
-See also: xref:arrays.adoc#Base.findall-Tuple{Any}[`findall`], xref:arrays.adoc#Base.findnext-Tuple{Any, Integer}[`findnext`], xref:arrays.adoc#Base.findlast-Tuple{Any}[`findlast`], xref:sort.adoc#Base.Sort.searchsortedfirst[`searchsortedfirst`].
+See also: xref:./arrays.adoc#Base.findall-Tuple{Any}[`findall`], xref:./arrays.adoc#Base.findnext-Tuple{Any, Integer}[`findnext`], xref:./arrays.adoc#Base.findlast-Tuple{Any}[`findlast`], xref:./sort.adoc#Base.Sort.searchsortedfirst[`searchsortedfirst`].
 
 *Examples*
 
@@ -3124,7 +3124,7 @@ findfirst(predicate::Function, A)
 
 Return the index or key of the first element of `A` for which `predicate` returns `true`. Return `nothing` if there is no such element.
 
-Indices or keys are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices or keys are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
 *Examples*
 
@@ -3166,9 +3166,9 @@ findlast(A)
 
 Return the index or key of the last `true` value in `A`. Return `nothing` if there is no `true` value in `A`.
 
-Indices or keys are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices or keys are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
-See also: xref:arrays.adoc#Base.findfirst-Tuple{Any}[`findfirst`], xref:arrays.adoc#Base.findprev-Tuple{Any, Integer}[`findprev`], xref:arrays.adoc#Base.findall-Tuple{Any}[`findall`].
+See also: xref:./arrays.adoc#Base.findfirst-Tuple{Any}[`findfirst`], xref:./arrays.adoc#Base.findprev-Tuple{Any, Integer}[`findprev`], xref:./arrays.adoc#Base.findall-Tuple{Any}[`findall`].
 
 *Examples*
 
@@ -3209,7 +3209,7 @@ findlast(predicate::Function, A)
 
 Return the index or key of the last element of `A` for which `predicate` returns `true`. Return `nothing` if there is no such element.
 
-Indices or keys are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices or keys are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
 *Examples*
 
@@ -3248,7 +3248,7 @@ findnext(A, i)
 
 Find the next index after or including `i` of a `true` element of `A`, or `nothing` if not found.
 
-Indices are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
 *Examples*
 
@@ -3287,7 +3287,7 @@ findnext(predicate::Function, A, i)
 
 Find the next index after or including `i` of an element of `A` for which `predicate` returns `true`, or `nothing` if not found.
 
-Indices are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
 *Examples*
 
@@ -3318,9 +3318,9 @@ findprev(A, i)
 
 Find the previous index before or including `i` of a `true` element of `A`, or `nothing` if not found.
 
-Indices are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
-See also: xref:arrays.adoc#Base.findnext-Tuple{Any, Integer}[`findnext`], xref:arrays.adoc#Base.findfirst-Tuple{Any}[`findfirst`], xref:arrays.adoc#Base.findall-Tuple{Any}[`findall`].
+See also: xref:./arrays.adoc#Base.findnext-Tuple{Any, Integer}[`findnext`], xref:./arrays.adoc#Base.findfirst-Tuple{Any}[`findfirst`], xref:./arrays.adoc#Base.findall-Tuple{Any}[`findall`].
 
 *Examples*
 
@@ -3359,7 +3359,7 @@ findprev(predicate::Function, A, i)
 
 Find the previous index before or including `i` of an element of `A` for which `predicate` returns `true`, or `nothing` if not found.
 
-Indices are of the same type as those returned by xref:arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:collections.adoc#Base.pairs[`pairs(A)`].
+Indices are of the same type as those returned by xref:./arrays.adoc#Base.keys-Tuple{AbstractArray}[`keys(A)`] and xref:./collections.adoc#Base.pairs[`pairs(A)`].
 
 *Examples*
 
@@ -3398,7 +3398,7 @@ permutedims(A::AbstractArray, perm)
 
 Permute the dimensions of array `A`. `perm` is a vector or a tuple of length `ndims(A)` specifying the permutation.
 
-See also xref:arrays.adoc#Base.permutedims![`permutedims!`], xref:arrays.adoc#Base.PermutedDimsArrays.PermutedDimsArray[`PermutedDimsArray`], xref:../stdlib/LinearAlgebra.adoc#Base.transpose[`transpose`], xref:arrays.adoc#Base.invperm[`invperm`].
+See also xref:./arrays.adoc#Base.permutedims![`permutedims!`], xref:./arrays.adoc#Base.PermutedDimsArrays.PermutedDimsArray[`PermutedDimsArray`], xref:stdlib/LinearAlgebra.adoc#Base.transpose[`transpose`], xref:./arrays.adoc#Base.invperm[`invperm`].
 
 *Examples*
 
@@ -3441,7 +3441,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 permutedims(m::AbstractMatrix)
 ----
 
-Permute the dimensions of the matrix `m`, by flipping the elements across the diagonal of the matrix. Differs from ``LinearAlgebra``'s xref:../stdlib/LinearAlgebra.adoc#Base.transpose[`transpose`] in that the operation is not recursive.
+Permute the dimensions of the matrix `m`, by flipping the elements across the diagonal of the matrix. Differs from ``LinearAlgebra``'s xref:stdlib/LinearAlgebra.adoc#Base.transpose[`transpose`] in that the operation is not recursive.
 
 *Examples*
 
@@ -3477,7 +3477,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 permutedims(v::AbstractVector)
 ----
 
-Reshape vector `v` into a `1 × length(v)` row matrix. Differs from ``LinearAlgebra``'s xref:../stdlib/LinearAlgebra.adoc#Base.transpose[`transpose`] in that the operation is not recursive.
+Reshape vector `v` into a `1 × length(v)` row matrix. Differs from ``LinearAlgebra``'s xref:stdlib/LinearAlgebra.adoc#Base.transpose[`transpose`] in that the operation is not recursive.
 
 *Examples*
 
@@ -3513,7 +3513,7 @@ permutedims!(dest, src, perm)
 
 Permute the dimensions of array `src` and store the result in the array `dest`. `perm` is a vector specifying a permutation of length `ndims(src)`. The preallocated array `dest` should have `size(dest) == size(src)[perm]` and is completely overwritten. No in-place permutation is supported and unexpected results will happen if `src` and `dest` have overlapping memory regions.
 
-See also xref:arrays.adoc#Base.permutedims[`permutedims`].
+See also xref:./arrays.adoc#Base.permutedims[`permutedims`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/permuteddimsarray.jl#L193-L203[source] +
 
@@ -3527,7 +3527,7 @@ PermutedDimsArray(A, perm) -> B
 
 Given an AbstractArray `A`, create a view `B` such that the dimensions appear to be permuted. Similar to `permutedims`, except that no copying occurs (`B` shares storage with `A`).
 
-See also xref:arrays.adoc#Base.permutedims[`permutedims`], xref:arrays.adoc#Base.invperm[`invperm`].
+See also xref:./arrays.adoc#Base.permutedims[`permutedims`], xref:./arrays.adoc#Base.invperm[`invperm`].
 
 *Examples*
 
@@ -3587,9 +3587,9 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 accumulate(op, A; dims::Integer, [init])
 ----
 
-Cumulative operation `op` along the dimension `dims` of `A` (providing `dims` is optional for vectors). An initial value `init` may optionally be provided by a keyword argument. See also xref:arrays.adoc#Base.accumulate![`accumulate!`] to use a preallocated output array, both for performance and to control the precision of the output (e.g. to avoid overflow).
+Cumulative operation `op` along the dimension `dims` of `A` (providing `dims` is optional for vectors). An initial value `init` may optionally be provided by a keyword argument. See also xref:./arrays.adoc#Base.accumulate![`accumulate!`] to use a preallocated output array, both for performance and to control the precision of the output (e.g. to avoid overflow).
 
-For common operations there are specialized variants of `accumulate`, see xref:arrays.adoc#Base.cumsum[`cumsum`], xref:arrays.adoc#Base.cumprod[`cumprod`]. For a lazy version, see xref:iterators.adoc#Base.Iterators.accumulate[`Iterators.accumulate`].
+For common operations there are specialized variants of `accumulate`, see xref:./arrays.adoc#Base.cumsum[`cumsum`], xref:./arrays.adoc#Base.cumprod[`cumprod`]. For a lazy version, see xref:./iterators.adoc#Base.Iterators.accumulate[`Iterators.accumulate`].
 
 !!! compat "Julia 1.5"
     `accumulate` on a non-array iterator requires at least Julia 1.5.
@@ -3640,7 +3640,7 @@ accumulate!(op, B, A; [dims], [init])
 
 Cumulative operation `op` on `A` along the dimension `dims`, storing the result in `B`. Providing `dims` is optional for vectors.  If the keyword argument `init` is given, its value is used to instantiate the accumulation.
 
-See also xref:arrays.adoc#Base.accumulate[`accumulate`], xref:arrays.adoc#Base.cumsum![`cumsum!`], xref:arrays.adoc#Base.cumprod![`cumprod!`].
+See also xref:./arrays.adoc#Base.accumulate[`accumulate`], xref:./arrays.adoc#Base.cumsum![`cumsum!`], xref:./arrays.adoc#Base.cumprod![`cumprod!`].
 
 *Examples*
 
@@ -3685,7 +3685,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 cumprod(A; dims::Integer)
 ----
 
-Cumulative product along the dimension `dim`. See also xref:arrays.adoc#Base.cumprod![`cumprod!`] to use a preallocated output array, both for performance and to control the precision of the output (e.g. to avoid overflow).
+Cumulative product along the dimension `dim`. See also xref:./arrays.adoc#Base.cumprod![`cumprod!`] to use a preallocated output array, both for performance and to control the precision of the output (e.g. to avoid overflow).
 
 *Examples*
 
@@ -3712,7 +3712,7 @@ cumprod(itr)
 
 Cumulative product of an iterator.
 
-See also xref:arrays.adoc#Base.cumprod![`cumprod!`], xref:arrays.adoc#Base.accumulate[`accumulate`], xref:arrays.adoc#Base.cumsum[`cumsum`].
+See also xref:./arrays.adoc#Base.cumprod![`cumprod!`], xref:./arrays.adoc#Base.accumulate[`accumulate`], xref:./arrays.adoc#Base.cumsum[`cumsum`].
 
 !!! compat "Julia 1.5"
     `cumprod` on a non-array iterator requires at least Julia 1.5.
@@ -3749,7 +3749,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 cumprod!(B, A; dims::Integer)
 ----
 
-Cumulative product of `A` along the dimension `dims`, storing the result in `B`. See also xref:arrays.adoc#Base.cumprod[`cumprod`].
+Cumulative product of `A` along the dimension `dims`, storing the result in `B`. See also xref:./arrays.adoc#Base.cumprod[`cumprod`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/accumulate.jl#L148-L153[source] +
 
@@ -3757,7 +3757,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 cumprod!(y::AbstractVector, x::AbstractVector)
 ----
 
-Cumulative product of a vector `x`, storing the result in `y`. See also xref:arrays.adoc#Base.cumprod[`cumprod`].
+Cumulative product of a vector `x`, storing the result in `y`. See also xref:./arrays.adoc#Base.cumprod[`cumprod`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/accumulate.jl#L157-L162[source] +
 
@@ -3769,7 +3769,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 cumsum(A; dims::Integer)
 ----
 
-Cumulative sum along the dimension `dims`. See also xref:arrays.adoc#Base.cumsum![`cumsum!`] to use a preallocated output array, both for performance and to control the precision of the output (e.g. to avoid overflow).
+Cumulative sum along the dimension `dims`. See also xref:./arrays.adoc#Base.cumsum![`cumsum!`] to use a preallocated output array, both for performance and to control the precision of the output (e.g. to avoid overflow).
 
 *Examples*
 
@@ -3818,7 +3818,7 @@ cumsum(itr)
 
 Cumulative sum of an iterator.
 
-See also xref:arrays.adoc#Base.accumulate[`accumulate`] to apply functions other than `+`.
+See also xref:./arrays.adoc#Base.accumulate[`accumulate`] to apply functions other than `+`.
 
 !!! compat "Julia 1.5"
     `cumsum` on a non-array iterator requires at least Julia 1.5.
@@ -3853,7 +3853,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 cumsum!(B, A; dims::Integer)
 ----
 
-Cumulative sum of `A` along the dimension `dims`, storing the result in `B`. See also xref:arrays.adoc#Base.cumsum[`cumsum`].
+Cumulative sum of `A` along the dimension `dims`, storing the result in `B`. See also xref:./arrays.adoc#Base.cumsum[`cumsum`].
 
 https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e/base/accumulate.jl#L41-L45[source] +
 
@@ -3904,7 +3904,7 @@ repeat(A::AbstractArray, counts::Integer...)
 
 Construct an array by repeating array `A` a given number of times in each dimension, specified by `counts`.
 
-See also: xref:arrays.adoc#Base.fill[`fill`], xref:iterators.adoc#Base.Iterators.repeated[`Iterators.repeated`], xref:iterators.adoc#Base.Iterators.cycle[`Iterators.cycle`].
+See also: xref:./arrays.adoc#Base.fill[`fill`], xref:./iterators.adoc#Base.Iterators.repeated[`Iterators.repeated`], xref:./iterators.adoc#Base.Iterators.cycle[`Iterators.cycle`].
 
 *Examples*
 
@@ -3972,7 +3972,7 @@ repeat(s::AbstractString, r::Integer)
 
 Repeat a string `r` times. This can be written as `+s^r+`.
 
-See also xref:strings.adoc#Base.:^-Tuple{Union{AbstractChar, AbstractString}, Integer}[`^`].
+See also xref:./strings.adoc#Base.:^-Tuple{Union{AbstractChar, AbstractString}, Integer}[`^`].
 
 *Examples*
 
@@ -3989,7 +3989,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 repeat(c::AbstractChar, r::Integer) -> String
 ----
 
-Repeat a character `r` times. This can equivalently be accomplished by calling xref:strings.adoc#Base.:^-Tuple{Union{AbstractChar, AbstractString}, Integer}[`+c^r+`].
+Repeat a character `r` times. This can equivalently be accomplished by calling xref:./strings.adoc#Base.:^-Tuple{Union{AbstractChar, AbstractString}, Integer}[`+c^r+`].
 
 *Examples*
 
@@ -4196,7 +4196,7 @@ mapslices(f, A; dims)
 
 Transform the given dimensions of array `A` using function `f`. `f` is called on each slice of `A` of the form `+A[...,:,...,:,...]+`. `dims` is an integer vector specifying where the colons go in this expression. The results are concatenated along the remaining dimensions. For example, if `dims` is `[1,2]` and `A` is 4-dimensional, `f` is called on `A[:,:,i,j]` for all `i` and `j`.
 
-See also xref:arrays.adoc#Base.eachcol[`eachcol`], xref:arrays.adoc#Base.eachslice[`eachslice`].
+See also xref:./arrays.adoc#Base.eachcol[`eachcol`], xref:./arrays.adoc#Base.eachslice[`eachslice`].
 
 *Examples*
 
@@ -4247,7 +4247,7 @@ eachrow(A::AbstractVecOrMat)
 
 Create a generator that iterates over the first dimension of vector or matrix `A`, returning the rows as `AbstractVector` views.
 
-See also xref:arrays.adoc#Base.eachcol[`eachcol`], xref:arrays.adoc#Base.eachslice[`eachslice`], xref:arrays.adoc#Base.mapslices[`mapslices`].
+See also xref:./arrays.adoc#Base.eachcol[`eachcol`], xref:./arrays.adoc#Base.eachslice[`eachslice`], xref:./arrays.adoc#Base.mapslices[`mapslices`].
 
 !!! compat "Julia 1.1"
     This function requires at least Julia 1.1.
@@ -4284,7 +4284,7 @@ eachcol(A::AbstractVecOrMat)
 
 Create a generator that iterates over the second dimension of matrix `A`, returning the columns as `AbstractVector` views.
 
-See also xref:arrays.adoc#Base.eachrow[`eachrow`] and xref:arrays.adoc#Base.eachslice[`eachslice`].
+See also xref:./arrays.adoc#Base.eachrow[`eachrow`] and xref:./arrays.adoc#Base.eachslice[`eachslice`].
 
 !!! compat "Julia 1.1"
     This function requires at least Julia 1.1.
@@ -4323,7 +4323,7 @@ Create a generator that iterates over dimensions `dims` of `A`, returning views 
 
 Only a single dimension in `dims` is currently supported. Equivalent to `+(view(A,:,:,...,i,:,: ...)) for i in axes(A, dims))+`, where `i` is in position `dims`.
 
-See also xref:arrays.adoc#Base.eachrow[`eachrow`], xref:arrays.adoc#Base.eachcol[`eachcol`], xref:arrays.adoc#Base.mapslices[`mapslices`], and xref:arrays.adoc#Base.selectdim[`selectdim`].
+See also xref:./arrays.adoc#Base.eachrow[`eachrow`], xref:./arrays.adoc#Base.eachcol[`eachcol`], xref:./arrays.adoc#Base.mapslices[`mapslices`], and xref:./arrays.adoc#Base.selectdim[`selectdim`].
 
 !!! compat "Julia 1.1"
     This function requires at least Julia 1.1.
@@ -4369,7 +4369,7 @@ invperm(v)
 
 Return the inverse permutation of `v`. If `B = A[v]`, then `A == B[invperm(v)]`.
 
-See also xref:sort.adoc#Base.sortperm[`sortperm`], xref:arrays.adoc#Base.invpermute![`invpermute!`], xref:arrays.adoc#Base.isperm[`isperm`], xref:arrays.adoc#Base.permutedims[`permutedims`].
+See also xref:./sort.adoc#Base.sortperm[`sortperm`], xref:./arrays.adoc#Base.invpermute![`invpermute!`], xref:./arrays.adoc#Base.isperm[`isperm`], xref:./arrays.adoc#Base.permutedims[`permutedims`].
 
 *Examples*
 
@@ -4443,7 +4443,7 @@ Permute vector `v` in-place, according to permutation `p`. No checking is done t
 
 To return a new permutation, use `v[p]`. Note that this is generally faster than `permute!(v,p)` for large vectors.
 
-See also xref:arrays.adoc#Base.invpermute![`invpermute!`].
+See also xref:./arrays.adoc#Base.invpermute![`invpermute!`].
 
 *Examples*
 
@@ -4473,7 +4473,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 invpermute!(v, p)
 ----
 
-Like xref:arrays.adoc#Base.permute!-Tuple{Any, AbstractVector}[`permute!`], but the inverse of the given permutation is applied.
+Like xref:./arrays.adoc#Base.permute!-Tuple{Any, AbstractVector}[`permute!`], but the inverse of the given permutation is applied.
 
 *Examples*
 
@@ -4503,7 +4503,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 reverse(A; dims=:)
 ----
 
-Reverse `A` along dimension `dims`, which can be an integer (a single dimension), a tuple of integers (a tuple of dimensions) or `:` (reverse along all the dimensions, the default).  See also xref:arrays.adoc#Base.reverse![`reverse!`] for in-place reversal.
+Reverse `A` along dimension `dims`, which can be an integer (a single dimension), a tuple of integers (a tuple of dimensions) or `:` (reverse along all the dimensions, the default).  See also xref:./arrays.adoc#Base.reverse![`reverse!`] for in-place reversal.
 
 *Examples*
 
@@ -4538,7 +4538,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 reverseind(v, i)
 ----
 
-Given an index `i` in xref:arrays.adoc#Base.reverse-Tuple{AbstractVector}[`reverse(v)`], return the corresponding index in `v` so that `v[reverseind(v,i)] == reverse(v)[i]`. (This can be nontrivial in cases where `v` contains non-ASCII characters.)
+Given an index `i` in xref:./arrays.adoc#Base.reverse-Tuple{AbstractVector}[`reverse(v)`], return the corresponding index in `v` so that `v[reverseind(v,i)] == reverse(v)[i]`. (This can be nontrivial in cases where `v` contains non-ASCII characters.)
 
 *Examples*
 
@@ -4566,7 +4566,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 reverse!(v [, start=1 [, stop=length(v) ]]) -> v
 ----
 
-In-place version of xref:arrays.adoc#Base.reverse-Tuple{AbstractVector}[`reverse`].
+In-place version of xref:./arrays.adoc#Base.reverse-Tuple{AbstractVector}[`reverse`].
 
 *Examples*
 
@@ -4597,7 +4597,7 @@ https://github.com/JuliaLang/julia/blob/17cfb8e65ead377bf1b4598d8a9869144142c84e
 reverse!(A; dims=:)
 ----
 
-Like xref:arrays.adoc#Base.reverse-Tuple{AbstractVector}[`reverse`], but operates in-place in `A`.
+Like xref:./arrays.adoc#Base.reverse-Tuple{AbstractVector}[`reverse`], but operates in-place in `A`.
 
 !!! compat "Julia 1.6"
     Multidimensional `reverse!` requires Julia 1.6.

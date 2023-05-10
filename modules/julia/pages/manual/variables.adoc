@@ -115,7 +115,7 @@ ERROR: syntax: all-underscore identifier used as rvalue
 ОШИБКА: синтаксис: идентификатор, состоящий только из символов подчеркивания, использован в качестве r-значения
 ----
 
-В качестве имен переменных на прямую запрещены только имена встроенных xref:base:base.adoc#Keywords[Ключевых слов]:
+В качестве имен переменных на прямую запрещены только имена встроенных xref:base/base.adoc#Keywords[Ключевых слов]:
 
 [,julia-repl]
 ----
@@ -144,7 +144,7 @@ ERROR: syntax: unexpected "="
 * Имена функций (`function`) и макросов (`macro`) задаются в нижнем регистре без подчеркиваний.
 * Имена функций, которые изменяют свои аргументы, заканчиваются на `!`. Их иногда называют модифицирующими ("mutating") функциями или функциями "in-place", так как они производят изменения в своих аргументах после вызова, а не просто возвращают значение.
 
-Подробнее о стилистических конвенциях можно узнать в xref:style-guide.adoc#Style-Guide[Style Guide].
+Подробнее о стилистических конвенциях можно узнать в xref:./style-guide.adoc#Style-Guide[Style Guide].
 
 +++<a id="Тесты-ссылок">++++++</a>+++
 
@@ -152,22 +152,22 @@ ERROR: syntax: unexpected "="
 
 == Тесты ссылок
 
-Construct an uninitialized `N`-dimensional xref:base:arrays.adoc#Core.Array[`Array`] containing elements of type `T`.
+Construct an uninitialized `N`-dimensional xref:base/arrays.adoc#Core.Array[`Array`] containing elements of type `T`.
 
-Construct an uninitialized `N`-dimensional xref:base:arrays.adoc#Core.Array[`Массив`] containing elements of type `T`.
+Construct an uninitialized `N`-dimensional xref:base/arrays.adoc#Core.Array[`Массив`] containing elements of type `T`.
 
-Construct an uninitialized `N`-dimensional xref:base:arrays.adoc#Core.Array[`Массив`] containing elements of type `T`.
+Construct an uninitialized `N`-dimensional xref:base/arrays.adoc#Core.Array[`Массив`] containing elements of type `T`.
 
-Ссылка через полное имя с сигнатурой: xref:base:arrays.adoc#Core.Array-Tuple{UndefInitializer, Any}[`+Array{T}(undef, dims)+`]
+Ссылка через полное имя с сигнатурой: xref:base/arrays.adoc#Core.Array-Tuple{UndefInitializer, Any}[`+Array{T}(undef, dims)+`]
 
-Ссылка через неполное имя с сигнатурой: xref:base:arrays.adoc#Core.Array-Tuple{UndefInitializer, Any}[`+Array{T}(undef, dims)+`]
+Ссылка через неполное имя с сигнатурой: xref:base/arrays.adoc#Core.Array-Tuple{UndefInitializer, Any}[`+Array{T}(undef, dims)+`]
 
-Ссылка через заголовок раздела:  xref:base:math.adoc#Base.:--Tuple{Any, Any}[`+Array{T}(undef, dims)+`]
+Ссылка через заголовок раздела:  xref:base/math.adoc#Base.:--Tuple{Any, Any}[`+Array{T}(undef, dims)+`]
 
-Ссылка на xref:style-guide.adoc#Style-Guide[Стайл гайд]
+Ссылка на xref:./style-guide.adoc#Style-Guide[Стайл гайд]
 
-Ссылка на xref:variables.adoc#Stylistic-Conventions[Стилистические конвенции]
+Ссылка на xref:./variables.adoc#Stylistic-Conventions[Стилистические конвенции]
 
-Ссылка на xref:variables.adoc#Stylistic-Conventions[Stylistic Conventions]
+Ссылка на xref:./variables.adoc#Stylistic-Conventions[Stylistic Conventions]
 
-Ссылка на xref:base:collections.adoc#Base.IteratorSize[`HasShape`]
+Ссылка на xref:base/collections.adoc#Base.IteratorSize[`HasShape`]
