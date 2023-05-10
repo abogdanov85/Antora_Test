@@ -33,7 +33,7 @@ while next !== nothing
 end
 ----
 
-The `state` object may be anything, and should be chosen appropriately for each iterable type. See the xref:manual:interfaces.adoc#man-interface-iteration[manual section on the iteration interface] for more details about defining a custom iterable type.
+The `state` object may be anything, and should be chosen appropriately for each iterable type. See the xref:manual/interfaces.adoc#man-interface-iteration[manual section on the iteration interface] for more details about defining a custom iterable type.
 
 [id=Base.iterate]
 ==== *`Base.iterate`* &mdash; _Function_.
