@@ -1,8 +1,0 @@
-Ссылка в другой модуль через `manual:`: xref:manual:interfaces.adoc#man-interface-iteration[текст]
-
-Ссылка в этот же файл: xref:test.adoc#header[текст]
-
-Ссылка в этот же модуль: xref:collections.adoc#Base.iterate[текст]
-
-
-= Header
