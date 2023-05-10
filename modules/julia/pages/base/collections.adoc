@@ -12,7 +12,7 @@
 
 == Iteration
 
-Sequential iteration is implemented by the xref:collections.adoc#Base.iterate[`iterate`] function. The general `for` loop:
+Sequential iteration is implemented by the xref:./collections.adoc#Base.iterate[`iterate`] function. The general `for` loop:
 
 [,julia]
 ----
@@ -108,7 +108,7 @@ Fully implemented by:
 * xref:collections.adoc#Base.UnitRange[`UnitRange`]
 * `Tuple`
 * `Number`
-* xref:arrays.adoc#Core.AbstractArray[`AbstractArray`]
+* xref:./arrays.adoc#Core.AbstractArray[`AbstractArray`]
 * xref:collections.adoc#Base.BitSet[`BitSet`]
 * xref:collections.adoc#Base.IdDict[`IdDict`]
 * xref:collections.adoc#Base.Dict[`Dict`]
