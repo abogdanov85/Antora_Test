@@ -193,10 +193,7 @@ julia> collect(Iterators.reverse(Squares(4)))
   1
 ----
 
-+++<a id="Indexing">++++++</a>+++
-
-+++<a id="Indexing-1">++++++</a>+++
-
+[id="Indexing"]
 == Indexing
 
 |===
